@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SkillLens — lookup index (148 entries)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font: 14px/1.45 system-ui, sans-serif; max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+    h1 { font-size: 1.4rem; margin: 0 0 .25rem; }
+    p.lede { color: #666; margin: 0 0 1.5rem; }
+    .controls { margin: 0 0 .75rem; }
+    .controls input { padding: .4rem .55rem; font: inherit; min-width: 18rem; border: 1px solid #ccc; border-radius: 4px; }
+    table { border-collapse: collapse; width: 100%; font-size: 13px; }
+    th, td { text-align: left; padding: .35rem .5rem; border-bottom: 1px solid #e5e5e5; }
+    th { background: #f7f7f7; font-weight: 600; cursor: pointer; user-select: none; }
+    th:hover { background: #eee; }
+    td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    a { color: #2952c5; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .pill { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+    .risk-low { background: #d4edda; color: #155724; }
+    .risk-medium { background: #fff3cd; color: #856404; }
+    .risk-high { background: #f8d7da; color: #721c24; }
+    .risk-unknown { background: #eaeaea; color: #555; }
+    footer { margin: 2rem 0 0; color: #888; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <h1>SkillLens lookup index</h1>
+  <p class="lede">
+    148 owner/repo entries · 216 skills aggregated.
+    Each row links to the per-repo <code>/lookup/&lt;owner&gt;__&lt;repo&gt;.json</code>
+    payload the browser extension consumes. Machine-readable form:
+    <a href="../index.json"><code>../index.json</code></a>.
+  </p>
+  <div class="controls">
+    <input id="filter" type="search" placeholder="Filter by owner or repo…" autocomplete="off">
+  </div>
+  <table id="lookup">
+    <thead>
+      <tr>
+        <th data-key="repo">owner / repo</th>
+        <th data-key="skillCount" class="num">skills</th>
+        <th data-key="delta" class="num">Δ pass@1</th>
+        <th data-key="risk">risk</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><a href="./a5c-ai__csi-specification-writer.json">a5c-ai/csi-specification-writer</a></td><td class="num">1</td><td class="num">+0.026</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./a5c-ai__dock-scheduling-coordinator.json">a5c-ai/dock-scheduling-coordinator</a></td><td class="num">1</td><td class="num">+0.202</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./a5c-ai__fifo-lifo-controller.json">a5c-ai/fifo-lifo-controller</a></td><td class="num">1</td><td class="num">-0.035</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./a5c-ai__freight-audit-validator.json">a5c-ai/freight-audit-validator</a></td><td class="num">1</td><td class="num">+0.125</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./a5c-ai__last-mile-delivery-optimizer.json">a5c-ai/last-mile-delivery-optimizer</a></td><td class="num">1</td><td class="num">+0.140</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./a5c-ai__maintenance-scheduler.json">a5c-ai/maintenance-scheduler</a></td><td class="num">1</td><td class="num">+0.342</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./a5c-ai__omnichannel-fulfillment-allocator.json">a5c-ai/omnichannel-fulfillment-allocator</a></td><td class="num">1</td><td class="num">+0.439</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./a5c-ai__returns-authorization-processor.json">a5c-ai/returns-authorization-processor</a></td><td class="num">1</td><td class="num">+0.111</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./a5c-ai__submittal-tracker.json">a5c-ai/submittal-tracker</a></td><td class="num">1</td><td class="num">+0.028</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./a5c-ai__vehicle-routing-solver.json">a5c-ai/vehicle-routing-solver</a></td><td class="num">1</td><td class="num">+0.210</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./affaan-m__article-writing.json">affaan-m/article-writing</a></td><td class="num">1</td><td class="num">+0.474</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./affaan-m__brand-voice.json">affaan-m/brand-voice</a></td><td class="num">1</td><td class="num">+0.241</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./affaan-m__carrier-relationship-management.json">affaan-m/carrier-relationship-management</a></td><td class="num">1</td><td class="num">+0.283</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./affaan-m__content-engine.json">affaan-m/content-engine</a></td><td class="num">1</td><td class="num">+0.225</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./affaan-m__council.json">affaan-m/council</a></td><td class="num">1</td><td class="num">+0.380</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./affaan-m__crosspost.json">affaan-m/crosspost</a></td><td class="num">1</td><td class="num">+0.380</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./affaan-m__customs-trade-compliance.json">affaan-m/customs-trade-compliance</a></td><td class="num">1</td><td class="num">+0.151</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./affaan-m__energy-procurement.json">affaan-m/energy-procurement</a></td><td class="num">1</td><td class="num">+0.087</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./affaan-m__hipaa-compliance.json">affaan-m/hipaa-compliance</a></td><td class="num">1</td><td class="num">+0.105</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./affaan-m__inventory-demand-planning.json">affaan-m/inventory-demand-planning</a></td><td class="num">1</td><td class="num">+0.222</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./affaan-m__investor-materials.json">affaan-m/investor-materials</a></td><td class="num">1</td><td class="num">+0.210</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./affaan-m__investor-outreach.json">affaan-m/investor-outreach</a></td><td class="num">1</td><td class="num">+0.149</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./affaan-m__logistics-exception-management.json">affaan-m/logistics-exception-management</a></td><td class="num">1</td><td class="num">+0.333</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./affaan-m__product-capability.json">affaan-m/product-capability</a></td><td class="num">1</td><td class="num">+0.202</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./affaan-m__product-lens.json">affaan-m/product-lens</a></td><td class="num">1</td><td class="num">+0.307</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./affaan-m__production-scheduling.json">affaan-m/production-scheduling</a></td><td class="num">1</td><td class="num">+0.048</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./affaan-m__quality-nonconformance.json">affaan-m/quality-nonconformance</a></td><td class="num">1</td><td class="num">-0.008</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./affaan-m__visa-doc-translate.json">affaan-m/visa-doc-translate</a></td><td class="num">1</td><td class="num">+0.192</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./aiming-lab__hypothesis-formulation.json">aiming-lab/hypothesis-formulation</a></td><td class="num">1</td><td class="num">+0.095</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./aiming-lab__literature-search.json">aiming-lab/literature-search</a></td><td class="num">1</td><td class="num">+0.254</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./alirezarezvani__claude-skills.json">alirezarezvani/claude-skills</a></td><td class="num">3</td><td class="num">+0.207</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./anon-188__anon-skill-001.json">anon-188/anon-skill-001</a></td><td class="num">1</td><td class="num">+0.318</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./anon-188__anon-skill-003.json">anon-188/anon-skill-003</a></td><td class="num">1</td><td class="num">+0.059</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./anon-188__anon-skill-004.json">anon-188/anon-skill-004</a></td><td class="num">1</td><td class="num">+0.562</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./anon-188__anon-skill-005.json">anon-188/anon-skill-005</a></td><td class="num">1</td><td class="num">+0.176</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./anon-426__anon-skill-002.json">anon-426/anon-skill-002</a></td><td class="num">1</td><td class="num">+0.386</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./anthropics__skills.json">anthropics/skills</a></td><td class="num">3</td><td class="num">+0.051</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./baojie__ancient-divination-ritual-procedure.json">baojie/ancient-divination-ritual-procedure</a></td><td class="num">1</td><td class="num">+0.861</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./baojie__escape-from-captivity.json">baojie/escape-from-captivity</a></td><td class="num">1</td><td class="num">+0.167</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./baojie__precision-archery-method.json">baojie/precision-archery-method</a></td><td class="num">1</td><td class="num">+0.130</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./bmad-code-org__bmad-product-brief.json">bmad-code-org/bmad-product-brief</a></td><td class="num">1</td><td class="num">-0.035</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./bytedance__academic-paper-review.json">bytedance/academic-paper-review</a></td><td class="num">1</td><td class="num">+0.246</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./claude-code-best__teach-me.json">claude-code-best/teach-me</a></td><td class="num">1</td><td class="num">+0.150</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./comeonoliver__emergency-distress-signal.json">comeonoliver/emergency-distress-signal</a></td><td class="num">1</td><td class="num">+0.193</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./coreyhaines31__sales-enablement.json">coreyhaines31/sales-enablement</a></td><td class="num">1</td><td class="num">+0.140</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./cyberpunk-2022__bingbu.json">cyberpunk-2022/bingbu</a></td><td class="num">1</td><td class="num">+0.354</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./dabrewskie__guard-admin.json">dabrewskie/guard-admin</a></td><td class="num">1</td><td class="num">0.000</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./danielmiessler__investigation.json">danielmiessler/investigation</a></td><td class="num">1</td><td class="num">+0.097</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./datadrivenconstruction__retention-tracker.json">datadrivenconstruction/retention-tracker</a></td><td class="num">1</td><td class="num">+0.202</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./davila7__seo-optimizer.json">davila7/seo-optimizer</a></td><td class="num">1</td><td class="num">-0.064</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./dontbesilent2025__dbs-action.json">dontbesilent2025/dbs-action</a></td><td class="num">1</td><td class="num">+0.526</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./f__book-translation.json">f/book-translation</a></td><td class="num">1</td><td class="num">-0.157</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./facebook__extract-errors.json">facebook/extract-errors</a></td><td class="num">1</td><td class="num">-0.111</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./facebook__feature-flags.json">facebook/feature-flags</a></td><td class="num">1</td><td class="num">+0.158</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./facebook__fix.json">facebook/fix</a></td><td class="num">1</td><td class="num">+0.323</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./facebook__flags.json">facebook/flags</a></td><td class="num">1</td><td class="num">+0.562</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./facebook__flow.json">facebook/flow</a></td><td class="num">1</td><td class="num">+0.260</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./facebook__test.json">facebook/test</a></td><td class="num">1</td><td class="num">+0.333</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./facebook__verify.json">facebook/verify</a></td><td class="num">1</td><td class="num">+0.456</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./github__gtm-enterprise-account-planning.json">github/gtm-enterprise-account-planning</a></td><td class="num">1</td><td class="num">+0.242</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./google-gemini__string-reviewer.json">google-gemini/string-reviewer</a></td><td class="num">1</td><td class="num">+0.444</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./googleworkspace__gws-sheets-append.json">googleworkspace/gws-sheets-append</a></td><td class="num">1</td><td class="num">+0.365</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./googleworkspace__gws-sheets-read.json">googleworkspace/gws-sheets-read</a></td><td class="num">1</td><td class="num">+0.531</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./googleworkspace__gws-tasks.json">googleworkspace/gws-tasks</a></td><td class="num">1</td><td class="num">+0.167</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./googleworkspace__persona-exec-assistant.json">googleworkspace/persona-exec-assistant</a></td><td class="num">1</td><td class="num">+0.472</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./googleworkspace__persona-sales-ops.json">googleworkspace/persona-sales-ops</a></td><td class="num">1</td><td class="num">+0.254</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./googleworkspace__recipe-create-doc-from-template.json">googleworkspace/recipe-create-doc-from-template</a></td><td class="num">1</td><td class="num">+0.188</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./hellowind777__clean.json">hellowind777/clean</a></td><td class="num">1</td><td class="num">+0.315</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./huangrt01__gourmet-organizer.json">huangrt01/gourmet-organizer</a></td><td class="num">1</td><td class="num">+0.035</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./k-dense-ai__scientific-agent-skills.json">k-dense-ai/scientific-agent-skills</a></td><td class="num">4</td><td class="num">+0.194</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./kortix-ai__call-prep.json">kortix-ai/call-prep</a></td><td class="num">1</td><td class="num">+0.033</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./kortix-ai__compliance.json">kortix-ai/compliance</a></td><td class="num">1</td><td class="num">+0.087</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./kortix-ai__draft-outreach.json">kortix-ai/draft-outreach</a></td><td class="num">1</td><td class="num">+0.258</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./kortix-ai__meeting-briefinging.json">kortix-ai/meeting-briefinging</a></td><td class="num">1</td><td class="num">+0.008</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./kortix-ai__research-assistant.json">kortix-ai/research-assistant</a></td><td class="num">1</td><td class="num">+0.278</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./leonardomso__write-concept.json">leonardomso/write-concept</a></td><td class="num">1</td><td class="num">+0.526</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./liigoqi__endurance.json">liigoqi/endurance</a></td><td class="num">1</td><td class="num">+0.300</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./linkerlin__military-manual.json">linkerlin/military-manual</a></td><td class="num">1</td><td class="num">+0.149</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./linkerlin__theme-arena.json">linkerlin/theme-arena</a></td><td class="num">1</td><td class="num">+0.009</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./linkerlin__theme-starfleet.json">linkerlin/theme-starfleet</a></td><td class="num">1</td><td class="num">+0.237</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./microsoft__create-prompt.json">microsoft/create-prompt</a></td><td class="num">1</td><td class="num">-0.097</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./mukul975__implementing-ics-firewall-with-tofino.json">mukul975/implementing-ics-firewall-with-tofino</a></td><td class="num">1</td><td class="num">+0.129</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./mukul975__implementing-purdue-model-network-segmentation.json">mukul975/implementing-purdue-model-network-segmentation</a></td><td class="num">1</td><td class="num">+0.105</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./nclamvn__eldercare-emergency-contacts.json">nclamvn/eldercare-emergency-contacts</a></td><td class="num">1</td><td class="num">+0.083</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./nousresearch__memento-flashcards.json">nousresearch/memento-flashcards</a></td><td class="num">1</td><td class="num">+0.676</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__biomass.json">openclaw/biomass</a></td><td class="num">1</td><td class="num">+0.120</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./openclaw__boiler.json">openclaw/boiler</a></td><td class="num">1</td><td class="num">-0.052</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__bom-sop-check.json">openclaw/bom-sop-check</a></td><td class="num">1</td><td class="num">+0.184</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__chef.json">openclaw/chef</a></td><td class="num">1</td><td class="num">+0.105</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./openclaw__cjl-relationship.json">openclaw/cjl-relationship</a></td><td class="num">1</td><td class="num">+0.516</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__cognitive-flexibility.json">openclaw/cognitive-flexibility</a></td><td class="num">1</td><td class="num">+0.105</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./openclaw__cold-chain-risk-calculator.json">openclaw/cold-chain-risk-calculator</a></td><td class="num">1</td><td class="num">+0.307</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./openclaw__construction-safety-inspector.json">openclaw/construction-safety-inspector</a></td><td class="num">1</td><td class="num">+0.135</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./openclaw__dog-potty-training.json">openclaw/dog-potty-training</a></td><td class="num">1</td><td class="num">+0.246</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./openclaw__eam.json">openclaw/eam</a></td><td class="num">1</td><td class="num">-0.284</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__emotion-memory-assistant.json">openclaw/emotion-memory-assistant</a></td><td class="num">1</td><td class="num">-0.010</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./openclaw__exercise-form.json">openclaw/exercise-form</a></td><td class="num">1</td><td class="num">+0.035</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__experience-wisteria-shadow-trap-fukuoka.json">openclaw/experience-wisteria-shadow-trap-fukuoka</a></td><td class="num">1</td><td class="num">+0.447</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__family-grocery.json">openclaw/family-grocery</a></td><td class="num">1</td><td class="num">+0.250</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__find-community.json">openclaw/find-community</a></td><td class="num">1</td><td class="num">-0.028</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./openclaw__first-aid.json">openclaw/first-aid</a></td><td class="num">1</td><td class="num">+0.033</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__fitness-log.json">openclaw/fitness-log</a></td><td class="num">1</td><td class="num">-0.213</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__fitness-support.json">openclaw/fitness-support</a></td><td class="num">1</td><td class="num">+0.037</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./openclaw__fridge.json">openclaw/fridge</a></td><td class="num">1</td><td class="num">-0.167</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__grow-sustainably.json">openclaw/grow-sustainably</a></td><td class="num">1</td><td class="num">+0.130</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./openclaw__healthy-meal-reminder.json">openclaw/healthy-meal-reminder</a></td><td class="num">1</td><td class="num">+0.184</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./openclaw__home-organizer.json">openclaw/home-organizer</a></td><td class="num">1</td><td class="num">-0.028</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__island-selector.json">openclaw/island-selector</a></td><td class="num">1</td><td class="num">+0.097</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__lidar.json">openclaw/lidar</a></td><td class="num">1</td><td class="num">0.000</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./openclaw__love-chat.json">openclaw/love-chat</a></td><td class="num">1</td><td class="num">+0.130</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./openclaw__manufacturing-shift-handoff.json">openclaw/manufacturing-shift-handoff</a></td><td class="num">1</td><td class="num">0.000</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__mood.json">openclaw/mood</a></td><td class="num">1</td><td class="num">+0.342</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./openclaw__motor.json">openclaw/motor</a></td><td class="num">1</td><td class="num">-0.052</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__personal-guardian.json">openclaw/personal-guardian</a></td><td class="num">1</td><td class="num">+0.270</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./openclaw__qsr-ghost-inventory-hunter.json">openclaw/qsr-ghost-inventory-hunter</a></td><td class="num">1</td><td class="num">0.000</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./openclaw__qsr-labor-leak-auditor.json">openclaw/qsr-labor-leak-auditor</a></td><td class="num">1</td><td class="num">+0.167</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./openclaw__roofing-knowledge-mentor.json">openclaw/roofing-knowledge-mentor</a></td><td class="num">1</td><td class="num">-0.044</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./openclaw__room.json">openclaw/room</a></td><td class="num">1</td><td class="num">-0.148</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__salon.json">openclaw/salon</a></td><td class="num">1</td><td class="num">+0.008</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./openclaw__san-sheng-liu-bu.json">openclaw/san-sheng-liu-bu</a></td><td class="num">1</td><td class="num">+0.528</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./openclaw__silo.json">openclaw/silo</a></td><td class="num">1</td><td class="num">+0.079</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./openclaw__sleep-tracker.json">openclaw/sleep-tracker</a></td><td class="num">1</td><td class="num">+0.148</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__sourdough-starter-manager.json">openclaw/sourdough-starter-manager</a></td><td class="num">1</td><td class="num">+0.167</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./openclaw__thresh.json">openclaw/thresh</a></td><td class="num">1</td><td class="num">+0.176</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./openclaw__turbine.json">openclaw/turbine</a></td><td class="num">1</td><td class="num">-0.104</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./openclaw__urea.json">openclaw/urea</a></td><td class="num">1</td><td class="num">+0.158</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./openclaw__wacli.json">openclaw/wacli</a></td><td class="num">1</td><td class="num">+0.471</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./peggy-daddy__qisha.json">peggy-daddy/qisha</a></td><td class="num">1</td><td class="num">+0.422</td><td><span class="pill risk-high">high</span></td></tr>
+      <tr><td><a href="./pjt222__gold-washing.json">pjt222/gold-washing</a></td><td class="num">1</td><td class="num">+0.263</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./plurigrid__kinesis-advantage360-pro-kb360-pro.json">plurigrid/kinesis-advantage360-pro-kb360-pro</a></td><td class="num">1</td><td class="num">+0.475</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./shubhamsaboo__academic-researcher.json">shubhamsaboo/academic-researcher</a></td><td class="num">1</td><td class="num">+0.065</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./shubhamsaboo__content-creator.json">shubhamsaboo/content-creator</a></td><td class="num">1</td><td class="num">+0.206</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./shubhamsaboo__email-drafter.json">shubhamsaboo/email-drafter</a></td><td class="num">1</td><td class="num">+0.046</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./shubhamsaboo__meeting-notes.json">shubhamsaboo/meeting-notes</a></td><td class="num">1</td><td class="num">+0.125</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./sickn33__antigravity-awesome-skills.json">sickn33/antigravity-awesome-skills</a></td><td class="num">34</td><td class="num">+0.227</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./significant-gravitas__pr-review.json">significant-gravitas/pr-review</a></td><td class="num">1</td><td class="num">+0.281</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./sundial-org__muscle-gain.json">sundial-org/muscle-gain</a></td><td class="num">1</td><td class="num">+0.184</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./theneoai__awesome-skills.json">theneoai/awesome-skills</a></td><td class="num">29</td><td class="num">+0.086</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./tinh2__defense-maintenance.json">tinh2/defense-maintenance</a></td><td class="num">1</td><td class="num">+0.259</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./winbda__space-mission-plan.json">winbda/space-mission-plan</a></td><td class="num">1</td><td class="num">-0.028</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./wshobson__competitive-landscape.json">wshobson/competitive-landscape</a></td><td class="num">1</td><td class="num">+0.540</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./wshobson__employment-contract-templates.json">wshobson/employment-contract-templates</a></td><td class="num">1</td><td class="num">+0.238</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./wshobson__market-sizing-analysis.json">wshobson/market-sizing-analysis</a></td><td class="num">1</td><td class="num">-0.042</td><td><span class="pill risk-low">low</span></td></tr>
+      <tr><td><a href="./zjunlp__alfworld-temperature-regulator.json">zjunlp/alfworld-temperature-regulator</a></td><td class="num">1</td><td class="num">-0.020</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./zjunlp__scienceworld-planting-operation.json">zjunlp/scienceworld-planting-operation</a></td><td class="num">1</td><td class="num">+0.089</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./zocomputer__plant-care-plan.json">zocomputer/plant-care-plan</a></td><td class="num">1</td><td class="num">+0.028</td><td><span class="pill risk-unknown">unknown</span></td></tr>
+      <tr><td><a href="./zwright8__autonomous-littoral-port-reopening-under-mining-and-drone-threat-cell.json">zwright8/autonomous-littoral-port-reopening-under-mining-and-drone-threat-cell</a></td><td class="num">1</td><td class="num">-0.083</td><td><span class="pill risk-medium">medium</span></td></tr>
+      <tr><td><a href="./zwright8__homeland-spaceport-reentry-debris-response-and-force-protection-cell.json">zwright8/homeland-spaceport-reentry-debris-response-and-force-protection-cell</a></td><td class="num">1</td><td class="num">+0.008</td><td><span class="pill risk-medium">medium</span></td></tr>
+    </tbody>
+  </table>
+  <footer>
+    Generated by <code>scripts/build_lookup_index.py</code> from
+    <code>docs/artifacts/data/skills/</code>.
+  </footer>
+  <script>
+    // Client-side filter — no network calls, runs over the rendered rows.
+    const input = document.getElementById("filter");
+    const rows = Array.from(document.querySelectorAll("#lookup tbody tr"));
+    input.addEventListener("input", () => {
+      const q = input.value.trim().toLowerCase();
+      for (const tr of rows) {
+        tr.style.display = !q || tr.textContent.toLowerCase().includes(q) ? "" : "none";
+      }
+    });
+    // Click-to-sort on column headers.
+    const tbody = document.querySelector("#lookup tbody");
+    document.querySelectorAll("#lookup th").forEach((th, idx) => {
+      let asc = true;
+      th.addEventListener("click", () => {
+        const sorted = rows.slice().sort((a, b) => {
+          const aText = a.children[idx].textContent.trim();
+          const bText = b.children[idx].textContent.trim();
+          const aNum = parseFloat(aText);
+          const bNum = parseFloat(bText);
+          if (!isNaN(aNum) && !isNaN(bNum)) return asc ? aNum - bNum : bNum - aNum;
+          return asc ? aText.localeCompare(bText) : bText.localeCompare(aText);
+        });
+        asc = !asc;
+        for (const tr of sorted) tbody.appendChild(tr);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1372 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillLens | Skill-as-input evaluation</title>
+  <meta name="description" content="SkillLens evaluates an arbitrary SKILL.md by generating skill-specific tasks, running paired with-skill and no-skill agents, and reporting utility, safety, and cost.">
+  <style>
+:root {
+  --paper: #f4f6f2;
+  --paper-soft: #fafaf6;
+  --panel: #ffffff;
+  --panel-warm: #ecefe5;
+  --ink: #172c2f;
+  --ink-2: #40595d;
+  --muted: #708186;
+  --line: rgba(23, 44, 47, 0.14);
+  --line-strong: rgba(23, 44, 47, 0.24);
+  --teal: #0d6f69;
+  --teal-dark: #064b49;
+  --teal-soft: rgba(13, 111, 105, 0.10);
+  --gold: #b6812e;
+  --gold-soft: rgba(182, 129, 46, 0.14);
+  --rust: #8e4939;
+  --green: #2f7a4a;
+  --red: #aa3f32;
+  --blue: #315f86;
+  --shadow: 0 18px 45px rgba(32, 39, 35, 0.10);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    linear-gradient(90deg, rgba(23, 44, 47, 0.045) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(23, 44, 47, 0.035) 1px, transparent 1px),
+    var(--paper);
+  background-size: 36px 36px;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+a { color: inherit; }
+button, input, select { font: inherit; }
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 0 48px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(251, 250, 245, 0.92);
+  backdrop-filter: blur(16px);
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  min-width: 250px;
+}
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(13, 111, 105, 0.12), rgba(182, 129, 46, 0.08)),
+    #fff;
+  color: var(--teal-dark);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 700;
+}
+.brand-word {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.brand-word strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.brand-word span {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+.topnav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.topnav a {
+  position: relative;
+  color: var(--ink-2);
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+}
+.topnav a:hover, .topnav a.is-active { color: var(--ink); }
+.topnav a.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -22px;
+  height: 2px;
+  background: var(--teal);
+}
+
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 34px 36px 80px;
+}
+
+.workbench {
+  min-height: calc(100vh - 110px);
+  display: grid;
+  grid-template-columns: minmax(300px, 0.86fr) minmax(520px, 1.45fr);
+  gap: 22px;
+  align-items: stretch;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.input-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 650px;
+  overflow: hidden;
+}
+.input-head {
+  padding: 28px 28px 22px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, #fff, #fbfaf5);
+}
+.kicker {
+  margin: 0 0 10px;
+  color: var(--teal);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+h1 {
+  margin: 0;
+  max-width: 900px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(42px, 5vw, 78px);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+.lead {
+  margin: 18px 0 0;
+  color: var(--ink-2);
+  font-size: 17px;
+  line-height: 1.55;
+}
+.lead strong { color: var(--ink); }
+
+.submit-box {
+  padding: 22px 24px 24px;
+  border-bottom: 1px solid var(--line);
+}
+.field-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.field-label span:last-child {
+  color: var(--muted);
+  font-weight: 800;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.url-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+.url-row:focus-within {
+  border-color: rgba(13, 111, 105, 0.48);
+  box-shadow: 0 0 0 4px rgba(13, 111, 105, 0.10);
+}
+.url-row input {
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  padding: 15px 15px;
+  color: var(--ink);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 13px;
+}
+.url-row button {
+  border: 0;
+  border-left: 1px solid var(--line);
+  padding: 0 18px;
+  color: #fff;
+  background: var(--teal-dark);
+  font-weight: 900;
+  cursor: pointer;
+}
+.url-row button:hover { background: var(--teal); }
+.quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.quick-links button {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: var(--ink-2);
+  background: var(--paper-soft);
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.quick-links button:hover,
+.quick-links button.is-selected {
+  color: var(--teal-dark);
+  border-color: rgba(13, 111, 105, 0.34);
+  background: var(--teal-soft);
+}
+.demo-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.submit-error {
+  margin: 10px 0 0;
+  color: var(--red);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 12px;
+}
+
+.snapshot {
+  padding: 22px 24px 24px;
+}
+.snapshot h2,
+.evidence h2,
+.method-section h2,
+.table-section h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: -0.015em;
+}
+.snapshot h2 { font-size: 24px; }
+.metric-stack {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+.metric {
+  display: grid;
+  grid-template-columns: 82px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper-soft);
+}
+.metric span:first-child {
+  color: var(--muted);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.metric strong {
+  font-size: 22px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.metric small {
+  color: var(--muted);
+  font-size: 12px;
+  text-align: right;
+}
+.metric.utility strong { color: var(--green); }
+.metric.safety strong { color: var(--blue); }
+.metric.cost strong { color: var(--rust); }
+.decision {
+  margin-top: 14px;
+  padding: 16px;
+  border: 1px solid rgba(13, 111, 105, 0.22);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(13, 111, 105, 0.08), rgba(182, 129, 46, 0.08));
+}
+.decision-label {
+  color: var(--muted);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+.decision strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 18px;
+}
+.decision p {
+  margin: 8px 0 0;
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.report-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  color: var(--teal-dark);
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(13, 111, 105, 0.32);
+}
+
+.main-panel {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 650px;
+  overflow: hidden;
+}
+.algorithm {
+  padding: 28px;
+  border-bottom: 1px solid var(--line);
+}
+.algorithm-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+.algorithm h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 3.6vw, 48px);
+  line-height: 1;
+  letter-spacing: -0.026em;
+}
+.algorithm p {
+  margin: 12px 0 0;
+  max-width: 650px;
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.run-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(92px, 1fr));
+  gap: 8px;
+  min-width: 300px;
+}
+.run-stat {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper-soft);
+}
+.run-stat strong {
+  display: block;
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+}
+.run-stat span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.pipeline {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  margin-top: 24px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.pipe-step {
+  position: relative;
+  min-height: 148px;
+  padding: 18px 16px;
+  background: #fff;
+  border-right: 1px solid var(--line);
+}
+.pipe-step:nth-child(even) { background: #faf6ee; }
+.pipe-step:last-child { border-right: 0; }
+.pipe-step::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -7px;
+  width: 12px;
+  height: 12px;
+  transform: translateY(-50%) rotate(45deg);
+  border-top: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  background: inherit;
+  z-index: 2;
+}
+.pipe-step:last-child::after { display: none; }
+.pipe-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  color: var(--teal-dark);
+  background: var(--teal-soft);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 900;
+}
+.pipe-step h3 {
+  margin: 14px 0 7px;
+  font-size: 15px;
+}
+.pipe-step p {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.paired-lab {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  padding: 22px 28px 28px;
+  background: linear-gradient(180deg, #fff, #fbfaf5);
+}
+.run-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+}
+.run-card header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+}
+.run-card h3 {
+  margin: 0;
+  font-size: 14px;
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 8px;
+  color: var(--muted);
+  background: var(--paper-soft);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.run-card .tag.with { color: var(--teal-dark); background: var(--teal-soft); border-color: rgba(13, 111, 105, 0.24); }
+.run-body {
+  padding: 16px;
+}
+.same-row {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(23, 44, 47, 0.08);
+}
+.same-row:last-child { border-bottom: 0; }
+.same-row span:first-child {
+  color: var(--muted);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.same-row span:last-child {
+  color: var(--ink-2);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.section-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 22px;
+  margin-top: 22px;
+}
+.evidence,
+.method-section,
+.table-section {
+  padding: 24px;
+}
+.evidence h2,
+.method-section h2,
+.table-section h2 { font-size: 26px; }
+.task-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+.task-item {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  gap: 12px;
+  align-items: start;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper-soft);
+}
+.task-index {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: var(--teal-dark);
+  background: var(--teal-soft);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 900;
+}
+.task-item h3 {
+  margin: 0;
+  font-size: 15px;
+}
+.task-item p {
+  margin: 5px 0 0;
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.task-score {
+  min-width: 108px;
+  text-align: right;
+}
+.task-score strong {
+  display: block;
+  color: var(--ink);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+.task-score span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.evidence-bundle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+.evidence-chip {
+  min-height: 96px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+.evidence-chip strong {
+  display: block;
+  font-size: 14px;
+}
+.evidence-chip p {
+  margin: 7px 0 0;
+  color: var(--ink-2);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.method-section {
+  margin-top: 22px;
+}
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 16px;
+}
+.compare-box {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+.compare-box.highlight {
+  border-color: rgba(13, 111, 105, 0.30);
+  background: linear-gradient(180deg, rgba(13, 111, 105, 0.08), #fff);
+}
+.compare-box h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+.compare-box p {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.formula-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+.formula {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper-soft);
+}
+.formula span {
+  display: block;
+  color: var(--muted);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.formula code {
+  display: block;
+  margin-top: 8px;
+  color: var(--ink);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: normal;
+}
+
+.table-section {
+  margin-top: 22px;
+}
+.table-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.table-head p {
+  margin: 8px 0 0;
+  color: var(--ink-2);
+  font-size: 13px;
+}
+.table-link {
+  color: var(--teal-dark);
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(13, 111, 105, 0.32);
+}
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.report-table th {
+  padding: 11px 10px;
+  color: var(--muted);
+  background: var(--paper-soft);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.report-table td {
+  padding: 14px 10px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.report-table tbody tr {
+  cursor: pointer;
+}
+.report-table tbody tr:hover {
+  background: rgba(13, 111, 105, 0.05);
+}
+.report-table tbody tr.is-selected {
+  background: rgba(13, 111, 105, 0.08);
+}
+.skill-name {
+  display: block;
+  color: var(--ink);
+  font-weight: 900;
+}
+.skill-owner {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 11px;
+}
+.delta {
+  display: inline-flex;
+  min-width: 76px;
+  justify-content: flex-end;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+.delta.pos { color: var(--green); }
+.delta.neg { color: var(--red); }
+.delta.neutral { color: var(--muted); }
+.verdict {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-size: 11px;
+  font-weight: 900;
+}
+.verdict.enable { color: var(--green); background: rgba(47, 122, 74, 0.09); border-color: rgba(47, 122, 74, 0.24); }
+.verdict.review { color: var(--gold); background: var(--gold-soft); border-color: rgba(182, 129, 46, 0.28); }
+.verdict.reject { color: var(--red); background: rgba(170, 63, 50, 0.09); border-color: rgba(170, 63, 50, 0.24); }
+
+.footnote {
+  margin: 18px auto 0;
+  max-width: 850px;
+  color: var(--muted);
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+@media (max-width: 1120px) {
+  .workbench,
+  .section-grid {
+    grid-template-columns: 1fr;
+  }
+  .input-panel,
+  .main-panel {
+    min-height: auto;
+  }
+  .algorithm-head {
+    flex-direction: column;
+  }
+  .run-stats {
+    width: 100%;
+  }
+}
+@media (max-width: 900px) {
+  .topbar {
+    position: relative;
+    height: auto;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 18px 22px;
+  }
+  .topnav {
+    justify-content: flex-start;
+    gap: 18px;
+  }
+  .topnav a.is-active::after {
+    bottom: -8px;
+  }
+  .page {
+    padding: 22px 18px 56px;
+  }
+  .pipeline,
+  .paired-lab,
+  .compare,
+  .formula-row,
+  .evidence-bundle {
+    grid-template-columns: 1fr;
+  }
+  .pipe-step {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .pipe-step:last-child { border-bottom: 0; }
+  .pipe-step::after { display: none; }
+  .task-item {
+    grid-template-columns: 36px 1fr;
+  }
+  .task-score {
+    grid-column: 2;
+    text-align: left;
+  }
+}
+@media (max-width: 720px) {
+  h1 { font-size: 44px; }
+  .url-row {
+    grid-template-columns: 1fr;
+  }
+  .url-row button {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: 13px 16px;
+  }
+  .run-stats,
+  .metric {
+    grid-template-columns: 1fr;
+  }
+  .metric small,
+  .task-score {
+    text-align: left;
+  }
+  .report-table thead { display: none; }
+  .report-table,
+  .report-table tbody,
+  .report-table tr,
+  .report-table td {
+    display: block;
+    width: 100%;
+  }
+  .report-table tr {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .report-table td {
+    border-bottom: 0;
+    padding: 5px 0;
+  }
+  .report-table td::before {
+    content: attr(data-th);
+    display: inline-block;
+    width: 120px;
+    color: var(--muted);
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 10.5px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+  </style>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="SkillLens home">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-word">
+        <strong>SkillLens</strong>
+        <span>Skill-as-input benchmark</span>
+      </span>
+    </a>
+    <nav class="topnav" aria-label="Primary">
+      <a class="is-active" href="#">Home</a>
+      <a href="skills.html">Skills</a>
+      <a href="report.html">Report</a>
+      <a href="#method">Method</a>
+      <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="workbench" aria-label="SkillLens workbench">
+      <aside class="panel input-panel">
+        <div class="input-head">
+          <p class="kicker">Evaluate before enabling</p>
+          <h1>A benchmark generated from the SKILL itself.</h1>
+          <p class="lead">
+            SkillLens treats a <strong>SKILL.md package as the input</strong>. It profiles the skill, generates
+            capability-targeted tasks, runs matched with-skill and no-skill agents, and reports deployment evidence.
+          </p>
+        </div>
+
+        <form class="submit-box" id="submit-form" novalidate>
+          <label class="field-label" for="submit-input">
+            <span>Candidate skill</span>
+            <span>standalone demo data</span>
+          </label>
+          <div class="url-row">
+            <input id="submit-input" type="text" autocomplete="off" spellcheck="false" value="github.com/Shubhamsaboo/academic-researcher">
+            <button type="submit">Open report</button>
+          </div>
+          <div class="quick-links" id="quick-links" aria-label="Demo skills"></div>
+          <p class="demo-note">This HTML uses realistic demo records so it can be shared directly without starting a server.</p>
+          <div id="submit-error" class="submit-error" hidden></div>
+        </form>
+
+        <section class="snapshot" aria-label="Selected skill snapshot">
+          <p class="kicker">Current selection</p>
+          <h2 id="selected-title">academic-researcher</h2>
+          <div class="metric-stack">
+            <div class="metric utility">
+              <span>Utility</span>
+              <strong id="metric-utility">+11.1 pp</strong>
+              <small id="metric-utility-note">skill unlocks 1 extra evaluation item</small>
+            </div>
+            <div class="metric safety">
+              <span>Safety</span>
+              <strong id="metric-safety">94</strong>
+              <small id="metric-safety-note">no confirmed runtime risk</small>
+            </div>
+            <div class="metric cost">
+              <span>Cost</span>
+              <strong id="metric-cost">+455k</strong>
+              <small id="metric-cost-note">effective tokens vs baseline</small>
+            </div>
+          </div>
+          <div class="decision">
+            <span class="decision-label">Recommendation</span>
+            <strong id="decision-title">Enable with budget monitoring</strong>
+            <p id="decision-copy">The skill improves research synthesis tasks and did not trigger confirmed runtime risk in the demo evidence.</p>
+            <a class="report-link" id="report-link" href="report.html?skill=academic-researcher">View single-skill report -></a>
+          </div>
+        </section>
+      </aside>
+
+      <section class="panel main-panel" aria-label="Algorithm overview">
+        <div class="algorithm">
+          <div class="algorithm-head">
+            <div>
+              <p class="kicker">Core algorithm</p>
+              <h2>Profile, generate, pair, report.</h2>
+              <p>
+                The benchmark does not ask whether an agent is good at a fixed suite. It asks whether this specific
+                skill changes the outcome on tasks synthesized from its own claimed capability.
+              </p>
+            </div>
+            <div class="run-stats" aria-label="Demo run totals">
+              <div class="run-stat"><strong id="stat-skills">3</strong><span>skills</span></div>
+              <div class="run-stat"><strong id="stat-tasks">9</strong><span>generated tasks</span></div>
+              <div class="run-stat"><strong id="stat-runs">18</strong><span>paired executions</span></div>
+            </div>
+          </div>
+
+          <div class="pipeline" aria-label="SkillLens pipeline">
+            <article class="pipe-step">
+              <span class="pipe-num">01</span>
+              <h3>Skill package</h3>
+              <p>Read SKILL.md, scripts, metadata, dependencies, and declared operating assumptions.</p>
+            </article>
+            <article class="pipe-step">
+              <span class="pipe-num">02</span>
+              <h3>Capability profile</h3>
+              <p>Extract claimed tasks, required context, expected artifacts, and risky behaviors.</p>
+            </article>
+            <article class="pipe-step">
+              <span class="pipe-num">03</span>
+              <h3>Task schemes</h3>
+              <p>Generate skill-specific, difficulty-aligned task blueprints with verifier targets.</p>
+            </article>
+            <article class="pipe-step">
+              <span class="pipe-num">04</span>
+              <h3>Paired runs</h3>
+              <p>Run the same task twice under matched model, seed, prompt, and environment.</p>
+            </article>
+            <article class="pipe-step">
+              <span class="pipe-num">05</span>
+              <h3>Joint report</h3>
+              <p>Aggregate utility, runtime safety evidence, and operational cost from one evidence bundle.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="paired-lab" aria-label="Paired execution controls">
+          <article class="run-card">
+            <header>
+              <h3>Baseline condition</h3>
+              <span class="tag">WO skill</span>
+            </header>
+            <div class="run-body">
+              <div class="same-row"><span>Instruction</span><span id="wo-instruction">same generated task</span></div>
+              <div class="same-row"><span>Agent</span><span>same model, same seed, same Harbor environment</span></div>
+              <div class="same-row"><span>Skill mount</span><span>candidate skill unavailable</span></div>
+              <div class="same-row"><span>Evidence</span><span>verifier reward, trajectory, exception status, cost trace</span></div>
+            </div>
+          </article>
+          <article class="run-card">
+            <header>
+              <h3>Intervention condition</h3>
+              <span class="tag with">WI skill</span>
+            </header>
+            <div class="run-body">
+              <div class="same-row"><span>Instruction</span><span id="wi-instruction">same generated task</span></div>
+              <div class="same-row"><span>Agent</span><span>same model, same seed, same Harbor environment</span></div>
+              <div class="same-row"><span>Skill mount</span><span id="wi-mount">academic-researcher mounted</span></div>
+              <div class="same-row"><span>Evidence</span><span>same verifier plus filesystem and network instrumentation</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </section>
+
+    <section class="section-grid" aria-label="Generated tasks and evidence">
+      <article class="panel evidence">
+        <p class="kicker">Generated task schemes</p>
+        <h2 id="task-heading">Tasks generated for academic-researcher</h2>
+        <div class="task-list" id="task-list"></div>
+      </article>
+      <article class="panel evidence">
+        <p class="kicker">Shared evidence bundle</p>
+        <h2>One run, three deployment axes.</h2>
+        <div class="evidence-bundle">
+          <div class="evidence-chip">
+            <strong>Verifier reward</strong>
+            <p>Executable checks and judge items decide whether the task actually completed.</p>
+          </div>
+          <div class="evidence-chip">
+            <strong>Trajectory trace</strong>
+            <p>Records tool calls, skill usage consistency, exceptions, retries, and failure modes.</p>
+          </div>
+          <div class="evidence-chip">
+            <strong>Sandbox diff</strong>
+            <p>Captures file writes and environment changes introduced during skill-enabled runs.</p>
+          </div>
+          <div class="evidence-chip">
+            <strong>Network log</strong>
+            <p>Streams outbound activity so safety signals are tied to the same task evidence.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel method-section" id="method" aria-label="Method detail">
+      <p class="kicker">Method distinction</p>
+      <h2>Why this is not a fixed task benchmark.</h2>
+      <div class="compare">
+        <article class="compare-box">
+          <h3>Fixed-suite evaluation</h3>
+          <p>
+            A fixed benchmark can make the skill look useless when tasks are too easy, too hard, or unrelated to
+            the package's real capability. It measures agent performance more than skill contribution.
+          </p>
+        </article>
+        <article class="compare-box highlight">
+          <h3>SkillLens</h3>
+          <p>
+            Each skill produces its own task schemes. The paired condition then isolates the marginal effect of
+            enabling the skill while keeping task content and environment matched.
+          </p>
+        </article>
+      </div>
+      <div class="formula-row">
+        <div class="formula">
+          <span>Utility</span>
+          <code>pass_rate_gain = max(wi_passed - wo_passed, 0) / total_items</code>
+        </div>
+        <div class="formula">
+          <span>Safety</span>
+          <code>security_score = max(10, 100 - sum(base * existence * exploitability))</code>
+        </div>
+        <div class="formula">
+          <span>Cost</span>
+          <code>overhead = wi_effective_tokens - wo_effective_tokens, wi_time - wo_time</code>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel table-section" aria-label="Recently evaluated skills">
+      <div class="table-head">
+        <div>
+          <p class="kicker">Demo records</p>
+          <h2>Recently evaluated skills</h2>
+          <p>Select a row to update the generated tasks and paired-run summary above.</p>
+        </div>
+        <a class="table-link" href="skills.html">Open skills page -></a>
+      </div>
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Skill</th>
+            <th>Domain</th>
+            <th>Generated tasks</th>
+            <th>Task executions</th>
+            <th>Utility</th>
+            <th>Safety</th>
+            <th>Cost</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody id="skill-table"></tbody>
+      </table>
+    </section>
+
+    <p class="footnote">
+      The product-facing report answers whether a candidate skill should be enabled for real agent workflows:
+      what tasks it helps, what runtime behavior it introduces, and what overhead it costs.
+    </p>
+  </main>
+
+  <script>
+const DEMO = [
+  {
+    skillName: "academic-researcher",
+    owner: "Shubhamsaboo",
+    repo: "github.com/Shubhamsaboo/academic-researcher",
+    domain: "Research assistance",
+    generatedTasks: 3,
+    pairedRuns: 6,
+    utility: "+11.1 pp",
+    utilityClass: "pos",
+    utilityNote: "skill unlocks 1 extra evaluation item",
+    safety: "94",
+    safetyNote: "no confirmed runtime risk",
+    cost: "+455k",
+    costClass: "neg",
+    costNote: "effective tokens vs baseline",
+    verdict: "Enable with budget monitoring",
+    verdictClass: "enable",
+    decisionCopy: "The skill improves research synthesis tasks and did not trigger confirmed runtime risk in the demo evidence.",
+    firstInstruction: "Compare three recent papers and produce a structured research brief.",
+    tasks: [
+      {
+        title: "Single-paper evidence extraction",
+        prompt: "Given one ML paper, extract method, dataset, metric, assumption, and limitation into a structured table.",
+        score: "5/5 vs 4/5",
+        note: "WI completes limitation and metric fields"
+      },
+      {
+        title: "Multi-paper comparison",
+        prompt: "Compare three papers on task, method family, evaluation setup, and unresolved research gap.",
+        score: "5/5 vs 4/5",
+        note: "WI adds cross-paper synthesis"
+      },
+      {
+        title: "Proposal construction",
+        prompt: "Turn a paper cluster into a concrete experiment plan with ablations, datasets, and expected evidence.",
+        score: "4/5 vs 4/5",
+        note: "same pass, higher trace cost"
+      }
+    ]
+  },
+  {
+    skillName: "academic-paper-review",
+    owner: "bytedance",
+    repo: "github.com/bytedance/academic-paper-review",
+    domain: "Paper review",
+    generatedTasks: 3,
+    pairedRuns: 6,
+    utility: "-15.8 pp",
+    utilityClass: "neg",
+    utilityNote: "baseline leads on concise review tasks",
+    safety: "81",
+    safetyNote: "one skill-only runtime exception",
+    cost: "+1.45M",
+    costClass: "neg",
+    costNote: "large review-template overhead",
+    verdict: "Review before enabling",
+    verdictClass: "review",
+    decisionCopy: "The generated tasks show weaker completion and higher cost; the package needs targeted inspection before adoption.",
+    firstInstruction: "Review a submitted paper against venue criteria and return a concise decision memo.",
+    tasks: [
+      {
+        title: "NeurIPS-style review memo",
+        prompt: "Score novelty, soundness, clarity, and reproducibility for a short paper draft with evidence-backed comments.",
+        score: "3/5 vs 4/5",
+        note: "WI over-expands template text"
+      },
+      {
+        title: "Weakness triage",
+        prompt: "Identify the top three blocking issues and map each to a concrete experiment or writing fix.",
+        score: "3/5 vs 5/5",
+        note: "baseline is more direct"
+      },
+      {
+        title: "Author rebuttal questions",
+        prompt: "Generate focused rebuttal questions from reviewer concerns without inventing unsupported claims.",
+        score: "6/9 vs 6/9",
+        note: "tie with higher token use"
+      }
+    ]
+  },
+  {
+    skillName: "advogado-criminal",
+    owner: "sickn33",
+    repo: "github.com/sickn33/advogado-criminal",
+    domain: "Legal assistance",
+    generatedTasks: 3,
+    pairedRuns: 6,
+    utility: "-10.5 pp",
+    utilityClass: "neg",
+    utilityNote: "skill does not improve verified outputs",
+    safety: "58",
+    safetyNote: "permission and runtime concerns",
+    cost: "+87k",
+    costClass: "neg",
+    costNote: "moderate overhead",
+    verdict: "Do not enable",
+    verdictClass: "reject",
+    decisionCopy: "The skill does not improve the legal tasks in this demo and carries enough risk signals to block deployment.",
+    firstInstruction: "Prepare a Portuguese criminal-case chronology and identify missing evidence.",
+    tasks: [
+      {
+        title: "Case chronology extraction",
+        prompt: "Convert a case narrative into a dated event timeline and flag contradictions in testimony.",
+        score: "2/6 vs 3/6",
+        note: "WI misses one contradiction"
+      },
+      {
+        title: "Statute-to-fact mapping",
+        prompt: "Map factual elements to applicable legal concepts and cite uncertainty rather than overstate advice.",
+        score: "1/6 vs 2/6",
+        note: "skill over-commits"
+      },
+      {
+        title: "Defense memo drafting",
+        prompt: "Draft a short memo with evidence gaps, next questions, and non-advisory caveats.",
+        score: "3/7 vs 3/7",
+        note: "tie, safety score lower"
+      }
+    ]
+  }
+];
+
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  let selected = DEMO[0];
+
+  function renderQuickLinks() {
+    $("quick-links").innerHTML = DEMO.map((skill, index) => `
+      <button type="button" data-index="${index}" class="${index === 0 ? "is-selected" : ""}">${esc(skill.skillName)}</button>
+    `).join("");
+    $("quick-links").querySelectorAll("button").forEach((button) => {
+      button.addEventListener("click", () => {
+        selectSkill(Number(button.dataset.index));
+        $("submit-input").value = DEMO[Number(button.dataset.index)].repo;
+      });
+    });
+  }
+
+  function renderTable() {
+    $("skill-table").innerHTML = DEMO.map((skill, index) => `
+      <tr data-index="${index}" class="${skill.skillName === selected.skillName ? "is-selected" : ""}">
+        <td data-th="Skill">
+          <span class="skill-name">${esc(skill.skillName)}</span>
+          <span class="skill-owner">${esc(skill.owner)}</span>
+        </td>
+        <td data-th="Domain">${esc(skill.domain)}</td>
+        <td data-th="Generated tasks">${skill.generatedTasks}</td>
+        <td data-th="Task executions">${skill.generatedTasks} x 2 = ${skill.pairedRuns}</td>
+        <td data-th="Utility"><span class="delta ${skill.utilityClass}">${esc(skill.utility)}</span></td>
+        <td data-th="Safety"><span class="delta neutral">${esc(skill.safety)}</span></td>
+        <td data-th="Cost"><span class="delta ${skill.costClass}">${esc(skill.cost)}</span></td>
+        <td data-th="Verdict"><span class="verdict ${skill.verdictClass}">${esc(skill.verdict)}</span></td>
+      </tr>
+    `).join("");
+    $("skill-table").querySelectorAll("tr").forEach((row) => {
+      row.addEventListener("click", () => selectSkill(Number(row.dataset.index)));
+    });
+  }
+
+  function renderSelected() {
+    $("selected-title").textContent = selected.skillName;
+    $("metric-utility").textContent = selected.utility;
+    $("metric-utility-note").textContent = selected.utilityNote;
+    $("metric-safety").textContent = selected.safety;
+    $("metric-safety-note").textContent = selected.safetyNote;
+    $("metric-cost").textContent = selected.cost;
+    $("metric-cost-note").textContent = selected.costNote;
+    $("decision-title").textContent = selected.verdict;
+    $("decision-copy").textContent = selected.decisionCopy;
+    $("report-link").href = `report.html?skill=${encodeURIComponent(selected.skillName)}`;
+    $("task-heading").textContent = `Tasks generated for ${selected.skillName}`;
+    $("wo-instruction").textContent = selected.firstInstruction;
+    $("wi-instruction").textContent = selected.firstInstruction;
+    $("wi-mount").textContent = `${selected.skillName} mounted`;
+    $("task-list").innerHTML = selected.tasks.map((task, index) => `
+      <article class="task-item">
+        <span class="task-index">${String(index + 1).padStart(2, "0")}</span>
+        <div>
+          <h3>${esc(task.title)}</h3>
+          <p>${esc(task.prompt)}</p>
+        </div>
+        <div class="task-score">
+          <strong>${esc(task.score)}</strong>
+          <span>${esc(task.note)}</span>
+        </div>
+      </article>
+    `).join("");
+    $("quick-links").querySelectorAll("button").forEach((button, index) => {
+      button.classList.toggle("is-selected", DEMO[index].skillName === selected.skillName);
+    });
+    renderTable();
+  }
+
+  function selectSkill(index) {
+    selected = DEMO[index] || DEMO[0];
+    renderSelected();
+  }
+
+  function parseInput(raw) {
+    const text = (raw || "").trim();
+    if (!text) return null;
+    const match = text.match(/(?:github\.com\/)?([\w.-]+)\/([\w.-]+)/i);
+    if (!match) return null;
+    return { owner: match[1].toLowerCase(), repo: match[2].replace(/\.git$/i, "").toLowerCase() };
+  }
+
+  $("submit-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const error = $("submit-error");
+    error.hidden = true;
+    const parsed = parseInput($("submit-input").value);
+    if (!parsed) {
+      error.hidden = false;
+      error.textContent = "Could not parse github.com/owner/repo from that input.";
+      return;
+    }
+    const hit = DEMO.find((skill) =>
+      skill.owner.toLowerCase() === parsed.owner ||
+      skill.skillName.toLowerCase() === parsed.repo
+    );
+    if (hit) {
+      window.location.href = `report.html?skill=${encodeURIComponent(hit.skillName)}`;
+    } else {
+      window.location.href = `skills.html?queued=${encodeURIComponent(parsed.owner + "/" + parsed.repo)}`;
+    }
+  });
+
+  $("stat-skills").textContent = DEMO.length;
+  $("stat-tasks").textContent = DEMO.reduce((sum, skill) => sum + skill.generatedTasks, 0);
+  $("stat-runs").textContent = DEMO.reduce((sum, skill) => sum + skill.pairedRuns, 0);
+  renderQuickLinks();
+  renderSelected();
+})();
+  </script>
+</body>
+</html>

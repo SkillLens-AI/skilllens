@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "lidar",
+    "owner": "openclaw",
+    "repo": "lidar",
+    "skillPath": "lidar",
+    "category": "architecture-and-engineering-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.0,
+      "baseline": 0.9902,
+      "withSkill": 0.9902,
+      "tasks": 18,
+      "items": 102,
+      "wiPassedItems": 101,
+      "woPassedItems": 101
+    },
+    "safety": {
+      "riskLevel": "low",
+      "staticHits": 3,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 0,
+        "L": 3
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 28.05,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

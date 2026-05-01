@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "homeland-spaceport-reentry-debris-response-and-force-protection-cell",
+    "owner": "zwright8",
+    "repo": "homeland-spaceport-reentry-debris-response-and-force-protection-cell",
+    "skillPath": "homeland-spaceport-reentry-debris-response-and-force-protection-cell",
+    "category": "military-specific-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.0079,
+      "baseline": 0.6984,
+      "withSkill": 0.7063,
+      "tasks": 18,
+      "items": 126,
+      "wiPassedItems": 89,
+      "woPassedItems": 88
+    },
+    "safety": {
+      "riskLevel": "medium",
+      "staticHits": 3,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 3,
+        "L": 0
+      }
+    },
+    "cost": {
+      "deltaTimeSec": -64.69,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

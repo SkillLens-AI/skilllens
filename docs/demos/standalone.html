@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillLens Demo</title>
+  <style>
+    :root {
+      --teal-900: #053a43;
+      --teal-800: #0c5f72;
+      --aqua: #22d7cf;
+      --paper-0: #f9f7ee;
+      --paper-1: #fbf8f1;
+      --ink: #082f3b;
+      --muted: #526c7b;
+      --faint: #6e8490;
+      --gold: #c98b23;
+      --good: #237a3d;
+      --warn: #8a5e10;
+      --bad: #b13f2f;
+      --line: rgba(24, 78, 92, 0.13);
+      --shadow: 0 18px 44px rgba(20, 45, 58, 0.1);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      color: var(--ink);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 50% 150px, rgba(34, 215, 207, 0.18), transparent 34%),
+        linear-gradient(180deg, var(--paper-0) 0%, var(--paper-1) 100%);
+    }
+
+    .topbar {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 0 58px;
+      color: #fbf8ef;
+      background: linear-gradient(135deg, var(--teal-900), var(--teal-800));
+      border-bottom: 1px solid rgba(34, 215, 207, 0.32);
+      box-shadow: 0 16px 38px rgba(4, 34, 40, 0.18);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      display: inline-grid;
+      place-items: center;
+      border: 2px solid var(--aqua);
+      border-radius: 12px;
+      color: var(--aqua);
+      font-family: Georgia, serif;
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    .brand-word {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .topnav {
+      display: flex;
+      gap: 34px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .topnav a {
+      position: relative;
+      color: rgba(248, 252, 250, 0.88);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .topnav a.is-active,
+    .topnav a:hover { color: #fff; }
+    .topnav a.is-active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -16px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, var(--aqua), transparent);
+      box-shadow: 0 0 16px rgba(34, 215, 207, 0.7);
+    }
+
+    main {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 56px 28px 72px;
+    }
+
+    .view { display: none; }
+    .view.is-active { display: block; }
+
+    .hero {
+      min-height: calc(100vh - 210px);
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
+
+    .hero-inner { max-width: 860px; }
+    .hero-mark, .eyebrow {
+      color: #9b681a;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 16px 0 14px;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(54px, 8vw, 110px);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+    }
+
+    .hero p, .section-lead {
+      margin: 0 auto;
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      margin-top: 24px;
+      padding: 0 18px;
+      border-radius: 8px;
+      color: #f7fffc;
+      background: #0c5f72;
+      border: 1px solid rgba(34, 215, 207, 0.34);
+      box-shadow: 0 14px 28px rgba(12, 95, 114, 0.18);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .section-head h2 {
+      margin: 10px 0 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 18px;
+    }
+
+    .skill-card, .panel, .metric-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 252, 246, 0.94));
+      border: 1px solid rgba(255, 255, 255, 0.82);
+      box-shadow: var(--shadow);
+    }
+
+    .skill-card {
+      display: grid;
+      gap: 14px;
+      min-height: 220px;
+      padding: 22px;
+      border-radius: 18px;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .skill-card:hover { transform: translateY(-2px); }
+    .skill-card h3 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .domain {
+      color: var(--faint);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: rgba(20, 111, 123, 0.08);
+      color: #0c5f72;
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .chip.good { background: rgba(35, 122, 61, 0.12); color: var(--good); }
+    .chip.warn { background: rgba(201, 139, 35, 0.16); color: var(--warn); }
+    .chip.bad { background: rgba(177, 63, 47, 0.12); color: var(--bad); }
+
+    .report-title-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .report-title-row h2 {
+      margin: 8px 0 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(40px, 5.5vw, 68px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      margin: 22px 0;
+    }
+
+    .metric-card {
+      min-height: 128px;
+      padding: 16px;
+      border-radius: 18px;
+    }
+    .metric-label {
+      color: var(--faint);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .metric-value {
+      margin-top: 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 700;
+    }
+    .metric-hint {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .panel {
+      border-radius: 22px;
+      padding: 22px;
+      margin-top: 20px;
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-end;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .panel h3 {
+      margin: 6px 0 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      letter-spacing: -0.03em;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th {
+      padding: 10px 12px;
+      text-align: left;
+      color: var(--faint);
+      border-bottom: 1px solid var(--line);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      vertical-align: top;
+    }
+    .task-name { font-weight: 900; color: var(--ink); }
+    .note { color: var(--muted); line-height: 1.45; }
+    .numeric {
+      font-family: "SFMono-Regular", Consolas, monospace;
+      white-space: nowrap;
+    }
+
+    .decision-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .decision-grid div {
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(20, 111, 123, 0.06);
+      border: 1px solid rgba(20, 111, 123, 0.1);
+    }
+    .decision-grid span, .decision-grid small {
+      display: block;
+      color: var(--faint);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .decision-grid strong {
+      display: block;
+      margin: 8px 0 6px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+    }
+    .decision-grid small {
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .decision-verdict {
+      width: fit-content;
+      margin-top: 16px;
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 16px;
+      border-radius: 999px;
+      color: #f7fffc;
+      background: var(--good);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .topbar { height: auto; align-items: flex-start; flex-direction: column; padding: 18px; }
+      .topnav a.is-active::after { bottom: -8px; }
+      main { padding: 38px 18px 54px; }
+      .metric-grid { grid-template-columns: 1fr 1fr; }
+      .decision-grid { grid-template-columns: 1fr; }
+      table { min-width: 760px; }
+      .table-wrap { overflow-x: auto; }
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home">
+      <span class="brand-badge">S</span>
+      <span class="brand-word">SkillLens</span>
+    </a>
+    <nav class="topnav">
+      <a href="#home" data-view-link="home">Home</a>
+      <a href="#skills" data-view-link="skills">Skills</a>
+      <a href="#report" data-view-link="report">Report</a>
+      <a href="#paper" data-view-link="paper">Paper</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="view">
+      <div class="hero">
+        <div class="hero-inner">
+          <div class="hero-mark">NeurIPS 2026 Demo</div>
+          <h1>SkillLens</h1>
+          <p>A skill-centric benchmark for evaluating whether a candidate agent skill improves task performance enough to enable.</p>
+          <a class="button" href="#skills">Explore skills</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="view">
+      <div class="section-head">
+        <div class="eyebrow">Included Skills</div>
+        <h2>Choose a Skill</h2>
+        <p class="section-lead">Each card shows only the decision-level summary. Open the report to inspect generated tasks and paired WI/WO results.</p>
+      </div>
+      <div class="skills-grid" id="skills-grid"></div>
+    </section>
+
+    <section id="report" class="view">
+      <div class="report-title-row">
+        <div>
+          <div class="eyebrow">Skill Evaluation Report</div>
+          <h2 id="report-title">Report</h2>
+          <p class="section-lead" id="report-subtitle"></p>
+        </div>
+        <a class="button" href="#skills">Back to skills</a>
+      </div>
+      <div class="metric-grid" id="metric-grid"></div>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow">Generated Task Schemes</div>
+            <h3>Same Task, Two Agent Conditions</h3>
+          </div>
+          <p class="note">Each task is generated from the selected skill. It is executed once with the skill and once without it.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Task</th>
+                <th>Capability being tested</th>
+                <th>WI</th>
+                <th>WO</th>
+                <th>Delta</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody id="task-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow">Final Recommendation</div>
+            <h3>Should This Skill Be Enabled?</h3>
+          </div>
+        </div>
+        <div id="decision-panel"></div>
+      </section>
+    </section>
+
+    <section id="paper" class="view">
+      <div class="section-head">
+        <div class="eyebrow">Paper</div>
+        <h2>Skill-Centric Benchmarking</h2>
+        <p class="section-lead">Core claim: the skill package is the evaluation input. SkillLens generates tasks from that skill and estimates its marginal value through paired with-skill and without-skill runs.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const skills = [
+      {
+        id: "academic-paper-review",
+        name: "academic-paper-review",
+        domain: "Research review",
+        status: "Enable",
+        utility: 0.48,
+        safety: 96.4,
+        cost: "+42.5s",
+        token: "+2,180",
+        rationale: "Clear review-quality uplift with low safety deductions.",
+        tasks: [
+          {
+            title: "Write a conference-style paper review",
+            capability: "Structured peer review with strengths, weaknesses, methodology assessment, and author questions.",
+            wi: 0.88,
+            wo: 0.70,
+            evidence: "With the skill, the review follows top-venue structure and includes targeted author questions."
+          },
+          {
+            title: "Review a theoretical paper",
+            capability: "Adapt the review to proof correctness, assumptions, novelty, and scope of claims.",
+            wi: 0.83,
+            wo: 0.66,
+            evidence: "With the skill, the agent focuses on assumptions and theorem scope."
+          },
+          {
+            title: "Rank papers for follow-up reading",
+            capability: "Compare multiple evaluation papers under a consistent rubric.",
+            wi: 0.81,
+            wo: 0.71,
+            evidence: "With the skill, paper comparisons are more calibrated and actionable."
+          }
+        ]
+      },
+      {
+        id: "academic-researcher",
+        name: "academic-researcher",
+        domain: "Research synthesis",
+        status: "Enable",
+        utility: 0.62,
+        safety: 94.1,
+        cost: "-31.4s",
+        token: "-1,680",
+        rationale: "Large utility gain and lower effective token load.",
+        tasks: [
+          {
+            title: "Summarize and critique one research paper",
+            capability: "Extract research question, methodology, findings, limitations, and implications.",
+            wi: 0.92,
+            wo: 0.68,
+            evidence: "With the skill, the output includes methodology critique and field-relative implications."
+          },
+          {
+            title: "Compare several research papers",
+            capability: "Apply the same analysis rubric across several papers.",
+            wi: 0.86,
+            wo: 0.61,
+            evidence: "With the skill, the output uses a consistent comparison table."
+          },
+          {
+            title: "Draft a research proposal from readings",
+            capability: "Turn readings into a gap-motivated research proposal.",
+            wi: 0.89,
+            wo: 0.72,
+            evidence: "With the skill, the proposal links literature gaps to design choices."
+          }
+        ]
+      },
+      {
+        id: "advogado-criminal",
+        name: "advogado-criminal",
+        domain: "Brazilian criminal law",
+        status: "Review",
+        utility: 0.00,
+        safety: 88.0,
+        cost: "+18.1s",
+        token: "+87,225",
+        rationale: "Evidence is mixed and affected by incomplete executions, so this skill needs review before enabling.",
+        tasks: [
+          {
+            title: "Write a criminal case opinion",
+            capability: "Apply the domain workflow to case facts and produce a structured defense opinion.",
+            wi: 0.42,
+            wo: 0.34,
+            evidence: "With the skill, reasoning follows the intended legal workflow, but reliability needs review."
+          },
+          {
+            title: "Write victim guidance and a legal note",
+            capability: "Generate accessible guidance and an internal legal note from the same case account.",
+            wi: 0.50,
+            wo: 0.58,
+            evidence: "The no-skill run completed more output; the skill run showed stronger structure but did not finish cleanly."
+          },
+          {
+            title: "Analyze a prosecution strategy",
+            capability: "Apply the updated statutory framework and produce a prosecution strategy memo.",
+            wi: 0.30,
+            wo: 0.26,
+            evidence: "Both runs were weak; the skill run showed better process signals, but the result remains inconclusive."
+          }
+        ]
+      }
+    ];
+
+    let selectedSkill = skills[0];
+
+    function pct(value) {
+      return `${(value * 100).toFixed(1)}%`;
+    }
+
+    function pp(value) {
+      const sign = value > 0 ? "+" : "";
+      return `${sign}${(value * 100).toFixed(1)} pp`;
+    }
+
+    function score(tasks) {
+      const values = tasks.map((task) => {
+        const gap = Math.max(1 - task.wo, 0.0001);
+        return Math.max(0, (task.wi - task.wo) / gap);
+      });
+      return values.reduce((a, b) => a + b, 0) / values.length;
+    }
+
+    function verdictClass(status) {
+      if (status === "Enable") return "good";
+      if (status === "Review") return "warn";
+      return "bad";
+    }
+
+    function renderSkills() {
+      document.getElementById("skills-grid").innerHTML = skills.map((skill) => {
+        const avgWi = skill.tasks.reduce((a, t) => a + t.wi, 0) / skill.tasks.length;
+        const avgWo = skill.tasks.reduce((a, t) => a + t.wo, 0) / skill.tasks.length;
+        return `
+          <a class="skill-card" href="#report" data-skill="${skill.id}">
+            <div>
+              <div class="domain">${skill.domain}</div>
+              <h3>${skill.name}</h3>
+            </div>
+            <div class="chip-row">
+              <span class="chip ${verdictClass(skill.status)}">${skill.status}</span>
+              <span class="chip">${pp(avgWi - avgWo)} task gain</span>
+            </div>
+            <span class="button" style="margin-top:auto;width:fit-content;">View report</span>
+          </a>
+        `;
+      }).join("");
+    }
+
+    function renderReport() {
+      const tasks = selectedSkill.tasks;
+      const avgWi = tasks.reduce((a, t) => a + t.wi, 0) / tasks.length;
+      const avgWo = tasks.reduce((a, t) => a + t.wo, 0) / tasks.length;
+      document.getElementById("report-title").textContent = `Report for ${selectedSkill.name}`;
+      document.getElementById("report-subtitle").textContent = `${selectedSkill.domain}. This report compares generated tasks with the skill enabled against the same tasks without the skill.`;
+
+      document.getElementById("metric-grid").innerHTML = [
+        ["Generated tasks", tasks.length, "from skill capabilities", ""],
+        ["Task executions", `${tasks.length} x 2`, `= ${tasks.length * 2} total WI/WO runs`, ""],
+        ["Task gain", score(tasks).toFixed(1), `${pp(avgWi - avgWo)} WI over WO`, "good"],
+        ["Safety", selectedSkill.safety.toFixed(1), "deployment risk score", selectedSkill.safety >= 85 ? "good" : "warn"],
+        ["Verdict", selectedSkill.status, "recommendation for this skill", verdictClass(selectedSkill.status)]
+      ].map(([label, value, hint, tone]) => `
+        <article class="metric-card">
+          <div class="metric-label">${label}</div>
+          <div class="metric-value ${tone}">${value}</div>
+          <div class="metric-hint">${hint}</div>
+        </article>
+      `).join("");
+
+      document.getElementById("task-tbody").innerHTML = tasks.map((task) => {
+        const delta = task.wi - task.wo;
+        return `
+          <tr>
+            <td><div class="task-name">${task.title}</div></td>
+            <td>${task.capability}</td>
+            <td class="numeric">${pct(task.wi)}</td>
+            <td class="numeric">${pct(task.wo)}</td>
+            <td><span class="chip ${delta >= 0 ? "good" : "bad"}">${pp(delta)}</span></td>
+            <td class="note">${task.evidence}</td>
+          </tr>
+        `;
+      }).join("");
+
+      document.getElementById("decision-panel").innerHTML = `
+        <div class="decision-grid">
+          <div><span>Task gain</span><strong>${score(tasks).toFixed(1)}</strong><small>WI ${pct(avgWi)} vs WO ${pct(avgWo)}</small></div>
+          <div><span>Safety</span><strong>${selectedSkill.safety.toFixed(1)}</strong><small>observed deployment risk</small></div>
+          <div><span>Cost</span><strong>${selectedSkill.cost}</strong><small>${selectedSkill.token} effective tokens</small></div>
+        </div>
+        <div class="decision-verdict">${selectedSkill.status} this skill</div>
+        <p class="note">${selectedSkill.rationale}</p>
+      `;
+    }
+
+    function showView(id) {
+      document.querySelectorAll(".view").forEach((node) => node.classList.toggle("is-active", node.id === id));
+      document.querySelectorAll("[data-view-link]").forEach((node) => node.classList.toggle("is-active", node.dataset.viewLink === id));
+      if (id === "report") renderReport();
+    }
+
+    document.addEventListener("click", (event) => {
+      const card = event.target.closest("[data-skill]");
+      if (card) {
+        const skill = skills.find((item) => item.id === card.dataset.skill);
+        if (skill) selectedSkill = skill;
+      }
+    });
+
+    window.addEventListener("hashchange", () => {
+      showView((location.hash || "#home").slice(1));
+    });
+
+    renderSkills();
+    showView((location.hash || "#home").slice(1));
+  </script>
+</body>
+</html>

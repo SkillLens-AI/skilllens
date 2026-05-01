@@ -1,0 +1,1196 @@
+{
+  "schema": "skilllens_lookup_index_v1",
+  "generatedFrom": "docs\\artifacts\\data\\skills",
+  "entries": [
+    {
+      "owner": "a5c-ai",
+      "repo": "csi-specification-writer",
+      "file": "lookup/a5c-ai__csi-specification-writer.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0263,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "dock-scheduling-coordinator",
+      "file": "lookup/a5c-ai__dock-scheduling-coordinator.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2018,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "fifo-lifo-controller",
+      "file": "lookup/a5c-ai__fifo-lifo-controller.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.0351,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "freight-audit-validator",
+      "file": "lookup/a5c-ai__freight-audit-validator.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.125,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "last-mile-delivery-optimizer",
+      "file": "lookup/a5c-ai__last-mile-delivery-optimizer.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1404,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "maintenance-scheduler",
+      "file": "lookup/a5c-ai__maintenance-scheduler.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.3417,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "omnichannel-fulfillment-allocator",
+      "file": "lookup/a5c-ai__omnichannel-fulfillment-allocator.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.4386,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "returns-authorization-processor",
+      "file": "lookup/a5c-ai__returns-authorization-processor.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1111,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "submittal-tracker",
+      "file": "lookup/a5c-ai__submittal-tracker.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0278,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "vehicle-routing-solver",
+      "file": "lookup/a5c-ai__vehicle-routing-solver.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2105,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "article-writing",
+      "file": "lookup/affaan-m__article-writing.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.4737,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "brand-voice",
+      "file": "lookup/affaan-m__brand-voice.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2407,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "carrier-relationship-management",
+      "file": "lookup/affaan-m__carrier-relationship-management.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2833,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "content-engine",
+      "file": "lookup/affaan-m__content-engine.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.225,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "council",
+      "file": "lookup/affaan-m__council.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.3796,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "crosspost",
+      "file": "lookup/affaan-m__crosspost.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.3796,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "customs-trade-compliance",
+      "file": "lookup/affaan-m__customs-trade-compliance.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1508,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "energy-procurement",
+      "file": "lookup/affaan-m__energy-procurement.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0873,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "hipaa-compliance",
+      "file": "lookup/affaan-m__hipaa-compliance.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1053,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "inventory-demand-planning",
+      "file": "lookup/affaan-m__inventory-demand-planning.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2222,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "investor-materials",
+      "file": "lookup/affaan-m__investor-materials.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2105,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "investor-outreach",
+      "file": "lookup/affaan-m__investor-outreach.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1491,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "logistics-exception-management",
+      "file": "lookup/affaan-m__logistics-exception-management.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.3333,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "product-capability",
+      "file": "lookup/affaan-m__product-capability.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2018,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "product-lens",
+      "file": "lookup/affaan-m__product-lens.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.307,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "production-scheduling",
+      "file": "lookup/affaan-m__production-scheduling.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0476,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "quality-nonconformance",
+      "file": "lookup/affaan-m__quality-nonconformance.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.0083,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "visa-doc-translate",
+      "file": "lookup/affaan-m__visa-doc-translate.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1917,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "aiming-lab",
+      "repo": "hypothesis-formulation",
+      "file": "lookup/aiming-lab__hypothesis-formulation.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0952,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "aiming-lab",
+      "repo": "literature-search",
+      "file": "lookup/aiming-lab__literature-search.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2544,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "alirezarezvani",
+      "repo": "claude-skills",
+      "file": "lookup/alirezarezvani__claude-skills.json",
+      "skillCount": 3,
+      "deltaPassAt1": 0.2068,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "anon-188",
+      "repo": "anon-skill-001",
+      "file": "lookup/anon-188__anon-skill-001.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.3175,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "anon-188",
+      "repo": "anon-skill-003",
+      "file": "lookup/anon-188__anon-skill-003.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0588,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "anon-188",
+      "repo": "anon-skill-004",
+      "file": "lookup/anon-188__anon-skill-004.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.5625,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "anon-188",
+      "repo": "anon-skill-005",
+      "file": "lookup/anon-188__anon-skill-005.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1765,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "anon-426",
+      "repo": "anon-skill-002",
+      "file": "lookup/anon-426__anon-skill-002.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.3864,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "anthropics",
+      "repo": "skills",
+      "file": "lookup/anthropics__skills.json",
+      "skillCount": 3,
+      "deltaPassAt1": 0.0515,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "baojie",
+      "repo": "ancient-divination-ritual-procedure",
+      "file": "lookup/baojie__ancient-divination-ritual-procedure.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.8611,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "baojie",
+      "repo": "escape-from-captivity",
+      "file": "lookup/baojie__escape-from-captivity.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1667,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "baojie",
+      "repo": "precision-archery-method",
+      "file": "lookup/baojie__precision-archery-method.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1296,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "bmad-code-org",
+      "repo": "bmad-product-brief",
+      "file": "lookup/bmad-code-org__bmad-product-brief.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.0351,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "bytedance",
+      "repo": "academic-paper-review",
+      "file": "lookup/bytedance__academic-paper-review.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2456,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "claude-code-best",
+      "repo": "teach-me",
+      "file": "lookup/claude-code-best__teach-me.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.15,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "comeonoliver",
+      "repo": "emergency-distress-signal",
+      "file": "lookup/comeonoliver__emergency-distress-signal.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.193,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "coreyhaines31",
+      "repo": "sales-enablement",
+      "file": "lookup/coreyhaines31__sales-enablement.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1404,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "cyberpunk-2022",
+      "repo": "bingbu",
+      "file": "lookup/cyberpunk-2022__bingbu.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.3542,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "dabrewskie",
+      "repo": "guard-admin",
+      "file": "lookup/dabrewskie__guard-admin.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "danielmiessler",
+      "repo": "investigation",
+      "file": "lookup/danielmiessler__investigation.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0972,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "datadrivenconstruction",
+      "repo": "retention-tracker",
+      "file": "lookup/datadrivenconstruction__retention-tracker.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2018,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "davila7",
+      "repo": "seo-optimizer",
+      "file": "lookup/davila7__seo-optimizer.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.0635,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "dontbesilent2025",
+      "repo": "dbs-action",
+      "file": "lookup/dontbesilent2025__dbs-action.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.5263,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "f",
+      "repo": "book-translation",
+      "file": "lookup/f__book-translation.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.1574,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "facebook",
+      "repo": "extract-errors",
+      "file": "lookup/facebook__extract-errors.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.1111,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "facebook",
+      "repo": "feature-flags",
+      "file": "lookup/facebook__feature-flags.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1579,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "facebook",
+      "repo": "fix",
+      "file": "lookup/facebook__fix.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.3229,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "facebook",
+      "repo": "flags",
+      "file": "lookup/facebook__flags.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.5625,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "facebook",
+      "repo": "flow",
+      "file": "lookup/facebook__flow.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2604,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "facebook",
+      "repo": "test",
+      "file": "lookup/facebook__test.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.3333,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "facebook",
+      "repo": "verify",
+      "file": "lookup/facebook__verify.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.4556,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "github",
+      "repo": "gtm-enterprise-account-planning",
+      "file": "lookup/github__gtm-enterprise-account-planning.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2417,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "google-gemini",
+      "repo": "string-reviewer",
+      "file": "lookup/google-gemini__string-reviewer.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.4444,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "googleworkspace",
+      "repo": "gws-sheets-append",
+      "file": "lookup/googleworkspace__gws-sheets-append.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.3646,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "googleworkspace",
+      "repo": "gws-sheets-read",
+      "file": "lookup/googleworkspace__gws-sheets-read.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.5312,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "googleworkspace",
+      "repo": "gws-tasks",
+      "file": "lookup/googleworkspace__gws-tasks.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1667,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "googleworkspace",
+      "repo": "persona-exec-assistant",
+      "file": "lookup/googleworkspace__persona-exec-assistant.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.4722,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "googleworkspace",
+      "repo": "persona-sales-ops",
+      "file": "lookup/googleworkspace__persona-sales-ops.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2544,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "googleworkspace",
+      "repo": "recipe-create-doc-from-template",
+      "file": "lookup/googleworkspace__recipe-create-doc-from-template.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1875,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "hellowind777",
+      "repo": "clean",
+      "file": "lookup/hellowind777__clean.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.3148,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "huangrt01",
+      "repo": "gourmet-organizer",
+      "file": "lookup/huangrt01__gourmet-organizer.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0351,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "k-dense-ai",
+      "repo": "scientific-agent-skills",
+      "file": "lookup/k-dense-ai__scientific-agent-skills.json",
+      "skillCount": 4,
+      "deltaPassAt1": 0.1941,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "kortix-ai",
+      "repo": "call-prep",
+      "file": "lookup/kortix-ai__call-prep.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0333,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "kortix-ai",
+      "repo": "compliance",
+      "file": "lookup/kortix-ai__compliance.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0873,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "kortix-ai",
+      "repo": "draft-outreach",
+      "file": "lookup/kortix-ai__draft-outreach.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2583,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "kortix-ai",
+      "repo": "meeting-briefinging",
+      "file": "lookup/kortix-ai__meeting-briefinging.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0079,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "kortix-ai",
+      "repo": "research-assistant",
+      "file": "lookup/kortix-ai__research-assistant.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2778,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "leonardomso",
+      "repo": "write-concept",
+      "file": "lookup/leonardomso__write-concept.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.5263,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "liigoqi",
+      "repo": "endurance",
+      "file": "lookup/liigoqi__endurance.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.3,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "linkerlin",
+      "repo": "military-manual",
+      "file": "lookup/linkerlin__military-manual.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1491,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "linkerlin",
+      "repo": "theme-arena",
+      "file": "lookup/linkerlin__theme-arena.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0088,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "linkerlin",
+      "repo": "theme-starfleet",
+      "file": "lookup/linkerlin__theme-starfleet.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2368,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "microsoft",
+      "repo": "create-prompt",
+      "file": "lookup/microsoft__create-prompt.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.0965,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "mukul975",
+      "repo": "implementing-ics-firewall-with-tofino",
+      "file": "lookup/mukul975__implementing-ics-firewall-with-tofino.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1288,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "mukul975",
+      "repo": "implementing-purdue-model-network-segmentation",
+      "file": "lookup/mukul975__implementing-purdue-model-network-segmentation.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1053,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "nclamvn",
+      "repo": "eldercare-emergency-contacts",
+      "file": "lookup/nclamvn__eldercare-emergency-contacts.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0833,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "nousresearch",
+      "repo": "memento-flashcards",
+      "file": "lookup/nousresearch__memento-flashcards.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.6765,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "biomass",
+      "file": "lookup/openclaw__biomass.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1204,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "boiler",
+      "file": "lookup/openclaw__boiler.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.0521,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "bom-sop-check",
+      "file": "lookup/openclaw__bom-sop-check.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1842,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "chef",
+      "file": "lookup/openclaw__chef.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1053,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "cjl-relationship",
+      "file": "lookup/openclaw__cjl-relationship.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.5159,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "cognitive-flexibility",
+      "file": "lookup/openclaw__cognitive-flexibility.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1053,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "cold-chain-risk-calculator",
+      "file": "lookup/openclaw__cold-chain-risk-calculator.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.307,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "construction-safety-inspector",
+      "file": "lookup/openclaw__construction-safety-inspector.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1349,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "dog-potty-training",
+      "file": "lookup/openclaw__dog-potty-training.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.246,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "eam",
+      "file": "lookup/openclaw__eam.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.2843,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "emotion-memory-assistant",
+      "file": "lookup/openclaw__emotion-memory-assistant.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.0098,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "exercise-form",
+      "file": "lookup/openclaw__exercise-form.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0351,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "experience-wisteria-shadow-trap-fukuoka",
+      "file": "lookup/openclaw__experience-wisteria-shadow-trap-fukuoka.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.4474,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "family-grocery",
+      "file": "lookup/openclaw__family-grocery.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.25,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "find-community",
+      "file": "lookup/openclaw__find-community.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.0278,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "first-aid",
+      "file": "lookup/openclaw__first-aid.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0333,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "fitness-log",
+      "file": "lookup/openclaw__fitness-log.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.213,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "fitness-support",
+      "file": "lookup/openclaw__fitness-support.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.037,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "fridge",
+      "file": "lookup/openclaw__fridge.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.1667,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "grow-sustainably",
+      "file": "lookup/openclaw__grow-sustainably.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1296,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "healthy-meal-reminder",
+      "file": "lookup/openclaw__healthy-meal-reminder.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1842,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "home-organizer",
+      "file": "lookup/openclaw__home-organizer.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.0278,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "island-selector",
+      "file": "lookup/openclaw__island-selector.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0965,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "lidar",
+      "file": "lookup/openclaw__lidar.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "love-chat",
+      "file": "lookup/openclaw__love-chat.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1296,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "manufacturing-shift-handoff",
+      "file": "lookup/openclaw__manufacturing-shift-handoff.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "mood",
+      "file": "lookup/openclaw__mood.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.3421,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "motor",
+      "file": "lookup/openclaw__motor.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.0521,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "personal-guardian",
+      "file": "lookup/openclaw__personal-guardian.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2698,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "qsr-ghost-inventory-hunter",
+      "file": "lookup/openclaw__qsr-ghost-inventory-hunter.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "qsr-labor-leak-auditor",
+      "file": "lookup/openclaw__qsr-labor-leak-auditor.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1667,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "roofing-knowledge-mentor",
+      "file": "lookup/openclaw__roofing-knowledge-mentor.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.0439,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "room",
+      "file": "lookup/openclaw__room.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.1481,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "salon",
+      "file": "lookup/openclaw__salon.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0083,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "san-sheng-liu-bu",
+      "file": "lookup/openclaw__san-sheng-liu-bu.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.5278,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "silo",
+      "file": "lookup/openclaw__silo.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0789,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "sleep-tracker",
+      "file": "lookup/openclaw__sleep-tracker.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1481,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "sourdough-starter-manager",
+      "file": "lookup/openclaw__sourdough-starter-manager.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1667,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "thresh",
+      "file": "lookup/openclaw__thresh.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1765,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "turbine",
+      "file": "lookup/openclaw__turbine.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.1042,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "urea",
+      "file": "lookup/openclaw__urea.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1579,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "openclaw",
+      "repo": "wacli",
+      "file": "lookup/openclaw__wacli.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.4706,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "peggy-daddy",
+      "repo": "qisha",
+      "file": "lookup/peggy-daddy__qisha.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.4216,
+      "riskLevel": "high"
+    },
+    {
+      "owner": "pjt222",
+      "repo": "gold-washing",
+      "file": "lookup/pjt222__gold-washing.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2632,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "plurigrid",
+      "repo": "kinesis-advantage360-pro-kb360-pro",
+      "file": "lookup/plurigrid__kinesis-advantage360-pro-kb360-pro.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.475,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "shubhamsaboo",
+      "repo": "academic-researcher",
+      "file": "lookup/shubhamsaboo__academic-researcher.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0648,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "shubhamsaboo",
+      "repo": "content-creator",
+      "file": "lookup/shubhamsaboo__content-creator.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2063,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "shubhamsaboo",
+      "repo": "email-drafter",
+      "file": "lookup/shubhamsaboo__email-drafter.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0463,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "shubhamsaboo",
+      "repo": "meeting-notes",
+      "file": "lookup/shubhamsaboo__meeting-notes.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.125,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "sickn33",
+      "repo": "antigravity-awesome-skills",
+      "file": "lookup/sickn33__antigravity-awesome-skills.json",
+      "skillCount": 34,
+      "deltaPassAt1": 0.2274,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "significant-gravitas",
+      "repo": "pr-review",
+      "file": "lookup/significant-gravitas__pr-review.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2807,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "sundial-org",
+      "repo": "muscle-gain",
+      "file": "lookup/sundial-org__muscle-gain.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.1842,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "theneoai",
+      "repo": "awesome-skills",
+      "file": "lookup/theneoai__awesome-skills.json",
+      "skillCount": 29,
+      "deltaPassAt1": 0.086,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "tinh2",
+      "repo": "defense-maintenance",
+      "file": "lookup/tinh2__defense-maintenance.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2593,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "winbda",
+      "repo": "space-mission-plan",
+      "file": "lookup/winbda__space-mission-plan.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.0278,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "wshobson",
+      "repo": "competitive-landscape",
+      "file": "lookup/wshobson__competitive-landscape.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.5397,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "wshobson",
+      "repo": "employment-contract-templates",
+      "file": "lookup/wshobson__employment-contract-templates.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.2381,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "wshobson",
+      "repo": "market-sizing-analysis",
+      "file": "lookup/wshobson__market-sizing-analysis.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.0417,
+      "riskLevel": "low"
+    },
+    {
+      "owner": "zjunlp",
+      "repo": "alfworld-temperature-regulator",
+      "file": "lookup/zjunlp__alfworld-temperature-regulator.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.0196,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "zjunlp",
+      "repo": "scienceworld-planting-operation",
+      "file": "lookup/zjunlp__scienceworld-planting-operation.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0889,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "zocomputer",
+      "repo": "plant-care-plan",
+      "file": "lookup/zocomputer__plant-care-plan.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0278,
+      "riskLevel": "unknown"
+    },
+    {
+      "owner": "zwright8",
+      "repo": "autonomous-littoral-port-reopening-under-mining-and-drone-threat-cell",
+      "file": "lookup/zwright8__autonomous-littoral-port-reopening-under-mining-and-drone-threat-cell.json",
+      "skillCount": 1,
+      "deltaPassAt1": -0.0833,
+      "riskLevel": "medium"
+    },
+    {
+      "owner": "zwright8",
+      "repo": "homeland-spaceport-reentry-debris-response-and-force-protection-cell",
+      "file": "lookup/zwright8__homeland-spaceport-reentry-debris-response-and-force-protection-cell.json",
+      "skillCount": 1,
+      "deltaPassAt1": 0.0079,
+      "riskLevel": "medium"
+    }
+  ],
+  "totals": {
+    "entries": 148,
+    "skillsProcessed": 216,
+    "skippedNoOwner": 0,
+    "failedReads": 0
+  }
+}

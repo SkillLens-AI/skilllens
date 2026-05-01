@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "endurance",
+    "owner": "liigoqi",
+    "repo": "endurance",
+    "skillPath": "endurance",
+    "category": "healthcare-support-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.3,
+      "baseline": 0.4,
+      "withSkill": 0.7,
+      "tasks": 18,
+      "items": 90,
+      "wiPassedItems": 63,
+      "woPassedItems": 36
+    },
+    "safety": {
+      "riskLevel": "high",
+      "staticHits": 6,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 3,
+        "M": 3,
+        "L": 0
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 13.14,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

@@ -1,0 +1,63 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "doc-coauthoring, docx, pipeline-review",
+    "owner": "anthropics",
+    "repo": "skills",
+    "skillPath": "doc-coauthoring",
+    "category": "arts-design-entertainment-sports-and-media-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.0515,
+      "baseline": 0.597,
+      "withSkill": 0.6485,
+      "tasks": 48,
+      "items": 330,
+      "wiPassedItems": 214,
+      "woPassedItems": 197
+    },
+    "safety": {
+      "riskLevel": "high",
+      "staticHits": 33,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 24,
+        "M": 0,
+        "L": 9
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 485.33,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 24
+    },
+    "includedSkills": [
+      "doc-coauthoring",
+      "docx",
+      "pipeline-review"
+    ]
+  },
+  "source": "artifacts"
+}

@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "turbine",
+    "owner": "openclaw",
+    "repo": "turbine",
+    "skillPath": "turbine",
+    "category": "architecture-and-engineering-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": -0.1042,
+      "baseline": 0.8958,
+      "withSkill": 0.7917,
+      "tasks": 18,
+      "items": 96,
+      "wiPassedItems": 76,
+      "woPassedItems": 86
+    },
+    "safety": {
+      "riskLevel": "high",
+      "staticHits": 24,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 12,
+        "M": 0,
+        "L": 12
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 43.22,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

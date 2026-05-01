@@ -1,0 +1,323 @@
+# SkillLens — Browser Extension
+
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![Manifest V3](https://img.shields.io/badge/Manifest-V3-success.svg)](https://developer.chrome.com/docs/extensions/mv3/intro/)
+[![Companion paper](https://img.shields.io/badge/paper-SkillLens-blue.svg)](https://skilllens-ai.github.io/paper/)
+
+A Chromium browser extension that surfaces **SkillLens** evaluation results — utility
+lift, safety findings, and resource cost — directly on GitHub repositories and the
+major skill marketplaces. The extension is the discovery-time surface for the
+[SkillLens evaluation framework](../README.md): it turns the "should I install this
+skill?" question into a one-click lookup against a SkillLens report.
+
+> The paper introduces this surface as a *"lightweight browser extension for
+> skill-hosting platforms ... that turns SkillLens from an offline evaluation
+> pipeline into a discovery-time decision aid."*
+> ([SkillLens §2.7](https://skilllens-ai.github.io/paper/))
+
+---
+
+## Screenshots
+
+Three states a user sees on a supported page, from detection to the final
+audit report. Captured live against the ClawHub marketplace (`fitness-log`
+by `bytesagain1`); the GitHub and other marketplace surfaces use the same
+in-page panel.
+
+<p align="center">
+  <img src="screenshots/01_detection_toast.png"
+       alt="Detection toast — opt-in card appears bottom-right after the content script identifies a SKILL.md candidate"
+       width="820"><br>
+  <em>1. Detection toast — opt-in card appears in the bottom-right after the
+  content script identifies a <code>SKILL.md</code> candidate on the page.
+  Clicking <strong>Inspect this skill</strong> kicks off the lookup.</em>
+</p>
+
+<p align="center">
+  <img src="screenshots/02_inspecting.png"
+       alt="Inspection in progress — panel streams the five evaluation stages"
+       width="820"><br>
+  <em>2. Inspection in progress — the panel expands on the right and streams
+  the five evaluation stages (fetching bundle, scanning permissions, paired
+  pass@1 benchmark, exploit &amp; decoy aggregation, composing verdict) while
+  the backend computes utility, safety, and cost.</em>
+</p>
+
+<p align="center">
+  <img src="screenshots/03_audit_report.png"
+       alt="Audit report — verdict ring, three SkillLens axes, paper-backed benchmark counts"
+       width="820"><br>
+  <em>3. Audit report — verdict ring (here: <strong>Risky</strong>, score 36),
+  the three SkillLens axes (<code>pass_rate_gain</code> / safety score / cost
+  overhead), paper-backed benchmark counts, and pinned static- and
+  runtime-scan findings.</em>
+</p>
+
+---
+
+## Table of contents
+
+1. [What it does](#what-it-does)
+2. [Usage modes](#usage-modes)
+3. [Install (developer mode)](#install-developer-mode)
+4. [Advanced — run the backend](#advanced--run-the-backend)
+5. [Configure the backend URL](#configure-the-backend-url)
+6. [Supported sites](#supported-sites)
+7. [Permissions](#permissions)
+8. [Privacy](#privacy)
+9. [Project layout](#project-layout)
+10. [Development](#development)
+11. [License](#license)
+
+---
+
+## What it does
+
+When you visit a supported page that hosts a `SKILL.md` package, the extension:
+
+1. **Detects** the candidate skill by parsing the URL plus the rendered DOM (the
+   GitHub repo header for `github.com/<owner>/<repo>`, or the marketplace's own
+   route for `clawhub.ai`, `skills.sh`, `skillsmp.com`, `ai-skills.io`).
+2. **Looks up** a SkillLens report at
+   `GET <backend>/lookup/<owner>__<repo>.json` (or `<owner>__<slug>.json`
+   on marketplace pages where the URL uses a slug instead of a repo).
+   The default backend is the public artifacts mirror at
+   `https://skilllens-ai.github.io/skilllens/artifacts/api`, so the extension
+   works with zero local setup for any skill in our published index.
+3. **Injects** a compact panel into the page showing the three axes the paper
+   defines: utility (`pass_rate_gain`, `efficiency`), safety (static-scan
+   findings + dynamic exploitability), and resource cost (token / wall-time
+   overhead vs. the no-skill baseline).
+4. **Falls back** to a bundled reference profile when the backend is
+   unreachable, so the panel always has something to show in true-offline mode.
+
+The toolbar popup adds a quick-inspect bar, a feed of recent featured audits,
+and the per-extension settings panel (see [Configure the backend URL](#configure-the-backend-url)).
+
+A full-page report opens in its own window (`result.html`) whenever you click
+**Inspect** or **Re-run inspection** — that view is what the paper's Figure 7
+screenshots are taken from.
+
+---
+
+## Usage modes
+
+There are two ways to run the extension; pick the one that matches your goal.
+
+**1. Default — zero config (most users)**
+
+Install the extension and you're done. The extension calls
+`GET <mirror>/lookup/<owner>__<repo>.json`, where `<mirror>` is the public
+artifacts host:
+
+```
+https://skilllens-ai.github.io/skilllens/artifacts/api
+```
+
+That host serves the 200+ skill reports from our paper, rolled up into
+158 owner/repo entries. Skills outside the index return a
+`not_evaluated` status — the panel labels these clearly. No Python, no
+local server.
+
+> Six known multi-skill monorepos (`anthropics/skills`, `obra/superpowers`,
+> `sickn33/antigravity-awesome-skills`, `theneoai/awesome-skills`,
+> `k-dense-ai/scientific-agent-skills`, `alirezarezvani/claude-skills`) are
+> mapped to one aggregated entry each. Other owners default to
+> `owner/<skill_name>` per skill, which may 404 if the actual GitHub repo
+> name differs from the skill name — file an issue and we'll add it.
+
+Want to see what's covered before installing?
+
+- Browse the HTML listing at
+  [`/skilllens/artifacts/api/lookup/`](https://skilllens-ai.github.io/skilllens/artifacts/api/lookup/)
+  (filterable; one link per repo).
+- Or fetch the JSON index at
+  [`/skilllens/artifacts/api/index.json`](https://skilllens-ai.github.io/skilllens/artifacts/api/index.json).
+
+**2. Advanced — run the backend (self-host or live evaluation)**
+
+Run `local_mock_server` and point the extension at it via Backend URL
+settings. Use this when you want to:
+
+- Serve a private / extended evaluation index
+- Use the `/evaluate` POST route to score a skill on demand
+- Work fully offline against a clone of the artifacts
+
+The local server reads the same baked
+`docs/artifacts/api/lookup/<owner>__<repo>.json` files the public mirror
+serves, plus an optional `overrides.json` file for hand-curated entries.
+
+---
+
+## Install (developer mode)
+
+The extension is not yet published to the Chrome Web Store. Load it as an
+unpacked extension:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/SkillLens-AI/skilllens.git
+   cd skilllens
+   ```
+
+2. Open `chrome://extensions` (or `edge://extensions`, `brave://extensions`,
+   `arc://extensions`) in a Chromium-based browser.
+3. Toggle **Developer mode** in the top-right corner.
+4. Click **Load unpacked** and select the `browser_extension/` directory.
+5. Pin the **SkillLens — Browser Extension** icon to the toolbar so the popup is
+   one click away.
+
+The extension is built against Chrome Manifest V3 and has been smoke-tested on
+Chrome 120+, Edge 120+, and Brave 1.62+. Firefox is not supported in this
+release (the MV3 service-worker shape differs).
+
+---
+
+## Advanced — run the backend
+
+Most users do not need this section. Run the bundled local server when you
+want live `/evaluate` scoring, a private lookup index, or fully-offline
+operation. The server is in
+[`../local_mock_server/`](../local_mock_server/) and reads the same baked
+`docs/artifacts/api/lookup/*.json` files served by the public mirror.
+
+```bash
+# Regenerate the baked lookup index (only needed if you changed
+# docs/artifacts/data/ — the repo ships the latest output already).
+python scripts/build_lookup_index.py
+
+# Start the server.
+cd local_mock_server
+python mock_skill_server.py
+```
+
+The server listens on `http://127.0.0.1:8765` by default. Verify it is up:
+
+```bash
+curl -s http://127.0.0.1:8765/health
+curl -s http://127.0.0.1:8765/lookup/bytedance__academic-paper-review.json
+```
+
+Then open the extension popup, paste `http://127.0.0.1:8765` into
+**Advanced · Backend URL**, and click **Save**. The panel will switch from
+**Preview mode** to **Engine ready** and route all lookups through your local
+server.
+
+For details on the routes and data sources see
+[`../local_mock_server/README.md`](../local_mock_server/README.md).
+
+---
+
+## Configure the backend URL
+
+The extension reads the backend URL from `chrome.storage.sync` under the key
+`skilllens_server_base_url`. The default is the public artifacts mirror at
+`https://skilllens-ai.github.io/skilllens/artifacts/api`.
+
+To change it (e.g. you run the server on a different port, or you point the
+extension at a self-hosted SkillLens deployment):
+
+1. Click the SkillLens toolbar icon to open the popup.
+2. Scroll to **Advanced · Backend URL** and click to expand.
+3. Enter the new URL (`http://host:port`, no trailing slash) and click **Save**.
+   For the local mock server use `http://127.0.0.1:8765`.
+4. **Reset** restores the default (the public artifacts mirror).
+
+When you point the extension at a host that is not in the manifest's
+`host_permissions`, Chrome will prompt for `optional_host_permissions` the
+first time a content script attempts to fetch it.
+
+The setting is synced through your Chrome profile, so it follows you across
+machines if Chrome sync is enabled. No part of the configuration is sent to
+SkillLens or any third party.
+
+---
+
+## Supported sites
+
+| Site | What gets detected | Source file |
+|------|--------------------|-------------|
+| `github.com/<owner>/<repo>` | Repos whose root contains `SKILL.md` | `content_github.js` |
+| `clawhub.ai/<owner>/<slug>` | Marketplace skill detail pages | `content.js` |
+| `skills.sh/<owner>/<slug>` | Marketplace skill detail pages | `content.js` |
+| `skillsmp.com/<owner>/<slug>` | Marketplace skill detail pages | `content.js` |
+| `ai-skills.io/<owner>/<slug>` | Marketplace skill detail pages | `content.js` |
+
+Adding a new marketplace requires extending the `matches` block in
+`manifest.json` and adding a route parser in `content.js`. PRs welcome.
+
+---
+
+## Permissions
+
+The manifest declares a deliberately narrow set:
+
+| Permission | Why |
+|------------|-----|
+| `downloads` | Fetches the candidate skill bundle to a unique path under `~/Downloads/SkillLens/` before submitting it for inspection. |
+| `storage` | Persists the configured backend URL and per-page dismissal flags. |
+| `host_permissions` for the supported sites | Lets the content scripts read the rendered DOM and call `raw.githubusercontent.com` for `SKILL.md` previews. |
+| `optional_host_permissions` (`http://*/*`, `https://*/*`) | Granted on demand when the user points the extension at a custom backend URL. |
+
+The extension never requests `tabs`, `cookies`, `webRequest`, `<all_urls>`
+content-script matches, or any history / bookmarks API.
+
+---
+
+## Privacy
+
+- **No telemetry, no analytics, no remote logging.** Every code path runs
+  locally in the extension or against the backend URL the user configures.
+- **Backend lookups** include only `owner` and `repo` (or marketplace owner /
+  slug). They are sent to the configured backend URL only — by default this is
+  `127.0.0.1`, i.e. the user's own machine.
+- **Skill bundles** are downloaded into the user's local Downloads directory
+  before inspection. They are not uploaded anywhere.
+- **Storage** is `chrome.storage.sync` for the backend URL setting and
+  `chrome.storage.local` for in-flight jobs and per-page dismissal flags.
+- The extension makes **no network calls on install or on browser start**.
+
+---
+
+## Project layout
+
+```
+browser_extension/
+├── manifest.json            ← MV3 manifest, permissions, content-script matches
+├── background.js            ← service worker: job creation, download tracking
+├── content_github.js        ← GitHub repo detection + injected panel
+├── content.js               ← marketplace detection + injected panel
+├── content_github.css       ← shared injected-panel styles
+├── content.css              ← marketplace-specific overrides
+├── popup.html / popup.js / popup.css      ← toolbar popup
+├── result.html / result.js / result.css   ← full audit report window
+├── icons/                   ← 16/32/48/128 px PNGs + source SVG
+├── screenshots/             ← README screenshots (3 live PNGs)
+└── README.md                ← this file
+```
+
+---
+
+## Development
+
+There is no build step — the extension ships the source files directly. After
+editing any file, click the reload icon for the SkillLens entry on
+`chrome://extensions` to pick up the change. Content scripts re-inject on the
+next full page load (or `location.reload()`).
+
+The mock server is independently runnable and idempotent; restarting it does
+not invalidate any extension state.
+
+Contributions welcome via pull request against
+[`SkillLens-AI/skilllens`](https://github.com/SkillLens-AI/skilllens).
+
+---
+
+## License
+
+Apache License 2.0; see [`../LICENSE`](../LICENSE). The companion SkillLens
+evaluation framework, the dataset, and the mock server are released under the
+same license. The bundled reference data shown in offline / preview mode is
+derived from `Example/<skill>/skill_report.json` and inherits the
+CDLA-Permissive-2.0 license of the SkillLens dataset.

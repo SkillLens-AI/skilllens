@@ -1,0 +1,42 @@
+[project]
+name = "skilllens-eval"
+version = "0.1.0"
+description = "SkillLens — evaluation framework for agent skill packages (utility + security)"
+authors = [{ name = "SkillLens-AI Contributors" }]
+license = { text = "Apache-2.0" }
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "anthropic>=0.40.0",
+    "openai>=1.40.0",
+    "pydantic>=2.0",
+    "python-dotenv>=1.0",
+    "pyyaml>=6.0",
+    "tqdm>=4.66",
+    "harbor @ git+https://github.com/SkillLens-AI/harbor.git@bce6a018f70418daefc5c4f9aedd14cd1c79b907",
+]
+
+[project.urls]
+Homepage = "https://skilllens-ai.github.io/"
+Repository = "https://github.com/SkillLens-AI/skilllens"
+
+[project.scripts]
+# Console scripts only wrap zero-arg main() functions. The four scheme/task
+# generators take positional args, so invoke them in module form:
+#   python -m skills_eval.task_scheme.utility_generate   --help
+#   python -m skills_eval.task_scheme.security_generate  --help
+#   python -m skills_eval.task_generate.utility_generate --help
+#   python -m skills_eval.task_generate.security_generate --help
+skilllens-utility-judge = "skills_eval.task_judge.run_utility_judge:main"
+skilllens-security-judge = "skills_eval.task_judge.run_security_judge:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["skills_eval"]
+
+[tool.hatch.metadata]
+allow-direct-references = true

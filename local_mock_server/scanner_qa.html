@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillTestBench - Evaluation Report</title>
+  <link rel="stylesheet" href="/examples/report.css">
+</head>
+<body>
+  <div class="report-page">
+    <header class="topbar">
+      <a class="brand" href="/examples">
+        <span class="brand-badge" aria-hidden="true">
+          <svg viewBox="0 0 64 64">
+            <path d="M20 6h24l14 13v26L44 58H20L6 45V19L20 6Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+            <text x="32" y="40" text-anchor="middle" font-size="28" font-family="Georgia, serif" fill="currentColor">S</text>
+          </svg>
+        </span>
+        <span class="brand-word">SkillTestBench</span>
+      </a>
+
+      <nav class="topnav" aria-label="Primary">
+        <a href="/examples">Home</a>
+        <a href="/examples/skills">Skills</a>
+        <a class="is-active" href="/examples/report">Report</a>
+        <a id="paper-nav" href="#" aria-disabled="true">Paper</a>
+        <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="report-shell">
+      <section class="report-hero">
+        <div class="hero-mark">Skill Evaluation Report</div>
+        <h1 id="report-title">Report for academic-researcher</h1>
+        <p id="report-subtitle">A user-facing summary of whether this skill improves agent task outcomes enough to enable.</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="/examples/skills">Browse skills</a>
+          <span class="status-pill" data-tone="demo">Demo data</span>
+        </div>
+      </section>
+
+      <section class="pipeline-card" aria-label="Evaluation pipeline">
+        <div class="pipeline-head">
+          <div>
+            <div class="card-kicker">Core workflow</div>
+            <h2>From skill package to paired task evidence</h2>
+          </div>
+          <div class="pipeline-skill">
+            <span>Candidate skill</span>
+            <strong id="candidate-skill-name">academic-researcher</strong>
+          </div>
+        </div>
+        <div class="pipeline-steps" id="pipeline-steps"></div>
+      </section>
+
+      <section class="overview-grid" id="overview-cards" aria-label="Benchmark overview"></section>
+
+      <section class="table-card task-card">
+        <div class="table-head">
+          <div>
+            <div class="card-kicker">Generated task schemes</div>
+            <h2>Same task, two agent conditions</h2>
+          </div>
+          <p class="table-explain">
+            These are test tasks automatically generated from this skill's claimed capabilities.
+            <code>WI</code> means the agent can use the target skill; <code>WO</code> means the same task runs without it.
+          </p>
+        </div>
+        <div class="table-shell">
+          <table class="report-table">
+            <thead>
+              <tr>
+                <th>Task</th>
+                <th>Generated from skill capability</th>
+                <th>WI result</th>
+                <th>WO result</th>
+                <th>Delta</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody id="task-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="report-grid">
+        <article class="chart-card">
+          <div class="card-kicker">Axis I - Utility</div>
+          <div class="card-head">
+            <h2>WI vs WO task outcomes</h2>
+            <p>Each bar pair is generated from the same skill-specific task scheme.</p>
+          </div>
+          <div class="chart-frame"><canvas id="pass-chart" width="680" height="340"></canvas></div>
+          <div class="chart-legend">
+            <span><span class="legend-dot wi"></span> with skill</span>
+            <span><span class="legend-dot wo"></span> no skill</span>
+          </div>
+        </article>
+
+        <article class="chart-card">
+          <div class="card-kicker">Final answer</div>
+          <div class="card-head">
+            <h2>Final Recommendation</h2>
+            <p>The report is not a benchmark-internal accuracy test. It is the adoption summary for this skill.</p>
+          </div>
+          <div class="decision-panel" id="decision-panel"></div>
+          <div class="decision-note">
+            User question answered: does this skill improve agent performance enough, without unacceptable risk or overhead?
+          </div>
+        </article>
+      </section>
+
+      <section class="axis-grid" aria-label="How to read the report">
+        <article class="axis-card">
+          <div class="axis-index">01</div>
+          <h2>Task Gain</h2>
+          <p>Answers the central question: did the target skill improve task completion compared with the matched no-skill baseline?</p>
+          <code>utility_score = mean((wi_pass - wo_pass) / max(1 - wo_pass, epsilon))</code>
+        </article>
+        <article class="axis-card">
+          <div class="axis-index">02</div>
+          <h2>Safety</h2>
+          <p>Uses static findings and runtime behavior from skill-enabled runs to flag deployment risk introduced by the skill package.</p>
+          <code>deduction = base_score * existence_confidence * exploitability</code>
+        </article>
+        <article class="axis-card">
+          <div class="axis-index">03</div>
+          <h2>Cost</h2>
+          <p>Tracks added or saved execution time and effective input tokens. Cost is reported separately and only breaks ties when utility is indistinguishable.</p>
+          <code>effective_tokens = input_tokens - cache_tokens</code>
+        </article>
+      </section>
+
+      <p class="footnote">
+        The key claim is paired evaluation: generated tasks are identical across conditions, and the only intended difference is whether the candidate skill is available to the agent.
+      </p>
+    </main>
+  </div>
+
+  <script src="/examples/report.js"></script>
+</body>
+</html>

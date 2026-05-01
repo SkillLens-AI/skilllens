@@ -1,0 +1,64 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "parallel-web, pufferlib, scholar-evaluation (+1 more)",
+    "owner": "k-dense-ai",
+    "repo": "scientific-agent-skills",
+    "skillPath": "parallel-web",
+    "category": "life-physical-and-social-science-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.1941,
+      "baseline": 0.6688,
+      "withSkill": 0.8629,
+      "tasks": 68,
+      "items": 474,
+      "wiPassedItems": 409,
+      "woPassedItems": 317
+    },
+    "safety": {
+      "riskLevel": "high",
+      "staticHits": 57,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 21,
+        "M": 21,
+        "L": 15
+      }
+    },
+    "cost": {
+      "deltaTimeSec": -112.63,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 32
+    },
+    "includedSkills": [
+      "parallel-web",
+      "pufferlib",
+      "scholar-evaluation",
+      "scikit-bio"
+    ]
+  },
+  "source": "artifacts"
+}

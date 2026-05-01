@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "room",
+    "owner": "openclaw",
+    "repo": "room",
+    "skillPath": "room",
+    "category": "building-and-grounds-cleaning-and-maintenance-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": -0.1481,
+      "baseline": 0.7963,
+      "withSkill": 0.6481,
+      "tasks": 18,
+      "items": 108,
+      "wiPassedItems": 70,
+      "woPassedItems": 86
+    },
+    "safety": {
+      "riskLevel": "high",
+      "staticHits": 10,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 4,
+        "M": 0,
+        "L": 6
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 90.04,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 7
+    }
+  },
+  "source": "artifacts"
+}

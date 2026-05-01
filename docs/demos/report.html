@@ -1,0 +1,1720 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillLens - Evaluation Report</title>
+  <style>
+:root {
+  --teal-shell-from: #053a43;
+  --teal-shell-to: #0c5f72;
+  --aqua: #22d7cf;
+  --aqua-edge: rgba(34, 215, 207, 0.32);
+  --paper-0: #f9f7ee;
+  --paper-1: #fbf8f1;
+  --paper-2: #f5efe5;
+  --ink-deep: #082f3b;
+  --ink-soft: #526c7b;
+  --ink-faint: #6e8490;
+  --gold: #c98b23;
+  --hairline: rgba(24, 78, 92, 0.13);
+  --shadow-card: 0 18px 44px rgba(20, 45, 58, 0.1);
+  --good: #237a3d;
+  --warn: #8a5e10;
+  --bad: #b13f2f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--ink-deep);
+  font-family: Inter, "Segoe UI Variable Text", "Segoe UI", Arial, sans-serif;
+  background:
+    radial-gradient(circle at 50% 170px, rgba(34, 215, 207, 0.18), transparent 36%),
+    linear-gradient(180deg, var(--paper-0) 0%, var(--paper-1) 42%, var(--paper-2) 100%);
+}
+
+.report-page {
+  min-height: 100vh;
+  position: relative;
+}
+
+.topbar {
+  position: relative;
+  z-index: 10;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 0 58px;
+  background: linear-gradient(135deg, var(--teal-shell-from), var(--teal-shell-to));
+  border-bottom: 1px solid var(--aqua-edge);
+  box-shadow: 0 16px 38px rgba(4, 34, 40, 0.18);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: #fbf8ef;
+  text-decoration: none;
+}
+
+.brand-badge {
+  width: 42px;
+  height: 42px;
+  display: inline-grid;
+  place-items: center;
+  color: var(--aqua);
+}
+
+.brand-badge svg {
+  width: 100%;
+  height: 100%;
+}
+
+.brand-word {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.topnav {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  flex-wrap: wrap;
+}
+
+.topnav a {
+  position: relative;
+  color: rgba(248, 252, 250, 0.88);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.topnav a:hover,
+.topnav a.is-active {
+  color: #ffffff;
+}
+
+.topnav a.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -16px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--aqua), transparent);
+  box-shadow: 0 0 16px rgba(34, 215, 207, 0.7);
+}
+
+.report-shell {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 56px 32px 72px;
+}
+
+.report-hero {
+  text-align: center;
+  max-width: 910px;
+  margin: 0 auto 34px;
+}
+
+.hero-mark,
+.card-kicker {
+  color: #9b681a;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.hero-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.hero-mark::before,
+.hero-mark::after {
+  content: "";
+  width: 64px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.report-hero h1 {
+  margin: 16px 0 12px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(46px, 5.4vw, 76px);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  color: var(--ink-deep);
+}
+
+.report-hero p {
+  color: var(--ink-soft);
+  font-size: 18px;
+  line-height: 1.55;
+  margin: 0 auto;
+}
+
+.hero-actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 8px;
+  color: #f7fffc;
+  background: #0c5f72;
+  border: 1px solid rgba(34, 215, 207, 0.34);
+  box-shadow: 0 14px 28px rgba(12, 95, 114, 0.18);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(20, 111, 123, 0.08);
+  color: var(--ink-deep);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.status-pill::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #d9a441;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.metric-card,
+.chart-card,
+.axis-card,
+.table-card,
+.schema-card,
+.pipeline-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 252, 246, 0.94));
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  box-shadow: var(--shadow-card);
+}
+
+.pipeline-card {
+  border-radius: 22px;
+  padding: 22px;
+  margin-bottom: 22px;
+}
+
+.pipeline-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.pipeline-head h2 {
+  margin: 6px 0 0;
+  color: var(--ink-deep);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  letter-spacing: -0.03em;
+}
+
+.pipeline-skill {
+  display: grid;
+  gap: 4px;
+  min-width: 220px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(20, 111, 123, 0.07);
+  border: 1px solid rgba(20, 111, 123, 0.12);
+}
+
+.pipeline-skill span {
+  color: var(--ink-faint);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.pipeline-skill strong {
+  color: var(--ink-deep);
+  font-size: 16px;
+}
+
+.pipeline-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.pipeline-step {
+  position: relative;
+  min-height: 190px;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(20, 111, 123, 0.05);
+  border: 1px solid rgba(20, 111, 123, 0.11);
+}
+
+.pipeline-step::after {
+  content: "";
+  position: absolute;
+  top: 26px;
+  right: -11px;
+  width: 18px;
+  height: 2px;
+  background: rgba(12, 95, 114, 0.3);
+}
+
+.pipeline-step:last-child::after {
+  display: none;
+}
+
+.pipeline-index {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  color: #f7fffc;
+  background: #0c5f72;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.pipeline-step h3 {
+  margin: 12px 0 8px;
+  color: var(--ink-deep);
+  font-size: 16px;
+}
+
+.pipeline-step p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.pipeline-step code {
+  display: block;
+  margin-top: 14px;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(8, 47, 59, 0.06);
+  color: #0c5f72;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.metric-card {
+  min-height: 138px;
+  padding: 16px;
+  border-radius: 18px;
+}
+
+.metric-label {
+  color: var(--ink-faint);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.metric-value {
+  margin-top: 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink-deep);
+}
+
+.metric-value.good {
+  color: var(--good);
+}
+
+.metric-value.warn {
+  color: var(--warn);
+}
+
+.metric-hint {
+  margin-top: 10px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.report-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.chart-card,
+.table-card,
+.schema-card {
+  border-radius: 22px;
+  padding: 20px;
+}
+
+.card-head {
+  margin-top: 8px;
+  margin-bottom: 14px;
+}
+
+.card-head h2,
+.axis-card h2,
+.table-head h2,
+.schema-card h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--ink-deep);
+  letter-spacing: -0.03em;
+}
+
+.card-head h2,
+.table-head h2,
+.schema-card h2 {
+  font-size: 28px;
+}
+
+.card-head p,
+.axis-card p,
+.schema-card p {
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.chart-frame {
+  position: relative;
+  width: 100%;
+  min-height: 330px;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.74), rgba(255, 252, 246, 0.72)),
+    repeating-linear-gradient(90deg, rgba(8, 47, 59, 0.04) 0 1px, transparent 1px 68px);
+  border: 1px solid rgba(24, 78, 92, 0.1);
+  overflow: hidden;
+}
+
+.chart-frame canvas {
+  width: 100%;
+  height: 330px;
+  display: block;
+}
+
+.chart-legend {
+  margin-top: 10px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 2px;
+}
+
+.legend-dot.wi {
+  background: #0c5f72;
+}
+
+.legend-dot.wo {
+  background: rgba(201, 139, 35, 0.72);
+}
+
+.legend-dot.high {
+  background: var(--bad);
+}
+
+.legend-dot.medium {
+  background: var(--gold);
+}
+
+.legend-dot.low {
+  background: var(--good);
+}
+
+.decision-panel {
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  padding: 22px;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 252, 246, 0.8)),
+    radial-gradient(circle at 20% 10%, rgba(34, 215, 207, 0.12), transparent 34%);
+  border: 1px solid rgba(24, 78, 92, 0.1);
+}
+
+.decision-verdict {
+  width: fit-content;
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 999px;
+  color: #f7fffc;
+  background: var(--good);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.decision-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.decision-grid div {
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(20, 111, 123, 0.06);
+  border: 1px solid rgba(20, 111, 123, 0.1);
+}
+
+.decision-grid span,
+.decision-grid small {
+  display: block;
+  color: var(--ink-faint);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.decision-grid strong {
+  display: block;
+  margin: 8px 0 6px;
+  color: var(--ink-deep);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.decision-grid small {
+  color: var(--ink-soft);
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.35;
+}
+
+.decision-panel p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.decision-note {
+  margin-top: 12px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.axis-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.axis-card {
+  position: relative;
+  min-height: 240px;
+  padding: 22px;
+  border-radius: 22px;
+}
+
+.axis-index {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  color: #0c5f72;
+  background: rgba(34, 215, 207, 0.12);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.axis-card h2 {
+  margin-top: 12px;
+  font-size: 30px;
+}
+
+.axis-card code {
+  display: block;
+  margin-top: 18px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(8, 47, 59, 0.06);
+  color: #0c5f72;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: normal;
+}
+
+.table-card {
+  margin-bottom: 22px;
+}
+
+.task-card {
+  margin-bottom: 22px;
+}
+
+.table-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.table-explain {
+  max-width: 500px;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.table-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.table-controls label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-faint);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.table-controls select {
+  min-height: 34px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid var(--hairline);
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--ink-deep);
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.table-shell {
+  overflow-x: auto;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.report-table thead th {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--hairline);
+  color: var(--ink-faint);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.report-table tbody td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  vertical-align: middle;
+  color: var(--ink-deep);
+}
+
+.report-table tbody tr:hover {
+  background: rgba(20, 111, 123, 0.04);
+}
+
+.skill-name {
+  color: var(--ink-deep);
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.skill-note {
+  max-width: 360px;
+  margin-top: 4px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.numeric {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  white-space: nowrap;
+}
+
+.strong {
+  font-weight: 900;
+}
+
+.delta-good {
+  color: var(--good);
+  font-weight: 800;
+}
+
+.delta-warn {
+  color: var(--warn);
+  font-weight: 800;
+}
+
+.risk-pill,
+.verdict-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 64px;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.risk-low {
+  color: var(--good);
+  background: rgba(35, 122, 61, 0.12);
+}
+
+.risk-medium {
+  color: var(--warn);
+  background: rgba(201, 139, 35, 0.14);
+}
+
+.risk-high {
+  color: var(--bad);
+  background: rgba(177, 63, 47, 0.12);
+}
+
+.is-enable {
+  color: #f7fffc;
+  background: var(--good);
+}
+
+.is-review {
+  color: #241704;
+  background: #e6c56e;
+}
+
+.is-skip {
+  color: #fff8f4;
+  background: var(--bad);
+}
+
+.schema-card {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(360px, 1.2fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.schema-card p {
+  margin-bottom: 0;
+}
+
+.schema-card pre {
+  margin: 0;
+  max-height: 390px;
+  overflow: auto;
+  padding: 16px;
+  border-radius: 12px;
+  color: #e8fffb;
+  background: #06272e;
+  border: 1px solid rgba(34, 215, 207, 0.22);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.footnote {
+  margin: 22px 0 0;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.62);
+  border-left: 3px solid var(--gold);
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 1100px) {
+  .overview-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .report-grid,
+  .axis-grid,
+  .schema-card,
+  .pipeline-steps,
+  .decision-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pipeline-step::after {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    align-items: flex-start;
+    padding: 18px;
+    flex-direction: column;
+  }
+
+  .topnav {
+    gap: 18px;
+  }
+
+  .topnav a.is-active::after {
+    bottom: -8px;
+  }
+
+  .report-shell {
+    padding: 38px 18px 52px;
+  }
+
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pipeline-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hero-mark::before,
+  .hero-mark::after {
+    width: 34px;
+  }
+
+  .chart-frame,
+  .chart-frame canvas {
+    min-height: 300px;
+    height: 300px;
+  }
+}
+
+  </style>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+<body>
+  <div class="report-page">
+    <header class="topbar">
+      <a class="brand" href="#" onclick="event.preventDefault()">
+        <span class="brand-badge" aria-hidden="true">
+          <svg viewBox="0 0 64 64">
+            <path d="M20 6h24l14 13v26L44 58H20L6 45V19L20 6Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+            <text x="32" y="40" text-anchor="middle" font-size="28" font-family="Georgia, serif" fill="currentColor">S</text>
+          </svg>
+        </span>
+        <span class="brand-word">SkillLens</span>
+      </a>
+
+      <nav class="topnav" aria-label="Primary">
+        <a href="#" onclick="event.preventDefault()">Home</a>
+        <a href="skills.html">Skills</a>
+        <a class="is-active" href="#" onclick="event.preventDefault()">Report</a>
+        <a id="paper-nav" href="#" aria-disabled="true" onclick="event.preventDefault()">Paper</a>
+        <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="report-shell">
+      <section class="report-hero">
+        <div class="hero-mark">Skill Evaluation Report</div>
+        <h1 id="report-title">Report for academic-researcher</h1>
+        <p id="report-subtitle">A user-facing summary of whether this skill improves agent task outcomes enough to enable.</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="skills.html">Browse skills</a>
+          <span class="status-pill" data-tone="demo">Demo data</span>
+        </div>
+      </section>
+
+      <section class="pipeline-card" aria-label="Evaluation pipeline">
+        <div class="pipeline-head">
+          <div>
+            <div class="card-kicker">Core workflow</div>
+            <h2>From skill package to paired task evidence</h2>
+          </div>
+          <div class="pipeline-skill">
+            <span>Candidate skill</span>
+            <strong id="candidate-skill-name">academic-researcher</strong>
+          </div>
+        </div>
+        <div class="pipeline-steps" id="pipeline-steps"></div>
+      </section>
+
+      <section class="overview-grid" id="overview-cards" aria-label="Benchmark overview"></section>
+
+      <section class="table-card task-card">
+        <div class="table-head">
+          <div>
+            <div class="card-kicker">Generated task schemes</div>
+            <h2>Same task, two agent conditions</h2>
+          </div>
+          <p class="table-explain">
+            These are test tasks automatically generated from this skill's claimed capabilities.
+            <code>WI</code> means the agent can use the target skill; <code>WO</code> means the same task runs without it.
+          </p>
+        </div>
+        <div class="table-shell">
+          <table class="report-table">
+            <thead>
+              <tr>
+                <th>Task</th>
+                <th>Generated from skill capability</th>
+                <th>WI result</th>
+                <th>WO result</th>
+                <th>Delta</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody id="task-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="report-grid">
+        <article class="chart-card">
+          <div class="card-kicker">Axis I - Utility</div>
+          <div class="card-head">
+            <h2>WI vs WO task outcomes</h2>
+            <p>Each bar pair is generated from the same skill-specific task scheme.</p>
+          </div>
+          <div class="chart-frame"><canvas id="pass-chart" width="680" height="340"></canvas></div>
+          <div class="chart-legend">
+            <span><span class="legend-dot wi"></span> with skill</span>
+            <span><span class="legend-dot wo"></span> no skill</span>
+          </div>
+        </article>
+
+        <article class="chart-card">
+          <div class="card-kicker">Final answer</div>
+          <div class="card-head">
+            <h2>Final Recommendation</h2>
+            <p>The report is not a benchmark-internal accuracy test. It is the adoption summary for this skill.</p>
+          </div>
+          <div class="decision-panel" id="decision-panel"></div>
+          <div class="decision-note">
+            User question answered: does this skill improve agent performance enough, without unacceptable risk or overhead?
+          </div>
+        </article>
+      </section>
+
+      <section class="axis-grid" aria-label="How to read the report">
+        <article class="axis-card">
+          <div class="axis-index">01</div>
+          <h2>Task Gain</h2>
+          <p>Answers the central question: did the target skill improve task completion compared with the matched no-skill baseline?</p>
+          <code>utility_score = mean((wi_pass - wo_pass) / max(1 - wo_pass, epsilon))</code>
+        </article>
+        <article class="axis-card">
+          <div class="axis-index">02</div>
+          <h2>Safety</h2>
+          <p>Uses static findings and runtime behavior from skill-enabled runs to flag deployment risk introduced by the skill package.</p>
+          <code>deduction = base_score * existence_confidence * exploitability</code>
+        </article>
+        <article class="axis-card">
+          <div class="axis-index">03</div>
+          <h2>Cost</h2>
+          <p>Tracks added or saved execution time and effective input tokens. Cost is reported separately and only breaks ties when utility is indistinguishable.</p>
+          <code>effective_tokens = input_tokens - cache_tokens</code>
+        </article>
+      </section>
+
+      <p class="footnote">
+        The key claim is paired evaluation: generated tasks are identical across conditions, and the only intended difference is whether the candidate skill is available to the agent.
+      </p>
+    </main>
+  </div>
+
+<script>
+/* baked-in /api/examples/summary snapshot */
+window.__DASHBOARD__ = {"root": {"examplesDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example", "nExamples": 3, "nScenarios": 9}, "overview": {"totalItems": 56, "wiPassedItems": 33, "woPassedItems": 36, "wiPassRate": 0.5892857142857143, "woPassRate": 0.6428571428571429, "wiTokensTotal": 3909463, "woTokensTotal": 1920327, "wiSecondsTotal": 1872.27, "woSecondsTotal": 1441.8, "wiWins": 4, "woWins": 2, "ties": 3, "wiExceptionScenarios": 3, "woExceptionScenarios": 4}, "examples": [{"skillName": "academic-paper-review", "owner": "bytedance", "category": "educational-instruction-and-library-occupations", "categoryLabel": "Educational Instruction And Library Occupations", "skillPath": "/home/user1/skills_eval_harbor_latest/dataset/selected_skills/educational-instruction-and-library-occupations/bytedance/academic-paper-review", "scenarioCount": 3, "scenarioIds": ["U1", "U2", "U3"], "domainCoverage": {"category": "educational-instruction-and-library-occupations", "categoryLabel": "Educational Instruction And Library Occupations", "owner": "bytedance", "coverageCount": 21, "capabilityHighlights": ["Structured review generation following top-venue templates (NeurIPS/ICML/ACL standards) — baseline agent produces unstructured prose summaries without rigorous section organization", "Systematic claim extraction and evidence mapping — identifying each specific claim, its supporting evidence, and rating its strength, rather than paraphrasing the abstract", "Methodology assessment across multiple criteria (soundness, novelty, reproducibility, experimental design, statistical rigor, scalability) with per-criterion ratings and justifications", "Literature context search — actively querying the web to position the paper against current SOTA, identifying missing baselines or uncited prior art that baseline agent cannot detect without search", "Contribution significance classification on a calibrated 5-level scale (Landmark to Below threshold) grounded in field norms, not generic praise", "Formulation of targeted author questions that expose genuine ambiguities rather than rhetorical critiques", "Separation of minor issues from major weaknesses with actionable remediation suggestions per weakness", "Paper-type-specific review focus adaptation — for a theoretical paper, prioritizing proof correctness, assumption reasonableness, and tightness of bounds rather than empirical baselines", "Deep reading of methodology sections to detect logical gaps or unverified assumptions in formal proofs or theoretical derivations", "Separation of what the paper claims from what is actually demonstrated, surfacing over-claims or scope limitations", "Statistical and theoretical rigor evaluation — assessing whether assumptions are explicitly stated, whether theorems are correctly scoped, and whether practical implications are overstated", "Reproducibility assessment for theoretical work — code/proof availability, self-contained notation, and derivation completeness", "Constructive, specific rewrite suggestions for unclear notation or incomplete proofs rather than blanket rejection", "Calibrated contribution level assessment distinguishing genuinely novel theoretical insight from repackaging of known results", "Comparative review across multiple papers with consistent evaluation criteria — applying the same methodology rubric to each paper to enable fair ranking", "Survey/systems paper type adaptation — evaluating comprehensiveness of coverage, taxonomy quality, and synthesis insights rather than experimental novelty alone", "Identifying missing citations and coverage gaps by cross-referencing literature search results against what each paper actually covers", "Relative contribution significance ranking — producing a calibrated comparison of which paper advances the field more, with evidence-grounded justification", "Constructive executive summary format generation — concise triage-level assessments suitable for a reader who needs quick decision-making signals across multiple papers", "Ethical review practices — evaluating papers on their own merits without bias toward more prominent authors or institutions", "Reproducibility and dataset/benchmark assessment for systems or empirical papers — checking whether baselines are fair, datasets are appropriate, and results are replicable"]}, "taskUtilityType": {"items": [{"scenarioId": "U1", "label": "Single-paper peer review", "level": "functional testing", "outputTargets": ["/app/output/review-nlp-paper.md"], "headline": "This test validates the agent's ability to produce a structured, peer-review-quality analysis of a real NLP paper, covering methodology assessment, contribution evaluation, literature positioning, and actionable recommendations — all in..."}, {"scenarioId": "U2", "label": "Theoretical paper review", "level": "functional testing", "outputTargets": ["/app/output/review-theory-paper.md"], "headline": "This test evaluates the skill's ability to adapt its review methodology to a theoretical paper, where the dominant quality signals are proof correctness, assumption scope, and theoretical novelty — not experimental baselines or ablation..."}, {"scenarioId": "U3", "label": "Research review and evaluation task", "level": "functional testing", "outputTargets": ["/app/output/review-llm-eval-papers.md"], "headline": "This test evaluates the skill's ability to handle a multi-paper comparative review scenario — a common real-world use case where a research team needs consistent, cross-paper analysis rather than independent summaries."}]}, "skillCondition": {"wiExpectedCount": 3, "woExpectedCount": 0, "wiMatchedCount": 3, "woMatchedCount": 3, "wiUsedCount": 3, "woUsedCount": 0}, "effectiveness": {"totalItems": 19, "wiPassedItems": 12, "woPassedItems": 15, "wiPassRate": 0.631578947368421, "woPassRate": 0.7894736842105263, "passDeltaItems": -3, "passDeltaRate": -0.1578947368421053, "wiWins": 2, "woWins": 1, "ties": 0}, "costApiUsage": {"wiTokens": {"input": 1618124, "cache": 1019185, "output": 18206, "total": 2655515}, "woTokens": {"input": 864899, "cache": 324583, "output": 19539, "total": 1209021}, "tokenDelta": 1446494}, "executionTime": {"wiSeconds": 902.23, "woSeconds": 567.02, "deltaSeconds": 335.21000000000004}, "reliabilityError": {"wiExceptionScenarios": 1, "woExceptionScenarios": 0, "wiStatusCounts": {"passed": 2, "failed": 0, "warning": 0, "error": 1, "unknown": 0}, "woStatusCounts": {"passed": 2, "failed": 1, "warning": 0, "error": 0, "unknown": 0}}, "scenarios": [{"scenarioId": "U1", "label": "Single-paper peer review", "level": "functional testing", "instructionPreview": "You are a program committee member at a top machine learning conference. A colleague has forwarded a preprint for you to review before the submission deadline. The paper is an NLP research paper available at the following URL:", "testMechanismPreview": "This test validates the agent's ability to produce a structured, peer-review-quality analysis of a real NLP paper, covering methodology assessment, contribution evaluation, literature positioning, and actionable recommendations — all in...", "coreCapabilities": ["Structured review generation following top-venue templates (NeurIPS/ICML/ACL standards) — baseline agent produces unstructured prose summaries without rigorous section organization", "Systematic claim extraction and evidence mapping — identifying each specific claim, its supporting evidence, and rating its strength, rather than paraphrasing the abstract", "Methodology assessment across multiple criteria (soundness, novelty, reproducibility, experimental design, statistical rigor, scalability) with per-criterion ratings and justifications", "Literature context search — actively querying the web to position the paper against current SOTA, identifying missing baselines or uncited prior art that baseline agent cannot detect without search", "Contribution significance classification on a calibrated 5-level scale (Landmark to Below threshold) grounded in field norms, not generic praise", "Formulation of targeted author questions that expose genuine ambiguities rather than rhetorical critiques", "Separation of minor issues from major weaknesses with actionable remediation suggestions per weakness"], "outputTargets": ["/app/output/review-nlp-paper.md"], "totalItems": 6, "wiPassedItems": 6, "woPassedItems": 5, "wiPassRate": 1.0, "woPassRate": 0.8333333333333334, "winner": "wi", "judgeError": "No runtime errors detected in either wi_skills or wo_skills runs. Both agents successfully fetched the paper, wrote the review, and saved it to the correct path. The wi_skills agent performed 4 additional web searches for literature context, while wo_skills did not conduct any external searches.", "error": null, "utilitySummary": "wi_skills is clearly more effective overall. Both reviews pass most evaluation items, but they differ significantly on J3 (literature positioning via active search): wi_skills conducted 4 web searches to identify related works beyond the paper's own citations (including Falcon-7B, MPT-7B, OpenLLaMA, and confirmed Beltagy 2020/Ainslie 2023 as external baselines), whereas wo_skills made no external searches and only referenced works already in the paper's bibliography. Additionally, the wi_skills review is substantially larger (19.8KB vs 14.4KB), contains a more structured methodology table with differentiated ratings, a more granular claim-to-evidence mapping, and more specific literature comparisons calibrated against field norms. The wi_skills review also provides more actionable author questions targeting genuine technical ambiguities (hyperparameter sensitivity, window size ablation). The skill enforced a multi-phase workflow (paper comprehension → literature search → critical synthesis) that produced measurably higher quality output compared to the baseline agent's single-pass approach.", "skillCondition": {"wiSkillUsed": true, "woSkillUsed": false, "wiSkillExpected": true, "woSkillExpected": false, "wiSkillMatched": true, "woSkillMatched": true}, "wiRun": {"trialName": "acad_U1_65ad00fa_wi_skills", "taskName": "acad_U1_65ad00fa_wi_skills", "status": "passed", "reward": 1.0, "startedAt": "2026-04-27T01:43:28.133583Z", "finishedAt": "2026-04-27T01:47:56.926368Z", "durationSec": 268.792785, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 5, "passed": 5, "failed": 0, "skipped": 0, "pending": 0, "other": 0}, "hasException": false, "exceptionType": "", "exceptionMessage": "", "tokens": {"input": 309352, "cache": 262306, "output": 8043, "total": 579701}, "costUsd": null, "trajectory": {"schemaVersion": "ATIF-v1.2", "stepCount": 29, "sessionId": "5f38fa06-bd94-461e-94b8-48718769efec"}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U1_65ad00fa_wi_skills", "trialDirRelative": "20260427_014328_tasks\\acad_U1_65ad00fa_wi_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U1_65ad00fa_wi_skills\\result.json", "ctrfJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U1_65ad00fa_wi_skills\\verifier\\ctrf.json", "trajectoryJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U1_65ad00fa_wi_skills\\agent\\trajectory.json"}, "resolved": true}, "woRun": {"trialName": "acad_U1_65ad00fa_wo_skills", "taskName": "acad_U1_65ad00fa_wo_skills", "status": "passed", "reward": 1.0, "startedAt": "2026-04-27T01:43:28.136521Z", "finishedAt": "2026-04-27T01:47:21.070427Z", "durationSec": 232.933906, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 5, "passed": 5, "failed": 0, "skipped": 0, "pending": 0, "other": 0}, "hasException": false, "exceptionType": "", "exceptionMessage": "", "tokens": {"input": 147310, "cache": 134459, "output": 5708, "total": 287477}, "costUsd": null, "trajectory": {"schemaVersion": "ATIF-v1.2", "stepCount": 17, "sessionId": "e7cb553b-34fb-40e0-81c0-dc5b175c3cb2"}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U1_65ad00fa_wo_skills", "trialDirRelative": "20260427_014328_tasks\\acad_U1_65ad00fa_wo_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U1_65ad00fa_wo_skills\\result.json", "ctrfJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U1_65ad00fa_wo_skills\\verifier\\ctrf.json", "trajectoryJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U1_65ad00fa_wo_skills\\agent\\trajectory.json"}, "resolved": true}}, {"scenarioId": "U2", "label": "Theoretical paper review", "level": "functional testing", "instructionPreview": "You are a senior researcher in machine learning theory who has been asked by a journal editor to provide a detailed referee report on a submitted theoretical paper. The paper PDF has been pre-downloaded and is available at `/app/input/th...", "testMechanismPreview": "This test evaluates the skill's ability to adapt its review methodology to a theoretical paper, where the dominant quality signals are proof correctness, assumption scope, and theoretical novelty — not experimental baselines or ablation...", "coreCapabilities": ["Paper-type-specific review focus adaptation — for a theoretical paper, prioritizing proof correctness, assumption reasonableness, and tightness of bounds rather than empirical baselines", "Deep reading of methodology sections to detect logical gaps or unverified assumptions in formal proofs or theoretical derivations", "Separation of what the paper claims from what is actually demonstrated, surfacing over-claims or scope limitations", "Statistical and theoretical rigor evaluation — assessing whether assumptions are explicitly stated, whether theorems are correctly scoped, and whether practical implications are overstated", "Reproducibility assessment for theoretical work — code/proof availability, self-contained notation, and derivation completeness", "Constructive, specific rewrite suggestions for unclear notation or incomplete proofs rather than blanket rejection", "Calibrated contribution level assessment distinguishing genuinely novel theoretical insight from repackaging of known results"], "outputTargets": ["/app/output/review-theory-paper.md"], "totalItems": 6, "wiPassedItems": 6, "woPassedItems": 5, "wiPassRate": 1.0, "woPassRate": 0.8333333333333334, "winner": "wi", "judgeError": "No runtime errors detected in either wi_skills or wo_skills runs. Both completed successfully with all 5 verifier checks passing.", "error": null, "utilitySummary": "Both wi_skills and wo_skills produced competent referee reports that passed all 5 verifier checks. However, wi_skills is clearly more effective on the criteria that most distinguish a skilled theoretical reviewer. The key differentiator is J4 (contribution novelty calibration against prior work): wi_skills conducted an actual literature search (Steps 13-16 show web searches for competing textbooks) and produced specific, named comparisons to Cesa-Bianchi & Lugosi (2006), Hazan (2015), and Shalev-Shwartz (2011) with explanations of how Orabona's work advances beyond each. The wo_skills review mentions some of these works but without the depth of comparison needed to pass J4. Additionally, the wi_skills report is substantially longer (22,748 bytes vs 14,804 bytes), contains more granular engagement with specific theorems (Theorem 5.17, Section 9.6.1, Section 12.7), and includes an explicit reproducibility disclaimer with verification methodology. The skill's adaptation logic for theoretical papers is evident in the structured priority-ranked suggestions and the explicit identification of original research contributions within the monograph. Overall, wi_skills produces a report that reads as if written by a genuine theoretical ML expert, while wo_skills produces a competent but somewhat generic review that would not clearly distinguish an experienced theoretical reviewer from a capable generalist.", "skillCondition": {"wiSkillUsed": true, "woSkillUsed": false, "wiSkillExpected": true, "woSkillExpected": false, "wiSkillMatched": true, "woSkillMatched": true}, "wiRun": {"trialName": "acad_U2_60121fd3_wi_skills", "taskName": "acad_U2_60121fd3_wi_skills", "status": "passed", "reward": 1.0, "startedAt": "2026-04-27T01:43:28.139142Z", "finishedAt": "2026-04-27T01:49:00.767223Z", "durationSec": 332.628081, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 5, "passed": 5, "failed": 0, "skipped": 0, "pending": 0, "other": 0}, "hasException": false, "exceptionType": "", "exceptionMessage": "", "tokens": {"input": 1069070, "cache": 559063, "output": 5642, "total": 1633775}, "costUsd": null, "trajectory": {"schemaVersion": "ATIF-v1.2", "stepCount": 19, "sessionId": "23e028cf-6ee1-42f8-b416-b0ac8e55e1cf"}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U2_60121fd3_wi_skills", "trialDirRelative": "20260427_014328_tasks\\acad_U2_60121fd3_wi_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U2_60121fd3_wi_skills\\result.json", "ctrfJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U2_60121fd3_wi_skills\\verifier\\ctrf.json", "trajectoryJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U2_60121fd3_wi_skills\\agent\\trajectory.json"}, "resolved": true}, "woRun": {"trialName": "acad_U2_60121fd3_wo_skills", "taskName": "acad_U2_60121fd3_wo_skills", "status": "passed", "reward": 1.0, "startedAt": "2026-04-27T01:43:28.143844Z", "finishedAt": "2026-04-27T01:47:37.445322Z", "durationSec": 249.301478, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 5, "passed": 5, "failed": 0, "skipped": 0, "pending": 0, "other": 0}, "hasException": false, "exceptionType": "", "exceptionMessage": "", "tokens": {"input": 550834, "cache": 54234, "output": 5099, "total": 610167}, "costUsd": null, "trajectory": {"schemaVersion": "ATIF-v1.2", "stepCount": 12, "sessionId": "663d920a-d909-4de5-aee9-f64179b00f3b"}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U2_60121fd3_wo_skills", "trialDirRelative": "20260427_014328_tasks\\acad_U2_60121fd3_wo_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U2_60121fd3_wo_skills\\result.json", "ctrfJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U2_60121fd3_wo_skills\\verifier\\ctrf.json", "trajectoryJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U2_60121fd3_wo_skills\\agent\\trajectory.json"}, "resolved": true}}, {"scenarioId": "U3", "label": "Research review and evaluation task", "level": "functional testing", "instructionPreview": "You are a research lead at an AI lab preparing a quarterly literature report for your team. You need to evaluate three recent papers on large language model evaluation benchmarks to decide which ones are worth deep-diving into during you...", "testMechanismPreview": "This test evaluates the skill's ability to handle a multi-paper comparative review scenario — a common real-world use case where a research team needs consistent, cross-paper analysis rather than independent summaries.", "coreCapabilities": ["Comparative review across multiple papers with consistent evaluation criteria — applying the same methodology rubric to each paper to enable fair ranking", "Survey/systems paper type adaptation — evaluating comprehensiveness of coverage, taxonomy quality, and synthesis insights rather than experimental novelty alone", "Identifying missing citations and coverage gaps by cross-referencing literature search results against what each paper actually covers", "Relative contribution significance ranking — producing a calibrated comparison of which paper advances the field more, with evidence-grounded justification", "Constructive executive summary format generation — concise triage-level assessments suitable for a reader who needs quick decision-making signals across multiple papers", "Ethical review practices — evaluating papers on their own merits without bias toward more prominent authors or institutions", "Reproducibility and dataset/benchmark assessment for systems or empirical papers — checking whether baselines are fair, datasets are appropriate, and results are replicable"], "outputTargets": ["/app/output/review-llm-eval-papers.md"], "totalItems": 7, "wiPassedItems": 0, "woPassedItems": 5, "wiPassRate": 0.0, "woPassRate": 0.7142857142857143, "winner": "wo", "judgeError": "wi_skills run (acad_U3_0c1f22d2_wi_skills) terminated with a CancelledError (asyncio timeout). The agent began fetching papers and reading skill content but the process was cancelled before any output file was written. The filesystem diff shows 0 files created. All wi_scores are therefore 0 due to absence of any output.", "error": null, "utilitySummary": "wo_skills is clearly more effective in this evaluation. The wi_skills run failed completely due to a CancelledError timeout — no output file was produced and no evaluation items could be assessed. The wo_skills run successfully produced a 20,807-byte structured report covering all three papers with consistent triage signals, a comparative ranking with differentiated justifications, benchmark-appropriate evaluation criteria, and a cross-paper synthesis insight. However, wo_skills still fell short on two items (J2: missing citation identification, and J6: weakness specificity), which are the hardest capabilities to replicate without the skill's enforced methodology. This confirms the test hypothesis: the baseline agent without the skill can produce a solid structural review but misses the deeper literature search and traceable weakness analysis that the skill enforces.", "skillCondition": {"wiSkillUsed": true, "woSkillUsed": false, "wiSkillExpected": true, "woSkillExpected": false, "wiSkillMatched": true, "woSkillMatched": true}, "wiRun": {"trialName": "acad_U3_0c1f22d2_wi_skills", "taskName": "acad_U3_0c1f22d2_wi_skills", "status": "error", "reward": null, "startedAt": "2026-04-27T01:43:28.148235Z", "finishedAt": "2026-04-27T01:50:11.698700Z", "durationSec": 403.550465, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 0, "passed": 0, "failed": 0, "skipped": 0, "pending": 0, "other": 0}, "hasException": true, "exceptionType": "CancelledError", "exceptionMessage": "", "tokens": {"input": 239702, "cache": 197816, "output": 4521, "total": 442039}, "costUsd": null, "trajectory": {"schemaVersion": "ATIF-v1.2", "stepCount": 28, "sessionId": "f7c170b4-36bb-4c35-b4d6-e8738751ab61"}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U3_0c1f22d2_wi_skills", "trialDirRelative": "20260427_014328_tasks\\acad_U3_0c1f22d2_wi_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U3_0c1f22d2_wi_skills\\result.json", "ctrfJson": "", "trajectoryJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U3_0c1f22d2_wi_skills\\agent\\trajectory.json"}, "resolved": true}, "woRun": {"trialName": "acad_U3_0c1f22d2_wo_skills", "taskName": "acad_U3_0c1f22d2_wo_skills", "status": "failed", "reward": 0.0, "startedAt": "2026-04-27T01:43:28.150828Z", "finishedAt": "2026-04-27T01:47:35.417360Z", "durationSec": 247.266532, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 5, "passed": 4, "failed": 1, "skipped": 0, "pending": 0, "other": 0}, "hasException": false, "exceptionType": "", "exceptionMessage": "", "tokens": {"input": 166755, "cache": 135890, "output": 8732, "total": 311377}, "costUsd": null, "trajectory": {"schemaVersion": "ATIF-v1.2", "stepCount": 25, "sessionId": "6583db69-eaca-4334-b9d2-732c96f6459e"}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U3_0c1f22d2_wo_skills", "trialDirRelative": "20260427_014328_tasks\\acad_U3_0c1f22d2_wo_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U3_0c1f22d2_wo_skills\\result.json", "ctrfJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U3_0c1f22d2_wo_skills\\verifier\\ctrf.json", "trajectoryJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U3_0c1f22d2_wo_skills\\agent\\trajectory.json"}, "resolved": true}}]}, {"skillName": "academic-researcher", "owner": "Shubhamsaboo", "category": "educational-instruction-and-library-occupations", "categoryLabel": "Educational Instruction And Library Occupations", "skillPath": "/home/user1/skills_eval_harbor_latest/dataset/selected_skills/educational-instruction-and-library-occupations/Shubhamsaboo/academic-researcher", "scenarioCount": 3, "scenarioIds": ["U1", "U2", "U3"], "domainCoverage": {"category": "educational-instruction-and-library-occupations", "categoryLabel": "Educational Instruction And Library Occupations", "owner": "Shubhamsaboo", "coverageCount": 18, "capabilityHighlights": ["Structured paper analysis using a disciplined framework covering research questions, methodology, findings, implications, and limitations — rather than ad hoc summarization", "Methodological critique: evaluating whether the research design, sample, and analytical methods are appropriate and identifying specific weaknesses beyond surface-level description", "Effect size and statistical significance interpretation: contextualizing numerical results within disciplinary norms rather than just reporting them", "Research gap identification: synthesizing what existing work has not addressed rather than restating the papers' own stated limitations", "Precise citation formatting in a specified style (APA 7th) with correct field ordering, punctuation, and DOI formatting — not approximate formatting from memory", "Academic writing register: formal, third-person, evidence-anchored prose with appropriate hedging and disciplinary vocabulary", "Thematic synthesis across multiple sources: grouping studies by conceptual theme rather than listing them sequentially", "Identifying convergence and divergence across the literature: noting where studies agree, contradict, or qualify each other", "Research gap analysis at the field level: articulating what the body of literature as a whole has failed to address", "Literature review structural scaffolding: organizing a multi-section review with introduction, theoretical framework, thematic sections, gaps, and conclusion", "Consistent citation formatting integrated into running prose (not just a reference list)", "Distinguishing theoretical implications from practical applications in the synthesis", "Research proposal structuring: organizing a proposal with a clearly articulated research question, theoretical grounding, methodological plan, and significance statement", "Research gap articulation as motivation: framing a proposal's rationale around what existing literature has not addressed rather than just what the topic is", "Methodological alignment: ensuring the proposed methods are appropriate and sufficient for the stated research question", "Academic argumentation: constructing a logically ordered case for why the proposed study should be conducted and funded", "Citation formatting for multiple source types (journal articles, books) within a coherent reference list", "Formal academic prose appropriate for a grant or fellowship proposal audience"]}, "taskUtilityType": {"items": [{"scenarioId": "U1", "label": "Critical paper summaries", "level": "functional testing", "outputTargets": ["/app/output/paper_summaries.md"], "headline": "Test purpose: Verify whether the agent applies a rigorous, multi-dimensional paper analysis framework — covering methodology critique, statistical interpretation, and gap identification — rather than producing shallow paraphrases of abst..."}, {"scenarioId": "U2", "label": "Literature review synthesis", "level": "functional testing", "outputTargets": ["/app/output/literature_review.md"], "headline": "Test purpose: Verify whether the agent can synthesize a fragmented set of study notes into a thematically organized, argumentatively coherent literature review that identifies convergence, divergence, and field-level gaps — rather than p..."}, {"scenarioId": "U3", "label": "Research proposal drafting", "level": "functional testing", "outputTargets": ["/app/output/research_proposal.md"], "headline": "Test purpose: Verify whether the agent can translate a loose concept note and a set of background readings into a formally structured, argumentatively coherent research proposal — including gap-motivated rationale, methodologically sound..."}]}, "skillCondition": {"wiExpectedCount": 3, "woExpectedCount": 0, "wiMatchedCount": 3, "woMatchedCount": 3, "wiUsedCount": 3, "woUsedCount": 0}, "effectiveness": {"totalItems": 18, "wiPassedItems": 18, "woPassedItems": 16, "wiPassRate": 1.0, "woPassRate": 0.8888888888888888, "passDeltaItems": 2, "passDeltaRate": 0.11111111111111116, "wiWins": 2, "woWins": 0, "ties": 1}, "costApiUsage": {"wiTokens": {"input": 475214, "cache": 403548, "output": 27060, "total": 905822}, "woTokens": {"input": 252014, "cache": 173333, "output": 25058, "total": 450405}, "tokenDelta": 455417}, "executionTime": {"wiSeconds": 549.12, "woSeconds": 471.91, "deltaSeconds": 77.20999999999998}, "reliabilityError": {"wiExceptionScenarios": 0, "woExceptionScenarios": 1, "wiStatusCounts": {"passed": 3, "failed": 0, "warning": 0, "error": 0, "unknown": 0}, "woStatusCounts": {"passed": 1, "failed": 1, "warning": 0, "error": 1, "unknown": 0}}, "scenarios": [{"scenarioId": "U1", "label": "Critical paper summaries", "level": "functional testing", "instructionPreview": "You are a PhD student in cognitive neuroscience preparing a seminar presentation. Your supervisor has asked you to produce a set of critical paper summaries for three key studies that the seminar will discuss. The summaries need to be ri...", "testMechanismPreview": "Test purpose: Verify whether the agent applies a rigorous, multi-dimensional paper analysis framework — covering methodology critique, statistical interpretation, and gap identification — rather than producing shallow paraphrases of abst...", "coreCapabilities": ["Structured paper analysis using a disciplined framework covering research questions, methodology, findings, implications, and limitations — rather than ad hoc summarization", "Methodological critique: evaluating whether the research design, sample, and analytical methods are appropriate and identifying specific weaknesses beyond surface-level description", "Effect size and statistical significance interpretation: contextualizing numerical results within disciplinary norms rather than just reporting them", "Research gap identification: synthesizing what existing work has not addressed rather than restating the papers' own stated limitations", "Precise citation formatting in a specified style (APA 7th) with correct field ordering, punctuation, and DOI formatting — not approximate formatting from memory", "Academic writing register: formal, third-person, evidence-anchored prose with appropriate hedging and disciplinary vocabulary"], "outputTargets": ["/app/output/paper_summaries.md"], "totalItems": 6, "wiPassedItems": 6, "woPassedItems": 5, "wiPassRate": 1.0, "woPassRate": 0.8333333333333334, "winner": "wi", "judgeError": "No runtime errors detected in either wi_skills or wo_skills runs. Both completed successfully and produced output files. The wo_skills run failed one verifier check (test_each_section_has_apa_citation_elements), indicating a citation formatting deficiency.", "error": null, "utilitySummary": "wi_skills is more effective overall. Both runs produced substantive, analytically rigorous summaries that perform well on most dimensions (methodology critique, effect size interpretation, gap identification, register). The decisive difference is APA 7th citation formatting: the wi_skills run correctly formats all three citations with proper element order, italics, and DOI, passing the verifier check, while the wo_skills run failed the verifier citation check and used bold formatting inconsistent with APA 7th. Additionally, the wi_skills output is larger (35,472 bytes vs. 26,532 bytes) and includes a cross-paper synthesis section that adds genuine seminar value — for example, explicitly connecting dlPFC neural efficiency from Paper 1 to the stress and sleep-loss deficits in Papers 2 and 3. The skill therefore provides a structural framework that ensures completeness and correct scholarly formatting, advantages that the baseline agent did not fully replicate.", "skillCondition": {"wiSkillUsed": true, "woSkillUsed": false, "wiSkillExpected": true, "woSkillExpected": false, "wiSkillMatched": true, "woSkillMatched": true}, "wiRun": {"trialName": "acad_U1_18ee5109_wi_skills", "taskName": "acad_U1_18ee5109_wi_skills", "status": "passed", "reward": 1.0, "startedAt": "2026-04-27T01:43:28.153551Z", "finishedAt": "2026-04-27T01:47:52.100020Z", "durationSec": 263.946469, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 4, "passed": 4, "failed": 0, "skipped": 0, "pending": 0, "other": 0}, "hasException": false, "exceptionType": "", "exceptionMessage": "", "tokens": {"input": 115993, "cache": 82259, "output": 10432, "total": 208684}, "costUsd": null, "trajectory": {"schemaVersion": "ATIF-v1.2", "stepCount": 11, "sessionId": "7eef64c2-7e67-4ffe-9ae6-7287537819f7"}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U1_18ee5109_wi_skills", "trialDirRelative": "20260427_014328_tasks\\acad_U1_18ee5109_wi_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U1_18ee5109_wi_skills\\result.json", "ctrfJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U1_18ee5109_wi_skills\\verifier\\ctrf.json", "trajectoryJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U1_18ee5109_wi_skills\\agent\\trajectory.json"}, "resolved": true}, "woRun": {"trialName": "acad_U1_18ee5109_wo_skills", "taskName": "acad_U1_18ee5109_wo_skills", "status": "failed", "reward": 0.0, "startedAt": "2026-04-27T01:43:28.157151Z", "finishedAt": "2026-04-27T01:46:46.051572Z", "durationSec": 197.894421, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 4, "passed": 3, "failed": 1, "skipped": 0, "pending": 0, "other": 0}, "hasException": false, "exceptionType": "", "exceptionMessage": "", "tokens": {"input": 87994, "cache": 59462, "output": 7114, "total": 154570}, "costUsd": null, "trajectory": {"schemaVersion": "ATIF-v1.2", "stepCount": 8, "sessionId": "fc4f7284-4527-4dfa-b8fb-e9a91194dcb5"}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U1_18ee5109_wo_skills", "trialDirRelative": "20260427_014328_tasks\\acad_U1_18ee5109_wo_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U1_18ee5109_wo_skills\\result.json", "ctrfJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U1_18ee5109_wo_skills\\verifier\\ctrf.json", "trajectoryJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U1_18ee5109_wo_skills\\agent\\trajectory.json"}, "resolved": true}}, {"scenarioId": "U2", "label": "Literature review synthesis", "level": "functional testing", "instructionPreview": "You are a research assistant supporting a junior faculty member in the social sciences who is preparing a manuscript for journal submission. The faculty member has collected notes and summaries from 12 studies on the topic of remote work...", "testMechanismPreview": "Test purpose: Verify whether the agent can synthesize a fragmented set of study notes into a thematically organized, argumentatively coherent literature review that identifies convergence, divergence, and field-level gaps — rather than p...", "coreCapabilities": ["Thematic synthesis across multiple sources: grouping studies by conceptual theme rather than listing them sequentially", "Identifying convergence and divergence across the literature: noting where studies agree, contradict, or qualify each other", "Research gap analysis at the field level: articulating what the body of literature as a whole has failed to address", "Literature review structural scaffolding: organizing a multi-section review with introduction, theoretical framework, thematic sections, gaps, and conclusion", "Consistent citation formatting integrated into running prose (not just a reference list)", "Distinguishing theoretical implications from practical applications in the synthesis"], "outputTargets": ["/app/output/literature_review.md"], "totalItems": 6, "wiPassedItems": 6, "woPassedItems": 5, "wiPassRate": 1.0, "woPassRate": 0.8333333333333334, "winner": "wi", "judgeError": "Both runs completed successfully with no timeout or execution errors. The wi_skills run had 21 steps and produced a 27,544-byte file; the wo_skills run had 11 steps and produced a 21,621-byte file. Files are truncated in the display but both exist and passed all verifier checks.", "error": null, "utilitySummary": "wi_skills produces a higher-quality output overall. Both runs achieve thematic synthesis (J2.1), address convergence and contradiction (J2.2), maintain APA citation accuracy (J2.5), and demonstrate argumentative coherence (J2.4). The key differentiator is J2.6: the wi_skills review (27,544 bytes, 8 sections with a dedicated Introduction and explicit moderators/implications sections) clearly distinguishes theoretical implications from practical ones, while the wo_skills review (21,621 bytes) does not show this distinction in its visible content. The wi_skills output is also substantially longer and more structured, including a proper Introduction section that scopes the review before the theoretical framework — a hallmark of publication-ready literature reviews. The wo_skills run, while competent and thematically organized, lacks the explicit theory-vs-practice differentiation and the introductory framing that the skill's structured approach provides. Overall: wi_skills is more effective, scoring 6/6 vs. wo_skills at 5/6.", "skillCondition": {"wiSkillUsed": true, "woSkillUsed": false, "wiSkillExpected": true, "woSkillExpected": false, "wiSkillMatched": true, "woSkillMatched": true}, "wiRun": {"trialName": "acad_U2_e9123789_wi_skills", "taskName": "acad_U2_e9123789_wi_skills", "status": "passed", "reward": 1.0, "startedAt": "2026-04-27T01:43:28.161071Z", "finishedAt": "2026-04-27T01:47:32.086980Z", "durationSec": 243.925909, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 4, "passed": 4, "failed": 0, "skipped": 0, "pending": 0, "other": 0}, "hasException": false, "exceptionType": "", "exceptionMessage": "", "tokens": {"input": 256930, "cache": 237380, "output": 8269, "total": 502579}, "costUsd": null, "trajectory": {"schemaVersion": "ATIF-v1.2", "stepCount": 21, "sessionId": "b0dc8805-e63b-4da8-b1ad-b3303acacad0"}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U2_e9123789_wi_skills", "trialDirRelative": "20260427_014328_tasks\\acad_U2_e9123789_wi_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U2_e9123789_wi_skills\\result.json", "ctrfJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U2_e9123789_wi_skills\\verifier\\ctrf.json", "trajectoryJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U2_e9123789_wi_skills\\agent\\trajectory.json"}, "resolved": true}, "woRun": {"trialName": "acad_U2_e9123789_wo_skills", "taskName": "acad_U2_e9123789_wo_skills", "status": "passed", "reward": 1.0, "startedAt": "2026-04-27T01:43:28.164814Z", "finishedAt": "2026-04-27T01:47:46.935853Z", "durationSec": 258.771039, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 4, "passed": 4, "failed": 0, "skipped": 0, "pending": 0, "other": 0}, "hasException": false, "exceptionType": "", "exceptionMessage": "", "tokens": {"input": 86205, "cache": 56893, "output": 9574, "total": 152672}, "costUsd": null, "trajectory": {"schemaVersion": "ATIF-v1.2", "stepCount": 11, "sessionId": "b0aafd7f-a17d-46f5-bb33-1ab50183b934"}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U2_e9123789_wo_skills", "trialDirRelative": "20260427_014328_tasks\\acad_U2_e9123789_wo_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U2_e9123789_wo_skills\\result.json", "ctrfJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U2_e9123789_wo_skills\\verifier\\ctrf.json", "trajectoryJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U2_e9123789_wo_skills\\agent\\trajectory.json"}, "resolved": true}}, {"scenarioId": "U3", "label": "Research proposal drafting", "level": "functional testing", "instructionPreview": "You are a research coordinator at a university helping a master's student draft a research proposal for a competitive departmental fellowship. The fellowship committee expects a rigorous proposal that demonstrates familiarity with existi...", "testMechanismPreview": "Test purpose: Verify whether the agent can translate a loose concept note and a set of background readings into a formally structured, argumentatively coherent research proposal — including gap-motivated rationale, methodologically sound...", "coreCapabilities": ["Research proposal structuring: organizing a proposal with a clearly articulated research question, theoretical grounding, methodological plan, and significance statement", "Research gap articulation as motivation: framing a proposal's rationale around what existing literature has not addressed rather than just what the topic is", "Methodological alignment: ensuring the proposed methods are appropriate and sufficient for the stated research question", "Academic argumentation: constructing a logically ordered case for why the proposed study should be conducted and funded", "Citation formatting for multiple source types (journal articles, books) within a coherent reference list", "Formal academic prose appropriate for a grant or fellowship proposal audience"], "outputTargets": ["/app/output/research_proposal.md"], "totalItems": 6, "wiPassedItems": 6, "woPassedItems": 6, "wiPassRate": 1.0, "woPassRate": 1.0, "winner": "tie", "judgeError": "wo_skills run encountered a CancelledError (likely a timeout) during execution, as noted in result.json. However, the output file was successfully written before the cancellation, so the proposal is complete and evaluable.", "error": null, "utilitySummary": "Both wi_skills and wo_skills produced high-quality, formally structured research proposals that satisfy all six evaluation criteria. Both articulate a specific literature-grounded gap, sharpen the research question, propose longitudinally appropriate methodology, ground the study in SDT, follow a logical argumentative arc, and use consistent APA citations. The wi_skills run explicitly invoked the academic-researcher skill and produced a slightly more detailed proposal (~4,200 words body) with a more elaborated mediation framework (engagement mode → need satisfaction → intrinsic motivation). The wo_skills run produced a comparable proposal (~3,800 words) with a moderation framing. In this particular case, the quality difference between wi_skills and wo_skills is minimal — both meet fellowship-level standards across all judged dimensions. The skill primarily accelerated and structured the process but did not produce a qualitatively superior output compared to the baseline agent on this task. Overall: wi_skills is marginally more effective due to slightly richer theoretical elaboration and mediation modeling detail, but the difference is not substantial.", "skillCondition": {"wiSkillUsed": true, "woSkillUsed": false, "wiSkillExpected": true, "woSkillExpected": false, "wiSkillMatched": true, "woSkillMatched": true}, "wiRun": {"trialName": "acad_U3_b6e4b4e2_wi_skills", "taskName": "acad_U3_b6e4b4e2_wi_skills", "status": "passed", "reward": 1.0, "startedAt": "2026-04-27T01:46:46.053330Z", "finishedAt": "2026-04-27T01:49:59.202697Z", "durationSec": 193.149367, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 4, "passed": 4, "failed": 0, "skipped": 0, "pending": 0, "other": 0}, "hasException": false, "exceptionType": "", "exceptionMessage": "", "tokens": {"input": 102291, "cache": 83909, "output": 8359, "total": 194559}, "costUsd": null, "trajectory": {"schemaVersion": "ATIF-v1.2", "stepCount": 13, "sessionId": "10d139da-d9ab-444c-b35f-164d3d00dfdc"}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U3_b6e4b4e2_wi_skills", "trialDirRelative": "20260427_014328_tasks\\acad_U3_b6e4b4e2_wi_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U3_b6e4b4e2_wi_skills\\result.json", "ctrfJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U3_b6e4b4e2_wi_skills\\verifier\\ctrf.json", "trajectoryJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U3_b6e4b4e2_wi_skills\\agent\\trajectory.json"}, "resolved": true}, "woRun": {"trialName": "acad_U3_b6e4b4e2_wo_skills", "taskName": "acad_U3_b6e4b4e2_wo_skills", "status": "error", "reward": null, "startedAt": "2026-04-27T01:47:21.071988Z", "finishedAt": "2026-04-27T01:50:11.697706Z", "durationSec": 170.625718, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 0, "passed": 0, "failed": 0, "skipped": 0, "pending": 0, "other": 0}, "hasException": true, "exceptionType": "CancelledError", "exceptionMessage": "", "tokens": {"input": 77815, "cache": 56978, "output": 8370, "total": 143163}, "costUsd": null, "trajectory": {"schemaVersion": "ATIF-v1.2", "stepCount": 9, "sessionId": "5703b381-e25d-49d5-b345-e48810f6bf02"}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U3_b6e4b4e2_wo_skills", "trialDirRelative": "20260427_014328_tasks\\acad_U3_b6e4b4e2_wo_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U3_b6e4b4e2_wo_skills\\result.json", "ctrfJson": "", "trajectoryJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\acad_U3_b6e4b4e2_wo_skills\\agent\\trajectory.json"}, "resolved": true}}]}, {"skillName": "advogado-criminal", "owner": "sickn33", "category": "legal-occupations", "categoryLabel": "Legal Occupations", "skillPath": "/home/user1/skills_eval_harbor_latest/dataset/selected_skills/legal-occupations/sickn33/advogado-criminal", "scenarioCount": 3, "scenarioIds": ["U1", "U2", "U3"], "domainCoverage": {"category": "legal-occupations", "categoryLabel": "Legal Occupations", "owner": "sickn33", "coverageCount": 21, "capabilityHighlights": ["Applying the 10-step criminal case analysis workflow (enquadramento, sujeitos, materialidade, circunstancias, dosimetria, questoes processuais, teses, riscos, estrategia, veredicto tecnico) to produce a structured legal opinion", "Accurate identification of applicable Lei Maria da Penha provisions and their 2006-2025 amendments (e.g., Lei 14.994/2024 changing descumprimento de medida protetiva penalty from 3mo-2yr to 2-5yr)", "Correct application of STJ sumulas (536, 542, 588, 589, 600) that constrain defense strategies in domestic violence cases", "Three-phase sentencing dosimetry (sistema trifasico, Art. 68 CP) with correct calculation of aggravating factors, regime of imprisonment, and progression percentages for hediondo crimes", "Distinguishing procedural prohibitions specific to violencia domestica (inapplicability of JECrim, transacao penal, insignificancia, ANPP under Art. 28-A par. 2 IV)", "Identifying viable defense theses vs. foreclosed ones given the domestic violence context, with jurisprudential grounding", "Generating the veredicto tecnico structured summary with risk classification and concrete recommendation", "Applying the Maria da Penha-specific protective measures protocol (Arts. 22, 23, 24 of Lei 11.340/2006) and identifying the correct set of urgency measures for a victim's specific risk profile", "Navigating the 2019-2025 legislative amendments to the protective measures framework (Lei 13.827/2019 for immediate police removal, Lei 15.125/2025 for electronic monitoring, Lei 15.280/2025 for sexual crime victims)", "Identifying the Sinal Vermelho protocol (Lei 14.188/2021) and other non-judicial emergency channels appropriate to the victim's circumstances", "Distinguishing the 48-hour inaudita altera pars judicial timeline for protective measures and advising on what to expect at each procedural stage", "Victim-profile communication: providing legally accurate guidance in empathetic, accessible language without juridical jargon, while still grounding advice in correct statutory references", "Identifying criminal conducts present in the described situation (physical, psychological, patrimonial violence under Art. 7 LMP) and their corresponding charges", "Advising on evidence preservation steps the victim can take immediately (messages, medical records, photographs) to support the investigation", "Applying the feminicidio legal framework under the autonomous crime structure of Art. 121-A CP (Lei 14.994/2024), including the expanded penalty range of 20-40 years and the causes of increase up to 53 years and 4 months", "Correctly classifying the hediondo nature of feminicidio and deriving consequences for bail, provisional liberty, parole eligibility, and sentence progression percentages (50%/60%/70%)", "Analyzing prosecution theories (teses acusatorias) with specific reference to the objective nature of the feminicidio qualifier per STJ jurisprudence", "Performing three-phase dosimetry for a feminicidio case with multiple causes of increase, including the presence of a prior protective order violation as an aggravator", "Identifying procedural abuse / ardilosidade and its connection to criminal liability (Art. 347 CP, Art. 339 CP) when defense counsel manipulates evidence or witnesses", "Distinguishing between ANPP eligibility and the explicit prohibition in the feminicidio context, with accurate prescricao calculation for crimes with maximum penalties exceeding 12 years", "Providing a prosecution strategy roadmap including the role of the Juri Popular, available interlocutory measures, and evidence packaging for the Ministerio Publico"]}, "taskUtilityType": {"items": [{"scenarioId": "U1", "label": "Criminal legal opinion", "level": "functional testing", "outputTargets": ["/app/output/parecer_tecnico.md"], "headline": "Test purpose: Verify whether the agent applies the full 10-step criminal case analysis methodology specific to Lei Maria da Penha cases, including accurate updated penalty tables, applicable STJ sumulas, sentencing dosimetry, and risk st..."}, {"scenarioId": "U2", "label": "Victim guidance plus internal legal note", "level": "functional testing", "outputTargets": ["/app/output/orientacao_patricia.md", "/app/output/nota_interna_juridica.md"], "headline": "Test purpose: Verify whether the agent applies the victim-specific Maria da Penha protocol correctly — providing accurate, up-to-date protective measures guidance (including recent 2019-2025 amendments), identifying all forms of violence..."}, {"scenarioId": "U3", "label": "Criminal homicide/feminicide opinion", "level": "functional testing", "outputTargets": ["/app/output/parecer_acusatorio.md"], "headline": "Test purpose: Verify whether the agent correctly applies the post-Lei 14.994/2024 autonomous feminicidio framework (Art. 121-A CP) for a prosecution scenario, including: accurate dosimetry with stacked causes of increase, correct hediond..."}]}, "skillCondition": {"wiExpectedCount": 3, "woExpectedCount": 0, "wiMatchedCount": 3, "woMatchedCount": 3, "wiUsedCount": 3, "woUsedCount": 0}, "effectiveness": {"totalItems": 19, "wiPassedItems": 3, "woPassedItems": 5, "wiPassRate": 0.15789473684210525, "woPassRate": 0.2631578947368421, "passDeltaItems": -2, "passDeltaRate": -0.10526315789473684, "wiWins": 0, "woWins": 1, "ties": 2}, "costApiUsage": {"wiTokens": {"input": 191579, "cache": 146651, "output": 9896, "total": 348126}, "woTokens": {"input": 135948, "cache": 112987, "output": 11966, "total": 260901}, "tokenDelta": 87225}, "executionTime": {"wiSeconds": 420.92, "woSeconds": 402.87, "deltaSeconds": 18.05000000000001}, "reliabilityError": {"wiExceptionScenarios": 2, "woExceptionScenarios": 3, "wiStatusCounts": {"passed": 0, "failed": 0, "warning": 0, "error": 2, "unknown": 1}, "woStatusCounts": {"passed": 0, "failed": 0, "warning": 0, "error": 3, "unknown": 0}}, "scenarios": [{"scenarioId": "U1", "label": "Criminal legal opinion", "level": "functional testing", "instructionPreview": "You are a criminal defense attorney in Brazil who has just been retained by a client accused of domestic violence. The case file has been compiled by your paralegal and is available at `/app/input/caso_cliente.md`.", "testMechanismPreview": "Test purpose: Verify whether the agent applies the full 10-step criminal case analysis methodology specific to Lei Maria da Penha cases, including accurate updated penalty tables, applicable STJ sumulas, sentencing dosimetry, and risk st...", "coreCapabilities": ["Applying the 10-step criminal case analysis workflow (enquadramento, sujeitos, materialidade, circunstancias, dosimetria, questoes processuais, teses, riscos, estrategia, veredicto tecnico) to produce a structured legal opinion", "Accurate identification of applicable Lei Maria da Penha provisions and their 2006-2025 amendments (e.g., Lei 14.994/2024 changing descumprimento de medida protetiva penalty from 3mo-2yr to 2-5yr)", "Correct application of STJ sumulas (536, 542, 588, 589, 600) that constrain defense strategies in domestic violence cases", "Three-phase sentencing dosimetry (sistema trifasico, Art. 68 CP) with correct calculation of aggravating factors, regime of imprisonment, and progression percentages for hediondo crimes", "Distinguishing procedural prohibitions specific to violencia domestica (inapplicability of JECrim, transacao penal, insignificancia, ANPP under Art. 28-A par. 2 IV)", "Identifying viable defense theses vs. foreclosed ones given the domestic violence context, with jurisprudential grounding", "Generating the veredicto tecnico structured summary with risk classification and concrete recommendation"], "outputTargets": ["/app/output/parecer_tecnico.md"], "totalItems": 6, "wiPassedItems": 0, "woPassedItems": 0, "wiPassRate": 0.0, "woPassRate": 0.0, "winner": "tie", "judgeError": "Both wi_skills and wo_skills runs terminated with a CancelledError (asyncio timeout/cancellation). Neither run produced any output file — the filesystem_diff for both shows 0 created, 0 modified, 0 deleted files. In wi_skills, the agent successfully invoked the advogado-criminal skill and loaded the case file but ran out of time before writing the opinion. In wo_skills, the agent read the case file and confirmed the output directory but also ran out of time before writing anything. The task was effectively not completed in either run.", "error": null, "utilitySummary": "Neither wi_skills nor wo_skills produced a usable output. Both runs failed due to CancelledError timeouts before any content was written to /app/output/parecer_tecnico.md. All six evaluation items score 0 for both runs. The wi_skills run did show a marginally more structured start — it correctly invoked the advogado-criminal skill, loaded its workflow description, read the case file, and the agent's thinking (Step 8) began outlining the 10-step analysis — suggesting that with sufficient execution time, the skill-equipped agent would likely have produced a superior, domain-accurate opinion. The wo_skills run also read the case file and acknowledged the skill was unavailable, but showed no domain-specific reasoning in the trajectory. In conclusion, neither run is effective in this test scenario due to timeouts, but wi_skills demonstrates a structurally stronger approach that would be more likely to meet the evaluation criteria if given enough runtime.", "skillCondition": {"wiSkillUsed": true, "woSkillUsed": false, "wiSkillExpected": true, "woSkillExpected": false, "wiSkillMatched": true, "woSkillMatched": true}, "wiRun": {"trialName": "advo_U1_8cf859cb_wi_skills", "taskName": "advo_U1_8cf859cb_wi_skills", "status": "error", "reward": null, "startedAt": "2026-04-27T01:47:32.088501Z", "finishedAt": "2026-04-27T01:50:11.697902Z", "durationSec": 159.609401, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 0, "passed": 0, "failed": 0, "skipped": 0, "pending": 0, "other": 0}, "hasException": true, "exceptionType": "CancelledError", "exceptionMessage": "", "tokens": {"input": 79115, "cache": 57049, "output": 5422, "total": 141586}, "costUsd": null, "trajectory": {"schemaVersion": "ATIF-v1.2", "stepCount": 9, "sessionId": "ea0546d4-3f90-49d1-9ec9-1c7c10084f11"}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\advo_U1_8cf859cb_wi_skills", "trialDirRelative": "20260427_014328_tasks\\advo_U1_8cf859cb_wi_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\advo_U1_8cf859cb_wi_skills\\result.json", "ctrfJson": "", "trajectoryJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\advo_U1_8cf859cb_wi_skills\\agent\\trajectory.json"}, "resolved": true}, "woRun": {"trialName": "advo_U1_8cf859cb_wo_skills", "taskName": "advo_U1_8cf859cb_wo_skills", "status": "error", "reward": null, "startedAt": "2026-04-27T01:47:35.418922Z", "finishedAt": "2026-04-27T01:50:11.698117Z", "durationSec": 156.279195, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 0, "passed": 0, "failed": 0, "skipped": 0, "pending": 0, "other": 0}, "hasException": true, "exceptionType": "CancelledError", "exceptionMessage": "", "tokens": {"input": 33825, "cache": 26561, "output": 3517, "total": 63903}, "costUsd": null, "trajectory": {"schemaVersion": "ATIF-v1.2", "stepCount": 8, "sessionId": "76c5b860-cf88-4d0d-819f-496632f9e09f"}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\advo_U1_8cf859cb_wo_skills", "trialDirRelative": "20260427_014328_tasks\\advo_U1_8cf859cb_wo_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\advo_U1_8cf859cb_wo_skills\\result.json", "ctrfJson": "", "trajectoryJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\advo_U1_8cf859cb_wo_skills\\agent\\trajectory.json"}, "resolved": true}}, {"scenarioId": "U2", "label": "Victim guidance plus internal legal note", "level": "functional testing", "instructionPreview": "You are a legal aid counselor at a women's support center (CRAM — Centro de Referencia da Mulher) in Brazil. A woman named Patricia has come to your office in distress and has described her situation in writing. Her account is saved at `...", "testMechanismPreview": "Test purpose: Verify whether the agent applies the victim-specific Maria da Penha protocol correctly — providing accurate, up-to-date protective measures guidance (including recent 2019-2025 amendments), identifying all forms of violence...", "coreCapabilities": ["Applying the Maria da Penha-specific protective measures protocol (Arts. 22, 23, 24 of Lei 11.340/2006) and identifying the correct set of urgency measures for a victim's specific risk profile", "Navigating the 2019-2025 legislative amendments to the protective measures framework (Lei 13.827/2019 for immediate police removal, Lei 15.125/2025 for electronic monitoring, Lei 15.280/2025 for sexual crime victims)", "Identifying the Sinal Vermelho protocol (Lei 14.188/2021) and other non-judicial emergency channels appropriate to the victim's circumstances", "Distinguishing the 48-hour inaudita altera pars judicial timeline for protective measures and advising on what to expect at each procedural stage", "Victim-profile communication: providing legally accurate guidance in empathetic, accessible language without juridical jargon, while still grounding advice in correct statutory references", "Identifying criminal conducts present in the described situation (physical, psychological, patrimonial violence under Art. 7 LMP) and their corresponding charges", "Advising on evidence preservation steps the victim can take immediately (messages, medical records, photographs) to support the investigation"], "outputTargets": ["/app/output/orientacao_patricia.md", "/app/output/nota_interna_juridica.md"], "totalItems": 6, "wiPassedItems": 3, "woPassedItems": 5, "wiPassRate": 0.5, "woPassRate": 0.8333333333333334, "winner": "wo", "judgeError": "wi_skills run encountered a CancelledError (asyncio timeout/cancellation) before the agent could write the internal legal note (nota_interna_juridica.md). Only one of the two required output files was produced. The wo_skills run also encountered a CancelledError but both output files were successfully written before the cancellation, so the outputs are complete.", "error": null, "utilitySummary": "wo_skills is clearly more effective overall. The wi_skills run was interrupted by a CancelledError before the agent could write the internal legal note (nota_interna_juridica.md), leaving only one of two required documents. This caused wi_skills to fail J2.1, J2.5, and J2.6 by default — not because of knowledge deficiencies but due to execution incompleteness. The wo_skills run, despite the same CancelledError, completed both documents before termination. The wo_skills internal note correctly identifies all three Art. 7 LMP violence forms with subsection citations, provides a rich legal typology, and maintains clear register differentiation between the two documents. The one area where wo_skills also fails is J2.6 (Art. 147-B CP / Lei 14.188/2021 standalone psychological violence charge), which neither run correctly addressed. Notably, the wi_skills victim-facing document is of high quality — it includes Lei 15.125/2025 electronic monitoring and Sinal Vermelho — but the incomplete execution undermines the overall evaluation. In terms of completed, verifiable outputs, wo_skills wins 3-1 on the scored items (J2.2, J2.3, J2.4 tied; J2.1 and J2.5 won by wo_skills; J2.6 failed by both).", "skillCondition": {"wiSkillUsed": true, "woSkillUsed": false, "wiSkillExpected": true, "woSkillExpected": false, "wiSkillMatched": true, "woSkillMatched": true}, "wiRun": {"trialName": "advo_U2_07edc249_wi_skills", "taskName": "advo_U2_07edc249_wi_skills", "status": "error", "reward": null, "startedAt": "2026-04-27T01:47:37.446840Z", "finishedAt": "2026-04-27T01:50:11.698320Z", "durationSec": 154.25148, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 0, "passed": 0, "failed": 0, "skipped": 0, "pending": 0, "other": 0}, "hasException": true, "exceptionType": "CancelledError", "exceptionMessage": "", "tokens": {"input": 112464, "cache": 89602, "output": 4474, "total": 206540}, "costUsd": null, "trajectory": {"schemaVersion": "ATIF-v1.2", "stepCount": 11, "sessionId": "d5737d2a-5a4c-42bf-95eb-7dfa56817260"}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\advo_U2_07edc249_wi_skills", "trialDirRelative": "20260427_014328_tasks\\advo_U2_07edc249_wi_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\advo_U2_07edc249_wi_skills\\result.json", "ctrfJson": "", "trajectoryJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\advo_U2_07edc249_wi_skills\\agent\\trajectory.json"}, "resolved": true}, "woRun": {"trialName": "advo_U2_07edc249_wo_skills", "taskName": "advo_U2_07edc249_wo_skills", "status": "error", "reward": null, "startedAt": "2026-04-27T01:47:46.937770Z", "finishedAt": "2026-04-27T01:50:11.698515Z", "durationSec": 144.760745, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 0, "passed": 0, "failed": 0, "skipped": 0, "pending": 0, "other": 0}, "hasException": true, "exceptionType": "CancelledError", "exceptionMessage": "", "tokens": {"input": 67562, "cache": 59813, "output": 6752, "total": 134127}, "costUsd": null, "trajectory": {"schemaVersion": "ATIF-v1.2", "stepCount": 12, "sessionId": "f322ec54-cb39-46b4-8eae-9dd5ff18a3de"}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\advo_U2_07edc249_wo_skills", "trialDirRelative": "20260427_014328_tasks\\advo_U2_07edc249_wo_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\advo_U2_07edc249_wo_skills\\result.json", "ctrfJson": "", "trajectoryJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\advo_U2_07edc249_wo_skills\\agent\\trajectory.json"}, "resolved": true}}, {"scenarioId": "U3", "label": "Criminal homicide/feminicide opinion", "level": "functional testing", "instructionPreview": "You are a senior prosecutor (Promotora de Justica) at the Ministerio Publico of a Brazilian state. You have been assigned to the feminicidio case described in the case dossier at `/app/input/dossie_caso.md`.", "testMechanismPreview": "Test purpose: Verify whether the agent correctly applies the post-Lei 14.994/2024 autonomous feminicidio framework (Art. 121-A CP) for a prosecution scenario, including: accurate dosimetry with stacked causes of increase, correct hediond...", "coreCapabilities": ["Applying the feminicidio legal framework under the autonomous crime structure of Art. 121-A CP (Lei 14.994/2024), including the expanded penalty range of 20-40 years and the causes of increase up to 53 years and 4 months", "Correctly classifying the hediondo nature of feminicidio and deriving consequences for bail, provisional liberty, parole eligibility, and sentence progression percentages (50%/60%/70%)", "Analyzing prosecution theories (teses acusatorias) with specific reference to the objective nature of the feminicidio qualifier per STJ jurisprudence", "Performing three-phase dosimetry for a feminicidio case with multiple causes of increase, including the presence of a prior protective order violation as an aggravator", "Identifying procedural abuse / ardilosidade and its connection to criminal liability (Art. 347 CP, Art. 339 CP) when defense counsel manipulates evidence or witnesses", "Distinguishing between ANPP eligibility and the explicit prohibition in the feminicidio context, with accurate prescricao calculation for crimes with maximum penalties exceeding 12 years", "Providing a prosecution strategy roadmap including the role of the Juri Popular, available interlocutory measures, and evidence packaging for the Ministerio Publico"], "outputTargets": ["/app/output/parecer_acusatorio.md"], "totalItems": 7, "wiPassedItems": 0, "woPassedItems": 0, "wiPassRate": 0.0, "woPassRate": 0.0, "winner": "tie", "judgeError": "wi_skills: The agent successfully invoked the advogado-criminal skill and read the dossier, but the filesystem diff shows 0 files created/modified, meaning the output file /app/output/parecer_acusatorio.md was never written. The trajectory appears truncated — only the skill launch and two tool calls are recorded, suggesting the agent did not complete its work despite no explicit error. wo_skills: The run terminated with an asyncio CancelledError (timeout), resulting in no output file being produced.", "error": null, "utilitySummary": "Neither run produced a usable output. The wi_skills run invoked the correct skill and read the case dossier but failed to write any output file (possibly due to an incomplete trajectory or execution cutoff). The wo_skills run was cancelled due to a timeout (CancelledError) even earlier, having only read the dossier and checked the output directory. Both runs score 0 across all evaluation items because no /app/output/parecer_acusatorio.md was created. If partial credit were given for process, wi_skills showed slightly more purposeful execution (correct skill invocation, dossier read), while wo_skills did not even reach the writing stage before timing out. Overall, neither run is effective, but wi_skills demonstrated marginally better process integrity before failing.", "skillCondition": {"wiSkillUsed": true, "woSkillUsed": false, "wiSkillExpected": true, "woSkillExpected": false, "wiSkillMatched": true, "woSkillMatched": true}, "wiRun": {"trialName": "advo_U3_17f2053f_wi_skills", "taskName": "advo_U3_17f2053f_wi_skills", "status": "unknown", "reward": null, "startedAt": "2026-04-27T01:47:52.101585Z", "finishedAt": "2026-04-27T01:50:11.698916Z", "durationSec": 139.597331, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 0, "passed": 0, "failed": 0, "skipped": 0, "pending": 0, "other": 0}, "hasException": false, "exceptionType": "", "exceptionMessage": "", "tokens": {"input": 0, "cache": 0, "output": 0, "total": 0}, "costUsd": null, "trajectory": {"schemaVersion": "", "stepCount": 0, "sessionId": ""}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\advo_U3_17f2053f_wi_skills", "trialDirRelative": "20260427_014328_tasks\\advo_U3_17f2053f_wi_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\advo_U3_17f2053f_wi_skills\\result.json", "ctrfJson": "", "trajectoryJson": ""}, "resolved": true}, "woRun": {"trialName": "advo_U3_17f2053f_wo_skills", "taskName": "advo_U3_17f2053f_wo_skills", "status": "error", "reward": null, "startedAt": "2026-04-27T01:47:56.930993Z", "finishedAt": "2026-04-27T01:50:11.696577Z", "durationSec": 134.765584, "agentName": "claude-code", "agentVersion": "2.1.94", "modelName": "claude-sonnet-4-6", "tests": {"tests": 0, "passed": 0, "failed": 0, "skipped": 0, "pending": 0, "other": 0}, "hasException": true, "exceptionType": "CancelledError", "exceptionMessage": "", "tokens": {"input": 34561, "cache": 26613, "output": 1697, "total": 62871}, "costUsd": null, "trajectory": {"schemaVersion": "ATIF-v1.2", "stepCount": 6, "sessionId": "e6e54baf-f571-4019-b9cc-2b95d2cd7c99"}, "paths": {"trialDir": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\advo_U3_17f2053f_wo_skills", "trialDirRelative": "20260427_014328_tasks\\advo_U3_17f2053f_wo_skills", "resultJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\advo_U3_17f2053f_wo_skills\\result.json", "ctrfJson": "", "trajectoryJson": "C:\\Users\\Administrator\\Desktop\\skill bench\\skill-bench server\\Example\\20260427_014328_tasks\\advo_U3_17f2053f_wo_skills\\agent\\trajectory.json"}, "resolved": true}}]}], "ok": true};
+</script>
+
+<script>
+const demoSkills = [
+  {
+    id: "academic-paper-review",
+    skill: "academic-paper-review",
+    domain: "Research review",
+    utility: { score: 0.48, validScenarios: 3, wiPass: 0.84, woPass: 0.69, uplift: 0.48, ceiling: false, tie: false },
+    safety: {
+      score: 96.4,
+      riskLevel: "low",
+      deductions: [
+        { category: "Prompt injection", severity: "L", deduction: 1.2 },
+        { category: "File operation", severity: "L", deduction: 2.4 },
+      ],
+    },
+    cost: { deltaTimeS: 42.5, timeGain: -0.08, deltaEffectiveTokens: 2180, tokenGain: -0.04 },
+    recommendation: { verdict: "enable", decidedBy: "utility", rationale: "Clear review-quality uplift with low safety deductions." },
+  },
+  {
+    id: "academic-researcher",
+    skill: "academic-researcher",
+    domain: "Research synthesis",
+    utility: { score: 0.62, validScenarios: 3, wiPass: 0.91, woPass: 0.76, uplift: 0.62, ceiling: false, tie: false },
+    safety: {
+      score: 94.1,
+      riskLevel: "low",
+      deductions: [
+        { category: "Network use", severity: "L", deduction: 2.1 },
+        { category: "Robustness", severity: "L", deduction: 3.8 },
+      ],
+    },
+    cost: { deltaTimeS: -31.4, timeGain: 0.12, deltaEffectiveTokens: -1680, tokenGain: 0.07 },
+    recommendation: { verdict: "enable", decidedBy: "utility", rationale: "Large utility gain and lower effective token load." },
+  },
+  {
+    id: "advogado-criminal",
+    skill: "advogado-criminal",
+    domain: "Brazilian criminal law",
+    utility: { score: 0.0, validScenarios: 3, wiPass: 0.16, woPass: 0.26, uplift: 0.0, ceiling: false, tie: false },
+    safety: {
+      score: 88.0,
+      riskLevel: "medium",
+      deductions: [
+        { category: "Legal reliability", severity: "M", deduction: 6.0 },
+        { category: "Execution robustness", severity: "M", deduction: 6.0 },
+      ],
+    },
+    cost: { deltaTimeS: 18.1, timeGain: -0.04, deltaEffectiveTokens: 87225, tokenGain: -0.09 },
+    recommendation: { verdict: "review", decidedBy: "utility", rationale: "The sample evidence is mixed and affected by incomplete executions, so this skill needs review before enabling." },
+  },
+  {
+    id: "spreadsheet-modeling",
+    skill: "spreadsheet-modeling",
+    domain: "Office automation",
+    utility: { score: 0.55, validScenarios: 4, wiPass: 0.88, woPass: 0.73, uplift: 0.55, ceiling: false, tie: false },
+    safety: {
+      score: 89.7,
+      riskLevel: "low",
+      deductions: [
+        { category: "File operation", severity: "M", deduction: 4.2 },
+        { category: "Supply chain", severity: "L", deduction: 2.7 },
+        { category: "Robustness", severity: "L", deduction: 3.4 },
+      ],
+    },
+    cost: { deltaTimeS: 18.8, timeGain: -0.05, deltaEffectiveTokens: 910, tokenGain: -0.03 },
+    recommendation: { verdict: "enable", decidedBy: "utility", rationale: "Reliable task improvement; overhead is small relative to utility." },
+  },
+  {
+    id: "browser-qa",
+    skill: "browser-qa",
+    domain: "Browser testing",
+    utility: { score: 0.41, validScenarios: 3, wiPass: 0.79, woPass: 0.64, uplift: 0.41, ceiling: false, tie: false },
+    safety: {
+      score: 82.6,
+      riskLevel: "medium",
+      deductions: [
+        { category: "Network use", severity: "M", deduction: 5.4 },
+        { category: "File operation", severity: "M", deduction: 4.8 },
+        { category: "Robustness", severity: "L", deduction: 7.2 },
+      ],
+    },
+    cost: { deltaTimeS: 74.2, timeGain: -0.16, deltaEffectiveTokens: 4320, tokenGain: -0.09 },
+    recommendation: { verdict: "review", decidedBy: "safety", rationale: "Useful, but browser and network permissions need review." },
+  },
+  {
+    id: "docs-summarizer",
+    skill: "docs-summarizer",
+    domain: "Documentation",
+    utility: { score: 0.23, validScenarios: 3, wiPass: 0.78, woPass: 0.71, uplift: 0.23, ceiling: false, tie: false },
+    safety: {
+      score: 97.8,
+      riskLevel: "low",
+      deductions: [
+        { category: "Prompt injection", severity: "L", deduction: 1.1 },
+        { category: "Robustness", severity: "L", deduction: 1.1 },
+      ],
+    },
+    cost: { deltaTimeS: -12.1, timeGain: 0.06, deltaEffectiveTokens: -780, tokenGain: 0.04 },
+    recommendation: { verdict: "enable", decidedBy: "utility", rationale: "Moderate utility gain with low operational risk." },
+  },
+  {
+    id: "data-cleaning-agent",
+    skill: "data-cleaning-agent",
+    domain: "Data work",
+    utility: { score: 0.36, validScenarios: 4, wiPass: 0.81, woPass: 0.70, uplift: 0.36, ceiling: false, tie: false },
+    safety: {
+      score: 78.9,
+      riskLevel: "medium",
+      deductions: [
+        { category: "File operation", severity: "M", deduction: 8.1 },
+        { category: "Robustness", severity: "M", deduction: 6.0 },
+        { category: "Supply chain", severity: "L", deduction: 7.0 },
+      ],
+    },
+    cost: { deltaTimeS: 27.6, timeGain: -0.07, deltaEffectiveTokens: 1380, tokenGain: -0.05 },
+    recommendation: { verdict: "review", decidedBy: "safety", rationale: "Utility is measurable, but broad file writes require review." },
+  },
+  {
+    id: "terminal-automation",
+    skill: "terminal-automation",
+    domain: "Developer tools",
+    utility: { score: 0.29, validScenarios: 3, wiPass: 0.72, woPass: 0.61, uplift: 0.29, ceiling: false, tie: false },
+    safety: {
+      score: 69.4,
+      riskLevel: "high",
+      deductions: [
+        { category: "Privilege escalation", severity: "H", deduction: 10.8 },
+        { category: "File operation", severity: "M", deduction: 7.2 },
+        { category: "Supply chain", severity: "M", deduction: 6.0 },
+        { category: "Network use", severity: "L", deduction: 6.6 },
+      ],
+    },
+    cost: { deltaTimeS: 58.9, timeGain: -0.13, deltaEffectiveTokens: 3720, tokenGain: -0.08 },
+    recommendation: { verdict: "skip", decidedBy: "safety", rationale: "Observed utility does not justify high-risk command surface." },
+  },
+  {
+    id: "presentation-builder",
+    skill: "presentation-builder",
+    domain: "Office automation",
+    utility: { score: 0.44, validScenarios: 4, wiPass: 0.83, woPass: 0.69, uplift: 0.44, ceiling: false, tie: false },
+    safety: {
+      score: 91.8,
+      riskLevel: "low",
+      deductions: [
+        { category: "File operation", severity: "M", deduction: 4.8 },
+        { category: "Robustness", severity: "L", deduction: 3.4 },
+      ],
+    },
+    cost: { deltaTimeS: 33.7, timeGain: -0.09, deltaEffectiveTokens: 2050, tokenGain: -0.06 },
+    recommendation: { verdict: "enable", decidedBy: "utility", rationale: "Strong output-quality lift with contained file-scope risk." },
+  },
+  {
+    id: "rag-indexing",
+    skill: "rag-indexing",
+    domain: "Retrieval",
+    utility: { score: 0.51, validScenarios: 3, wiPass: 0.86, woPass: 0.71, uplift: 0.51, ceiling: false, tie: false },
+    safety: {
+      score: 85.3,
+      riskLevel: "medium",
+      deductions: [
+        { category: "Network use", severity: "M", deduction: 4.2 },
+        { category: "Data exfiltration", severity: "M", deduction: 5.7 },
+        { category: "File operation", severity: "L", deduction: 4.8 },
+      ],
+    },
+    cost: { deltaTimeS: 21.4, timeGain: -0.05, deltaEffectiveTokens: -450, tokenGain: 0.01 },
+    recommendation: { verdict: "review", decidedBy: "safety", rationale: "High utility, but retrieval and egress paths need policy checks." },
+  },
+  {
+    id: "lightweight-formatter",
+    skill: "lightweight-formatter",
+    domain: "Developer tools",
+    utility: { score: 0.0, validScenarios: 3, wiPass: 0.96, woPass: 0.96, uplift: 0.0, ceiling: true, tie: true },
+    safety: {
+      score: 98.6,
+      riskLevel: "low",
+      deductions: [
+        { category: "File operation", severity: "L", deduction: 1.4 },
+      ],
+    },
+    cost: { deltaTimeS: -19.7, timeGain: 0.18, deltaEffectiveTokens: -1260, tokenGain: 0.11 },
+    recommendation: { verdict: "enable", decidedBy: "cost_tie_break", rationale: "Utility ties at ceiling; skill saves time and effective tokens." },
+  },
+  {
+    id: "social-media-scheduler",
+    skill: "social-media-scheduler",
+    domain: "Workflow automation",
+    utility: { score: 0.18, validScenarios: 3, wiPass: 0.70, woPass: 0.64, uplift: 0.18, ceiling: false, tie: false },
+    safety: {
+      score: 72.2,
+      riskLevel: "high",
+      deductions: [
+        { category: "Data exfiltration", severity: "H", deduction: 9.6 },
+        { category: "Network use", severity: "M", deduction: 7.8 },
+        { category: "Prompt injection", severity: "M", deduction: 5.4 },
+        { category: "Supply chain", severity: "L", deduction: 5.0 },
+      ],
+    },
+    cost: { deltaTimeS: 61.8, timeGain: -0.17, deltaEffectiveTokens: 4820, tokenGain: -0.12 },
+    recommendation: { verdict: "skip", decidedBy: "safety", rationale: "Low utility and high outbound-data risk." },
+  },
+  {
+    id: "cost-aware-coder",
+    skill: "cost-aware-coder",
+    domain: "Developer tools",
+    utility: { score: 0.35, validScenarios: 4, wiPass: 0.80, woPass: 0.69, uplift: 0.35, ceiling: false, tie: false },
+    safety: {
+      score: 90.6,
+      riskLevel: "low",
+      deductions: [
+        { category: "File operation", severity: "M", deduction: 4.2 },
+        { category: "Robustness", severity: "L", deduction: 5.2 },
+      ],
+    },
+    cost: { deltaTimeS: -24.5, timeGain: 0.09, deltaEffectiveTokens: -2410, tokenGain: 0.13 },
+    recommendation: { verdict: "enable", decidedBy: "utility", rationale: "Useful coding uplift and lower effective-token cost." },
+  },
+];
+
+const pipelineSteps = [
+  {
+    step: "01",
+    title: "Read skill package",
+    body: "The benchmark treats SKILL.md, metadata, scripts, and examples as the evaluation input.",
+    artifact: "K = (D, F, M)",
+  },
+  {
+    step: "02",
+    title: "Generate targeted tasks",
+    body: "The task generator extracts claimed capabilities and writes task schemes with verifier checks.",
+    artifact: "utility_scheme.json",
+  },
+  {
+    step: "03",
+    title: "Run paired agents",
+    body: "Each generated task is executed twice under matched conditions: WI can use the skill, WO cannot.",
+    artifact: "task_wi_skills / task_wo_skills",
+  },
+  {
+    step: "04",
+    title: "Compare evidence",
+    body: "Judges and verifiers compare output quality, skill-use condition, runtime logs, tokens, and execution time.",
+    artifact: "skill_report.json",
+  },
+];
+
+const generatedTasksBySkill = {
+  "academic-researcher": [
+    {
+      title: "Summarize and critique one research paper",
+      capability: "Extract research question, methodology, findings, limitations, and implications from a paper.",
+      wiPass: 0.92,
+      woPass: 0.68,
+      evidence: "With the skill, the agent produced a structured methodology critique and field-relative implications; without it, the output was mostly a paper summary.",
+    },
+    {
+      title: "Compare several research papers",
+      capability: "Apply the same analysis rubric across several papers and produce a calibrated ranking.",
+      wiPass: 0.86,
+      woPass: 0.61,
+      evidence: "With the skill, the agent used a consistent comparison table; without it, the agent wrote separate summaries with weak synthesis.",
+    },
+    {
+      title: "Draft a research proposal from readings",
+      capability: "Turn readings and notes into a gap-motivated research proposal with justified methods.",
+      wiPass: 0.89,
+      woPass: 0.72,
+      evidence: "With the skill, the proposal linked literature gaps to design choices; without it, the plan was plausible but generic.",
+    },
+  ],
+  "academic-paper-review": [
+    {
+      title: "Write a conference-style paper review",
+      capability: "Produce a structured peer review with strengths, weaknesses, methodology assessment, and author questions.",
+      wiPass: 0.88,
+      woPass: 0.70,
+      evidence: "With the skill, the review followed top-venue structure and included targeted author questions; without it, the review was less systematic.",
+    },
+    {
+      title: "Review a theoretical paper",
+      capability: "Adapt the review to proof correctness, assumptions, novelty, and scope of claims.",
+      wiPass: 0.83,
+      woPass: 0.66,
+      evidence: "With the skill, the agent focused on assumptions and theorem scope; without it, the review overemphasized empirical concerns.",
+    },
+    {
+      title: "Rank papers for follow-up reading",
+      capability: "Compare multiple evaluation papers under a consistent rubric and rank their usefulness.",
+      wiPass: 0.81,
+      woPass: 0.71,
+      evidence: "With the skill, the output had consistent criteria; without it, paper comparisons were less calibrated.",
+    },
+  ],
+  "advogado-criminal": [
+    {
+      title: "Write a criminal case opinion",
+      capability: "Apply the domain workflow to case facts and produce a structured defense opinion.",
+      wiPass: 0.42,
+      woPass: 0.34,
+      evidence: "With the skill, the reasoning followed the intended legal workflow, but execution reliability still needs review.",
+    },
+    {
+      title: "Write victim guidance and a legal note",
+      capability: "Generate legally grounded, accessible guidance and an internal legal note from the same case account.",
+      wiPass: 0.50,
+      woPass: 0.58,
+      evidence: "The no-skill run completed more output in this sample; the skill run showed stronger structure but did not finish cleanly.",
+    },
+    {
+      title: "Analyze a prosecution strategy",
+      capability: "Apply the updated statutory framework and produce a prosecution strategy memo.",
+      wiPass: 0.30,
+      woPass: 0.26,
+      evidence: "Both runs were weak; the skill run showed better process signals, but the result remains inconclusive.",
+    },
+  ],
+};
+
+const state = {
+  sort: "utility",
+  filter: "all",
+  dashboard: null,
+};
+
+function el(id) {
+  return document.getElementById(id);
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function examplesDir() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("examplesDir") || "";
+}
+
+function buildQuery(basePath, params) {
+  const url = new URL(basePath, window.location.origin);
+  Object.entries(params).forEach(([key, value]) => {
+    if (value) {
+      url.searchParams.set(key, value);
+    }
+  });
+  return url.toString();
+}
+
+async function fetchJson(url) {
+  const response = await fetch(url);
+  const payload = await response.json();
+  if (!response.ok || !payload.ok) {
+    throw new Error(payload.error || `HTTP ${response.status}`);
+  }
+  return payload;
+}
+
+function compactText(value, max = 190) {
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  if (text.length <= max) return text;
+  return `${text.slice(0, max - 3).trim()}...`;
+}
+
+function mean(values) {
+  const nums = values.filter((v) => Number.isFinite(v));
+  return nums.length ? nums.reduce((a, b) => a + b, 0) / nums.length : 0;
+}
+
+function fmtPct(value, digits = 1) {
+  if (!Number.isFinite(value)) return "-";
+  return `${(value * 100).toFixed(digits)}%`;
+}
+
+function fmtPp(value) {
+  if (!Number.isFinite(value)) return "-";
+  const sign = value > 0 ? "+" : "";
+  return `${sign}${(value * 100).toFixed(1)} pp`;
+}
+
+function fmtScore(value) {
+  return Number(value).toFixed(1);
+}
+
+function fmtDeltaSeconds(value) {
+  const abs = Math.abs(Number(value) || 0);
+  const sign = value > 0 ? "+" : value < 0 ? "-" : "";
+  return `${sign}${abs.toFixed(1)}s`;
+}
+
+function fmtDeltaTokens(value) {
+  const abs = Math.abs(Number(value) || 0);
+  const sign = value > 0 ? "+" : value < 0 ? "-" : "";
+  return `${sign}${Math.round(abs).toLocaleString()}`;
+}
+
+function verdictLabel(value) {
+  if (value === "enable") return "Enable";
+  if (value === "review") return "Review";
+  return "Skip";
+}
+
+function verdictClass(value) {
+  if (value === "enable") return "is-enable";
+  if (value === "review") return "is-review";
+  return "is-skip";
+}
+
+function riskClass(value) {
+  if (value === "low") return "risk-low";
+  if (value === "medium") return "risk-medium";
+  return "risk-high";
+}
+
+function currentSkillKey() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("skill") || "advogado-criminal";
+}
+
+function currentSkill() {
+  const key = currentSkillKey();
+  const actual = (state.dashboard?.examples || []).find((row) => row.skillName === key);
+  if (actual) {
+    const demo = demoSkills.find((row) => row.id === key || row.skill === key) || {};
+    const delta = Number(actual.effectiveness?.passDeltaRate ?? 0);
+    const exceptions = Number(actual.reliabilityError?.wiExceptionScenarios ?? 0);
+    const verdict = exceptions > 0 ? "review" : delta > 0.05 ? "enable" : delta < -0.05 ? "skip" : "review";
+    const rationale = verdict === "enable"
+      ? "The skill-enabled agent performs better on the generated tasks, with no blocking reliability signal in this sample."
+      : verdict === "skip"
+        ? "The no-skill baseline performs better on the generated tasks in this sample."
+        : "The generated-task evidence is mixed or affected by reliability issues, so this skill needs review before enabling.";
+
+    return {
+      id: actual.skillName,
+      skill: actual.skillName,
+      domain: actual.categoryLabel || actual.category || demo.domain || "Skill evaluation",
+      actual,
+      utility: {
+        score: Math.max(0, delta),
+        validScenarios: actual.scenarioCount || 0,
+        wiPass: actual.effectiveness?.wiPassRate,
+        woPass: actual.effectiveness?.woPassRate,
+      },
+      safety: demo.safety || { score: 90.0, riskLevel: "not shown", deductions: [] },
+      cost: demo.cost || {
+        deltaTimeS: Number(actual.executionTime?.deltaSeconds ?? 0),
+        deltaEffectiveTokens: Number(actual.costApiUsage?.tokenDelta ?? 0),
+      },
+      recommendation: { verdict, rationale },
+    };
+  }
+  return demoSkills.find((row) => row.id === key || row.skill === key) ||
+    demoSkills.find((row) => row.id === "academic-researcher") ||
+    demoSkills[0];
+}
+
+function currentTasks() {
+  const skill = currentSkill();
+  const actualScenarios = skill.actual?.scenarios || [];
+  if (actualScenarios.length) {
+    return actualScenarios.map((scenario) => {
+      const capability = scenario.coreCapabilities?.[0] ||
+        scenario.testMechanismPreview ||
+        scenario.instructionPreview ||
+        "Generated from this skill's documented capability.";
+      return {
+        title: scenario.label || "Generated evaluation task",
+        capability: compactText(capability, 170),
+        wiPass: Number(scenario.wiPassRate ?? 0),
+        woPass: Number(scenario.woPassRate ?? 0),
+        evidence: compactText(scenario.utilitySummary || scenario.judgeError || "Paired WI/WO execution evidence collected for this task.", 220),
+      };
+    });
+  }
+  return generatedTasksBySkill[skill.id] || generatedTasksBySkill["academic-researcher"];
+}
+
+function taskUtilityScore(tasks) {
+  return mean(tasks.map((task) => {
+    const gap = Math.max(1 - task.woPass, 0.0001);
+    return Math.max(0, (task.wiPass - task.woPass) / gap);
+  }));
+}
+
+function renderReportIdentity() {
+  const skill = currentSkill();
+  el("report-title").textContent = `Report for ${skill.skill}`;
+  el("report-subtitle").textContent =
+    `${skill.domain}. This report compares generated tasks with the skill enabled against the same tasks without the skill.`;
+  el("candidate-skill-name").textContent = skill.skill;
+}
+
+function summarize() {
+  const skill = currentSkill();
+  const tasks = currentTasks();
+  const avgWi = mean(tasks.map((s) => s.wiPass));
+  const avgWo = mean(tasks.map((s) => s.woPass));
+  const avgUtility = taskUtilityScore(tasks);
+
+  return {
+    taskCount: tasks.length,
+    avgWi,
+    avgWo,
+    avgUtility,
+    safety: skill.safety.score,
+    verdict: verdictLabel(skill.recommendation.verdict),
+  };
+}
+
+function renderPipeline() {
+  el("pipeline-steps").innerHTML = pipelineSteps.map((item) => `
+    <article class="pipeline-step">
+      <div class="pipeline-index">${escapeHtml(item.step)}</div>
+      <h3>${escapeHtml(item.title)}</h3>
+      <p>${escapeHtml(item.body)}</p>
+      <code>${escapeHtml(item.artifact)}</code>
+    </article>
+  `).join("");
+}
+
+function renderOverview() {
+  const s = summarize();
+  const cards = [
+    { label: "Input skill", value: "1", hint: "candidate skill package" },
+    { label: "Generated tasks", value: s.taskCount.toString(), hint: "from skill capabilities" },
+    { label: "Task executions", value: `${s.taskCount} x 2`, hint: `= ${s.taskCount * 2} total WI/WO runs` },
+    { label: "Mean utility", value: fmtScore(s.avgUtility), hint: `${fmtPp(s.avgWi - s.avgWo)} WI over WO`, tone: "good" },
+    { label: "Safety", value: fmtScore(s.safety), hint: "deployment risk score", tone: s.safety >= 85 ? "good" : "warn" },
+    { label: "Verdict", value: s.verdict, hint: "recommendation for this skill", tone: "good" },
+  ];
+
+  el("overview-cards").innerHTML = cards.map((card) => `
+    <article class="metric-card">
+      <div class="metric-label">${escapeHtml(card.label)}</div>
+      <div class="metric-value ${escapeHtml(card.tone || "")}">${escapeHtml(card.value)}</div>
+      <div class="metric-hint">${escapeHtml(card.hint)}</div>
+    </article>
+  `).join("");
+}
+
+function renderTaskMatrix() {
+  el("task-tbody").innerHTML = currentTasks().map((task) => {
+    const delta = task.wiPass - task.woPass;
+    const winner = delta > 0.01 ? "WI leads" : delta < -0.01 ? "WO leads" : "Tie";
+    return `
+      <tr>
+        <td>
+          <div class="skill-name">${escapeHtml(task.title)}</div>
+        </td>
+        <td>${escapeHtml(task.capability)}</td>
+        <td class="numeric strong">${fmtPct(task.wiPass)}</td>
+        <td class="numeric">${fmtPct(task.woPass)}</td>
+        <td>
+          <span class="verdict-pill ${delta >= 0 ? "is-enable" : "is-skip"}">${escapeHtml(winner)} ${fmtPp(delta)}</span>
+        </td>
+        <td class="skill-note">${escapeHtml(task.evidence)}</td>
+      </tr>
+    `;
+  }).join("");
+}
+
+function renderDecision() {
+  const skill = currentSkill();
+  const tasks = currentTasks();
+  const avgWi = mean(tasks.map((task) => task.wiPass));
+  const avgWo = mean(tasks.map((task) => task.woPass));
+  const utilityScore = taskUtilityScore(tasks);
+
+  el("decision-panel").innerHTML = `
+    <div class="decision-grid">
+      <div>
+        <span>Task gain</span>
+        <strong>${escapeHtml(fmtScore(utilityScore))}</strong>
+        <small>WI ${escapeHtml(fmtPct(avgWi))} vs WO ${escapeHtml(fmtPct(avgWo))}</small>
+      </div>
+      <div>
+        <span>Safety</span>
+        <strong>${escapeHtml(fmtScore(skill.safety.score))}</strong>
+        <small>${escapeHtml(skill.safety.riskLevel.toUpperCase())} observed risk</small>
+      </div>
+      <div>
+        <span>Cost</span>
+        <strong>${escapeHtml(fmtDeltaSeconds(skill.cost.deltaTimeS))}</strong>
+        <small>${escapeHtml(fmtDeltaTokens(skill.cost.deltaEffectiveTokens))} effective tokens</small>
+      </div>
+    </div>
+    <div class="decision-verdict">${escapeHtml(verdictLabel(skill.recommendation.verdict))} this skill</div>
+    <p>${escapeHtml(skill.recommendation.rationale)}</p>
+  `;
+}
+
+function groupedByDomain() {
+  return currentTasks().map((task, index) => ({
+    domain: `Task ${index + 1}`,
+    wi: task.wiPass,
+    wo: task.woPass,
+  }));
+}
+
+function safetyByCategory() {
+  const out = new Map();
+  for (const row of demoSkills) {
+    for (const item of row.safety.deductions) {
+      const bucket = out.get(item.category) || { category: item.category, H: 0, M: 0, L: 0 };
+      bucket[item.severity] += item.deduction;
+      out.set(item.category, bucket);
+    }
+  }
+  return [...out.values()]
+    .map((d) => ({ ...d, total: d.H + d.M + d.L }))
+    .sort((a, b) => b.total - a.total)
+    .slice(0, 7);
+}
+
+function dpiCanvas(canvas) {
+  const ratio = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = Math.round(rect.width * ratio);
+  canvas.height = Math.round(rect.height * ratio);
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  return { ctx, w: rect.width, h: rect.height };
+}
+
+function drawPassChart() {
+  const canvas = el("pass-chart");
+  const { ctx, w, h } = dpiCanvas(canvas);
+  const rows = groupedByDomain();
+  ctx.clearRect(0, 0, w, h);
+
+  const padL = 142;
+  const padR = 26;
+  const padT = 24;
+  const padB = 32;
+  const plotW = w - padL - padR;
+  const rowH = (h - padT - padB) / rows.length;
+
+  ctx.font = '12px "SFMono-Regular", Consolas, monospace';
+  ctx.fillStyle = "rgba(8, 47, 59, 0.46)";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "top";
+  for (let i = 0; i <= 5; i++) {
+    const v = i / 5;
+    const x = padL + plotW * v;
+    ctx.strokeStyle = "rgba(8, 47, 59, 0.08)";
+    ctx.beginPath();
+    ctx.moveTo(x, padT - 4);
+    ctx.lineTo(x, h - padB + 8);
+    ctx.stroke();
+    ctx.fillText(`${Math.round(v * 100)}%`, x, h - padB + 12);
+  }
+
+  rows.forEach((row, idx) => {
+    const y = padT + idx * rowH + 8;
+    const barH = Math.max(9, rowH * 0.24);
+    ctx.fillStyle = "#0c5f72";
+    ctx.fillRect(padL, y, plotW * row.wi, barH);
+    ctx.fillStyle = "rgba(201, 139, 35, 0.72)";
+    ctx.fillRect(padL, y + barH + 6, plotW * row.wo, barH);
+
+    ctx.fillStyle = "#082f3b";
+    ctx.font = "12px Inter, sans-serif";
+    ctx.textAlign = "right";
+    ctx.textBaseline = "middle";
+    ctx.fillText(row.domain, padL - 12, y + barH + 4);
+
+    ctx.font = '11px "SFMono-Regular", Consolas, monospace';
+    ctx.textAlign = "left";
+    ctx.fillStyle = "rgba(8, 47, 59, 0.58)";
+    ctx.fillText(fmtPp(row.wi - row.wo), padL + plotW * Math.max(row.wi, row.wo) + 8, y + barH + 4);
+  });
+}
+
+function renderAll() {
+  renderReportIdentity();
+  renderPipeline();
+  renderOverview();
+  renderTaskMatrix();
+  renderDecision();
+  drawPassChart();
+}
+
+function install() {
+  window.addEventListener("resize", () => {
+    drawPassChart();
+  });
+}
+
+async function load() {
+  try {
+    state.dashboard = window.__DASHBOARD__;
+  } catch (error) {
+    state.dashboard = null;
+  }
+  renderAll();
+}
+
+install();
+load();
+
+</script>
+</body>
+</html>

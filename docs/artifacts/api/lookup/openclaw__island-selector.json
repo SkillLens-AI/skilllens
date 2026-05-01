@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "island-selector",
+    "owner": "openclaw",
+    "repo": "island-selector",
+    "skillPath": "island-selector",
+    "category": "transportation-and-material-moving-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.0965,
+      "baseline": 0.7105,
+      "withSkill": 0.807,
+      "tasks": 18,
+      "items": 114,
+      "wiPassedItems": 92,
+      "woPassedItems": 81
+    },
+    "safety": {
+      "riskLevel": "high",
+      "staticHits": 15,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 3,
+        "M": 6,
+        "L": 6
+      }
+    },
+    "cost": {
+      "deltaTimeSec": -81.99,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillLens — Artifacts</title>
+  <meta name="description" content="SkillLens artifacts: open data, evaluation reports, and constructed task suites for 227 audited agent skills.">
+  <meta name="robots" content="index,follow">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none';">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,8 12,75 30,62 50,28' fill='%23E8EAEE'/><polygon points='50,8 88,75 70,62 50,28' fill='%237C8088'/><polygon points='12,75 88,75 70,62 30,62' fill='%23363A40'/></svg>">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<noscript>
+  <style>.noscript-fallback{padding:24px;border:1px solid #F59E0B;background:rgba(245,158,11,0.08);color:#F2F4F7;font-family:system-ui,sans-serif;max-width:760px;margin:24px auto;border-radius:6px;line-height:1.55} .noscript-fallback a{color:#22C55E;text-decoration:underline}</style>
+  <div class="noscript-fallback">
+    <strong style="color:#F59E0B">// JavaScript required</strong> for the interactive skill explorer.
+    The underlying data is plain JSON / CSV and is fully usable without the page:
+    <ul>
+      <li><a href="data/index.json">data/index.json</a> — 227 skills × 8 runs index (~36 KB)</li>
+      <li><a href="data/stats.json">data/stats.json</a> — aggregate statistics</li>
+      <li><a href="data/aggregate.csv">data/aggregate.csv</a> — long-format CSV (1812 rows × 28 cols)</li>
+      <li><a href="data/checksums.txt">data/checksums.txt</a> — SHA-256 manifest for all 229 artifact files</li>
+      <li><a href="data/skills/">data/skills/</a> — per-skill detail JSON files</li>
+    </ul>
+  </div>
+</noscript>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="lens-face-bright" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#F4F6F9"/>
+      <stop offset="55%" stop-color="#A8ADB6"/>
+      <stop offset="100%" stop-color="#5A5E65"/>
+    </linearGradient>
+    <linearGradient id="lens-face-mid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#9CA0A8"/>
+      <stop offset="100%" stop-color="#3F4248"/>
+    </linearGradient>
+    <linearGradient id="lens-face-dark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#5A5E65"/>
+      <stop offset="100%" stop-color="#1F2226"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<header class="topbar" role="banner">
+  <a class="brand" href="#top" aria-label="SkillLens Artifacts home">
+    <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true">
+      <polygon points="50,8  12,75  30,62  50,28" fill="url(#lens-face-bright)"/>
+      <polygon points="50,8  88,75  70,62  50,28" fill="url(#lens-face-mid)"/>
+      <polygon points="12,75 88,75 70,62 30,62"   fill="url(#lens-face-dark)"/>
+    </svg>
+    <span class="brand-word">
+      <strong>Skill<em>Lens</em></strong>
+    </span>
+    <span class="brand-meta"><b>// artifacts</b></span>
+  </a>
+  <nav class="topnav" aria-label="Section navigation">
+    <a href="../">← Main site</a>
+    <a href="#runs">Runs</a>
+    <a href="#explorer">Skill explorer</a>
+    <a href="#tasks">Tasks</a>
+    <a href="#traces">Traces</a>
+    <a href="#cite">Cite</a>
+  </nav>
+</header>
+
+<main class="page" id="top">
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero">
+    <span class="hero-status"><span class="dot"></span>Open artifacts release · arXiv preprint · 227 audited skills</span>
+
+    <h1>Every report. Every <em>task</em>. Every run.</h1>
+
+    <p class="hero-sub">
+      Browse the full evaluation surface that produced the SkillLens paper: per-skill safety and
+      effectiveness results across eight harness × model runs, the constructed judge-item task
+      suite, and (soon) replayable execution traces.
+    </p>
+
+    <div class="lookup-wrap">
+      <form class="lookup-form" id="lookup-form" autocomplete="off" role="search">
+        <span class="icon" aria-hidden="true">⌕</span>
+        <input id="lookup-input"
+               type="search"
+               placeholder="docx · boiler · academic · …"
+               autocomplete="off"
+               spellcheck="false"
+               role="combobox"
+               aria-expanded="false"
+               aria-autocomplete="list"
+               aria-controls="lookup-options"
+               aria-label="Search 227 skills">
+        <button type="submit">Open →</button>
+      </form>
+      <div class="lookup-options" id="lookup-options" role="listbox" aria-label="Matching skills"></div>
+    </div>
+
+    <div class="lookup-suggest" id="lookup-suggest">
+      <span class="lab">Try</span>
+      <button type="button" data-skill="docx">docx</button>
+      <button type="button" data-skill="boiler">boiler</button>
+      <button type="button" data-skill="parallel-web">parallel-web</button>
+      <button type="button" data-skill="academic-paper-review">academic-paper-review</button>
+      <button type="button" data-skill="ancient-divination-ritual-procedure">ancient-divination-ritual-procedure</button>
+    </div>
+
+    <p class="hero-mini-stats">
+      <span><strong id="m-skills">—</strong> skills</span>
+      <span class="sep">·</span>
+      <span><strong id="m-reports">—</strong> reports</span>
+      <span class="sep">·</span>
+      <span><strong id="m-runs">—</strong> runs</span>
+      <span class="sep">·</span>
+      <span><strong id="m-cats">—</strong> categories</span>
+      <span class="sep">·</span>
+      <span><strong id="m-judge">—</strong> judge items</span>
+    </p>
+
+    <div class="banner-anonymous">
+      <strong>// Privacy notice.</strong>
+      Most owner fields show the upstream GitHub identity verbatim, since the
+      underlying SKILL.md files are themselves public. A small set of entries
+      whose skill name is also redacted (<code>anon-skill-NNN</code>) keeps an
+      <code>anon-NNN</code> owner token to preserve that privacy boundary.
+      Internal pipeline paths are redacted; behavioral evidence is preserved.
+    </div>
+  </section>
+
+  <!-- ==================== LENS VIEW (skill detail) ==================== -->
+  <section class="reveal" id="explorer" style="padding-top: 16px;">
+    <div class="lens-view" id="lens-view" data-state="empty"
+         aria-live="polite" aria-busy="false" aria-label="Skill evaluation surface">
+      <div class="lens-empty" id="lens-empty">Select a skill above to inspect its full evaluation surface.</div>
+    </div>
+  </section>
+
+  <!-- ==================== RUN MATRIX ==================== -->
+  <section id="runs" class="reveal">
+    <header class="section-head">
+      <span class="section-label">eight runs</span>
+      <h2>Evaluation surface across harnesses and models.</h2>
+      <p class="lead">
+        Each row is a single run: one harness driving one model along one axis (utility, security, or
+        both). Each column is the same set of 226–227 skills. Cells link to that run's per-skill
+        results.
+      </p>
+    </header>
+    <div class="run-matrix" id="run-matrix" aria-busy="true"></div>
+  </section>
+
+  <!-- ==================== TASK CONSTRUCTION ==================== -->
+  <section id="tasks" class="reveal">
+    <header class="section-head">
+      <span class="section-label">constructed task data</span>
+      <h2>How a skill becomes a task suite.</h2>
+      <p class="lead">
+        Every skill is exercised by three capability-targeted scenarios — <code>U1</code>,
+        <code>U2</code>, <code>U3</code> — each with 5–6 binary judge items. Pick a skill in the
+        explorer above, then expand the panel below to see the full judge sheet that scored it.
+      </p>
+    </header>
+    <div id="task-view" class="task-view" data-state="empty"
+         aria-live="polite" aria-label="Constructed judge sheet for selected skill">
+      <div class="task-empty">No skill selected. The judge sheet for whichever skill you open will appear here.</div>
+    </div>
+  </section>
+
+  <!-- ==================== TRACES (placeholder) ==================== -->
+  <section id="traces" class="reveal">
+    <header class="section-head">
+      <span class="section-label">execution traces</span>
+      <h2>Replayable traces — coming soon.</h2>
+      <p class="lead">
+        Per-scenario sandbox traces (file-system diff, outbound network log, agent step log) will
+        be added to this repository before the camera-ready version. Each entry below will become
+        a clickable timeline.
+      </p>
+    </header>
+    <div class="trace-placeholder">
+      <div class="trace-row is-pending">
+        <span class="lab">U1 / wi_skills</span>
+        <span class="status">pending upload</span>
+        <span class="meta">fs.diff · net.log · steps.jsonl</span>
+      </div>
+      <div class="trace-row is-pending">
+        <span class="lab">U1 / wo_skills</span>
+        <span class="status">pending upload</span>
+        <span class="meta">fs.diff · net.log · steps.jsonl</span>
+      </div>
+      <div class="trace-row is-pending">
+        <span class="lab">U2 · U3 · security</span>
+        <span class="status">pending upload</span>
+        <span class="meta">paired wi / wo · matched seeds</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CITE / DOWNLOAD ==================== -->
+  <section class="reveal" id="cite" style="padding-top:16px;">
+
+    <details class="collapsible" open>
+      <summary>
+        <span class="label">
+          <h3>Cite + download</h3>
+          <span class="hint">BibTeX · index.json · per-skill bundles</span>
+        </span>
+        <span class="chevron"></span>
+      </summary>
+      <div class="collapsible-body">
+        <div class="cite-row">
+          <div class="cite-card">
+            <h4>BibTeX</h4>
+<!-- FIXME: replace {SkillLens-AI Contributors} with the real author list and fill in the arXiv eprint ID after submission -->
+<pre id="bibtex">@misc{skilllens2026,
+  title         = {SkillLens: From Task-First Evaluation to
+                   Skill-Centered Assessment of Agent Skill Packages},
+  author        = {SkillLens-AI Contributors},
+  year          = {2026},
+  eprint        = {TBD},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  note          = {Project page: \url{https://skilllens-ai.github.io/}}
+}</pre>
+            <button class="copy" id="copy-bib" type="button">Copy BibTeX</button>
+          </div>
+          <div class="cite-card download-card">
+            <h4>Reproduce</h4>
+            <p class="desc">
+              Long-format CSV (one row per <code>skill × run</code>) for direct loading into
+              pandas / R / DuckDB. Per-skill JSON files contain every judge item and every
+              <code>(run × scenario)</code> result, with privacy-sensitive owners tokenized.
+            </p>
+            <a class="download-btn" href="data/aggregate.csv" download>Download aggregate.csv</a>
+            <a class="download-btn alt" href="data/index.json" download>index.json</a>
+            <a class="download-btn alt" href="data/stats.json" download>stats.json</a>
+            <a class="download-btn alt" href="data/checksums.txt">checksums.txt</a>
+            <p class="meta">
+              1,812 rows × 28 cols · schema <code>skilllens_artifacts_v1</code> · frozen 2026-05-07.
+              Verify any file with <code>sha256sum -c checksums.txt</code>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </details>
+
+  </section>
+
+</main>
+
+<footer role="contentinfo">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <strong>Skill<em>Lens</em></strong> <span style="color:var(--fg-4)">/ artifacts</span>
+      <p>From Task-First Evaluation to Skill-Centered Assessment.<br>
+        Open-source release · arXiv preprint · Code on GitHub.</p>
+    </div>
+    <div>
+      <h5>Paper</h5>
+      <ul>
+        <li><a href="#cite">Citation</a></li>
+        <li><a href="#how">Method (in paper PDF)</a></li>
+        <li><a href="#cite">BibTeX</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Browse</h5>
+      <ul>
+        <li><a href="#explorer">Skill explorer</a></li>
+        <li><a href="#runs">Run matrix</a></li>
+        <li><a href="#tasks">Task suite</a></li>
+        <li><a href="#traces">Traces</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Reproduce</h5>
+      <ul>
+        <li><a href="data/aggregate.csv" download>aggregate.csv (1812 rows)</a></li>
+        <li><a href="data/index.json" download>index.json</a></li>
+        <li><a href="data/stats.json" download>stats.json</a></li>
+        <li><a href="data/checksums.txt">checksums.txt (sha256)</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <span>// SkillLens artifacts · open-source build · 2026</span>
+    <span>// 227 skills · 8 runs · frozen 2026-05-07</span>
+  </div>
+</footer>
+
+<script src="assets/app.js" defer></script>
+
+</body>
+</html>

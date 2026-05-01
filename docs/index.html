@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillLens — Should you install this skill?</title>
+  <meta name="description" content="Look up any AI agent skill before installing. SkillLens reports whether a skill measurably improves task completion and whether it triggers exploits in a runtime sandbox — for 227 evaluated skills.">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="SkillLens — Should you install this skill?">
+  <meta property="og:description" content="Look up any AI agent skill before installing.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="lens-face-bright" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#F0E5CC"/>
+      <stop offset="55%" stop-color="#C8B697"/>
+      <stop offset="100%" stop-color="#8A7A5A"/>
+    </linearGradient>
+    <linearGradient id="lens-face-mid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#BBA989"/>
+      <stop offset="100%" stop-color="#5C4F35"/>
+    </linearGradient>
+    <linearGradient id="lens-face-dark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#75684A"/>
+      <stop offset="100%" stop-color="#1F1810"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<header class="topbar" role="banner">
+  <a class="brand" href="#top" aria-label="SkillLens home">
+    <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true">
+      <polygon points="50,8  12,75  30,62  50,28" fill="url(#lens-face-bright)"/>
+      <polygon points="50,8  88,75  70,62  50,28" fill="url(#lens-face-mid)"/>
+      <polygon points="12,75 88,75 70,62 30,62"   fill="url(#lens-face-dark)"/>
+    </svg>
+    <span class="brand-word">
+      <strong>Skill<em>Lens</em></strong>
+    </span>
+  </a>
+  <nav class="topnav" aria-label="Section navigation">
+    <a href="#risky">Risky skills</a>
+    <a href="#how">How we score</a>
+    <a href="#cite">Cite</a>
+    <a href="artifacts/">Artifacts ↗</a>
+    <a class="cta" href="paper/SkillLens.pdf" target="_blank" rel="noopener">Paper ↗</a>
+  </nav>
+</header>
+
+<main class="page" id="top">
+
+  <!-- ==================== HERO: search-first ==================== -->
+  <section class="hero">
+    <span class="hero-status"><span class="dot"></span>Open-source release · arXiv preprint · 227 audited skills</span>
+
+    <h1>Should you install <em>this</em> skill?</h1>
+
+    <p class="hero-sub">
+      Type a skill name. We'll show you whether it measurably helps the agent — and whether it
+      triggers exploits in a runtime sandbox.
+    </p>
+
+    <div class="lookup-wrap">
+      <form class="lookup-form" id="lookup-form" autocomplete="off" role="search">
+        <span class="icon" aria-hidden="true">⌕</span>
+        <input id="lookup-input"
+               type="search"
+               placeholder="docx · boiler · mcp-builder · …"
+               autocomplete="off"
+               spellcheck="false"
+               aria-label="Search skills">
+        <button type="submit">Inspect →</button>
+      </form>
+      <div class="lookup-options" id="lookup-options" role="listbox" aria-label="Matching skills"></div>
+    </div>
+
+    <div class="lookup-suggest" id="lookup-suggest">
+      <span class="lab">Try</span>
+      <button type="button" data-skill="docx">docx</button>
+      <button type="button" data-skill="boiler">boiler</button>
+      <button type="button" data-skill="bom-sop-check">bom-sop-check</button>
+      <button type="button" data-skill="parallel-web">parallel-web</button>
+      <button type="button" data-skill="mcp-builder">mcp-builder</button>
+      <button type="button" data-skill="ancient-divination-ritual-procedure">ancient-divination-ritual-procedure</button>
+    </div>
+
+    <p class="hero-mini-stats">
+      <span><strong id="m-skills">227</strong> audited</span>
+      <span class="sep">·</span>
+      <span><strong id="m-unsafe">41</strong> unsafe</span>
+      <span class="sep">·</span>
+      <span><strong id="m-trig">93</strong> confirmed exploits</span>
+      <span class="sep">·</span>
+      <span><strong id="m-judge">4,256</strong> judge items</span>
+    </p>
+  </section>
+
+  <!-- ==================== LENS RESULT (inline, no header) ==================== -->
+  <section class="reveal" style="padding-top: 16px;">
+    <div class="lens-view" id="lens-view" data-state="loading">
+      <div class="lens-empty" id="lens-empty">Loading evidence…</div>
+    </div>
+  </section>
+
+  <!-- ==================== RISKIEST SKILLS ==================== -->
+  <section id="risky" class="reveal">
+    <header class="section-head" style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:14px;">
+      <h2>Riskiest skills you should know about.</h2>
+      <span style="font-family:var(--font-mono);font-size:12px;color:var(--fg-3);letter-spacing:0.06em;">
+        <b id="inbox-total" style="color:var(--bad);font-weight:700;">93</b> confirmed exploits across 41 skills
+      </span>
+    </header>
+    <p class="lead" style="max-width:720px;margin-top:14px;color:var(--fg-3);">
+      Twelve hand-picked findings spanning five exploit classes. Click any card to inspect that skill.
+    </p>
+
+    <div class="inbox-filters" id="inbox-filters" style="margin-top:22px;">
+      <button type="button" class="inbox-chip is-active" data-filter="all">All classes</button>
+      <button type="button" class="inbox-chip" data-filter="Robustness">Robustness</button>
+      <button type="button" class="inbox-chip" data-filter="Data Exfiltration">Data Exfiltration</button>
+      <button type="button" class="inbox-chip" data-filter="Prompt Injection">Prompt Injection</button>
+      <button type="button" class="inbox-chip" data-filter="Privilege Escalation">Privilege Escalation</button>
+      <button type="button" class="inbox-chip" data-filter="Supply Chain">Supply Chain</button>
+    </div>
+
+    <div class="inbox-list" id="inbox-list" aria-busy="true"></div>
+
+    <button type="button" class="inbox-show-all" id="inbox-show-all">
+      Show all 227 audits  ↓
+    </button>
+  </section>
+
+  <!-- ==================== COLLAPSED DETAILS (the academic stuff goes here) ==================== -->
+  <section class="reveal" style="padding-top:16px;">
+
+    <details class="collapsible" id="how">
+      <summary>
+        <span class="label">
+          <h3>How we score a skill</h3>
+          <span class="hint">5-step pipeline · two independent axes</span>
+        </span>
+        <span class="chevron"></span>
+      </summary>
+      <div class="collapsible-body">
+        <p class="lead" style="margin-top:0;color:var(--fg-3);max-width:720px;">
+          Every skill goes through the same pipeline. The same execution pass produces both axes —
+          effectiveness and safety — never combined into a single score.
+        </p>
+        <div class="flow-table">
+          <div class="flow-row">
+            <span class="num">01</span>
+            <span class="step">Profile</span>
+            <span class="desc">Static scan of <code>SKILL.md</code>, scripts, and dependencies. Each finding gets an existence_confidence ∈ [0, 1].</span>
+            <span class="out">→ <code>static_scan.json</code></span>
+          </div>
+          <div class="flow-row">
+            <span class="num">02</span>
+            <span class="step">Generate</span>
+            <span class="desc">Capability-targeted scenarios (U1 / U2 / U3) with 5–6 binary judge items each, calibrated against the no-skill baseline difficulty.</span>
+            <span class="out">→ <code>scenarios/U*.yaml</code></span>
+          </div>
+          <div class="flow-row">
+            <span class="num">03</span>
+            <span class="step">Execute</span>
+            <span class="desc">Containerized Harbor runs, paired wi / wo with matched seeds. The sandbox records FS diff and outbound network traffic in real time.</span>
+            <span class="out">→ <code>fs.diff · net.log</code></span>
+          </div>
+          <div class="flow-row">
+            <span class="num">04</span>
+            <span class="step">Judge</span>
+            <span class="desc">An LLM judge scores each binary item; the security judge composes <code>existence × exploitability</code> against the runtime trace.</span>
+            <span class="out">→ <code>judges/*.json</code></span>
+          </div>
+          <div class="flow-row">
+            <span class="num">05</span>
+            <span class="step">Report</span>
+            <span class="desc">Per-skill report with <code>pass_rate_gain</code>, <code>efficiency_score</code>, and <code>security.score = max(10, 100 − Σ base × existence × exploit)</code>.</span>
+            <span class="out">→ <code>skill_report.json</code></span>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="collapsible" id="extension">
+      <summary>
+        <span class="label">
+          <h3>See it on GitHub</h3>
+          <span class="hint">Chrome extension · injects the verdict on any SKILL.md repo</span>
+        </span>
+        <span class="chevron"></span>
+      </summary>
+      <div class="collapsible-body">
+        <p class="lead" style="margin-top:0;color:var(--fg-3);max-width:720px;">
+          The Chrome MV3 extension recognizes any GitHub repository whose root contains a
+          <code>SKILL.md</code> and renders the same verdict directly on the page — at the moment
+          someone is deciding whether to install.
+        </p>
+        <div class="captured-frame">
+          <div class="captured-chrome">
+            <span class="dots"><span></span><span></span><span></span></span>
+            <span class="url">github.com/anthropics/mcp-builder</span>
+            <span>2026-05-04 12:18:37 UTC</span>
+          </div>
+          <div class="captured-body">
+            <div class="captured-fakegh">
+              <div class="repo">anthropics / mcp-builder</div>
+              <div class="filename">SKILL.md</div>
+              <div class="lines">
+                <div><span class="ln">1</span># MCP Builder</div>
+                <div><span class="ln">2</span></div>
+                <div><span class="ln">3</span>Generates MCP server scaffolding for…</div>
+                <div><span class="ln">4</span></div>
+                <div><span class="ln">5</span>## Capabilities</div>
+                <div><span class="ln">6</span>- spawn server templates</div>
+                <div><span class="ln">7</span>- wire transports (stdio, HTTP)</div>
+              </div>
+            </div>
+            <div class="captured-panel">
+              <div class="captured-panel-head">
+                <span>SkillLens</span><span>↗ open</span>
+              </div>
+              <div class="captured-panel-row"><span class="k">Effectiveness</span><span class="v good">+16.7 pp</span></div>
+              <div class="captured-panel-row"><span class="k">Efficiency</span><span class="v">0.31</span></div>
+              <div class="captured-panel-row"><span class="k">Safety</span><span class="v good">96 / 100</span></div>
+              <div class="captured-panel-row"><span class="k">Findings  H/M/L</span><span class="v">0 / 0 / 0</span></div>
+              <div class="captured-panel-row"><span class="k">Verdict</span><span class="v good">Adopt</span></div>
+            </div>
+          </div>
+        </div>
+        <p class="captured-caption">// captured during precomputed run · 2026-05-04 · run d4f8c2</p>
+      </div>
+    </details>
+
+    <details class="collapsible" id="cite">
+      <summary>
+        <span class="label">
+          <h3>Cite + download</h3>
+          <span class="hint">BibTeX · benchmark.json (4.5 MB) for reproducibility</span>
+        </span>
+        <span class="chevron"></span>
+      </summary>
+      <div class="collapsible-body">
+        <div class="cite-row">
+          <div class="cite-card">
+            <h4>BibTeX</h4>
+<!-- FIXME: replace {SkillLens-AI Contributors} with the real author list and fill in the arXiv eprint ID after submission -->
+<pre id="bibtex">@misc{skilllens2026,
+  title         = {SkillLens: From Task-First Evaluation to
+                   Skill-Centered Assessment of Agent Skill Packages},
+  author        = {SkillLens-AI Contributors},
+  year          = {2026},
+  eprint        = {TBD},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  note          = {Project page: \url{https://skilllens-ai.github.io/}}
+}</pre>
+            <button class="copy" id="copy-bib" type="button">Copy BibTeX</button>
+          </div>
+          <div class="cite-card download-card">
+            <h4>Reproduce</h4>
+            <p class="desc">
+              Every audit's <code>skill_report.json</code> — judge items, finding rationale, paired
+              wi / wo numbers, severity weighting — bundled for all 227 evaluated skills.
+            </p>
+            <a class="download-btn" href="data/benchmark.json" download>Download benchmark.json</a>
+            <p class="meta">~4.5 MB · schema <code>skilllens_benchmark_v1</code> · frozen 2026-05-04</p>
+          </div>
+        </div>
+      </div>
+    </details>
+
+  </section>
+
+</main>
+
+<footer role="contentinfo">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <strong>Skill<em>Lens</em></strong>
+      <p>From Task-First Evaluation to Skill-Centered Assessment.<br>
+        Open-source release · arXiv preprint · Code on GitHub.</p>
+    </div>
+    <div>
+      <h5>Paper</h5>
+      <ul>
+        <li><a href="paper/SkillLens.pdf">Paper PDF</a></li>
+        <li><a href="#cite">Citation</a></li>
+        <li><a href="#how">Method</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Use it</h5>
+      <ul>
+        <li><a href="#top">Inspect a skill</a></li>
+        <li><a href="#risky">Riskiest skills</a></li>
+        <li><a href="#extension">Browser extension</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Reproduce</h5>
+      <ul>
+        <li><a href="data/benchmark.json" download>Download benchmark.json</a></li>
+        <li><a href="data/skills.json" download>Download skills.json</a></li>
+        <li><a href="data/stats.json" download>Download stats.json</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <span>// SkillLens · open-source build · 2026</span>
+    <span>// 227 skills · frozen 2026-05-04 · open dataset for community audit</span>
+  </div>
+</footer>
+
+<script src="assets/app.js" defer></script>
+
+</body>
+</html>

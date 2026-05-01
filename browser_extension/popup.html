@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillLens — Browser Extension</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="pop-head">
+    <div class="pop-brand">
+      <span class="pop-brand-badge" aria-hidden="true">S</span>
+      <span class="pop-brand-text">
+        <span class="pop-brand-word">SkillLens</span>
+        <span class="pop-brand-sub">Inspector · powered by SkillTestBench engine</span>
+      </span>
+    </div>
+    <span class="pop-status">
+      <span class="pop-status-dot"></span>
+      <span id="pop-status-label">Engine ready</span>
+    </span>
+  </header>
+
+  <section class="pop-hero">
+    <div class="pop-hero-eyebrow">Trust layer for AI agent skills</div>
+    <h1 class="pop-hero-title">
+      Every skill, <span class="pop-hero-accent">audited</span>.<br>
+      Utility, safety, cost — measured.
+    </h1>
+    <p class="pop-hero-sub">
+      SkillLens surfaces paired-benchmark utility gain, safety findings, and cost overhead for every
+      skill on GitHub and the major marketplaces — right where you discover them.
+    </p>
+  </section>
+
+  <section class="pop-stats">
+    <article class="pop-stat" data-tone="info">
+      <div class="pop-stat-num" id="pop-stat-skills">2,847</div>
+      <div class="pop-stat-key">Skills indexed</div>
+      <div class="pop-stat-spark" data-spark="up"></div>
+    </article>
+    <article class="pop-stat" data-tone="good">
+      <div class="pop-stat-num" id="pop-stat-audits">142</div>
+      <div class="pop-stat-key">Audited this week</div>
+      <div class="pop-stat-spark" data-spark="up"></div>
+    </article>
+    <article class="pop-stat" data-tone="warn">
+      <div class="pop-stat-num" id="pop-stat-trust">94.2<span>%</span></div>
+      <div class="pop-stat-key">Verdict agreement</div>
+      <div class="pop-stat-spark" data-spark="flat"></div>
+    </article>
+  </section>
+
+  <section class="pop-section">
+    <header class="pop-section-head">
+      <span class="pop-section-eyebrow">Featured audits</span>
+      <button type="button" class="pop-link" id="pop-view-all">View registry →</button>
+    </header>
+
+    <ul class="pop-feed" id="pop-feed">
+      <!-- featured skill rows are injected by popup.js -->
+    </ul>
+  </section>
+
+  <section class="pop-section">
+    <header class="pop-section-head">
+      <span class="pop-section-eyebrow">Quick inspect</span>
+      <span class="pop-hint mono">⌘K · paste a URL</span>
+    </header>
+
+    <form class="pop-inspect" id="pop-inspect-form" autocomplete="off">
+      <span class="pop-inspect-icon" aria-hidden="true">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <path d="M11.5 7a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm-.82 4.74a6 6 0 1 1 1.06-1.06l3.04 3.04a.75.75 0 1 1-1.06 1.06l-3.04-3.04Z"/>
+        </svg>
+      </span>
+      <input
+        id="pop-inspect-input"
+        type="text"
+        placeholder="github.com/owner/skill or marketplace URL"
+        spellcheck="false"
+      />
+      <button type="submit" class="pop-inspect-btn">
+        Inspect
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.19 8.5H2.75a.75.75 0 0 1 0-1.5h8.44L8.22 4.03a.75.75 0 0 1 0-1.06Z"/>
+        </svg>
+      </button>
+    </form>
+
+    <div class="pop-suggest" id="pop-suggest"></div>
+  </section>
+
+  <section class="pop-coming">
+    <div class="pop-coming-glow" aria-hidden="true"></div>
+    <div class="pop-coming-inner">
+      <div class="pop-coming-eyebrow">Coming soon · Q3</div>
+      <div class="pop-coming-title">Public registry &amp; live engine</div>
+      <p class="pop-coming-sub">
+        The browser extension is the entry point. Open audit reports, leaderboards, and a public
+        SkillTestBench engine open this summer.
+      </p>
+      <div class="pop-coming-row">
+        <button type="button" class="pop-coming-btn primary" id="pop-notify-btn">
+          Get notified
+        </button>
+        <button type="button" class="pop-coming-btn" id="pop-docs-btn">Read the paper</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="pop-settings">
+    <button type="button" class="pop-settings-toggle" id="pop-settings-toggle">
+      <span class="pop-settings-eyebrow">Advanced</span>
+      <span class="pop-settings-label">Backend URL</span>
+      <span class="pop-settings-caret" aria-hidden="true">▾</span>
+    </button>
+    <div class="pop-settings-panel" id="pop-settings-panel" hidden>
+      <label for="pop-settings-input" class="pop-settings-hint">
+        Defaults to the public artifacts mirror at
+        <code>https://skilllens-ai.github.io/skilllens/artifacts/api</code>.
+        Point this at <code>http://127.0.0.1:8765</code> when running the local mock server.
+      </label>
+      <div class="pop-settings-row">
+        <input
+          id="pop-settings-input"
+          type="text"
+          class="pop-settings-input"
+          spellcheck="false"
+          autocomplete="off"
+          placeholder="http://127.0.0.1:8765"
+        />
+        <button type="button" class="pop-settings-btn primary" id="pop-settings-save">Save</button>
+        <button type="button" class="pop-settings-btn" id="pop-settings-reset">Reset</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pop-foot">
+    <span class="pop-foot-meta">v0.4.1 · sandboxed · no telemetry</span>
+    <span class="pop-foot-links">
+      <button type="button" data-action="docs">Docs</button>
+      <button type="button" data-action="github">GitHub</button>
+      <button type="button" data-action="privacy">Privacy</button>
+    </span>
+  </footer>
+
+  <div class="pop-toast" id="pop-toast" hidden></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

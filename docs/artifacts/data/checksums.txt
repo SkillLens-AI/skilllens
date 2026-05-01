@@ -1,0 +1,7 @@
+# SkillLens artifacts -- SHA-256 checksums
+# Frozen 2026-05-07 -- owners reconciled with main repo; orphan skills tokenized
+#
+# Verify any file:    sha256sum -c checksums.txt --ignore-missing
+# Reproducibility:    when the evaluation harness is published, hashes
+#                     here MUST match the harness's emitted artifacts.
+

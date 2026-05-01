@@ -1,0 +1,63 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "behuman, ra-qm-skills, research-summarizer",
+    "owner": "alirezarezvani",
+    "repo": "claude-skills",
+    "skillPath": "behuman",
+    "category": "community-and-social-service-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.2068,
+      "baseline": 0.7006,
+      "withSkill": 0.9074,
+      "tasks": 53,
+      "items": 324,
+      "wiPassedItems": 294,
+      "woPassedItems": 227
+    },
+    "safety": {
+      "riskLevel": "high",
+      "staticHits": 15,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 3,
+        "M": 6,
+        "L": 6
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 192.95,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 24
+    },
+    "includedSkills": [
+      "behuman",
+      "ra-qm-skills",
+      "research-summarizer"
+    ]
+  },
+  "source": "artifacts"
+}

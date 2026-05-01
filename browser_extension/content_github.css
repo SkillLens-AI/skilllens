@@ -1,0 +1,1534 @@
+/* SkillLens Inspector — GitHub inline panel
+ *
+ * Visual system mirrors https://skilllens-ai.github.io/skilllens/:
+ * deep slate, instrument-grade, single green accent. Always dark — the panel
+ * carries its own identity rather than adapting to GitHub's light/dark theme.
+ */
+
+#skilltestbench-panel {
+  /* Surfaces */
+  --stb-bg:         #07090C;
+  --stb-bg-soft:    #0B0E12;
+  --stb-paper-0:    #111418;  /* legacy alias, now surface-1 */
+  --stb-paper-1:    #161A1F;  /* legacy alias, now surface-2 */
+  --stb-surface-3:  #1C2126;
+  --stb-surface-4:  #232930;
+
+  /* Lines */
+  --stb-line:        rgba(255, 255, 255, 0.06);
+  --stb-line-strong: rgba(255, 255, 255, 0.10);
+  --stb-line-bold:   rgba(255, 255, 255, 0.16);
+
+  /* Text */
+  --stb-ink:    #F2F4F7;
+  --stb-fg-2:   #C9CFD7;
+  --stb-muted:  #8B9097;
+  --stb-faint:  #5C6168;
+  --stb-fg-dim: #3F4348;
+
+  /* Legacy aliases — keep so existing selectors resolve */
+  --stb-teal-900: #232930;
+  --stb-teal-800: #1C2126;
+  --stb-aqua:     #22C55E;
+  --stb-gold:     #F59E0B;
+
+  /* Semantic accents */
+  --stb-good: #22C55E;
+  --stb-warn: #F59E0B;
+  --stb-bad:  #EF4444;
+  --stb-info: #3B82F6;
+
+  --stb-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 4px 8px rgba(0, 0, 0, 0.55);
+
+  position: fixed;
+  top: 64px;
+  right: 20px;
+  width: 360px;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(34, 197, 94, 0.10), transparent 60%),
+    linear-gradient(180deg, var(--stb-paper-0) 0%, var(--stb-bg-soft) 100%);
+  color: var(--stb-ink);
+  border: 1px solid var(--stb-line-strong);
+  border-radius: 14px;
+  box-shadow: var(--stb-shadow);
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-feature-settings: "ss01", "cv11", "cv02";
+  font-size: 13px;
+  line-height: 1.5;
+  z-index: 999999;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+  animation: stb-slide-in 380ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#skilltestbench-panel::-webkit-scrollbar {
+  width: 8px;
+}
+#skilltestbench-panel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 4px;
+}
+#skilltestbench-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+@keyframes stb-slide-in {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes stb-fill-bar {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(var(--stb-fill, 1)); }
+}
+
+@keyframes stb-rise {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- header ---------- */
+
+#skilltestbench-panel .stb-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px 12px;
+  background: linear-gradient(135deg, var(--stb-teal-900), var(--stb-teal-800));
+  color: #F2F4F7;
+  border-bottom: 1px solid rgba(34, 197, 94, 0.32);
+}
+
+#skilltestbench-panel .stb-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#skilltestbench-panel .stb-brand-badge {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--stb-aqua);
+  border-radius: 9px;
+  color: var(--stb-aqua);
+  font-family: "Inter Display", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+#skilltestbench-panel .stb-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+#skilltestbench-panel .stb-brand-word {
+  font-family: "Inter Display", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+#skilltestbench-panel .stb-brand-sub {
+  margin-top: 2px;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(34, 197, 94, 0.85);
+}
+
+#skilltestbench-panel .stb-head-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(248, 252, 250, 0.75);
+}
+
+#skilltestbench-panel .stb-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(34, 197, 94, 0.45);
+  background: rgba(34, 197, 94, 0.12);
+  color: var(--stb-aqua);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+#skilltestbench-panel .stb-pill[data-tone="warn"] {
+  border-color: rgba(255, 200, 60, 0.45);
+  background: rgba(255, 200, 60, 0.14);
+  color: #ffd784;
+}
+
+#skilltestbench-panel .stb-pill[data-tone="error"] {
+  border-color: rgba(255, 130, 110, 0.5);
+  background: rgba(255, 130, 110, 0.14);
+  color: #ffb09b;
+}
+
+#skilltestbench-panel .stb-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--stb-aqua);
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.65);
+  animation: stb-pulse 1.6s infinite;
+}
+
+@keyframes stb-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+  70%  { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* ---------- preview banner ---------- */
+
+#skilltestbench-panel .stb-preview-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 9px 14px;
+  background: rgba(245, 158, 11, 0.12);
+  border-bottom: 1px solid rgba(245, 158, 11, 0.32);
+  color: var(--stb-warn);
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+
+#skilltestbench-panel .stb-preview-banner svg {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+}
+
+#skilltestbench-panel .stb-preview-banner strong {
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- verdict hero ---------- */
+
+#skilltestbench-panel .stb-verdict {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 18px 16px;
+  border-bottom: 1px solid var(--stb-line);
+  /* Contain any decorative children (stamp, glow) so they can't paint
+   * outside the rounded panel and become visually clipped artifacts. */
+  overflow: hidden;
+}
+
+/* Subtle aqua bloom behind the verdict block — depth without distraction. */
+#skilltestbench-panel .stb-verdict::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 50%, rgba(34, 197, 94, 0.10), transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#skilltestbench-panel .stb-verdict-ring,
+#skilltestbench-panel .stb-verdict-meta {
+  position: relative;
+  z-index: 1;
+}
+
+#skilltestbench-panel .stb-verdict-ring {
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+}
+
+#skilltestbench-panel .stb-verdict-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+
+#skilltestbench-panel .stb-verdict-ring .stb-ring-track {
+  stroke: rgba(255, 255, 255, 0.04);
+  fill: none;
+  stroke-width: 8;
+}
+
+#skilltestbench-panel .stb-verdict-ring .stb-ring-fill {
+  stroke: var(--stb-teal-800);
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#skilltestbench-panel .stb-verdict-ring .stb-ring-score {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: "Inter Display", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--stb-ink);
+  letter-spacing: -0.02em;
+}
+
+#skilltestbench-panel .stb-verdict-meta {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+#skilltestbench-panel .stb-verdict-eyebrow {
+  color: var(--stb-gold);
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+#skilltestbench-panel .stb-verdict-title {
+  margin: 6px 0 4px;
+  font-family: "Inter Display", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--stb-ink);
+}
+
+#skilltestbench-panel .stb-verdict-sub {
+  color: var(--stb-muted);
+  font-size: 12px;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+#skilltestbench-panel .stb-verdict[data-verdict="adopt"]   .stb-ring-fill { stroke: var(--stb-good); }
+#skilltestbench-panel .stb-verdict[data-verdict="adopt"]   .stb-verdict-title { color: var(--stb-good); }
+#skilltestbench-panel .stb-verdict[data-verdict="review"]  .stb-ring-fill { stroke: var(--stb-warn); }
+#skilltestbench-panel .stb-verdict[data-verdict="review"]  .stb-verdict-title { color: var(--stb-warn); }
+#skilltestbench-panel .stb-verdict[data-verdict="avoid"]   .stb-ring-fill { stroke: var(--stb-bad); }
+#skilltestbench-panel .stb-verdict[data-verdict="avoid"]   .stb-verdict-title { color: var(--stb-bad); }
+/* Paper-aligned safety status verdicts (SkillLens §4.4). */
+#skilltestbench-panel .stb-verdict[data-verdict="pass"]    .stb-ring-fill { stroke: var(--stb-good); }
+#skilltestbench-panel .stb-verdict[data-verdict="pass"]    .stb-verdict-title { color: var(--stb-good); }
+#skilltestbench-panel .stb-verdict[data-verdict="caution"] .stb-ring-fill { stroke: var(--stb-warn); }
+#skilltestbench-panel .stb-verdict[data-verdict="caution"] .stb-verdict-title { color: var(--stb-warn); }
+#skilltestbench-panel .stb-verdict[data-verdict="risky"]   .stb-ring-fill { stroke: var(--stb-bad); }
+#skilltestbench-panel .stb-verdict[data-verdict="risky"]   .stb-verdict-title { color: var(--stb-bad); }
+
+/* ---------- four axes (Utility · Safety · Efficiency · Cost) ---------- */
+/*
+ * Panel is 360px wide. With four cards we get ~89px per column. The legacy
+ * three-axis layout is preserved when .stb-axes has no [data-count] (or
+ * data-count="3"); the four-axis layout activates via [data-count="4"].
+ *
+ * Signature colours per metric (mirrors the skilllens-ai.github.io site so
+ * the extension reads as part of the same product). Each metric gets its
+ * own --metric-accent — so when everything is healthy the panel reads as
+ * four distinct colours rather than four amber cards. The semantic
+ * data-tone overrides only kick in for the "bad" / "neutral" risk states
+ * where the universal red / amber language matters more than identity.
+ */
+#skilltestbench-panel .stb-axis[data-metric="utility"]    { --metric-accent: #c8a24f; --metric-grad: linear-gradient(90deg, #8a7035, #c8a24f); } /* bronze */
+#skilltestbench-panel .stb-axis[data-metric="safety"]     { --metric-accent: #10b981; --metric-grad: linear-gradient(90deg, #0a7d59, #10b981); } /* emerald */
+#skilltestbench-panel .stb-axis[data-metric="efficiency"] { --metric-accent: #14b8a6; --metric-grad: linear-gradient(90deg, #0d8077, #14b8a6); } /* teal — time */
+#skilltestbench-panel .stb-axis[data-metric="cost"]       { --metric-accent: #a855f7; --metric-grad: linear-gradient(90deg, #6f33b6, #a855f7); } /* violet — tokens */
+
+#skilltestbench-panel .stb-axes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  background: var(--stb-line);
+}
+#skilltestbench-panel .stb-axes[data-count="4"] {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+#skilltestbench-panel .stb-axis {
+  position: relative;
+  padding: 14px 12px 12px;
+  background: rgba(255, 255, 255, 0.62);
+  animation: stb-rise 460ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  display: flex;
+  flex-direction: column;
+}
+#skilltestbench-panel .stb-axes[data-count="4"] .stb-axis {
+  padding: 13px 9px 11px;
+}
+#skilltestbench-panel .stb-axes[data-count="4"] .stb-axis-value {
+  font-size: 19px;
+}
+#skilltestbench-panel .stb-axes[data-count="4"] .stb-axis-sub {
+  font-size: 10px;
+  line-height: 1.35;
+}
+#skilltestbench-panel .stb-axes[data-count="4"] .stb-axis::before {
+  width: 24px;
+  left: 9px;
+}
+#skilltestbench-panel .stb-axis:nth-child(1) { animation-delay: 80ms; }
+#skilltestbench-panel .stb-axis:nth-child(2) { animation-delay: 160ms; }
+#skilltestbench-panel .stb-axis:nth-child(3) { animation-delay: 240ms; }
+#skilltestbench-panel .stb-axis:nth-child(4) { animation-delay: 320ms; }
+
+#skilltestbench-panel .stb-axis::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 0;
+  height: 3px;
+  width: 32px;
+  border-radius: 0 0 6px 6px;
+  background: var(--stb-faint);
+}
+/* Default accent stripe = the metric's signature colour. Tone overrides
+ * only apply for bad / neutral, where universal risk colour matters more
+ * than per-metric identity. */
+#skilltestbench-panel .stb-axis[data-metric]::before { background: var(--metric-accent); }
+#skilltestbench-panel .stb-axis[data-tone="neutral"]::before { background: var(--stb-warn); }
+#skilltestbench-panel .stb-axis[data-tone="bad"]::before     { background: var(--stb-bad); }
+
+#skilltestbench-panel .stb-axis-label {
+  text-transform: uppercase;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  font-weight: 900;
+  color: var(--stb-faint);
+}
+
+#skilltestbench-panel .stb-axis-value {
+  margin-top: 6px;
+  font-family: "Inter Display", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--stb-ink);
+}
+
+/* Value colour follows the metric's signature by default; neutral/bad
+ * still escalate to the universal warning/danger colour. */
+#skilltestbench-panel .stb-axis[data-metric]        .stb-axis-value { color: var(--metric-accent); }
+#skilltestbench-panel .stb-axis[data-tone="neutral"].stb-axis-value,
+#skilltestbench-panel .stb-axis[data-tone="neutral"] .stb-axis-value { color: var(--stb-warn); }
+#skilltestbench-panel .stb-axis[data-tone="bad"]    .stb-axis-value { color: var(--stb-bad); }
+
+#skilltestbench-panel .stb-axis-sub {
+  margin-top: 6px;
+  color: var(--stb-muted);
+  font-size: 11px;
+  line-height: 1.4;
+  /* Take all the slack in the axis column so the .stb-bar below aligns
+     with bars in the other two columns regardless of how many lines this
+     sub spans (Efficiency typically renders two lines: Eff scale + cost
+     deltas). */
+  flex: 1 1 auto;
+}
+
+#skilltestbench-panel .stb-bar {
+  margin-top: 10px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+#skilltestbench-panel .stb-bar-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--stb-teal-800), var(--stb-aqua));
+  transform-origin: left center;
+  animation: stb-fill-bar 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Bar gradient uses each metric's signature gradient when healthy; tone
+ * overrides escalate to the universal warning / danger gradient. */
+#skilltestbench-panel .stb-axis[data-metric]        .stb-bar-fill { background: var(--metric-grad); }
+#skilltestbench-panel .stb-axis[data-tone="neutral"] .stb-bar-fill { background: linear-gradient(90deg, #b07a18, var(--stb-warn)); }
+#skilltestbench-panel .stb-axis[data-tone="bad"]     .stb-bar-fill { background: linear-gradient(90deg, #8c2a1f, var(--stb-bad)); }
+
+/* ---------- chart ---------- */
+
+#skilltestbench-panel .stb-chart {
+  padding: 14px 16px 6px;
+  background: rgba(255, 255, 255, 0.55);
+  border-top: 1px solid var(--stb-line);
+}
+
+#skilltestbench-panel .stb-chart-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+  color: var(--stb-faint);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+#skilltestbench-panel .stb-chart-row {
+  display: grid;
+  grid-template-columns: 70px 1fr 56px;
+  gap: 10px;
+  align-items: center;
+  margin: 6px 0;
+  font-size: 11px;
+  color: var(--stb-muted);
+}
+
+#skilltestbench-panel .stb-chart-row .stb-track {
+  height: 7px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+#skilltestbench-panel .stb-chart-row .stb-track > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  transform-origin: left center;
+  animation: stb-fill-bar 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+#skilltestbench-panel .stb-chart-row.stb-baseline > .stb-track > span {
+  background: linear-gradient(90deg, #647c8a, #94a8b4);
+}
+#skilltestbench-panel .stb-chart-row.stb-withskill > .stb-track > span {
+  background: linear-gradient(90deg, var(--stb-teal-800), var(--stb-aqua));
+}
+
+#skilltestbench-panel .stb-chart-row .stb-num {
+  text-align: right;
+  font-family: "Inter Display", "Inter", "Segoe UI", system-ui, sans-serif;
+  color: var(--stb-ink);
+  font-weight: 700;
+}
+
+/* ---------- chips ---------- */
+
+#skilltestbench-panel .stb-chips {
+  padding: 10px 16px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+#skilltestbench-panel .stb-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  background: rgba(255, 255, 255, 0.06);
+  /* Default chip colour must read on a dark panel; --stb-teal-800 (#1C2126)
+     is nearly black, so any chip rendered without a data-tone fallback was
+     invisible. Use --stb-muted so undecorated chips remain legible. */
+  color: var(--stb-muted);
+}
+
+#skilltestbench-panel .stb-chip[data-tone="good"] { background: rgba(35, 122, 61, 0.13); color: var(--stb-good); }
+#skilltestbench-panel .stb-chip[data-tone="warn"] { background: rgba(245, 158, 11, 0.18); color: var(--stb-warn); }
+#skilltestbench-panel .stb-chip[data-tone="bad"]  { background: rgba(177, 63, 47, 0.13); color: var(--stb-bad); }
+#skilltestbench-panel .stb-chip[data-tone="muted"] {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--stb-muted);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+#skilltestbench-panel .stb-chip[data-tone="muted"] .stb-chip-dot {
+  background: var(--stb-muted);
+  opacity: 0.55;
+}
+#skilltestbench-panel .stb-chip-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: currentColor;
+}
+
+/* ---------- footer ---------- */
+
+#skilltestbench-panel .stb-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-top: 1px solid var(--stb-line);
+  font-size: 11px;
+  color: var(--stb-muted);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+#skilltestbench-panel .stb-commit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--stb-faint);
+}
+
+#skilltestbench-panel .stb-commit svg { width: 12px; height: 12px; opacity: 0.7; }
+
+#skilltestbench-panel .stb-toggle {
+  appearance: none;
+  background: transparent;
+  border: 1px solid var(--stb-line);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  color: var(--stb-teal-800);
+  font-family: inherit;
+  transition: background 120ms ease, transform 120ms ease;
+}
+
+#skilltestbench-panel .stb-toggle:hover {
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-1px);
+}
+
+#skilltestbench-panel .stb-details {
+  padding: 12px 16px 14px;
+  border-top: 1px solid var(--stb-line);
+  font-size: 11.5px;
+  line-height: 1.6;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+#skilltestbench-panel .stb-details-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 10px;
+  padding: 4px 0;
+  border-bottom: 1px dashed var(--stb-line);
+}
+
+#skilltestbench-panel .stb-details-row:last-of-type { border-bottom: 0; }
+
+#skilltestbench-panel .stb-details-key {
+  color: var(--stb-faint);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+#skilltestbench-panel .stb-details-value { color: var(--stb-ink); }
+
+#skilltestbench-panel .stb-notes {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(34, 197, 94, 0.08);
+  color: var(--stb-teal-900);
+  font-size: 12px;
+  line-height: 1.55;
+  border-left: 3px solid var(--stb-teal-800);
+}
+
+/* ---------- analysis stages ---------- */
+
+#skilltestbench-panel .stb-analyzing {
+  padding: 16px 16px 14px;
+}
+
+#skilltestbench-panel .stb-analyzing-target {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--stb-line);
+}
+
+/* Scan line that sweeps across the analyzing target — adds a "scanner is
+ * working" feel without distracting from the stage list. */
+#skilltestbench-panel .stb-scan-host {
+  position: relative;
+  overflow: hidden;
+}
+
+#skilltestbench-panel .stb-scan-line {
+  position: absolute;
+  left: -20%;
+  top: 0;
+  bottom: 14px;
+  width: 36%;
+  background: linear-gradient(
+    90deg,
+    rgba(34, 197, 94, 0)  0%,
+    rgba(34, 197, 94, 0.18) 45%,
+    rgba(34, 197, 94, 0.42) 50%,
+    rgba(34, 197, 94, 0.18) 55%,
+    rgba(34, 197, 94, 0)  100%
+  );
+  filter: blur(0.2px);
+  animation: stb-scan-sweep 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#skilltestbench-panel .stb-scan-host > .stb-analyzing-icon,
+#skilltestbench-panel .stb-scan-host > .stb-analyzing-meta {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes stb-scan-sweep {
+  0%   { transform: translateX(0); opacity: 0.85; }
+  50%  { opacity: 1; }
+  100% { transform: translateX(360%); opacity: 0; }
+}
+
+#skilltestbench-panel .stb-analyzing-icon {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  color: var(--stb-aqua);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+#skilltestbench-panel .stb-analyzing-icon svg { width: 18px; height: 18px; }
+
+#skilltestbench-panel .stb-analyzing-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+#skilltestbench-panel .stb-analyzing-eyebrow {
+  color: var(--stb-gold);
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+#skilltestbench-panel .stb-analyzing-name {
+  margin-top: 4px;
+  font-family: "Inter Display", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 18px;
+  letter-spacing: -0.025em;
+  color: var(--stb-ink);
+  line-height: 1.15;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#skilltestbench-panel .stb-analyzing-path {
+  margin-top: 4px;
+  color: var(--stb-faint);
+  font-size: 11.5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#skilltestbench-panel .stb-progress {
+  margin-top: 14px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+#skilltestbench-panel .stb-progress-bar {
+  height: 100%;
+  width: calc(var(--stb-progress, 0) * 100%);
+  background: linear-gradient(90deg, var(--stb-teal-800), var(--stb-aqua));
+  border-radius: inherit;
+  transition: width 240ms linear;
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.45);
+}
+
+#skilltestbench-panel .stb-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  color: var(--stb-faint);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+#skilltestbench-panel .stb-stages {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+}
+
+#skilltestbench-panel .stb-stage {
+  display: grid;
+  grid-template-columns: 20px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--stb-line);
+  transition: opacity 200ms ease;
+}
+#skilltestbench-panel .stb-stage:last-child { border-bottom: 0; }
+
+#skilltestbench-panel .stb-stage[data-state="pending"] { opacity: 0.55; }
+#skilltestbench-panel .stb-stage[data-state="done"]    { opacity: 1; }
+#skilltestbench-panel .stb-stage[data-state="active"]  { opacity: 1; }
+
+#skilltestbench-panel .stb-stage-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+#skilltestbench-panel .stb-stage-icon svg {
+  position: absolute;
+  inset: 0;
+  width: 20px;
+  height: 20px;
+}
+
+#skilltestbench-panel .stb-stage-spinner {
+  fill: none;
+  stroke: var(--stb-teal-800);
+  stroke-width: 2;
+  stroke-linecap: round;
+  animation: stb-stage-spin 0.9s linear infinite;
+  opacity: 0;
+}
+#skilltestbench-panel .stb-stage-check {
+  color: var(--stb-good);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 220ms ease, transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#skilltestbench-panel .stb-stage[data-state="active"] .stb-stage-spinner { opacity: 1; }
+#skilltestbench-panel .stb-stage[data-state="done"]   .stb-stage-check   { opacity: 1; transform: scale(1); }
+
+@keyframes stb-stage-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+#skilltestbench-panel .stb-stage-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+#skilltestbench-panel .stb-stage-label {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--stb-ink);
+}
+
+#skilltestbench-panel .stb-stage-sub {
+  font-size: 10.5px;
+  color: var(--stb-faint);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+#skilltestbench-panel .stb-stage-time {
+  font-size: 10.5px;
+  color: var(--stb-faint);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+#skilltestbench-panel .stb-stage[data-state="done"] .stb-stage-time { color: var(--stb-good); }
+
+/* ---------- collection view ---------- */
+
+#skilltestbench-panel .stb-coll-hero {
+  padding: 16px 16px 14px;
+  border-bottom: 1px solid var(--stb-line);
+}
+
+#skilltestbench-panel .stb-coll-eyebrow {
+  color: var(--stb-gold);
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+#skilltestbench-panel .stb-coll-title {
+  margin-top: 6px;
+  font-family: "Inter Display", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 22px;
+  letter-spacing: -0.025em;
+  color: var(--stb-ink);
+}
+
+#skilltestbench-panel .stb-coll-blurb {
+  margin-top: 6px;
+  color: var(--stb-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+#skilltestbench-panel .stb-coll-bucket {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+#skilltestbench-panel .stb-coll-bucket-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+#skilltestbench-panel .stb-coll-bucket-pill[data-verdict="adopt"]  { background: rgba(35, 122, 61, 0.13); color: var(--stb-good); }
+#skilltestbench-panel .stb-coll-bucket-pill[data-verdict="review"] { background: rgba(245, 158, 11, 0.18); color: var(--stb-warn); }
+#skilltestbench-panel .stb-coll-bucket-pill[data-verdict="avoid"]  { background: rgba(177, 63, 47, 0.13); color: var(--stb-bad); }
+
+#skilltestbench-panel .stb-coll-bucket-total {
+  margin-left: auto;
+  color: var(--stb-faint);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+#skilltestbench-panel .stb-coll-list {
+  padding: 6px 8px 10px;
+  max-height: 270px;
+  overflow-y: auto;
+}
+
+#skilltestbench-panel .stb-coll-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  margin: 4px 0;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 140ms ease, transform 140ms ease;
+  cursor: pointer;
+}
+
+#skilltestbench-panel .stb-coll-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateX(2px);
+}
+
+/* Static rows are shown for monorepos whose on-disk layout we haven't
+   verified — render the skill name without a click target so we don't
+   point users at 404 GitHub pages. */
+#skilltestbench-panel .stb-coll-row-static {
+  cursor: default;
+}
+#skilltestbench-panel .stb-coll-row-static:hover {
+  background: transparent;
+  transform: none;
+}
+
+#skilltestbench-panel .stb-coll-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+#skilltestbench-panel .stb-coll-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  background: var(--stb-faint);
+}
+#skilltestbench-panel .stb-coll-dot[data-verdict="adopt"]  { background: var(--stb-good); }
+#skilltestbench-panel .stb-coll-dot[data-verdict="review"] { background: var(--stb-warn); }
+#skilltestbench-panel .stb-coll-dot[data-verdict="avoid"]  { background: var(--stb-bad); }
+
+#skilltestbench-panel .stb-coll-folder {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--stb-ink);
+}
+
+#skilltestbench-panel .stb-coll-path {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  color: var(--stb-faint);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#skilltestbench-panel .stb-coll-score {
+  font-family: "Inter Display", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--stb-faint);
+  min-width: 32px;
+  text-align: right;
+}
+#skilltestbench-panel .stb-coll-score[data-verdict="adopt"]  { color: var(--stb-good); }
+#skilltestbench-panel .stb-coll-score[data-verdict="review"] { color: var(--stb-warn); }
+#skilltestbench-panel .stb-coll-score[data-verdict="avoid"]  { color: var(--stb-bad); }
+
+/* ---------- loading / empty / error ---------- */
+
+#skilltestbench-panel .stb-empty {
+  padding: 22px 18px;
+  text-align: center;
+}
+
+#skilltestbench-panel .stb-empty-title {
+  font-family: "Inter Display", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--stb-ink);
+}
+
+#skilltestbench-panel .stb-empty-sub {
+  margin-top: 6px;
+  color: var(--stb-muted);
+  font-size: 12px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+#skilltestbench-panel .stb-empty code {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--stb-line);
+  border-radius: 6px;
+  padding: 1px 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+}
+
+#skilltestbench-panel .stb-empty-hint {
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--stb-muted);
+  opacity: 0.8;
+}
+
+#skilltestbench-panel .stb-empty-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#skilltestbench-panel .stb-empty-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #0b0e14;
+  background: var(--stb-aqua, #4cd1c8);
+  border: 1px solid var(--stb-aqua, #4cd1c8);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: filter 120ms ease, transform 120ms ease;
+}
+#skilltestbench-panel .stb-empty-cta:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+#skilltestbench-panel .stb-empty-cta-alt {
+  color: var(--stb-fg, #e5e7eb);
+  background: transparent;
+  border: 1px solid var(--stb-line);
+}
+#skilltestbench-panel .stb-empty-cta-alt:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+#skilltestbench-panel .stb-skeleton {
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.03) 100%);
+  background-size: 200% 100%;
+  animation: stb-shimmer 1.4s linear infinite;
+}
+
+#skilltestbench-panel .stb-skeleton + .stb-skeleton { margin-top: 8px; }
+#skilltestbench-panel .stb-skeleton.stb-skeleton-sm { height: 9px; width: 60%; }
+
+@keyframes stb-shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+#skilltestbench-panel .stb-close {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: rgba(248, 252, 250, 0.7);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: background 120ms ease, color 120ms ease;
+}
+#skilltestbench-panel .stb-close:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+#skilltestbench-panel .stb-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---------- dark mode (GitHub dark theme aware) ---------- */
+
+html[data-color-mode="dark"] #skilltestbench-panel,
+html[data-dark-theme] #skilltestbench-panel,
+@media (prefers-color-scheme: dark) {
+  /* no-op anchor */
+}
+
+/* The panel is always dark — see :root above. GitHub's data-color-mode
+   is intentionally ignored: the audit surface carries its own identity. */
+
+#skilltestbench-panel .stb-axis,
+#skilltestbench-panel .stb-chart,
+#skilltestbench-panel .stb-foot,
+#skilltestbench-panel .stb-details {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+html[data-color-mode="dark"] #skilltestbench-panel .stb-verdict-ring .stb-ring-track,
+html[data-dark-theme]       #skilltestbench-panel .stb-verdict-ring .stb-ring-track {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+html[data-color-mode="dark"] #skilltestbench-panel .stb-verdict::before,
+html[data-dark-theme]       #skilltestbench-panel .stb-verdict::before {
+  background:
+    radial-gradient(circle at 18% 50%, rgba(34, 197, 94, 0.14), transparent 55%);
+}
+
+html[data-color-mode="dark"] #skilltestbench-panel .stb-bar,
+html[data-dark-theme]       #skilltestbench-panel .stb-bar,
+html[data-color-mode="dark"] #skilltestbench-panel .stb-chart-row .stb-track,
+html[data-dark-theme]       #skilltestbench-panel .stb-chart-row .stb-track {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ---------- live sandbox log stream ---------- */
+
+#skilltestbench-panel .stb-log {
+  margin-top: 14px;
+  border-top: 1px solid var(--stb-line);
+  padding-top: 12px;
+}
+
+#skilltestbench-panel .stb-log-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  color: var(--stb-faint);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+#skilltestbench-panel .stb-log-engine {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--stb-teal-800);
+}
+
+#skilltestbench-panel .stb-log-engine-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--stb-aqua);
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.7);
+  animation: stb-pulse 1.6s infinite;
+}
+
+#skilltestbench-panel .stb-log-stream {
+  background: #060f15;
+  border: 1px solid rgba(34, 197, 94, 0.18);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  line-height: 1.55;
+  color: #cce6e8;
+  height: 132px;
+  max-height: 132px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(34, 197, 94, 0.25) transparent;
+}
+
+#skilltestbench-panel .stb-log-stream::-webkit-scrollbar { width: 6px; }
+#skilltestbench-panel .stb-log-stream::-webkit-scrollbar-thumb {
+  background: rgba(34, 197, 94, 0.25);
+  border-radius: 3px;
+}
+
+#skilltestbench-panel .stb-log-line {
+  display: grid;
+  grid-template-columns: 88px 58px 1fr;
+  gap: 6px;
+  align-items: baseline;
+  padding: 1px 0;
+  animation: stb-log-in 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes stb-log-in {
+  from { opacity: 0; transform: translateY(3px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+#skilltestbench-panel .stb-log-time {
+  color: rgba(154, 178, 189, 0.55);
+  font-size: 9.5px;
+}
+
+#skilltestbench-panel .stb-log-tag {
+  color: var(--stb-aqua);
+  font-weight: 700;
+  font-size: 10px;
+}
+
+#skilltestbench-panel .stb-log-line.stb-log-ok   .stb-log-tag { color: var(--stb-good); }
+#skilltestbench-panel .stb-log-line.stb-log-warn .stb-log-tag { color: #f0c060; }
+#skilltestbench-panel .stb-log-line.stb-log-bad  .stb-log-tag { color: #ff8a78; }
+
+#skilltestbench-panel .stb-log-msg {
+  color: #d6e5e7;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#skilltestbench-panel .stb-log-line.stb-log-warn .stb-log-msg { color: #ffd784; }
+#skilltestbench-panel .stb-log-line.stb-log-bad  .stb-log-msg { color: #ffb09b; }
+
+/* Light-mode adjustment for the log block — keep terminal feel even in paper theme. */
+#skilltestbench-panel .stb-log-stream {
+  /* same dark terminal block for both modes — already dark on purpose */
+}
+
+/* ---------- footer action row ---------- */
+
+/* The panel chrome is unconditionally dark (see :root above). These two
+   selectors used to default to light-mode colours (white-tinted background,
+   dark teal text) under the assumption that an html[data-color-mode="dark"]
+   override would correct them on dark hosts. Marketplaces like clawhub.ai
+   don't set that attribute, so the action row rendered as a grey bar at the
+   bottom of the panel with an invisible Details button. Make the dark
+   palette the unconditional default — the light overrides remain below for
+   hosts that explicitly request light mode. */
+#skilltestbench-panel .stb-actions {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px 4px;
+  border-top: 1px solid var(--stb-line);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+#skilltestbench-panel .stb-action {
+  appearance: none;
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--stb-ink);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease, transform 80ms ease;
+}
+
+#skilltestbench-panel .stb-action svg {
+  width: 11px;
+  height: 11px;
+  flex: 0 0 auto;
+}
+
+#skilltestbench-panel .stb-action:hover {
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.4);
+  transform: translateY(-1px);
+}
+
+#skilltestbench-panel .stb-action-ghost {
+  background: transparent;
+  /* On a dark panel, --stb-muted (#8B9097) was the same near-grey as the
+     action bar background — fading the Details label to near-invisible.
+     Bump to --stb-fg-2 so the label reads clearly. */
+  color: var(--stb-fg-2);
+}
+
+#skilltestbench-panel .stb-action-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(245, 158, 11, 0.18);
+  color: var(--stb-warn);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* host-dark override removed: the .stb-action default above already uses
+   the dark palette unconditionally. */
+
+#skilltestbench-panel .stb-foot-meta {
+  color: var(--stb-faint);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ---------- toast (copy link / coming soon) ---------- */
+
+#skilltestbench-panel .stb-toast {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 12px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #161A1F, #111418);
+  color: #d3f6f3;
+  font-size: 11.5px;
+  text-align: center;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+#skilltestbench-panel .stb-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#skilltestbench-panel .stb-toast[data-tone="good"] {
+  border-color: rgba(74, 222, 128, 0.45);
+  color: #c6f5d4;
+}
+#skilltestbench-panel .stb-toast[data-tone="warn"] {
+  border-color: rgba(245, 158, 11, 0.5);
+  color: #ffe89a;
+}
+
+/* ---------- detection toast (bottom-right confirmation) ---------- */
+
+#skilltestbench-toast {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 320px;
+  max-width: calc(100vw - 44px);
+  background: linear-gradient(180deg, #111418, #0B0E12);
+  color: #F2F4F7;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 4px 8px rgba(0, 0, 0, 0.55);
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-feature-settings: "ss01", "cv11", "cv02";
+  font-size: 13px;
+  line-height: 1.45;
+  z-index: 999999;
+  overflow: hidden;
+  animation: stb-toast-rise 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes stb-toast-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+#skilltestbench-toast .stb-toast-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 14px 8px;
+}
+
+#skilltestbench-toast .stb-toast-badge {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(34, 197, 94, 0.55);
+  background: rgba(34, 197, 94, 0.10);
+  border-radius: 7px;
+  color: #22C55E;
+  font-family: "Inter Display", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+#skilltestbench-toast .stb-toast-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+#skilltestbench-toast .stb-toast-title {
+  font-family: "Inter Display", "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: #F2F4F7;
+}
+
+#skilltestbench-toast .stb-toast-sub {
+  margin-top: 2px;
+  font-size: 11.5px;
+  color: #8B9097;
+  font-family: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  letter-spacing: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#skilltestbench-toast .stb-toast-close {
+  flex: 0 0 auto;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: #5C6168;
+  font-size: 18px;
+  line-height: 1;
+  padding: 2px 4px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: color 120ms ease, background 120ms ease;
+}
+#skilltestbench-toast .stb-toast-close:hover {
+  color: #F2F4F7;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+#skilltestbench-toast .stb-toast-actions {
+  display: flex;
+  gap: 8px;
+  padding: 4px 14px 14px;
+}
+
+#skilltestbench-toast .stb-toast-btn {
+  flex: 1 1 auto;
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 7px;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  color: #F2F4F7;
+  transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
+}
+
+#skilltestbench-toast .stb-toast-btn svg {
+  width: 12px;
+  height: 12px;
+}
+
+#skilltestbench-toast .stb-toast-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-1px);
+}
+
+#skilltestbench-toast .stb-toast-btn-primary {
+  background: linear-gradient(180deg, rgba(34, 197, 94, 0.18), rgba(34, 197, 94, 0.10));
+  border-color: rgba(34, 197, 94, 0.55);
+  color: #22C55E;
+}
+
+#skilltestbench-toast .stb-toast-btn-primary:hover {
+  background: linear-gradient(180deg, rgba(34, 197, 94, 0.24), rgba(34, 197, 94, 0.14));
+  border-color: rgba(34, 197, 94, 0.75);
+  color: #34D26E;
+}
+
+#skilltestbench-toast .stb-toast-btn-ghost {
+  color: #8B9097;
+}
+#skilltestbench-toast .stb-toast-btn-ghost:hover {
+  color: #C9CFD7;
+}
