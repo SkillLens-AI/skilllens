@@ -1,0 +1,116 @@
+{
+  "schema": "skilllens_artifacts_stats_v1",
+  "frozen": "2026-05-07",
+  "n_skills": 227,
+  "n_runs": 8,
+  "n_reports": 1806,
+  "n_judge_items": 25642,
+  "n_owners_anon": 50,
+  "n_categories": 23,
+  "categories": [
+    {
+      "name": "educational-instruction-and-library-occupations",
+      "count": 10
+    },
+    {
+      "name": "legal-occupations",
+      "count": 10
+    },
+    {
+      "name": "healthcare-practitioners-and-technical-occupations",
+      "count": 10
+    },
+    {
+      "name": "installation-maintenance-and-repair-occupations",
+      "count": 10
+    },
+    {
+      "name": "building-and-grounds-cleaning-and-maintenance-occupations",
+      "count": 10
+    },
+    {
+      "name": "community-and-social-service-occupations",
+      "count": 10
+    },
+    {
+      "name": "farming-fishing-and-forestry-occupations",
+      "count": 10
+    },
+    {
+      "name": "arts-design-entertainment-sports-and-media-occupations",
+      "count": 10
+    },
+    {
+      "name": "production-occupations",
+      "count": 10
+    },
+    {
+      "name": "military-specific-occupations",
+      "count": 10
+    },
+    {
+      "name": "management-occupations",
+      "count": 10
+    },
+    {
+      "name": "sales-and-related-occupations",
+      "count": 10
+    },
+    {
+      "name": "transportation-and-material-moving-occupations",
+      "count": 10
+    },
+    {
+      "name": "construction-and-extraction-occupations",
+      "count": 10
+    },
+    {
+      "name": "food-preparation-and-serving-related-occupations",
+      "count": 10
+    },
+    {
+      "name": "life-physical-and-social-science-occupations",
+      "count": 10
+    },
+    {
+      "name": "office-and-administrative-support-occupations",
+      "count": 10
+    },
+    {
+      "name": "personal-care-and-service-occupations",
+      "count": 10
+    },
+    {
+      "name": "protective-service-occupations",
+      "count": 10
+    },
+    {
+      "name": "architecture-and-engineering-occupations",
+      "count": 9
+    },
+    {
+      "name": "business-and-financial-operations-occupations",
+      "count": 9
+    },
+    {
+      "name": "healthcare-support-occupations",
+      "count": 9
+    },
+    {
+      "name": "computer-and-mathematical-occupations",
+      "count": 9
+    }
+  ],
+  "security": {
+    "by_severity_total": {
+      "H": 247,
+      "M": 177,
+      "L": 294
+    },
+    "n_run_skill_with_findings": 293
+  },
+  "utility": {
+    "mean_pass_rate_gain": 0.22127922561429636,
+    "n_with_gain": 1343
+  }
+}

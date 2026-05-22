@@ -446,10 +446,10 @@ them end-to-end:
    pinned Harbor SHA `bce6a018f70418daefc5c4f9aedd14cd1c79b907` from `pyproject.toml`. Re-installing
    without the pin can pick up upstream Harbor changes that alter task
    semantics.
-2. **Pin the corpus.** The 226 evaluated skills are catalogued in the companion
-   artifacts repo under
-   [`SkillLens-AI/skilllens-artifacts`](https://github.com/SkillLens-AI/skilllens-artifacts).
-   Each entry includes a content hash; reject corpora whose hashes do not match.
+2. **Pin the corpus.** The 226 evaluated skills are catalogued in this repo
+   under [`docs/artifacts/data/skills/`](docs/artifacts/data/skills/). Each
+   entry has a SHA-256 hash in `docs/artifacts/data/checksums.txt`; reject
+   corpora whose hashes do not match.
 3. **Pin the judge.** All judging in the paper used `claude-sonnet-4-6` as the
    utility judge and the security judge. Stage 4 reads `BaseConfig.MODEL` from
    `config.py` for both judges; do not override it.
@@ -514,14 +514,13 @@ land inside Codex's sandbox-writable state directory — is what makes the
 
 ## Trace artifacts
 
-The companion artifacts repository at
-[`SkillLens-AI/skilllens-artifacts`](https://github.com/SkillLens-AI/skilllens-artifacts)
-publishes the **evaluation outcomes** for the 227-skill × 8-run
-sweep reported in the paper — per-skill judge verdicts, capability-level
-summaries, the aggregate CSV, the run / category index, and SHA-256
-checksums for integrity verification. The artifacts site at
-[`skilllens-ai.github.io/skilllens-artifacts`](https://skilllens-ai.github.io/skilllens-artifacts/)
-exposes the same payloads through a search-first UI.
+The evaluation artifacts ship inside this repository under
+[`docs/artifacts/`](docs/artifacts/). They cover the **evaluation outcomes**
+for the 227-skill × 8-run sweep reported in the paper — per-skill judge
+verdicts, capability-level summaries, the aggregate CSV, the run /
+category index, and SHA-256 checksums for integrity verification. The
+search-first browser UI is mounted at
+[`skilllens-ai.github.io/skilllens/artifacts/`](https://skilllens-ai.github.io/skilllens/artifacts/).
 
 **Full per-trial trajectories** — Harbor's raw `trajectory.json`,
 `agent/`, `command-N/`, `verifier_result.json`, and the rest of the
@@ -534,7 +533,7 @@ released as a separate companion bundle** once the sanitization
 pass for the full corpus is complete and audited.
 
 For readers reproducing the paper: the published per-skill JSONs under
-`skilllens-artifacts/docs/data/skills/*.json` already contain the
+`docs/artifacts/data/skills/*.json` already contain the
 LLM-judge verdicts (`utility_judge`, `security_judge` blocks) and
 capability-dimension scoring needed to evaluate the methodology.
 The trajectories add audit-level traceability (exact agent actions
@@ -573,7 +572,7 @@ The extension is in active development and **is not yet ready for public
 release**. A companion repository will appear under
 [`SkillLens-AI`](https://github.com/SkillLens-AI) once the implementation
 matures. In the meantime, the artifacts site at
-[`skilllens-ai.github.io/skilllens-artifacts`](https://skilllens-ai.github.io/skilllens-artifacts/)
+[`skilllens-ai.github.io/skilllens/artifacts/`](https://skilllens-ai.github.io/skilllens/artifacts/)
 already serves the same per-skill report payloads (under
 `docs/data/skills/*.json`) that the extension is built to consume, so
 contributors can preview the look-up surface end-to-end via the site
