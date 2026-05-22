@@ -1,0 +1,79 @@
+# editor and OS
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# headless test artifacts
+_smoke*.png
+_rendered.html
+
+# ── Python (skilllens-eval code artifact) ─────────────────────────────────
+# ── Python ──────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+.eggs/
+dist/
+build/
+sdist/
+wheels/
+pip-wheel-metadata/
+.installed.cfg
+MANIFEST
+
+# ── Virtual environments ────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# ── Environment / secrets ───────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Test / type-check / coverage caches ─────────────────────────────────────
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.cover
+
+# ── Run output / experiment artifacts ───────────────────────────────────────
+jobs/
+traces/
+runs/
+*.log
+**/run_output/*.jsonl
+**/jobs/**/*.jsonl
+
+# ── IDE / editor ────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── OS ──────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# ── Internal staging artifacts (not for public release) ─────────────────────
+_translation_workspace.json
+_to_translate.md
+_apply_translations.py
+_harbor_setup/
+STATUS.md
+ANONYMITY_REPORT.md
+RELEASE_PUSH.md

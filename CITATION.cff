@@ -1,0 +1,45 @@
+# YAML 1.2
+# https://citation-file-format.github.io/
+cff-version: 1.2.0
+message: >-
+  If you use this software, please cite the SkillLens paper (arXiv preprint
+  forthcoming). Replace the placeholder author list below with the canonical
+  author block once the arXiv submission is finalized.
+title: >-
+  SkillLens: From Task-First Evaluation to Skill-Centered Assessment
+authors:
+  # FIXME: replace with the real author list before public announcement.
+  - name: "SkillLens-AI Contributors"
+date-released: "2026-05-07"
+url: "https://skilllens-ai.github.io/"
+repository-code: "https://github.com/SkillLens-AI/skilllens"
+license: Apache-2.0
+type: software
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.20253170
+    description: Companion dataset on Zenodo (CDLA-Permissive-2.0).
+keywords:
+  - large-language-models
+  - agent-evaluation
+  - skill-assessment
+  - benchmark
+  - llm-agents
+abstract: >-
+  SkillLens is an evaluation framework that measures the incremental
+  task-completion gain that an Anthropic-style /skill markdown file
+  provides to a coding or research agent, on top of a baseline run
+  without the skill. It pairs scheme generation, sandboxed task
+  execution via Harbor, and an LLM judge that scores both utility
+  (capability gain) and security (exploitability of skill contents).
+  This repository is the open-source companion to the SkillLens
+  arXiv preprint.
+preferred-citation:
+  type: article
+  # FIXME: replace with the real author list and arXiv eprint ID.
+  authors:
+    - name: "SkillLens-AI Contributors"
+  title: >-
+    SkillLens: From Task-First Evaluation to Skill-Centered Assessment
+  year: 2026
+  journal: "arXiv preprint"
