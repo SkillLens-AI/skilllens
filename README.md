@@ -520,7 +520,7 @@ for the 227-skill × 8-run sweep reported in the paper — per-skill judge
 verdicts, capability-level summaries, the aggregate CSV, the run /
 category index, and SHA-256 checksums for integrity verification. The
 search-first browser UI is mounted at
-[`skilllens-ai.github.io/skilllens/artifacts/`](https://skilllens-ai.github.io/skilllens/artifacts/).
+[`skilllens-ai.github.io/artifacts/`](https://skilllens-ai.github.io/artifacts/).
 
 **Full per-trial trajectories** — Harbor's raw `trajectory.json`,
 `agent/`, `command-N/`, `verifier_result.json`, and the rest of the
@@ -572,7 +572,7 @@ The extension is in active development and **is not yet ready for public
 release**. A companion repository will appear under
 [`SkillLens-AI`](https://github.com/SkillLens-AI) once the implementation
 matures. In the meantime, the artifacts site at
-[`skilllens-ai.github.io/skilllens/artifacts/`](https://skilllens-ai.github.io/skilllens/artifacts/)
+[`skilllens-ai.github.io/artifacts/`](https://skilllens-ai.github.io/artifacts/)
 already serves the same per-skill report payloads (under
 `docs/data/skills/*.json`) that the extension is built to consume, so
 contributors can preview the look-up surface end-to-end via the site
