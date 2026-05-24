@@ -105,11 +105,25 @@ There are two ways to run the extension; pick the one that matches your goal.
 
 **1. Default — zero config (most users)**
 
-Install the extension and you're done. Lookups go to the public artifacts
-mirror at `https://skilllens-ai.github.io/skilllens/artifacts/api/lookup/`,
-which serves the same 200+ skill reports from our paper. No Python, no
-local server. Skills that haven't been evaluated yet return a
-`not_evaluated` status — the panel labels these clearly.
+Install the extension and you're done. The extension calls
+`GET <mirror>/lookup/<owner>__<repo>.json`, where `<mirror>` is the public
+artifacts host:
+
+```
+https://skilllens-ai.github.io/skilllens/artifacts/api
+```
+
+That host serves the same 200+ skill reports from our paper. Skills that
+haven't been evaluated yet return a `not_evaluated` status — the panel
+labels these clearly. No Python, no local server.
+
+Want to see what's covered before installing?
+
+- Browse the HTML listing at
+  [`/skilllens/artifacts/api/lookup/`](https://skilllens-ai.github.io/skilllens/artifacts/api/lookup/)
+  (filterable; one link per repo).
+- Or fetch the JSON index at
+  [`/skilllens/artifacts/api/index.json`](https://skilllens-ai.github.io/skilllens/artifacts/api/index.json).
 
 **2. Advanced — run the backend (self-host or live evaluation)**
 

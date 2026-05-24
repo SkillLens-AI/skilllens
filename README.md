@@ -600,6 +600,14 @@ by default and pulls real reports for every skill in the published
 artifacts index (227 skills × 8 runs). Skills outside the index return
 `not_evaluated` and the panel labels them as such.
 
+To browse what's covered without using the extension:
+
+- **HTML listing** —
+  [`/skilllens/artifacts/api/lookup/`](https://skilllens-ai.github.io/skilllens/artifacts/api/lookup/)
+  (filterable table, one row per `<owner>__<repo>.json`).
+- **Machine-readable index** —
+  [`/skilllens/artifacts/api/index.json`](https://skilllens-ai.github.io/skilllens/artifacts/api/index.json).
+
 **Advanced — point at a local backend:**
 
 ```bash
