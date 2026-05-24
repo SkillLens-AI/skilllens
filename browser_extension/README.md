@@ -19,42 +19,38 @@ skill?" question into a one-click lookup against a SkillLens report.
 
 ## Screenshots
 
-The four states a user sees on a supported page, from detection to expanded
-audit report. Captured against a mock `clawhub.ai` skill page; the GitHub and
-other marketplace surfaces use the same in-page panel.
+Three states a user sees on a supported page, from detection to the final
+audit report. Captured live against the ClawHub marketplace (`fitness-log`
+by `bytesagain1`); the GitHub and other marketplace surfaces use the same
+in-page panel.
 
 <p align="center">
-  <img src="screenshots/demo_01_detection_toast.png"
+  <img src="screenshots/01_detection_toast.png"
        alt="Detection toast — opt-in card appears bottom-right after the content script identifies a SKILL.md candidate"
-       width="720"><br>
+       width="820"><br>
   <em>1. Detection toast — opt-in card appears in the bottom-right after the
-  content script identifies a <code>SKILL.md</code> candidate on the page.</em>
+  content script identifies a <code>SKILL.md</code> candidate on the page.
+  Clicking <strong>Inspect this skill</strong> kicks off the lookup.</em>
 </p>
 
 <p align="center">
-  <img src="screenshots/demo_02_analyzing.png"
+  <img src="screenshots/02_inspecting.png"
        alt="Inspection in progress — panel streams the five evaluation stages"
-       width="720"><br>
-  <em>2. Inspection in progress — the panel expands and streams the five
-  evaluation stages while the backend computes utility, safety, and cost.</em>
+       width="820"><br>
+  <em>2. Inspection in progress — the panel expands on the right and streams
+  the five evaluation stages (fetching bundle, scanning permissions, paired
+  pass@1 benchmark, exploit &amp; decoy aggregation, composing verdict) while
+  the backend computes utility, safety, and cost.</em>
 </p>
 
 <p align="center">
-  <img src="screenshots/demo_03_audit_report.png"
+  <img src="screenshots/03_audit_report.png"
        alt="Audit report — verdict ring, three SkillLens axes, paper-backed benchmark counts"
-       width="720"><br>
-  <em>3. Audit report — verdict ring, the three SkillLens axes
-  (<code>pass_rate_gain</code> / safety score / cost overhead), paper-backed
-  benchmark counts, and pinned findings.</em>
-</p>
-
-<p align="center">
-  <img src="screenshots/demo_04_audit_report_details.png"
-       alt="Report details expanded — static + runtime findings, exploit evidence, provenance"
-       width="720"><br>
-  <em>4. Report details expanded — full static-scan + runtime findings,
-  exploit evidence, supply-chain provenance, and a per-task pass-rate
-  breakdown.</em>
+       width="820"><br>
+  <em>3. Audit report — verdict ring (here: <strong>Risky</strong>, score 36),
+  the three SkillLens axes (<code>pass_rate_gain</code> / safety score / cost
+  overhead), paper-backed benchmark counts, and pinned static- and
+  runtime-scan findings.</em>
 </p>
 
 ---
