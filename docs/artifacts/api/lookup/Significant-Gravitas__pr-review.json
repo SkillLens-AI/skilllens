@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "pr-review",
+    "owner": "Significant-Gravitas",
+    "repo": "pr-review",
+    "skillPath": "pr-review",
+    "category": "computer-and-mathematical-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.2807,
+      "baseline": 0.3333,
+      "withSkill": 0.614,
+      "tasks": 15,
+      "items": 114,
+      "wiPassedItems": 70,
+      "woPassedItems": 38
+    },
+    "safety": {
+      "riskLevel": "medium",
+      "staticHits": 6,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 6,
+        "L": 0
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 50.35,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

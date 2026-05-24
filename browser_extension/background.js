@@ -1,6 +1,9 @@
 const JOB_PREFIX = "job:";
 const DOWNLOAD_MAP_PREFIX = "download-job:";
-const DEFAULT_SERVER_BASE_URL = "http://127.0.0.1:8765";
+// Default points at the public artifacts mirror so the extension surfaces
+// real evaluation data with zero configuration. Users running the local
+// mock server can override this in the popup's Advanced settings.
+const DEFAULT_SERVER_BASE_URL = "https://skilllens-ai.github.io/skilllens/artifacts/api";
 const SERVER_BASE_URL_STORAGE_KEY = "skilllens_server_base_url";
 
 let LOCAL_SERVER_BASE_URL = DEFAULT_SERVER_BASE_URL;

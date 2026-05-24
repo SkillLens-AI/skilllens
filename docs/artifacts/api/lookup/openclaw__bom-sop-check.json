@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "bom-sop-check",
+    "owner": "openclaw",
+    "repo": "bom-sop-check",
+    "skillPath": "bom-sop-check",
+    "category": "production-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.1842,
+      "baseline": 0.2281,
+      "withSkill": 0.4123,
+      "tasks": 12,
+      "items": 114,
+      "wiPassedItems": 47,
+      "woPassedItems": 26
+    },
+    "safety": {
+      "riskLevel": "high",
+      "staticHits": 21,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 12,
+        "M": 3,
+        "L": 6
+      }
+    },
+    "cost": {
+      "deltaTimeSec": -157.13,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

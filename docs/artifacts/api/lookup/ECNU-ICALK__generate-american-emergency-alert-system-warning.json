@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "generate-american-emergency-alert-system-warning",
+    "owner": "ECNU-ICALK",
+    "repo": "generate-american-emergency-alert-system-warning",
+    "skillPath": "generate-american-emergency-alert-system-warning",
+    "category": "protective-service-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.3016,
+      "baseline": 0.5873,
+      "withSkill": 0.8889,
+      "tasks": 18,
+      "items": 126,
+      "wiPassedItems": 112,
+      "woPassedItems": 74
+    },
+    "safety": {
+      "riskLevel": "unknown",
+      "staticHits": 0,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": false,
+      "severityCounts": {
+        "H": 0,
+        "M": 0,
+        "L": 0
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 45.23,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

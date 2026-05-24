@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "advogado-especialista",
+    "owner": "sickn33",
+    "repo": "advogado-especialista",
+    "skillPath": "advogado-especialista",
+    "category": "legal-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.2593,
+      "baseline": 0.6481,
+      "withSkill": 0.9074,
+      "tasks": 17,
+      "items": 108,
+      "wiPassedItems": 98,
+      "woPassedItems": 70
+    },
+    "safety": {
+      "riskLevel": "medium",
+      "staticHits": 9,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 9,
+        "L": 0
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 15.99,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

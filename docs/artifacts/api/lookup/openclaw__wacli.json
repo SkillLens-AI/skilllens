@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "wacli",
+    "owner": "openclaw",
+    "repo": "wacli",
+    "skillPath": "wacli",
+    "category": "computer-and-mathematical-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.4706,
+      "baseline": 0.4706,
+      "withSkill": 0.9412,
+      "tasks": 16,
+      "items": 102,
+      "wiPassedItems": 96,
+      "woPassedItems": 48
+    },
+    "safety": {
+      "riskLevel": "medium",
+      "staticHits": 6,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 3,
+        "L": 3
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 7.95,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

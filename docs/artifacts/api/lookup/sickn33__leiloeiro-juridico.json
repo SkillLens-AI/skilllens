@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "leiloeiro-juridico",
+    "owner": "sickn33",
+    "repo": "leiloeiro-juridico",
+    "skillPath": "leiloeiro-juridico",
+    "category": "legal-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.1429,
+      "baseline": 0.8492,
+      "withSkill": 0.9921,
+      "tasks": 18,
+      "items": 126,
+      "wiPassedItems": 125,
+      "woPassedItems": 107
+    },
+    "safety": {
+      "riskLevel": "medium",
+      "staticHits": 6,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 3,
+        "L": 3
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 67.69,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

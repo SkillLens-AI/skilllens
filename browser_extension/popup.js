@@ -4,7 +4,10 @@
 // five seconds and route users to the live surfaces (GitHub overlay, marketplace
 // button, full report popup).
 
-const DEFAULT_SERVER_BASE_URL = "http://127.0.0.1:8765";
+// Public artifacts mirror works zero-config. Switch to a local
+// ``http://127.0.0.1:8765`` server via the Backend URL setting if you want
+// to evaluate skills on demand or self-host the lookup index.
+const DEFAULT_SERVER_BASE_URL = "https://skilllens-ai.github.io/skilllens/artifacts/api";
 const SERVER_BASE_URL_STORAGE_KEY = "skilllens_server_base_url";
 
 function getServerBaseUrl() {

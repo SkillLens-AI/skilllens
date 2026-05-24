@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "qsr-labor-leak-auditor",
+    "owner": "openclaw",
+    "repo": "qsr-labor-leak-auditor",
+    "skillPath": "qsr-labor-leak-auditor",
+    "category": "food-preparation-and-serving-related-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.1667,
+      "baseline": 0.7685,
+      "withSkill": 0.9352,
+      "tasks": 18,
+      "items": 108,
+      "wiPassedItems": 101,
+      "woPassedItems": 83
+    },
+    "safety": {
+      "riskLevel": "medium",
+      "staticHits": 6,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 3,
+        "L": 3
+      }
+    },
+    "cost": {
+      "deltaTimeSec": -2.58,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

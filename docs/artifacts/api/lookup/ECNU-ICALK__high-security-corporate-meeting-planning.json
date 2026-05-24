@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "high-security-corporate-meeting-planning",
+    "owner": "ECNU-ICALK",
+    "repo": "high-security-corporate-meeting-planning",
+    "skillPath": "high-security-corporate-meeting-planning",
+    "category": "protective-service-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.119,
+      "baseline": 0.8175,
+      "withSkill": 0.9365,
+      "tasks": 18,
+      "items": 126,
+      "wiPassedItems": 118,
+      "woPassedItems": 103
+    },
+    "safety": {
+      "riskLevel": "low",
+      "staticHits": 0,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 0,
+        "L": 0
+      }
+    },
+    "cost": {
+      "deltaTimeSec": -29.17,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

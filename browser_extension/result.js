@@ -3,7 +3,9 @@
 // (engine version, sandbox name, run id), but the user-facing brand is SkillLens.
 
 const JOB_PREFIX = "job:";
-const DEFAULT_SERVER_BASE_URL = "http://127.0.0.1:8765";
+// Public artifacts mirror works zero-config for lookups. Live /evaluate
+// requires pointing the Backend URL setting at a local mock server.
+const DEFAULT_SERVER_BASE_URL = "https://skilllens-ai.github.io/skilllens/artifacts/api";
 const SERVER_BASE_URL_STORAGE_KEY = "skilllens_server_base_url";
 
 let configuredServerBaseUrl = DEFAULT_SERVER_BASE_URL;

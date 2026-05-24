@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "implementing-ics-firewall-with-tofino",
+    "owner": "mukul975",
+    "repo": "implementing-ics-firewall-with-tofino",
+    "skillPath": "implementing-ics-firewall-with-tofino",
+    "category": "architecture-and-engineering-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.1288,
+      "baseline": 0.75,
+      "withSkill": 0.8788,
+      "tasks": 18,
+      "items": 132,
+      "wiPassedItems": 116,
+      "woPassedItems": 99
+    },
+    "safety": {
+      "riskLevel": "medium",
+      "staticHits": 3,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 3,
+        "L": 0
+      }
+    },
+    "cost": {
+      "deltaTimeSec": -15.79,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

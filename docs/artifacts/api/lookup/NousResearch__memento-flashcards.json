@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "memento-flashcards",
+    "owner": "NousResearch",
+    "repo": "memento-flashcards",
+    "skillPath": "memento-flashcards",
+    "category": "educational-instruction-and-library-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.6765,
+      "baseline": 0.2451,
+      "withSkill": 0.9216,
+      "tasks": 17,
+      "items": 102,
+      "wiPassedItems": 94,
+      "woPassedItems": 25
+    },
+    "safety": {
+      "riskLevel": "high",
+      "staticHits": 18,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 9,
+        "M": 0,
+        "L": 9
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 68.97,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

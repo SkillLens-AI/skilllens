@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "leiloeiro-ia",
+    "owner": "sickn33",
+    "repo": "leiloeiro-ia",
+    "skillPath": "leiloeiro-ia",
+    "category": "legal-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.2778,
+      "baseline": 0.7222,
+      "withSkill": 1.0,
+      "tasks": 18,
+      "items": 108,
+      "wiPassedItems": 108,
+      "woPassedItems": 78
+    },
+    "safety": {
+      "riskLevel": "low",
+      "staticHits": 3,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 0,
+        "L": 3
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 126.58,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

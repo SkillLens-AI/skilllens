@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "mental-health-analyzer",
+    "owner": "sickn33",
+    "repo": "mental-health-analyzer",
+    "skillPath": "mental-health-analyzer",
+    "category": "community-and-social-service-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.3175,
+      "baseline": 0.627,
+      "withSkill": 0.9444,
+      "tasks": 18,
+      "items": 126,
+      "wiPassedItems": 119,
+      "woPassedItems": 79
+    },
+    "safety": {
+      "riskLevel": "low",
+      "staticHits": 3,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 0,
+        "L": 3
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 171.08,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

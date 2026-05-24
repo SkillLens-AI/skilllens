@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "experience-wisteria-shadow-trap-fukuoka",
+    "owner": "openclaw",
+    "repo": "experience-wisteria-shadow-trap-fukuoka",
+    "skillPath": "experience-wisteria-shadow-trap-fukuoka",
+    "category": "personal-care-and-service-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.4474,
+      "baseline": 0.114,
+      "withSkill": 0.5614,
+      "tasks": 16,
+      "items": 114,
+      "wiPassedItems": 64,
+      "woPassedItems": 13
+    },
+    "safety": {
+      "riskLevel": "high",
+      "staticHits": 15,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 9,
+        "M": 3,
+        "L": 3
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 220.1,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}
