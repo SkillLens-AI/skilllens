@@ -155,7 +155,7 @@ SkillLens/
 ├── local_mock_server/            ← stdlib HTTP server the extension calls
 │   ├── mock_skill_server.py      ← entrypoint, /lookup + /examples routes
 │   ├── adapter.py                ← skill_report.json → /lookup adapter
-│   ├── precomputed_evaluations.json
+│   ├── overrides.json               ← optional hand-curated entries
 │   └── README.md                 ← routes, CLI flags, data sources
 ├── scripts/
 │   └── sanitize_traces.py        ← trace anonymizer for artifact release

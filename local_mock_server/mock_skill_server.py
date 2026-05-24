@@ -86,8 +86,14 @@ def default_baked_api_dir() -> Path:
     return repo_root() / "docs" / "artifacts" / "api"
 
 
-def default_precomputed_path() -> Path:
-    return Path(__file__).resolve().parent / "precomputed_evaluations.json"
+def default_overrides_path() -> Path:
+    """Hand-curated overrides keyed by ``owner/repo``.
+
+    Loaded first by ``lookup_precomputed``; takes precedence over baked
+    artifacts and the legacy adapter index. Ship empty (``{}``) by default —
+    populate only with paper-final numbers you want to pin in the UI.
+    """
+    return Path(__file__).resolve().parent / "overrides.json"
 
 
 def default_manifest_path() -> Path:
@@ -102,7 +108,7 @@ def build_adapter_index() -> Dict[str, Dict[str, Any]]:
     """Build the {owner/repo: payload} index from algorithm-side artifacts.
 
     Returns an empty dict if the adapter module is missing or the manifest
-    cannot be loaded — the caller falls back to the manual precomputed file.
+    cannot be loaded — the caller falls back to overrides + baked artifacts.
     """
     try:
         from adapter import build_index  # local import keeps server importable
@@ -147,24 +153,27 @@ def lookup_baked_api(baked_api_dir: Optional[Path], owner: str, repo: str) -> Op
 
 
 def lookup_precomputed(store_path: Path, owner: str, repo: str) -> Dict[str, Any]:
-    """Look up an evaluation, preferring hand-curated entries over baked artifacts.
+    """Look up an evaluation, preferring hand-curated overrides over baked artifacts.
 
     Resolution order:
-      1. ``precomputed_evaluations.json`` (hand-curated, paper-final overrides)
+      1. ``overrides.json`` (hand-curated entries that pin paper-final numbers)
       2. ``docs/artifacts/api/lookup/<owner>__<repo>.json`` (baked from the
          published research artifacts via ``scripts/build_lookup_index.py``)
       3. ``adapter`` index built from ``Example/<skill>/skill_report.json``
          (legacy algorithm-side layout)
       4. ``not_evaluated``
+
+    Keys in the overrides file and on the wire are lowercase ``owner/repo``;
+    callers should normalise before invoking.
     """
     key = f"{owner}/{repo}"
 
-    # 1. Hand-curated precomputed entries take priority.
+    # 1. Hand-curated overrides take priority (typically empty).
     if store_path.exists():
         data = read_json_file(store_path) or {}
         entry = data.get(key)
         if isinstance(entry, dict):
-            return {"ok": True, "status": "ok", "evaluation": entry, "source": "precomputed"}
+            return {"ok": True, "status": "ok", "evaluation": entry, "source": "override"}
 
     # 2. Pre-baked /lookup files derived from docs/artifacts/data.
     baked_entry = lookup_baked_api(SERVER_STATE.get("bakedApiDir"), owner, repo)
@@ -1456,7 +1465,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                     "downloadsDir": str(SERVER_STATE["downloadsDir"]),
                     "resultsDir": str(SERVER_STATE["resultsDir"]),
                     "examplesDir": str(SERVER_STATE["examplesDir"]),
-                    "precomputedPath": str(SERVER_STATE["precomputedPath"]),
+                    "overridesPath": str(SERVER_STATE["overridesPath"]),
                     "manifestPath": str(SERVER_STATE.get("manifestPath", "")),
                     "pricingPath": str(SERVER_STATE.get("pricingPath", "")),
                     "adapterIndexSize": len(SERVER_STATE.get("adapterIndex") or {}),
@@ -1465,12 +1474,14 @@ class RequestHandler(BaseHTTPRequestHandler):
             return
 
         if parsed.path == "/lookup":
-            owner = (query.get("owner") or [""])[0].strip()
-            repo = (query.get("repo") or [""])[0].strip()
+            # Lowercase to match the baked-file naming convention. GitHub
+            # owner/repo are case-insensitive at resolution time anyway.
+            owner = (query.get("owner") or [""])[0].strip().lower()
+            repo = (query.get("repo") or [""])[0].strip().lower()
             if not owner or not repo:
                 self._send_json(400, {"ok": False, "error": "owner and repo are required"})
                 return
-            result = lookup_precomputed(SERVER_STATE["precomputedPath"], owner, repo)
+            result = lookup_precomputed(SERVER_STATE["overridesPath"], owner, repo)
             self._send_json(200, result)
             return
 
@@ -1483,12 +1494,12 @@ class RequestHandler(BaseHTTPRequestHandler):
                 self._send_json(404, {"ok": False, "error": "expected /lookup/<owner>__<repo>.json"})
                 return
             owner, _, repo = stem.partition("__")
-            owner = owner.strip()
-            repo = repo.strip()
+            owner = owner.strip().lower()
+            repo = repo.strip().lower()
             if not owner or not repo:
                 self._send_json(400, {"ok": False, "error": "owner and repo are required"})
                 return
-            result = lookup_precomputed(SERVER_STATE["precomputedPath"], owner, repo)
+            result = lookup_precomputed(SERVER_STATE["overridesPath"], owner, repo)
             self._send_json(200, result)
             return
 
@@ -1648,9 +1659,12 @@ def parse_args() -> argparse.Namespace:
         ),
     )
     parser.add_argument(
-        "--precomputed",
-        default=str(default_precomputed_path()),
-        help="Path to a JSON file with pre-computed SkillTestBench results, keyed by owner/repo.",
+        "--overrides",
+        default=str(default_overrides_path()),
+        help=(
+            "Path to overrides.json: hand-curated entries keyed by owner/repo "
+            "that take precedence over the baked artifacts (typically empty)."
+        ),
     )
     parser.add_argument(
         "--manifest",
@@ -1680,7 +1694,7 @@ def main() -> None:
     baked_api_dir: Optional[Path] = (
         Path(raw_baked).expanduser().resolve() if raw_baked else None
     )
-    precomputed_path = Path(args.precomputed).expanduser().resolve()
+    overrides_path = Path(args.overrides).expanduser().resolve()
     manifest_path = Path(args.manifest).expanduser().resolve()
     pricing_path = Path(args.pricing).expanduser().resolve()
 
@@ -1689,7 +1703,7 @@ def main() -> None:
     SERVER_STATE["resultsDir"] = results_dir
     SERVER_STATE["examplesDir"] = examples_dir
     SERVER_STATE["bakedApiDir"] = baked_api_dir
-    SERVER_STATE["precomputedPath"] = precomputed_path
+    SERVER_STATE["overridesPath"] = overrides_path
     SERVER_STATE["manifestPath"] = manifest_path
     SERVER_STATE["pricingPath"] = pricing_path
     SERVER_STATE["adminToken"] = args.admin_token
@@ -1716,7 +1730,7 @@ def main() -> None:
         )
     else:
         log("Baked API directory: disabled")
-    log("Using precomputed evaluations:", precomputed_path)
+    log("Using overrides file:", overrides_path)
     log("Using skill manifest:", manifest_path)
     log("Using model pricing:", pricing_path)
     log("Adapter-derived entries:", len(SERVER_STATE.get("adapterIndex") or {}))

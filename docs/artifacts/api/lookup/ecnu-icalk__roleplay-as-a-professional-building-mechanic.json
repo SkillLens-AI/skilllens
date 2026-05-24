@@ -2,38 +2,38 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "endurance",
-    "owner": "liigoQi",
-    "repo": "endurance",
-    "skillPath": "endurance",
-    "category": "healthcare-support-occupations",
+    "skillName": "roleplay-as-a-professional-building-mechanic",
+    "owner": "ecnu-icalk",
+    "repo": "roleplay-as-a-professional-building-mechanic",
+    "skillPath": "roleplay-as-a-professional-building-mechanic",
+    "category": "construction-and-extraction-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.3,
-      "baseline": 0.4,
-      "withSkill": 0.7,
+      "deltaPassAt1": 0.1111,
+      "baseline": 0.7778,
+      "withSkill": 0.8889,
       "tasks": 18,
-      "items": 90,
-      "wiPassedItems": 63,
-      "woPassedItems": 36
+      "items": 108,
+      "wiPassedItems": 96,
+      "woPassedItems": 84
     },
     "safety": {
-      "riskLevel": "high",
-      "staticHits": 6,
+      "riskLevel": "medium",
+      "staticHits": 3,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
       "evaluated": true,
       "severityCounts": {
-        "H": 3,
+        "H": 0,
         "M": 3,
         "L": 0
       }
     },
     "cost": {
-      "deltaTimeSec": 13.14,
+      "deltaTimeSec": -77.02,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

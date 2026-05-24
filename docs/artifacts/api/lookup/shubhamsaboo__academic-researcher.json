@@ -2,30 +2,30 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "generate-american-emergency-alert-system-warning",
-    "owner": "ECNU-ICALK",
-    "repo": "generate-american-emergency-alert-system-warning",
-    "skillPath": "generate-american-emergency-alert-system-warning",
-    "category": "protective-service-occupations",
+    "skillName": "academic-researcher",
+    "owner": "shubhamsaboo",
+    "repo": "academic-researcher",
+    "skillPath": "academic-researcher",
+    "category": "educational-instruction-and-library-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.3016,
-      "baseline": 0.5873,
-      "withSkill": 0.8889,
+      "deltaPassAt1": 0.0648,
+      "baseline": 0.8981,
+      "withSkill": 0.963,
       "tasks": 18,
-      "items": 126,
-      "wiPassedItems": 112,
-      "woPassedItems": 74
+      "items": 108,
+      "wiPassedItems": 104,
+      "woPassedItems": 97
     },
     "safety": {
-      "riskLevel": "unknown",
+      "riskLevel": "low",
       "staticHits": 0,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
-      "evaluated": false,
+      "evaluated": true,
       "severityCounts": {
         "H": 0,
         "M": 0,
@@ -33,7 +33,7 @@
       }
     },
     "cost": {
-      "deltaTimeSec": 45.23,
+      "deltaTimeSec": 68.87,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

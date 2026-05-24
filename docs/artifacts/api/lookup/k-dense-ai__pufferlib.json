@@ -2,38 +2,38 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "cargo-loading-safety-and-balance-protocols",
-    "owner": "ECNU-ICALK",
-    "repo": "cargo-loading-safety-and-balance-protocols",
-    "skillPath": "cargo-loading-safety-and-balance-protocols",
-    "category": "transportation-and-material-moving-occupations",
+    "skillName": "pufferlib",
+    "owner": "k-dense-ai",
+    "repo": "pufferlib",
+    "skillPath": "pufferlib",
+    "category": "life-physical-and-social-science-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.5098,
-      "baseline": 0.4804,
-      "withSkill": 0.9902,
-      "tasks": 18,
-      "items": 102,
-      "wiPassedItems": 101,
-      "woPassedItems": 49
+      "deltaPassAt1": 0.325,
+      "baseline": 0.45,
+      "withSkill": 0.775,
+      "tasks": 16,
+      "items": 120,
+      "wiPassedItems": 93,
+      "woPassedItems": 54
     },
     "safety": {
-      "riskLevel": "unknown",
-      "staticHits": 0,
+      "riskLevel": "medium",
+      "staticHits": 9,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
-      "evaluated": false,
+      "evaluated": true,
       "severityCounts": {
         "H": 0,
-        "M": 0,
-        "L": 0
+        "M": 6,
+        "L": 3
       }
     },
     "cost": {
-      "deltaTimeSec": -31.49,
+      "deltaTimeSec": -146.5,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

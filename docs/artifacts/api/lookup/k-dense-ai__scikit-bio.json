@@ -2,38 +2,38 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "pr-review",
-    "owner": "Significant-Gravitas",
-    "repo": "pr-review",
-    "skillPath": "pr-review",
-    "category": "computer-and-mathematical-occupations",
+    "skillName": "scikit-bio",
+    "owner": "k-dense-ai",
+    "repo": "scikit-bio",
+    "skillPath": "scikit-bio",
+    "category": "life-physical-and-social-science-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.2807,
-      "baseline": 0.3333,
-      "withSkill": 0.614,
-      "tasks": 15,
-      "items": 114,
-      "wiPassedItems": 70,
-      "woPassedItems": 38
+      "deltaPassAt1": 0.0667,
+      "baseline": 0.825,
+      "withSkill": 0.8917,
+      "tasks": 17,
+      "items": 120,
+      "wiPassedItems": 107,
+      "woPassedItems": 99
     },
     "safety": {
-      "riskLevel": "medium",
-      "staticHits": 6,
+      "riskLevel": "low",
+      "staticHits": 3,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
       "evaluated": true,
       "severityCounts": {
         "H": 0,
-        "M": 6,
-        "L": 0
+        "M": 0,
+        "L": 3
       }
     },
     "cost": {
-      "deltaTimeSec": 50.35,
+      "deltaTimeSec": -8.77,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

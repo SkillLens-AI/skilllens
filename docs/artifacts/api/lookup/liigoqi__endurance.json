@@ -2,22 +2,22 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "survivalist-expert-advice",
-    "owner": "ECNU-ICALK",
-    "repo": "survivalist-expert-advice",
-    "skillPath": "survivalist-expert-advice",
-    "category": "protective-service-occupations",
+    "skillName": "endurance",
+    "owner": "liigoqi",
+    "repo": "endurance",
+    "skillPath": "endurance",
+    "category": "healthcare-support-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": -0.0926,
-      "baseline": 0.9815,
-      "withSkill": 0.8889,
+      "deltaPassAt1": 0.3,
+      "baseline": 0.4,
+      "withSkill": 0.7,
       "tasks": 18,
-      "items": 108,
-      "wiPassedItems": 96,
-      "woPassedItems": 106
+      "items": 90,
+      "wiPassedItems": 63,
+      "woPassedItems": 36
     },
     "safety": {
       "riskLevel": "high",
@@ -33,7 +33,7 @@
       }
     },
     "cost": {
-      "deltaTimeSec": -31.04,
+      "deltaTimeSec": 13.14,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

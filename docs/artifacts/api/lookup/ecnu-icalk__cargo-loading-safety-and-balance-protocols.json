@@ -2,30 +2,30 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "academic-researcher",
-    "owner": "Shubhamsaboo",
-    "repo": "academic-researcher",
-    "skillPath": "academic-researcher",
-    "category": "educational-instruction-and-library-occupations",
+    "skillName": "cargo-loading-safety-and-balance-protocols",
+    "owner": "ecnu-icalk",
+    "repo": "cargo-loading-safety-and-balance-protocols",
+    "skillPath": "cargo-loading-safety-and-balance-protocols",
+    "category": "transportation-and-material-moving-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.0648,
-      "baseline": 0.8981,
-      "withSkill": 0.963,
+      "deltaPassAt1": 0.5098,
+      "baseline": 0.4804,
+      "withSkill": 0.9902,
       "tasks": 18,
-      "items": 108,
-      "wiPassedItems": 104,
-      "woPassedItems": 97
+      "items": 102,
+      "wiPassedItems": 101,
+      "woPassedItems": 49
     },
     "safety": {
-      "riskLevel": "low",
+      "riskLevel": "unknown",
       "staticHits": 0,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
-      "evaluated": true,
+      "evaluated": false,
       "severityCounts": {
         "H": 0,
         "M": 0,
@@ -33,7 +33,7 @@
       }
     },
     "cost": {
-      "deltaTimeSec": 68.87,
+      "deltaTimeSec": -31.49,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

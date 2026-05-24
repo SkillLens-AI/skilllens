@@ -1,10 +1,10 @@
-"""Validate adapter output (and precomputed_evaluations.json entries) against schema.json.
+"""Validate adapter output (and overrides.json entries) against schema.json.
 
 Usage::
 
     python validate.py                          # validate adapter index for Example/
     python validate.py path/to/payload.json     # validate a single payload
-    python validate.py --all                    # also validate precomputed_evaluations.json
+    python validate.py --all                    # also validate overrides.json
 
 Exits with code 0 on success, 1 on validation failure. Uses ``jsonschema`` if
 installed for full Draft 2020-12 validation; otherwise falls back to a
@@ -137,13 +137,13 @@ def collect_payloads(args: argparse.Namespace) -> Iterable[Tuple[str, dict]]:
     for key, payload in index.items():
         yield (f"adapter::{key}", payload)
 
-    if args.include_precomputed:
-        precomputed_path = Path(args.precomputed).resolve()
-        if precomputed_path.exists():
-            data = json.loads(precomputed_path.read_text(encoding="utf-8")) or {}
+    if args.include_overrides:
+        overrides_path = Path(args.overrides).resolve()
+        if overrides_path.exists():
+            data = json.loads(overrides_path.read_text(encoding="utf-8")) or {}
             for key, payload in data.items():
                 if isinstance(payload, dict):
-                    yield (f"precomputed::{key}", payload)
+                    yield (f"override::{key}", payload)
 
 
 def main(argv: Optional[Iterable[str]] = None) -> int:
@@ -152,12 +152,12 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
     parser.add_argument("--examples-dir", default=str(HERE.parent / "Example"))
     parser.add_argument("--manifest", default=str(HERE / "skill_manifest.json"))
     parser.add_argument("--pricing", default=str(HERE / "model_pricing.json"))
-    parser.add_argument("--precomputed", default=str(HERE / "precomputed_evaluations.json"))
+    parser.add_argument("--overrides", default=str(HERE / "overrides.json"))
     parser.add_argument(
         "--all",
-        dest="include_precomputed",
+        dest="include_overrides",
         action="store_true",
-        help="Also validate precomputed_evaluations.json entries.",
+        help="Also validate overrides.json entries.",
     )
     args = parser.parse_args(list(argv) if argv is not None else None)
 

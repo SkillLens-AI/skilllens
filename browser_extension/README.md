@@ -122,8 +122,7 @@ settings. Use this when you want to:
 
 The local server reads the same baked
 `docs/artifacts/api/lookup/<owner>__<repo>.json` files the public mirror
-serves, plus an optional `precomputed_evaluations.json` override file for
-hand-curated entries.
+serves, plus an optional `overrides.json` file for hand-curated entries.
 
 ---
 

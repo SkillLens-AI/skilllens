@@ -2,38 +2,38 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "bingbu",
-    "owner": "CyberPunk-2022",
-    "repo": "bingbu",
-    "skillPath": "bingbu",
-    "category": "military-specific-occupations",
+    "skillName": "parallel-web",
+    "owner": "k-dense-ai",
+    "repo": "parallel-web",
+    "skillPath": "parallel-web",
+    "category": "life-physical-and-social-science-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.3542,
-      "baseline": 0.5417,
-      "withSkill": 0.8958,
-      "tasks": 18,
-      "items": 96,
-      "wiPassedItems": 86,
-      "woPassedItems": 52
+      "deltaPassAt1": 0.1667,
+      "baseline": 0.6019,
+      "withSkill": 0.7685,
+      "tasks": 17,
+      "items": 108,
+      "wiPassedItems": 83,
+      "woPassedItems": 65
     },
     "safety": {
-      "riskLevel": "low",
-      "staticHits": 0,
+      "riskLevel": "high",
+      "staticHits": 24,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
       "evaluated": true,
       "severityCounts": {
-        "H": 0,
-        "M": 0,
-        "L": 0
+        "H": 9,
+        "M": 9,
+        "L": 6
       }
     },
     "cost": {
-      "deltaTimeSec": 31.53,
+      "deltaTimeSec": -111.92,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

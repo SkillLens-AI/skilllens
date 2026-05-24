@@ -297,9 +297,12 @@ async function lookupEvaluation(owner, repo, path) {
 
   // Path-style URL: works against both static hosts (GitHub Pages serving the
   // baked /lookup/<owner>__<repo>.json files) and the local mock server's
-  // matching route. The optional ``path`` is appended as a query parameter so
-  // a server can use it while static hosts simply ignore it.
-  const url = `${LOCAL_SERVER_BASE_URL}/lookup/${encodeURIComponent(owner)}__${encodeURIComponent(repo)}.json`
+  // matching route. owner/repo are lowercased to match the baked filenames;
+  // GitHub treats them as case-insensitive, but URLs preserve display case
+  // (e.g. ``github.com/ECNU-ICALK/foo``) so normalising here avoids 404s.
+  const ownerLc = owner.toLowerCase();
+  const repoLc = repo.toLowerCase();
+  const url = `${LOCAL_SERVER_BASE_URL}/lookup/${encodeURIComponent(ownerLc)}__${encodeURIComponent(repoLc)}.json`
     + (path ? `?path=${encodeURIComponent(path)}` : "");
   try {
     const r = await fetchWithTimeout(url);
@@ -628,7 +631,7 @@ function previewBanner(kind = "reference") {
   // Honesty pass: distinguish between
   //   "reference"  → numbers are from the bundled DEMO_EVALUATIONS table
   //                  (hand-curated stand-in values, NOT a real measurement)
-  //   "paper"      → numbers are from the precomputed_evaluations.json
+  //   "paper"      → numbers are from the overrides.json
   //                  corpus (real Harbor benchmark output, paper-final)
   //   "preview"    → fallback when nothing else applies
   const config = kind === "paper" ? {

@@ -2,38 +2,38 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "roleplay-as-a-professional-building-mechanic",
-    "owner": "ECNU-ICALK",
-    "repo": "roleplay-as-a-professional-building-mechanic",
-    "skillPath": "roleplay-as-a-professional-building-mechanic",
-    "category": "construction-and-extraction-occupations",
+    "skillName": "memento-flashcards",
+    "owner": "nousresearch",
+    "repo": "memento-flashcards",
+    "skillPath": "memento-flashcards",
+    "category": "educational-instruction-and-library-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.1111,
-      "baseline": 0.7778,
-      "withSkill": 0.8889,
-      "tasks": 18,
-      "items": 108,
-      "wiPassedItems": 96,
-      "woPassedItems": 84
+      "deltaPassAt1": 0.6765,
+      "baseline": 0.2451,
+      "withSkill": 0.9216,
+      "tasks": 17,
+      "items": 102,
+      "wiPassedItems": 94,
+      "woPassedItems": 25
     },
     "safety": {
-      "riskLevel": "medium",
-      "staticHits": 3,
+      "riskLevel": "high",
+      "staticHits": 18,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
       "evaluated": true,
       "severityCounts": {
-        "H": 0,
-        "M": 3,
-        "L": 0
+        "H": 9,
+        "M": 0,
+        "L": 9
       }
     },
     "cost": {
-      "deltaTimeSec": -77.02,
+      "deltaTimeSec": 68.97,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

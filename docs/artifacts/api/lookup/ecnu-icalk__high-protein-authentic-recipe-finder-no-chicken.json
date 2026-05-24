@@ -2,30 +2,30 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "gps-navigation-assistant",
-    "owner": "ECNU-ICALK",
-    "repo": "gps-navigation-assistant",
-    "skillPath": "gps-navigation-assistant",
-    "category": "transportation-and-material-moving-occupations",
+    "skillName": "high-protein-authentic-recipe-finder-no-chicken",
+    "owner": "ecnu-icalk",
+    "repo": "high-protein-authentic-recipe-finder-no-chicken",
+    "skillPath": "high-protein-authentic-recipe-finder-no-chicken",
+    "category": "food-preparation-and-serving-related-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.1569,
-      "baseline": 0.7059,
-      "withSkill": 0.8627,
+      "deltaPassAt1": 0.0208,
+      "baseline": 0.9062,
+      "withSkill": 0.9271,
       "tasks": 18,
-      "items": 102,
-      "wiPassedItems": 88,
-      "woPassedItems": 72
+      "items": 96,
+      "wiPassedItems": 89,
+      "woPassedItems": 87
     },
     "safety": {
-      "riskLevel": "low",
+      "riskLevel": "unknown",
       "staticHits": 0,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
-      "evaluated": true,
+      "evaluated": false,
       "severityCounts": {
         "H": 0,
         "M": 0,
@@ -33,7 +33,7 @@
       }
     },
     "cost": {
-      "deltaTimeSec": 11.18,
+      "deltaTimeSec": -44.05,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

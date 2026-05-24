@@ -41,8 +41,9 @@ The server has no third-party dependencies — only the Python standard library
 --downloads-dir  Path to the browser Downloads folder. Default: ~/Downloads
 --results-dir    Harbor-style results directory. Powers /task-results viewer.
 --examples-dir   Path to the Example/ directory. Powers /examples viewer.
---precomputed    JSON file with pre-computed SkillLens results keyed by owner/repo.
-                 Default: ./precomputed_evaluations.json
+--overrides      Hand-curated JSON entries keyed by owner/repo that override
+                 the baked artifacts (typically empty).
+                 Default: ./overrides.json
 --manifest       skill_manifest.json (skill_name -> owner/repo + provenance).
                  Default: ./skill_manifest.json
 --pricing        model_pricing.json (per-million-token USD rates).
@@ -76,7 +77,7 @@ Pointing the server at a full SkillLens corpus is a matter of supplying
 
 | Method | Path | Purpose |
 |--------|------|---------|
-| `POST` | `/admin/refresh` | Re-scan `examples-dir` + reload `precomputed`, `manifest`, `pricing`. No data is lost. |
+| `POST` | `/admin/refresh` | Re-scan `examples-dir` + reload `overrides`, `manifest`, `pricing`. No data is lost. |
 
 If `--admin-token` is set, admin requests must include
 `X-Admin-Token: <token>`. The default (empty) accepts any loopback request
@@ -100,22 +101,22 @@ extension — none of them are required for the extension to function.
 
 ## Data sources
 
-The `/lookup` handler resolves owner / repo in this order:
+The `/lookup` handler resolves owner / repo in this order (lowercased):
 
-1. **`precomputed_evaluations.json`** — fastest path; a hand-curated dictionary
-   shipped in this directory. Used for the bundled demo profiles so the
-   extension renders cleanly without any external state.
-2. **Adapter output** derived at startup from
-   `examples-dir/<skill_name>/skill_report.json` plus
-   `skill_manifest.json` (resolves `skill_name → owner/repo`).
-3. If neither matches, the handler returns
-   `{"ok": false, "reason": "not_found"}` and the extension falls back to its
-   bundled reference profile.
+1. **`overrides.json`** — optional hand-curated dictionary in this directory.
+   Empty by default; populate with paper-final entries you want to pin in
+   the UI on top of the baked artifacts.
+2. **Baked API** — `docs/artifacts/api/lookup/<owner>__<repo>.json`, generated
+   by `scripts/build_lookup_index.py` from the published artifacts under
+   `docs/artifacts/data/skills/`. This is where the real evaluation data
+   lives.
+3. **Adapter index** — legacy path, derived at startup from
+   `examples-dir/<skill_name>/skill_report.json` plus `skill_manifest.json`.
+4. If nothing matches, returns `{"ok": true, "status": "not_evaluated"}`.
 
-`skill_manifest.json` is the source of truth for the
-`skill_name ↔ owner/repo` mapping; without it the adapter cannot reverse-look
-up an evaluation by GitHub coordinates. `model_pricing.json` enriches every
-report with a USD-cost column computed from token counts.
+`skill_manifest.json` is only used by the legacy adapter (step 3); the
+baked API is self-describing. `model_pricing.json` enriches adapter output
+with a USD-cost column computed from token counts.
 
 ---
 
@@ -127,7 +128,7 @@ curl -X POST http://127.0.0.1:8765/admin/refresh
 ```
 
 Use this after regenerating any `skill_report.json` under `examples-dir/`. The
-server re-reads `precomputed_evaluations.json`, `skill_manifest.json`, and
+server re-reads `overrides.json`, `skill_manifest.json`, and
 `model_pricing.json` on the same call.
 
 ---
@@ -141,7 +142,7 @@ local_mock_server/
 ├── scanner_data.py                ← static-scan findings aggregator
 ├── validate.py                    ← payload-shape validator (CLI usable)
 ├── schema.json                    ← JSON Schema for /lookup responses
-├── precomputed_evaluations.json   ← curated demo dictionary
+├── overrides.json                 ← optional hand-curated entries (empty by default)
 ├── skill_manifest.json            ← skill_name ↔ owner/repo mapping
 ├── model_pricing.json             ← per-million-token USD rates
 ├── demo_examples.json             ← curated examples list for /examples/*
@@ -161,11 +162,11 @@ local_mock_server/
 shape `/lookup` returns):
 
 ```bash
-python validate.py precomputed_evaluations.json
-# OK: 18 entries pass schema.json
+python validate.py overrides.json
+# OK: 0 entries pass schema.json   (or however many overrides you've added)
 ```
 
-Run this in CI before publishing a new `precomputed_evaluations.json`.
+Run this in CI before publishing a new `overrides.json`.
 
 ---
 
@@ -183,7 +184,8 @@ Run this in CI before publishing a new `precomputed_evaluations.json`.
 
 ## License
 
-Apache License 2.0; see [`../LICENSE`](../LICENSE). The bundled
-`precomputed_evaluations.json` and the per-skill payloads it references are
-released under CDLA-Permissive-2.0 as part of the SkillLens dataset
+Apache License 2.0; see [`../LICENSE`](../LICENSE). The baked
+`docs/artifacts/api/` payloads and the per-skill reports under
+`docs/artifacts/data/` are released under CDLA-Permissive-2.0 as part of
+the SkillLens dataset
 ([Zenodo `10.5281/zenodo.20253170`](https://doi.org/10.5281/zenodo.20253170)).

@@ -2,38 +2,38 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "email-drafter",
-    "owner": "Shubhamsaboo",
-    "repo": "email-drafter",
-    "skillPath": "email-drafter",
-    "category": "arts-design-entertainment-sports-and-media-occupations",
+    "skillName": "pr-review",
+    "owner": "significant-gravitas",
+    "repo": "pr-review",
+    "skillPath": "pr-review",
+    "category": "computer-and-mathematical-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.0463,
-      "baseline": 0.7407,
-      "withSkill": 0.787,
-      "tasks": 18,
-      "items": 108,
-      "wiPassedItems": 85,
-      "woPassedItems": 80
+      "deltaPassAt1": 0.2807,
+      "baseline": 0.3333,
+      "withSkill": 0.614,
+      "tasks": 15,
+      "items": 114,
+      "wiPassedItems": 70,
+      "woPassedItems": 38
     },
     "safety": {
-      "riskLevel": "unknown",
-      "staticHits": 0,
+      "riskLevel": "medium",
+      "staticHits": 6,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
-      "evaluated": false,
+      "evaluated": true,
       "severityCounts": {
         "H": 0,
-        "M": 0,
+        "M": 6,
         "L": 0
       }
     },
     "cost": {
-      "deltaTimeSec": 3.52,
+      "deltaTimeSec": 50.35,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

@@ -466,7 +466,7 @@ function renderSandboxLog(job, evaluation, provenance, surfaceDesc) {
 // engine refused to answer. Either way, the audit-bar provenance pill makes
 // it explicit that this is a cached reference — not a live measurement of
 // whatever skill the user was just looking at. The numbers themselves are
-// drawn from the same paper-final corpus as precomputed_evaluations.json so
+// drawn from the same paper-final corpus as overrides.json so
 // the surface lights up the same way a real cached entry would.
 function buildDemoEvaluation(job) {
   return {
