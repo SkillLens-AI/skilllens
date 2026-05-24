@@ -16,7 +16,9 @@
 //   3. render the final evaluation card (server data when present, else the
 //      bundled demo profile or a deterministic synthetic profile)
 
-const DEFAULT_SERVER_BASE_URL = "http://127.0.0.1:8765";
+// Public artifacts mirror serves the same /lookup/<owner>__<repo>.json
+// files the local mock server emits, so the extension works zero-config.
+const DEFAULT_SERVER_BASE_URL = "https://skilllens-ai.github.io/skilllens/artifacts/api";
 const SERVER_BASE_URL_STORAGE_KEY = "skilllens_server_base_url";
 let LOCAL_SERVER_BASE_URL = DEFAULT_SERVER_BASE_URL;
 
@@ -293,9 +295,12 @@ async function lookupEvaluation(owner, repo, path) {
   if (cached && !cached._error) return cached;
   if (isFreshError(cached)) return cached;
 
-  const url = `${LOCAL_SERVER_BASE_URL}/lookup?owner=${encodeURIComponent(owner)}`
-    + `&repo=${encodeURIComponent(repo)}`
-    + (path ? `&path=${encodeURIComponent(path)}` : "");
+  // Path-style URL: works against both static hosts (GitHub Pages serving the
+  // baked /lookup/<owner>__<repo>.json files) and the local mock server's
+  // matching route. The optional ``path`` is appended as a query parameter so
+  // a server can use it while static hosts simply ignore it.
+  const url = `${LOCAL_SERVER_BASE_URL}/lookup/${encodeURIComponent(owner)}__${encodeURIComponent(repo)}.json`
+    + (path ? `?path=${encodeURIComponent(path)}` : "");
   try {
     const r = await fetchWithTimeout(url);
     if (!r.ok) {

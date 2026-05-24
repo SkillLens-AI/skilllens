@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "anon-skill-003",
+    "owner": "anon-188",
+    "repo": "anon-skill-003",
+    "skillPath": "anon-skill-003",
+    "category": "community-and-social-service-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.0588,
+      "baseline": 0.6961,
+      "withSkill": 0.7549,
+      "tasks": 18,
+      "items": 102,
+      "wiPassedItems": 77,
+      "woPassedItems": 71
+    },
+    "safety": {
+      "riskLevel": "high",
+      "staticHits": 12,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 6,
+        "M": 6,
+        "L": 0
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 143.03,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

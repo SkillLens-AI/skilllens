@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "implementing-purdue-model-network-segmentation",
+    "owner": "mukul975",
+    "repo": "implementing-purdue-model-network-segmentation",
+    "skillPath": "implementing-purdue-model-network-segmentation",
+    "category": "architecture-and-engineering-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.1053,
+      "baseline": 0.886,
+      "withSkill": 0.9912,
+      "tasks": 18,
+      "items": 114,
+      "wiPassedItems": 113,
+      "woPassedItems": 101
+    },
+    "safety": {
+      "riskLevel": "high",
+      "staticHits": 15,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 9,
+        "M": 0,
+        "L": 6
+      }
+    },
+    "cost": {
+      "deltaTimeSec": -25.26,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

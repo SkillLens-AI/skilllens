@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "ai-analyzer",
+    "owner": "sickn33",
+    "repo": "ai-analyzer",
+    "skillPath": "ai-analyzer",
+    "category": "healthcare-practitioners-and-technical-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.0526,
+      "baseline": 0.9211,
+      "withSkill": 0.9737,
+      "tasks": 18,
+      "items": 114,
+      "wiPassedItems": 111,
+      "woPassedItems": 105
+    },
+    "safety": {
+      "riskLevel": "unknown",
+      "staticHits": 0,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": false,
+      "severityCounts": {
+        "H": 0,
+        "M": 0,
+        "L": 0
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 95.86,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

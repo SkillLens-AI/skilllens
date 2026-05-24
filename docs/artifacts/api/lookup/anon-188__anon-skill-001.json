@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "anon-skill-001",
+    "owner": "anon-188",
+    "repo": "anon-skill-001",
+    "skillPath": "anon-skill-001",
+    "category": "architecture-and-engineering-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.3175,
+      "baseline": 0.6667,
+      "withSkill": 0.9841,
+      "tasks": 18,
+      "items": 126,
+      "wiPassedItems": 124,
+      "woPassedItems": 84
+    },
+    "safety": {
+      "riskLevel": "medium",
+      "staticHits": 6,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 3,
+        "L": 3
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 138.04,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

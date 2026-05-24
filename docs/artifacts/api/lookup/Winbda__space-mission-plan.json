@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "space-mission-plan",
+    "owner": "Winbda",
+    "repo": "space-mission-plan",
+    "skillPath": "space-mission-plan",
+    "category": "military-specific-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": -0.0278,
+      "baseline": 0.9722,
+      "withSkill": 0.9444,
+      "tasks": 18,
+      "items": 108,
+      "wiPassedItems": 102,
+      "woPassedItems": 105
+    },
+    "safety": {
+      "riskLevel": "low",
+      "staticHits": 0,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 0,
+        "L": 0
+      }
+    },
+    "cost": {
+      "deltaTimeSec": -0.51,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

@@ -1,0 +1,1356 @@
+{
+  "schema": "skilllens_lookup_index_v1",
+  "generatedFrom": "docs\\artifacts\\data\\skills",
+  "entries": [
+    {
+      "owner": "ComeOnOliver",
+      "repo": "emergency-distress-signal",
+      "file": "lookup/ComeOnOliver__emergency-distress-signal.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "CyberPunk-2022",
+      "repo": "bingbu",
+      "file": "lookup/CyberPunk-2022__bingbu.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ECNU-ICALK",
+      "repo": "broiler-feed-intake-calculator-and-formulator",
+      "file": "lookup/ECNU-ICALK__broiler-feed-intake-calculator-and-formulator.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ECNU-ICALK",
+      "repo": "cargo-loading-safety-and-balance-protocols",
+      "file": "lookup/ECNU-ICALK__cargo-loading-safety-and-balance-protocols.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ECNU-ICALK",
+      "repo": "filter-capsicum-varieties-by-agricultural-parameters",
+      "file": "lookup/ECNU-ICALK__filter-capsicum-varieties-by-agricultural-parameters.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ECNU-ICALK",
+      "repo": "generate-american-emergency-alert-system-messages",
+      "file": "lookup/ECNU-ICALK__generate-american-emergency-alert-system-messages.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ECNU-ICALK",
+      "repo": "generate-american-emergency-alert-system-warning",
+      "file": "lookup/ECNU-ICALK__generate-american-emergency-alert-system-warning.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ECNU-ICALK",
+      "repo": "gps-navigation-assistant",
+      "file": "lookup/ECNU-ICALK__gps-navigation-assistant.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ECNU-ICALK",
+      "repo": "high-protein-authentic-recipe-finder-no-chicken",
+      "file": "lookup/ECNU-ICALK__high-protein-authentic-recipe-finder-no-chicken.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ECNU-ICALK",
+      "repo": "high-security-corporate-meeting-planning",
+      "file": "lookup/ECNU-ICALK__high-security-corporate-meeting-planning.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ECNU-ICALK",
+      "repo": "roleplay-as-a-professional-building-mechanic",
+      "file": "lookup/ECNU-ICALK__roleplay-as-a-professional-building-mechanic.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ECNU-ICALK",
+      "repo": "survivalist-expert-advice",
+      "file": "lookup/ECNU-ICALK__survivalist-expert-advice.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "K-Dense-AI",
+      "repo": "parallel-web",
+      "file": "lookup/K-Dense-AI__parallel-web.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "K-Dense-AI",
+      "repo": "pufferlib",
+      "file": "lookup/K-Dense-AI__pufferlib.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "K-Dense-AI",
+      "repo": "scholar-evaluation",
+      "file": "lookup/K-Dense-AI__scholar-evaluation.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "K-Dense-AI",
+      "repo": "scikit-bio",
+      "file": "lookup/K-Dense-AI__scikit-bio.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "NousResearch",
+      "repo": "memento-flashcards",
+      "file": "lookup/NousResearch__memento-flashcards.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "Shubhamsaboo",
+      "repo": "academic-researcher",
+      "file": "lookup/Shubhamsaboo__academic-researcher.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "Shubhamsaboo",
+      "repo": "content-creator",
+      "file": "lookup/Shubhamsaboo__content-creator.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "Shubhamsaboo",
+      "repo": "email-drafter",
+      "file": "lookup/Shubhamsaboo__email-drafter.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "Shubhamsaboo",
+      "repo": "meeting-notes",
+      "file": "lookup/Shubhamsaboo__meeting-notes.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "Significant-Gravitas",
+      "repo": "pr-review",
+      "file": "lookup/Significant-Gravitas__pr-review.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "Winbda",
+      "repo": "space-mission-plan",
+      "file": "lookup/Winbda__space-mission-plan.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "csi-specification-writer",
+      "file": "lookup/a5c-ai__csi-specification-writer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "dock-scheduling-coordinator",
+      "file": "lookup/a5c-ai__dock-scheduling-coordinator.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "fifo-lifo-controller",
+      "file": "lookup/a5c-ai__fifo-lifo-controller.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "freight-audit-validator",
+      "file": "lookup/a5c-ai__freight-audit-validator.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "last-mile-delivery-optimizer",
+      "file": "lookup/a5c-ai__last-mile-delivery-optimizer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "maintenance-scheduler",
+      "file": "lookup/a5c-ai__maintenance-scheduler.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "omnichannel-fulfillment-allocator",
+      "file": "lookup/a5c-ai__omnichannel-fulfillment-allocator.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "returns-authorization-processor",
+      "file": "lookup/a5c-ai__returns-authorization-processor.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "submittal-tracker",
+      "file": "lookup/a5c-ai__submittal-tracker.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "a5c-ai",
+      "repo": "vehicle-routing-solver",
+      "file": "lookup/a5c-ai__vehicle-routing-solver.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "article-writing",
+      "file": "lookup/affaan-m__article-writing.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "brand-voice",
+      "file": "lookup/affaan-m__brand-voice.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "carrier-relationship-management",
+      "file": "lookup/affaan-m__carrier-relationship-management.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "content-engine",
+      "file": "lookup/affaan-m__content-engine.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "council",
+      "file": "lookup/affaan-m__council.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "crosspost",
+      "file": "lookup/affaan-m__crosspost.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "customs-trade-compliance",
+      "file": "lookup/affaan-m__customs-trade-compliance.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "energy-procurement",
+      "file": "lookup/affaan-m__energy-procurement.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "hipaa-compliance",
+      "file": "lookup/affaan-m__hipaa-compliance.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "inventory-demand-planning",
+      "file": "lookup/affaan-m__inventory-demand-planning.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "investor-materials",
+      "file": "lookup/affaan-m__investor-materials.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "investor-outreach",
+      "file": "lookup/affaan-m__investor-outreach.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "logistics-exception-management",
+      "file": "lookup/affaan-m__logistics-exception-management.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "product-capability",
+      "file": "lookup/affaan-m__product-capability.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "product-lens",
+      "file": "lookup/affaan-m__product-lens.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "production-scheduling",
+      "file": "lookup/affaan-m__production-scheduling.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "quality-nonconformance",
+      "file": "lookup/affaan-m__quality-nonconformance.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "affaan-m",
+      "repo": "visa-doc-translate",
+      "file": "lookup/affaan-m__visa-doc-translate.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "aiming-lab",
+      "repo": "hypothesis-formulation",
+      "file": "lookup/aiming-lab__hypothesis-formulation.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "aiming-lab",
+      "repo": "literature-search",
+      "file": "lookup/aiming-lab__literature-search.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "alirezarezvani",
+      "repo": "behuman",
+      "file": "lookup/alirezarezvani__behuman.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "alirezarezvani",
+      "repo": "ra-qm-skills",
+      "file": "lookup/alirezarezvani__ra-qm-skills.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "alirezarezvani",
+      "repo": "research-summarizer",
+      "file": "lookup/alirezarezvani__research-summarizer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "anon-188",
+      "repo": "anon-skill-001",
+      "file": "lookup/anon-188__anon-skill-001.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "anon-188",
+      "repo": "anon-skill-003",
+      "file": "lookup/anon-188__anon-skill-003.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "anon-188",
+      "repo": "anon-skill-004",
+      "file": "lookup/anon-188__anon-skill-004.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "anon-188",
+      "repo": "anon-skill-005",
+      "file": "lookup/anon-188__anon-skill-005.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "anon-426",
+      "repo": "anon-skill-002",
+      "file": "lookup/anon-426__anon-skill-002.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "anthropics",
+      "repo": "skills",
+      "file": "lookup/anthropics__skills.json",
+      "skillCount": 3
+    },
+    {
+      "owner": "baojie",
+      "repo": "ancient-divination-ritual-procedure",
+      "file": "lookup/baojie__ancient-divination-ritual-procedure.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "baojie",
+      "repo": "escape-from-captivity",
+      "file": "lookup/baojie__escape-from-captivity.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "baojie",
+      "repo": "precision-archery-method",
+      "file": "lookup/baojie__precision-archery-method.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "bmad-code-org",
+      "repo": "bmad-product-brief",
+      "file": "lookup/bmad-code-org__bmad-product-brief.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "bytedance",
+      "repo": "academic-paper-review",
+      "file": "lookup/bytedance__academic-paper-review.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "claude-code-best",
+      "repo": "teach-me",
+      "file": "lookup/claude-code-best__teach-me.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "coreyhaines31",
+      "repo": "sales-enablement",
+      "file": "lookup/coreyhaines31__sales-enablement.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "dabrewskie",
+      "repo": "guard-admin",
+      "file": "lookup/dabrewskie__guard-admin.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "danielmiessler",
+      "repo": "investigation",
+      "file": "lookup/danielmiessler__investigation.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "datadrivenconstruction",
+      "repo": "retention-tracker",
+      "file": "lookup/datadrivenconstruction__retention-tracker.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "davila7",
+      "repo": "seo-optimizer",
+      "file": "lookup/davila7__seo-optimizer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "dontbesilent2025",
+      "repo": "dbs-action",
+      "file": "lookup/dontbesilent2025__dbs-action.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "f",
+      "repo": "book-translation",
+      "file": "lookup/f__book-translation.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "facebook",
+      "repo": "extract-errors",
+      "file": "lookup/facebook__extract-errors.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "facebook",
+      "repo": "feature-flags",
+      "file": "lookup/facebook__feature-flags.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "facebook",
+      "repo": "fix",
+      "file": "lookup/facebook__fix.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "facebook",
+      "repo": "flags",
+      "file": "lookup/facebook__flags.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "facebook",
+      "repo": "flow",
+      "file": "lookup/facebook__flow.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "facebook",
+      "repo": "test",
+      "file": "lookup/facebook__test.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "facebook",
+      "repo": "verify",
+      "file": "lookup/facebook__verify.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "github",
+      "repo": "gtm-enterprise-account-planning",
+      "file": "lookup/github__gtm-enterprise-account-planning.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "google-gemini",
+      "repo": "string-reviewer",
+      "file": "lookup/google-gemini__string-reviewer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "googleworkspace",
+      "repo": "gws-sheets-append",
+      "file": "lookup/googleworkspace__gws-sheets-append.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "googleworkspace",
+      "repo": "gws-sheets-read",
+      "file": "lookup/googleworkspace__gws-sheets-read.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "googleworkspace",
+      "repo": "gws-tasks",
+      "file": "lookup/googleworkspace__gws-tasks.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "googleworkspace",
+      "repo": "persona-exec-assistant",
+      "file": "lookup/googleworkspace__persona-exec-assistant.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "googleworkspace",
+      "repo": "persona-sales-ops",
+      "file": "lookup/googleworkspace__persona-sales-ops.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "googleworkspace",
+      "repo": "recipe-create-doc-from-template",
+      "file": "lookup/googleworkspace__recipe-create-doc-from-template.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "hellowind777",
+      "repo": "clean",
+      "file": "lookup/hellowind777__clean.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "huangrt01",
+      "repo": "gourmet-organizer",
+      "file": "lookup/huangrt01__gourmet-organizer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "kortix-ai",
+      "repo": "call-prep",
+      "file": "lookup/kortix-ai__call-prep.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "kortix-ai",
+      "repo": "compliance",
+      "file": "lookup/kortix-ai__compliance.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "kortix-ai",
+      "repo": "draft-outreach",
+      "file": "lookup/kortix-ai__draft-outreach.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "kortix-ai",
+      "repo": "meeting-briefinging",
+      "file": "lookup/kortix-ai__meeting-briefinging.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "kortix-ai",
+      "repo": "research-assistant",
+      "file": "lookup/kortix-ai__research-assistant.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "leonardomso",
+      "repo": "write-concept",
+      "file": "lookup/leonardomso__write-concept.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "liigoQi",
+      "repo": "endurance",
+      "file": "lookup/liigoQi__endurance.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "linkerlin",
+      "repo": "military-manual",
+      "file": "lookup/linkerlin__military-manual.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "linkerlin",
+      "repo": "theme-arena",
+      "file": "lookup/linkerlin__theme-arena.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "linkerlin",
+      "repo": "theme-starfleet",
+      "file": "lookup/linkerlin__theme-starfleet.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "microsoft",
+      "repo": "create-prompt",
+      "file": "lookup/microsoft__create-prompt.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "mukul975",
+      "repo": "implementing-ics-firewall-with-tofino",
+      "file": "lookup/mukul975__implementing-ics-firewall-with-tofino.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "mukul975",
+      "repo": "implementing-purdue-model-network-segmentation",
+      "file": "lookup/mukul975__implementing-purdue-model-network-segmentation.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "nclamvn",
+      "repo": "eldercare-emergency-contacts",
+      "file": "lookup/nclamvn__eldercare-emergency-contacts.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "biomass",
+      "file": "lookup/openclaw__biomass.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "boiler",
+      "file": "lookup/openclaw__boiler.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "bom-sop-check",
+      "file": "lookup/openclaw__bom-sop-check.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "chef",
+      "file": "lookup/openclaw__chef.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "cjl-relationship",
+      "file": "lookup/openclaw__cjl-relationship.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "cognitive-flexibility",
+      "file": "lookup/openclaw__cognitive-flexibility.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "cold-chain-risk-calculator",
+      "file": "lookup/openclaw__cold-chain-risk-calculator.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "construction-safety-inspector",
+      "file": "lookup/openclaw__construction-safety-inspector.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "dog-potty-training",
+      "file": "lookup/openclaw__dog-potty-training.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "eam",
+      "file": "lookup/openclaw__eam.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "emotion-memory-assistant",
+      "file": "lookup/openclaw__emotion-memory-assistant.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "exercise-form",
+      "file": "lookup/openclaw__exercise-form.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "experience-wisteria-shadow-trap-fukuoka",
+      "file": "lookup/openclaw__experience-wisteria-shadow-trap-fukuoka.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "family-grocery",
+      "file": "lookup/openclaw__family-grocery.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "find-community",
+      "file": "lookup/openclaw__find-community.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "first-aid",
+      "file": "lookup/openclaw__first-aid.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "fitness-log",
+      "file": "lookup/openclaw__fitness-log.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "fitness-support",
+      "file": "lookup/openclaw__fitness-support.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "fridge",
+      "file": "lookup/openclaw__fridge.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "grow-sustainably",
+      "file": "lookup/openclaw__grow-sustainably.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "healthy-meal-reminder",
+      "file": "lookup/openclaw__healthy-meal-reminder.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "home-organizer",
+      "file": "lookup/openclaw__home-organizer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "island-selector",
+      "file": "lookup/openclaw__island-selector.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "lidar",
+      "file": "lookup/openclaw__lidar.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "love-chat",
+      "file": "lookup/openclaw__love-chat.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "manufacturing-shift-handoff",
+      "file": "lookup/openclaw__manufacturing-shift-handoff.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "mood",
+      "file": "lookup/openclaw__mood.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "motor",
+      "file": "lookup/openclaw__motor.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "personal-guardian",
+      "file": "lookup/openclaw__personal-guardian.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "qsr-ghost-inventory-hunter",
+      "file": "lookup/openclaw__qsr-ghost-inventory-hunter.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "qsr-labor-leak-auditor",
+      "file": "lookup/openclaw__qsr-labor-leak-auditor.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "roofing-knowledge-mentor",
+      "file": "lookup/openclaw__roofing-knowledge-mentor.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "room",
+      "file": "lookup/openclaw__room.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "salon",
+      "file": "lookup/openclaw__salon.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "san-sheng-liu-bu",
+      "file": "lookup/openclaw__san-sheng-liu-bu.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "silo",
+      "file": "lookup/openclaw__silo.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "sleep-tracker",
+      "file": "lookup/openclaw__sleep-tracker.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "sourdough-starter-manager",
+      "file": "lookup/openclaw__sourdough-starter-manager.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "thresh",
+      "file": "lookup/openclaw__thresh.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "turbine",
+      "file": "lookup/openclaw__turbine.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "urea",
+      "file": "lookup/openclaw__urea.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "openclaw",
+      "repo": "wacli",
+      "file": "lookup/openclaw__wacli.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "peggy-daddy",
+      "repo": "qisha",
+      "file": "lookup/peggy-daddy__qisha.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "pjt222",
+      "repo": "gold-washing",
+      "file": "lookup/pjt222__gold-washing.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "plurigrid",
+      "repo": "kinesis-advantage360-pro-kb360-pro",
+      "file": "lookup/plurigrid__kinesis-advantage360-pro-kb360-pro.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "advogado-criminal",
+      "file": "lookup/sickn33__advogado-criminal.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "advogado-especialista",
+      "file": "lookup/sickn33__advogado-especialista.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "ai-analyzer",
+      "file": "lookup/sickn33__ai-analyzer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "andrej-karpathy",
+      "file": "lookup/sickn33__andrej-karpathy.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "claude-scientific-skills",
+      "file": "lookup/sickn33__claude-scientific-skills.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "customer-support",
+      "file": "lookup/sickn33__customer-support.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "explain-like-socrates",
+      "file": "lookup/sickn33__explain-like-socrates.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "fda-medtech-compliance-auditor",
+      "file": "lookup/sickn33__fda-medtech-compliance-auditor.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "fitness-analyzer",
+      "file": "lookup/sickn33__fitness-analyzer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "goal-analyzer",
+      "file": "lookup/sickn33__goal-analyzer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "launch-strategy",
+      "file": "lookup/sickn33__launch-strategy.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "lead-magnets",
+      "file": "lookup/sickn33__lead-magnets.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "legal-advisor",
+      "file": "lookup/sickn33__legal-advisor.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "leiloeiro-edital",
+      "file": "lookup/sickn33__leiloeiro-edital.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "leiloeiro-ia",
+      "file": "lookup/sickn33__leiloeiro-ia.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "leiloeiro-juridico",
+      "file": "lookup/sickn33__leiloeiro-juridico.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "lex",
+      "file": "lookup/sickn33__lex.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "mental-health-analyzer",
+      "file": "lookup/sickn33__mental-health-analyzer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "nutrition-analyzer",
+      "file": "lookup/sickn33__nutrition-analyzer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "occupational-health-analyzer",
+      "file": "lookup/sickn33__occupational-health-analyzer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "odoo-project-timesheet",
+      "file": "lookup/sickn33__odoo-project-timesheet.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "onboarding-cro",
+      "file": "lookup/sickn33__onboarding-cro.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "sales-automator",
+      "file": "lookup/sickn33__sales-automator.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "sam-altman",
+      "file": "lookup/sickn33__sam-altman.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "satori",
+      "file": "lookup/sickn33__satori.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "scanpy",
+      "file": "lookup/sickn33__scanpy.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "search-specialist",
+      "file": "lookup/sickn33__search-specialist.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "sexual-health-analyzer",
+      "file": "lookup/sickn33__sexual-health-analyzer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "skin-health-analyzer",
+      "file": "lookup/sickn33__skin-health-analyzer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "tcm-constitution-analyzer",
+      "file": "lookup/sickn33__tcm-constitution-analyzer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "team-composition-analysis",
+      "file": "lookup/sickn33__team-composition-analysis.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "tutorial-engineer",
+      "file": "lookup/sickn33__tutorial-engineer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "weightloss-analyzer",
+      "file": "lookup/sickn33__weightloss-analyzer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sickn33",
+      "repo": "yann-lecun-debate",
+      "file": "lookup/sickn33__yann-lecun-debate.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "sundial-org",
+      "repo": "muscle-gain",
+      "file": "lookup/sundial-org__muscle-gain.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "aircraft-maintenance-engineer",
+      "file": "lookup/theneoai__aircraft-maintenance-engineer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "appliance-repairer",
+      "file": "lookup/theneoai__appliance-repairer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "aquaculture-expert",
+      "file": "lookup/theneoai__aquaculture-expert.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "assembly-line-worker",
+      "file": "lookup/theneoai__assembly-line-worker.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "auto-body-repairer",
+      "file": "lookup/theneoai__auto-body-repairer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "auto-repair-technician",
+      "file": "lookup/theneoai__auto-repair-technician.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "carpenter",
+      "file": "lookup/theneoai__carpenter.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "ceramic-artist",
+      "file": "lookup/theneoai__ceramic-artist.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "cleaning-staff",
+      "file": "lookup/theneoai__cleaning-staff.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "crane-operator",
+      "file": "lookup/theneoai__crane-operator.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "elderly-caregiver",
+      "file": "lookup/theneoai__elderly-caregiver.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "f1-pit-crew-engineer",
+      "file": "lookup/theneoai__f1-pit-crew-engineer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "farm-machinery-operator",
+      "file": "lookup/theneoai__farm-machinery-operator.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "food-safety-manager",
+      "file": "lookup/theneoai__food-safety-manager.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "home-health-aide",
+      "file": "lookup/theneoai__home-health-aide.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "household-cleaner",
+      "file": "lookup/theneoai__household-cleaner.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "housekeeper",
+      "file": "lookup/theneoai__housekeeper.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "housekeeping-trainer",
+      "file": "lookup/theneoai__housekeeping-trainer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "jade-carver",
+      "file": "lookup/theneoai__jade-carver.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "locksmith",
+      "file": "lookup/theneoai__locksmith.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "military-officer",
+      "file": "lookup/theneoai__military-officer.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "mobile-repair-technician",
+      "file": "lookup/theneoai__mobile-repair-technician.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "nursing-assistant",
+      "file": "lookup/theneoai__nursing-assistant.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "painter",
+      "file": "lookup/theneoai__painter.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "plumber",
+      "file": "lookup/theneoai__plumber.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "property-butler",
+      "file": "lookup/theneoai__property-butler.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "tattoo-artist",
+      "file": "lookup/theneoai__tattoo-artist.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "virtual-power-plant-operator",
+      "file": "lookup/theneoai__virtual-power-plant-operator.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "theneoai",
+      "repo": "wood-carver",
+      "file": "lookup/theneoai__wood-carver.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "tinh2",
+      "repo": "defense-maintenance",
+      "file": "lookup/tinh2__defense-maintenance.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "wshobson",
+      "repo": "competitive-landscape",
+      "file": "lookup/wshobson__competitive-landscape.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "wshobson",
+      "repo": "employment-contract-templates",
+      "file": "lookup/wshobson__employment-contract-templates.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "wshobson",
+      "repo": "market-sizing-analysis",
+      "file": "lookup/wshobson__market-sizing-analysis.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "zjunlp",
+      "repo": "alfworld-temperature-regulator",
+      "file": "lookup/zjunlp__alfworld-temperature-regulator.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "zjunlp",
+      "repo": "scienceworld-planting-operation",
+      "file": "lookup/zjunlp__scienceworld-planting-operation.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "zocomputer",
+      "repo": "plant-care-plan",
+      "file": "lookup/zocomputer__plant-care-plan.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "zwright8",
+      "repo": "autonomous-littoral-port-reopening-under-mining-and-drone-threat-cell",
+      "file": "lookup/zwright8__autonomous-littoral-port-reopening-under-mining-and-drone-threat-cell.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "zwright8",
+      "repo": "homeland-spaceport-reentry-debris-response-and-force-protection-cell",
+      "file": "lookup/zwright8__homeland-spaceport-reentry-debris-response-and-force-protection-cell.json",
+      "skillCount": 1
+    }
+  ],
+  "totals": {
+    "entries": 224,
+    "skillsProcessed": 226,
+    "skippedNoOwner": 0,
+    "failedReads": 0
+  }
+}

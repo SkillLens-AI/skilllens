@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "string-reviewer",
+    "owner": "google-gemini",
+    "repo": "string-reviewer",
+    "skillPath": "string-reviewer",
+    "category": "arts-design-entertainment-sports-and-media-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.4444,
+      "baseline": 0.537,
+      "withSkill": 0.9815,
+      "tasks": 18,
+      "items": 108,
+      "wiPassedItems": 106,
+      "woPassedItems": 58
+    },
+    "safety": {
+      "riskLevel": "unknown",
+      "staticHits": 0,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": false,
+      "severityCounts": {
+        "H": 0,
+        "M": 0,
+        "L": 0
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 27.88,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

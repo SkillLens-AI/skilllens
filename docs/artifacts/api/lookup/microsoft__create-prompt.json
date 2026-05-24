@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "create-prompt",
+    "owner": "microsoft",
+    "repo": "create-prompt",
+    "skillPath": "create-prompt",
+    "category": "office-and-administrative-support-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": -0.0965,
+      "baseline": 0.693,
+      "withSkill": 0.5965,
+      "tasks": 14,
+      "items": 114,
+      "wiPassedItems": 68,
+      "woPassedItems": 79
+    },
+    "safety": {
+      "riskLevel": "unknown",
+      "staticHits": 0,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": false,
+      "severityCounts": {
+        "H": 0,
+        "M": 0,
+        "L": 0
+      }
+    },
+    "cost": {
+      "deltaTimeSec": -0.81,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

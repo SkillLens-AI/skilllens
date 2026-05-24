@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "household-cleaner",
+    "owner": "theneoai",
+    "repo": "household-cleaner",
+    "skillPath": "household-cleaner",
+    "category": "building-and-grounds-cleaning-and-maintenance-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.0351,
+      "baseline": 0.8421,
+      "withSkill": 0.8772,
+      "tasks": 18,
+      "items": 114,
+      "wiPassedItems": 100,
+      "woPassedItems": 96
+    },
+    "safety": {
+      "riskLevel": "low",
+      "staticHits": 0,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 0,
+        "L": 0
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 18.22,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

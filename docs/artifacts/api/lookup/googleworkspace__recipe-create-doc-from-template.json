@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "recipe-create-doc-from-template",
+    "owner": "googleworkspace",
+    "repo": "recipe-create-doc-from-template",
+    "skillPath": "recipe-create-doc-from-template",
+    "category": "office-and-administrative-support-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.1875,
+      "baseline": 0.0938,
+      "withSkill": 0.2812,
+      "tasks": 17,
+      "items": 96,
+      "wiPassedItems": 27,
+      "woPassedItems": 9
+    },
+    "safety": {
+      "riskLevel": "low",
+      "staticHits": 3,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 0,
+        "L": 3
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 260.09,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

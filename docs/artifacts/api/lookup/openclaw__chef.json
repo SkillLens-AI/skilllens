@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "chef",
+    "owner": "openclaw",
+    "repo": "chef",
+    "skillPath": "chef",
+    "category": "food-preparation-and-serving-related-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.1053,
+      "baseline": 0.8947,
+      "withSkill": 1.0,
+      "tasks": 18,
+      "items": 114,
+      "wiPassedItems": 114,
+      "woPassedItems": 102
+    },
+    "safety": {
+      "riskLevel": "low",
+      "staticHits": 3,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 0,
+        "L": 3
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 45.79,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}

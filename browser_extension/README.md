@@ -58,15 +58,16 @@ in-page panel.
 ## Table of contents
 
 1. [What it does](#what-it-does)
-2. [Install (developer mode)](#install-developer-mode)
-3. [Run the backend](#run-the-backend)
-4. [Configure the backend URL](#configure-the-backend-url)
-5. [Supported sites](#supported-sites)
-6. [Permissions](#permissions)
-7. [Privacy](#privacy)
-8. [Project layout](#project-layout)
-9. [Development](#development)
-10. [License](#license)
+2. [Usage modes](#usage-modes)
+3. [Install (developer mode)](#install-developer-mode)
+4. [Advanced — run the backend](#advanced--run-the-backend)
+5. [Configure the backend URL](#configure-the-backend-url)
+6. [Supported sites](#supported-sites)
+7. [Permissions](#permissions)
+8. [Privacy](#privacy)
+9. [Project layout](#project-layout)
+10. [Development](#development)
+11. [License](#license)
 
 ---
 
@@ -77,15 +78,17 @@ When you visit a supported page that hosts a `SKILL.md` package, the extension:
 1. **Detects** the candidate skill by parsing the URL plus the rendered DOM (the
    GitHub repo header for `github.com/<owner>/<repo>`, or the marketplace's own
    route for `clawhub.ai`, `skills.sh`, `skillsmp.com`, `ai-skills.io`).
-2. **Queries** the SkillLens backend at
-   `GET /lookup?owner=<owner>&repo=<slug>` for a cached report.
+2. **Looks up** a SkillLens report at
+   `GET <backend>/lookup/<owner>__<slug>.json`. The default backend is the
+   public artifacts mirror at
+   `https://skilllens-ai.github.io/skilllens/artifacts/api`, so the extension
+   works with zero local setup for any skill in our published index.
 3. **Injects** a compact panel into the page showing the three axes the paper
    defines: utility (`pass_rate_gain`, `efficiency`), safety (static-scan
    findings + dynamic exploitability), and resource cost (token / wall-time
    overhead vs. the no-skill baseline).
 4. **Falls back** to a bundled reference profile when the backend is
-   unreachable, so the extension always has something to show during a demo
-   or while you spin the server up.
+   unreachable, so the panel always has something to show in true-offline mode.
 
 The toolbar popup adds a quick-inspect bar, a feed of recent featured audits,
 and the per-extension settings panel (see [Configure the backend URL](#configure-the-backend-url)).
@@ -93,6 +96,34 @@ and the per-extension settings panel (see [Configure the backend URL](#configure
 A full-page report opens in its own window (`result.html`) whenever you click
 **Inspect** or **Re-run inspection** — that view is what the paper's Figure 7
 screenshots are taken from.
+
+---
+
+## Usage modes
+
+There are two ways to run the extension; pick the one that matches your goal.
+
+**1. Default — zero config (most users)**
+
+Install the extension and you're done. Lookups go to the public artifacts
+mirror at `https://skilllens-ai.github.io/skilllens/artifacts/api/lookup/`,
+which serves the same 200+ skill reports from our paper. No Python, no
+local server. Skills that haven't been evaluated yet return a
+`not_evaluated` status — the panel labels these clearly.
+
+**2. Advanced — run the backend (self-host or live evaluation)**
+
+Run `local_mock_server` and point the extension at it via Backend URL
+settings. Use this when you want to:
+
+- Serve a private / extended evaluation index
+- Use the `/evaluate` POST route to score a skill on demand
+- Work fully offline against a clone of the artifacts
+
+The local server reads the same baked
+`docs/artifacts/api/lookup/<owner>__<repo>.json` files the public mirror
+serves, plus an optional `precomputed_evaluations.json` override file for
+hand-curated entries.
 
 ---
 
@@ -121,14 +152,20 @@ release (the MV3 service-worker shape differs).
 
 ---
 
-## Run the backend
+## Advanced — run the backend
 
-Most of what the extension shows comes from the bundled local server in
-[`../local_mock_server/`](../local_mock_server/). It serves cached SkillLens
-reports, the `/lookup` endpoint the content scripts call, and a small set of
-demo pages.
+Most users do not need this section. Run the bundled local server when you
+want live `/evaluate` scoring, a private lookup index, or fully-offline
+operation. The server is in
+[`../local_mock_server/`](../local_mock_server/) and reads the same baked
+`docs/artifacts/api/lookup/*.json` files served by the public mirror.
 
 ```bash
+# Regenerate the baked lookup index (only needed if you changed
+# docs/artifacts/data/ — the repo ships the latest output already).
+python scripts/build_lookup_index.py
+
+# Start the server.
 cd local_mock_server
 python mock_skill_server.py
 ```
@@ -137,11 +174,13 @@ The server listens on `http://127.0.0.1:8765` by default. Verify it is up:
 
 ```bash
 curl -s http://127.0.0.1:8765/health
-# {"ok": true, "version": "..."}
+curl -s http://127.0.0.1:8765/lookup/bytedance__academic-paper-review.json
 ```
 
-Then click any skill on `https://github.com/anthropics/skills/tree/main/...` and
-the panel should switch from **Preview mode** to **Engine ready**.
+Then open the extension popup, paste `http://127.0.0.1:8765` into
+**Advanced · Backend URL**, and click **Save**. The panel will switch from
+**Preview mode** to **Engine ready** and route all lookups through your local
+server.
 
 For details on the routes and data sources see
 [`../local_mock_server/README.md`](../local_mock_server/README.md).
@@ -151,7 +190,8 @@ For details on the routes and data sources see
 ## Configure the backend URL
 
 The extension reads the backend URL from `chrome.storage.sync` under the key
-`skilllens_server_base_url`. The default is `http://127.0.0.1:8765`.
+`skilllens_server_base_url`. The default is the public artifacts mirror at
+`https://skilllens-ai.github.io/skilllens/artifacts/api`.
 
 To change it (e.g. you run the server on a different port, or you point the
 extension at a self-hosted SkillLens deployment):
@@ -159,7 +199,8 @@ extension at a self-hosted SkillLens deployment):
 1. Click the SkillLens toolbar icon to open the popup.
 2. Scroll to **Advanced · Backend URL** and click to expand.
 3. Enter the new URL (`http://host:port`, no trailing slash) and click **Save**.
-4. **Reset** restores the default.
+   For the local mock server use `http://127.0.0.1:8765`.
+4. **Reset** restores the default (the public artifacts mirror).
 
 When you point the extension at a host that is not in the manifest's
 `host_permissions`, Chrome will prompt for `optional_host_permissions` the

@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "defense-maintenance",
+    "owner": "tinh2",
+    "repo": "defense-maintenance",
+    "skillPath": "defense-maintenance",
+    "category": "military-specific-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.2593,
+      "baseline": 0.6389,
+      "withSkill": 0.8981,
+      "tasks": 17,
+      "items": 108,
+      "wiPassedItems": 97,
+      "woPassedItems": 69
+    },
+    "safety": {
+      "riskLevel": "medium",
+      "staticHits": 3,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 3,
+        "L": 0
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 48.11,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 8
+    }
+  },
+  "source": "artifacts"
+}
