@@ -230,7 +230,7 @@ browser_extension/
 ├── popup.html / popup.js / popup.css      ← toolbar popup
 ├── result.html / result.js / result.css   ← full audit report window
 ├── icons/                   ← 16/32/48/128 px PNGs + source SVG
-├── screenshots/             ← README screenshots (4 PNGs)
+├── screenshots/             ← README screenshots (3 live PNGs)
 └── README.md                ← this file
 ```
 
