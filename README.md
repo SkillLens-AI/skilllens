@@ -578,30 +578,49 @@ at the point where a developer is browsing skill marketplaces — turning
 the "should I install this skill?" question into a one-click lookup.
 
 The extension source ships in this repository under
-[`browser_extension/`](browser_extension/), with the local backend it talks
-to under [`local_mock_server/`](local_mock_server/).
+[`browser_extension/`](browser_extension/). Lookups go to a configurable
+backend URL; the default is the public artifacts mirror, so no local
+server is required.
 
-**Quick start — load it as an unpacked Chrome extension:**
+**Default — zero-config quick start:**
 
 ```bash
-# 1. Start the local backend (stdlib only; Python 3.10+)
-cd local_mock_server
-python mock_skill_server.py
-# Server listens on http://127.0.0.1:8765
-
-# 2. In Chrome / Edge / Brave / Arc:
+# 1. In Chrome / Edge / Brave / Arc:
 #    chrome://extensions  →  toggle Developer mode  →  Load unpacked
 #    Select the browser_extension/ directory in this repo.
 
-# 3. Pin "SkillLens — Browser Extension" to the toolbar and open any
+# 2. Pin "SkillLens — Browser Extension" to the toolbar and open any
 #    supported page (github.com/<owner>/<repo> with a SKILL.md, or one of
 #    clawhub.ai / skills.sh / skillsmp.com / ai-skills.io).
 ```
 
+The extension calls
+`GET https://skilllens-ai.github.io/skilllens/artifacts/api/lookup/<owner>__<repo>.json`
+by default and pulls real reports for every skill in the published
+artifacts index (227 skills × 8 runs). Skills outside the index return
+`not_evaluated` and the panel labels them as such.
+
+**Advanced — point at a local backend:**
+
+```bash
+# Run the bundled stdlib server when you want live /evaluate scoring,
+# a private overrides layer, or fully-offline operation.
+cd local_mock_server
+python mock_skill_server.py
+# Server listens on http://127.0.0.1:8765
+
+# Then in the extension popup, expand "Advanced · Backend URL" and
+# paste http://127.0.0.1:8765 there.
+```
+
+The local server reads the same baked
+`docs/artifacts/api/lookup/<owner>__<repo>.json` files the public mirror
+serves, plus an optional `local_mock_server/overrides.json` for
+hand-curated entries that pin paper-final numbers in the UI.
+
 The extension is Chromium MV3 (smoke-tested on Chrome 120+, Edge 120+,
-Brave 1.62+) and reads its backend URL from `chrome.storage.sync`, so you
-can point it at a self-hosted SkillLens deployment from the popup's
-**Advanced · Backend URL** panel.
+Brave 1.62+) and reads its backend URL from `chrome.storage.sync`, so
+the setting follows you across machines if Chrome sync is enabled.
 
 Full documentation:
 
@@ -612,9 +631,9 @@ Full documentation:
 
 The artifacts site at
 [`skilllens-ai.github.io/artifacts/`](https://skilllens-ai.github.io/artifacts/)
-serves the same per-skill report payloads (`docs/data/skills/*.json`) the
-extension consumes, so the look-up surface can be previewed end-to-end via
-the site as well.
+provides a human-browsable view over the same per-skill reports
+(`docs/artifacts/data/skills/*.json`) that the extension queries via the
+baked `lookup/` index.
 
 ---
 
