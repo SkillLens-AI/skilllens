@@ -1,0 +1,75 @@
+{
+  "manifest_version": 3,
+  "name": "SkillLens — Browser Extension",
+  "version": "0.3.0",
+  "description": "Surface utility, safety, and cost evidence for agent skill packages directly on GitHub and skill marketplaces. Companion to the SkillLens evaluation framework.",
+  "homepage_url": "https://skilllens-ai.github.io/",
+  "icons": {
+    "16": "icons/icon_16.png",
+    "32": "icons/icon_32.png",
+    "48": "icons/icon_48.png",
+    "128": "icons/icon_128.png"
+  },
+  "permissions": [
+    "downloads",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://github.com/*",
+    "https://api.github.com/*",
+    "https://raw.githubusercontent.com/*",
+    "https://clawhub.ai/*",
+    "https://skills.sh/*",
+    "https://skillsmp.com/*",
+    "https://ai-skills.io/*",
+    "https://*.convex.site/*",
+    "http://127.0.0.1:8765/*",
+    "http://localhost:8765/*"
+  ],
+  "optional_host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://github.com/*"
+      ],
+      "js": [
+        "content_github.js"
+      ],
+      "css": [
+        "content_github.css"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://clawhub.ai/*",
+        "https://skills.sh/*",
+        "https://skillsmp.com/*",
+        "https://ai-skills.io/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content_github.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "SkillLens — Browser Extension",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon_16.png",
+      "32": "icons/icon_32.png",
+      "48": "icons/icon_48.png",
+      "128": "icons/icon_128.png"
+    }
+  }
+}

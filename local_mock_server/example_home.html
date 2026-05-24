@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillTestBench &mdash; Should you install this skill?</title>
+  <meta name="description" content="Drop a SKILL.md. We run it in a sandbox, twice, and tell you what really matters: does it help, is it safe, what does it cost.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/examples/home.css">
+</head>
+<body>
+
+  <!-- =========================================================
+       Reusable owl mark
+       ========================================================= -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="owl-mark" viewBox="0 0 180 142">
+      <path class="o-star"   d="M90 5l4.4 9 9.8 1.4-7.1 6.9 1.7 9.7L90 27.4 81.2 32l1.7-9.7-7.1-6.9 9.8-1.4L90 5Z"/>
+      <g class="o-laurel">
+        <path d="M45 95C25 80 16 58 17 34"/>
+        <path d="M135 95c20-15 29-37 28-61"/>
+        <path d="M55 103C38 91 30 74 31 54"/>
+        <path d="M125 103c17-12 25-29 24-49"/>
+      </g>
+      <path class="o-crest"  d="M90 34c-25 0-45 19-45 43 0 10 3 18 9 25 8 10 20 17 36 22 16-5 28-12 36-22 6-7 9-15 9-25 0-24-20-43-45-43Z"/>
+      <circle class="o-eye"   cx="73"  cy="70" r="14"/>
+      <circle class="o-eye"   cx="107" cy="70" r="14"/>
+      <circle class="o-pupil" cx="73"  cy="70" r="5.5"/>
+      <circle class="o-pupil" cx="107" cy="70" r="5.5"/>
+      <path   class="o-brow"  d="M66 55l24 14 24-14"/>
+      <path   class="o-beak"  d="M90 78l-11 14h22Z"/>
+    </symbol>
+  </svg>
+
+  <!-- =========================================================
+       Masthead
+       ========================================================= -->
+  <header class="masthead">
+    <a class="masthead-brand" href="/examples" aria-label="SkillTestBench home">
+      <svg class="masthead-owl owl-mark" aria-hidden="true"><use href="#owl-mark"/></svg>
+      <span class="masthead-wordmark">
+        <span class="name">SkillTestBench</span>
+        <span class="tag">Test before you install</span>
+      </span>
+    </a>
+
+    <nav class="masthead-nav" aria-label="Primary">
+      <a class="is-active" href="/examples">Home</a>
+      <a href="/examples/skills">Evaluated skills</a>
+      <a href="/examples/report">Report</a>
+      <a id="paper-nav" href="#" aria-disabled="true">Paper</a>
+      <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+    </nav>
+
+    <span class="masthead-venue" title="NeurIPS 2026 submission, under review">
+      NeurIPS 2026 &middot; under review
+    </span>
+  </header>
+
+  <!-- =========================================================
+       Hero
+       ========================================================= -->
+  <main class="essay">
+
+    <section class="section hero" id="hero">
+      <div class="hero-grid">
+
+        <div class="hero-copy">
+          <div class="hero-eyebrow">For developers shipping AI agents</div>
+
+          <h1 class="hero-headline">
+            Should you install <span class="hl">this&nbsp;skill</span>?
+          </h1>
+
+          <p class="hero-lede">
+            Paste a GitHub repo with a <code>SKILL.md</code>. We run it in a sandbox,
+            twice &mdash; once <strong>with</strong> the skill, once <strong>without</strong> &mdash;
+            and tell you the three things that actually matter:
+            <span class="axis-utility">does it help</span>,
+            <span class="axis-safety">is it safe</span>,
+            <span class="axis-cost">what does it cost</span>.
+          </p>
+
+          <form class="hero-submit" id="submit-form" novalidate>
+            <span class="hero-submit-label" id="submit-label">Try a skill repo from GitHub</span>
+            <div class="hero-submit-row">
+              <input
+                id="submit-input"
+                class="hero-submit-input"
+                type="text"
+                autocomplete="off"
+                spellcheck="false"
+                aria-labelledby="submit-label"
+                placeholder="github.com/owner/repo">
+              <button type="submit" class="hero-submit-btn">
+                Evaluate <span class="arrow" aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+            <div class="hero-submit-hint">
+              <span class="label">Try one</span>
+              <button type="button" data-q="github.com/Shubhamsaboo/academic-researcher">academic-researcher</button>
+              <button type="button" data-q="github.com/bytedance/academic-paper-review">academic-paper-review</button>
+              <button type="button" data-q="github.com/sickn33/advogado-criminal">advogado-criminal</button>
+            </div>
+            <div id="submit-error" class="hero-submit-error" hidden></div>
+          </form>
+        </div>
+
+        <!-- Live preview of what you get back -->
+        <aside class="hero-preview" aria-label="Sample report preview">
+          <div class="preview-tag">
+            <span class="dot"></span> What you get back
+          </div>
+          <div class="preview-card">
+            <div class="preview-card-head">
+              <svg class="preview-mark owl-mark" aria-hidden="true"><use href="#owl-mark"/></svg>
+              <div class="preview-card-title">
+                <div class="repo">shubhamsaboo / academic-researcher</div>
+                <div class="meta">8 paired tasks &middot; sandboxed run</div>
+              </div>
+            </div>
+
+            <div class="preview-axes">
+              <div class="preview-axis is-utility">
+                <div class="axis-row">
+                  <span class="axis-name">Utility</span>
+                  <span class="axis-big">+12<small>pp</small></span>
+                </div>
+                <div class="paired">
+                  <div class="paired-row is-without"><span>without</span><div class="paired-bar"><i style="width:46%"></i></div><span class="paired-num">46%</span></div>
+                  <div class="paired-row is-with"><span>with</span><div class="paired-bar"><i style="width:58%"></i></div><span class="paired-num">58%</span></div>
+                </div>
+              </div>
+
+              <div class="preview-axis is-safety">
+                <div class="axis-row">
+                  <span class="axis-name">Safety</span>
+                  <span class="axis-big">caution</span>
+                </div>
+                <div class="axis-foot">4 files written &middot; 2 outbound hosts</div>
+              </div>
+
+              <div class="preview-axis is-cost">
+                <div class="axis-row">
+                  <span class="axis-name">Cost</span>
+                  <span class="axis-big">2.3<small>&times;</small></span>
+                </div>
+                <div class="axis-foot">19.1k tokens vs 8.4k baseline</div>
+              </div>
+            </div>
+
+            <div class="preview-foot">
+              <span>Open the full report &rarr;</span>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <hr class="rule-heavy">
+
+    <!-- =========================================================
+         How it works — 3 steps, plain language
+         ========================================================= -->
+    <section class="section" id="how">
+      <p class="section-eyebrow">How it works</p>
+      <h2>Three steps. One verdict.</h2>
+
+      <ol class="how-steps">
+        <li class="how-step">
+          <div class="how-step-num">1</div>
+          <div class="how-step-art" aria-hidden="true">
+            <svg viewBox="0 0 200 120">
+              <!-- A document with SKILL.md label -->
+              <rect class="art-fill-paper" x="48" y="20" width="86" height="100"/>
+              <rect class="art-stroke" x="48" y="20" width="86" height="100"/>
+              <line class="art-stroke-hair" x1="60" y1="42" x2="118" y2="42"/>
+              <line class="art-stroke-hair" x1="60" y1="54" x2="118" y2="54"/>
+              <line class="art-stroke-hair" x1="60" y1="66" x2="100" y2="66"/>
+              <line class="art-stroke-hair" x1="60" y1="78" x2="118" y2="78"/>
+              <line class="art-stroke-hair" x1="60" y1="90" x2="92" y2="90"/>
+              <rect class="art-fill-ink" x="48" y="20" width="86" height="14"/>
+              <text x="91" y="31" text-anchor="middle" fill="#FBF9F4" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="0.1em">SKILL.MD</text>
+              <!-- Arrow in -->
+              <line class="art-stroke-acc" x1="10" y1="70" x2="44" y2="70"/>
+              <polygon class="art-fill-acc" points="44,70 36,66 36,74"/>
+              <text class="art-text" x="10" y="60">YOU</text>
+              <text class="art-text" x="160" y="60">SKILL</text>
+            </svg>
+          </div>
+          <h3>You drop a skill.</h3>
+          <p>Paste any GitHub repo with a <code>SKILL.md</code>. No tests to write, no setup.</p>
+        </li>
+
+        <li class="how-step">
+          <div class="how-step-num">2</div>
+          <div class="how-step-art" aria-hidden="true">
+            <svg viewBox="0 0 200 120">
+              <!-- Two parallel terminal-like boxes -->
+              <rect class="art-fill-muted-bg" x="20" y="22" width="78" height="76"/>
+              <rect class="art-stroke-mute" x="20" y="22" width="78" height="76"/>
+              <text class="art-text-mute" x="59" y="38" text-anchor="middle">WITHOUT</text>
+              <line class="art-stroke-mute-hair" x1="30" y1="48" x2="88" y2="48"/>
+              <line class="art-stroke-mute-hair" x1="30" y1="58" x2="80" y2="58"/>
+              <line class="art-stroke-mute-hair" x1="30" y1="68" x2="88" y2="68"/>
+              <line class="art-stroke-mute-hair" x1="30" y1="78" x2="74" y2="78"/>
+              <rect class="art-fill-muted-bar" x="30" y="84" width="40" height="6"/>
+
+              <rect class="art-fill-paper" x="102" y="22" width="78" height="76"/>
+              <rect class="art-stroke" x="102" y="22" width="78" height="76"/>
+              <text class="art-text" x="141" y="38" text-anchor="middle">WITH</text>
+              <line class="art-stroke-hair" x1="112" y1="48" x2="170" y2="48"/>
+              <line class="art-stroke-hair" x1="112" y1="58" x2="162" y2="58"/>
+              <line class="art-stroke-hair" x1="112" y1="68" x2="170" y2="68"/>
+              <line class="art-stroke-hair" x1="112" y1="78" x2="156" y2="78"/>
+              <rect class="art-fill-ink" x="112" y="84" width="58" height="6"/>
+
+              <text class="art-text-acc" x="100" y="115" text-anchor="middle">SAME TASK &middot; SAME SEED</text>
+            </svg>
+          </div>
+          <h3>We run it twice.</h3>
+          <p>Same task, same seed, same agent. The only thing that changes is whether your skill is loaded.</p>
+        </li>
+
+        <li class="how-step">
+          <div class="how-step-num">3</div>
+          <div class="how-step-art" aria-hidden="true">
+            <svg viewBox="0 0 200 120">
+              <!-- Mini verdict card -->
+              <rect class="art-fill-paper" x="32" y="14" width="136" height="92"/>
+              <rect class="art-stroke" x="32" y="14" width="136" height="92"/>
+              <line class="art-stroke-acc-thick" x1="32" y1="14" x2="168" y2="14"/>
+
+              <!-- Three rows -->
+              <text class="art-text" x="42" y="40">UTILITY</text>
+              <text x="158" y="40" text-anchor="end" fill="#1B5E20" font-family="'Source Serif 4', Georgia, serif" font-weight="700" font-size="14">+12pp</text>
+              <line class="art-stroke-hair" x1="42" y1="48" x2="158" y2="48"/>
+
+              <text class="art-text" x="42" y="64">SAFETY</text>
+              <text x="158" y="64" text-anchor="end" fill="#B45309" font-family="'Source Serif 4', Georgia, serif" font-weight="700" font-size="14">caution</text>
+              <line class="art-stroke-hair" x1="42" y1="72" x2="158" y2="72"/>
+
+              <text class="art-text" x="42" y="88">COST</text>
+              <text x="158" y="88" text-anchor="end" fill="#1E3A8A" font-family="'Source Serif 4', Georgia, serif" font-weight="700" font-size="14">2.3&times;</text>
+            </svg>
+          </div>
+          <h3>You get three numbers.</h3>
+          <p>Utility, safety, cost &mdash; from the same sandbox run, with the receipts to back it up.</p>
+        </li>
+      </ol>
+    </section>
+
+    <hr class="rule-heavy">
+
+    <!-- =========================================================
+         Comparison — vs what you usually see
+         ========================================================= -->
+    <section class="section" id="compare">
+      <p class="section-eyebrow">Why three numbers</p>
+      <h2>Stars don't ship to production.</h2>
+      <p class="section-lede">
+        Before installing a skill, the only signals you usually see are popularity and the
+        author's own description. None of them answer the question you actually have.
+      </p>
+
+      <div class="compare">
+        <div class="compare-head">
+          <div class="compare-cell compare-old">What you usually see</div>
+          <div class="compare-cell compare-new">What you actually need</div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-cell compare-old">
+            <span class="old-icon">&#9734;</span>
+            <span class="old-text">1,247 stars</span>
+          </div>
+          <div class="compare-cell compare-new">
+            <span class="new-axis is-utility">Utility</span>
+            <span class="new-num">+12pp</span>
+            <span class="new-sub">paired vs no-skill baseline, n=8 tasks</span>
+          </div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-cell compare-old">
+            <span class="old-icon">&#10003;</span>
+            <span class="old-text">MIT&#8209;licensed, &ldquo;safe to use&rdquo;</span>
+          </div>
+          <div class="compare-cell compare-new">
+            <span class="new-axis is-safety">Safety</span>
+            <span class="new-num">caution</span>
+            <span class="new-sub">4 files written &middot; 2 outbound hosts (logged)</span>
+          </div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-cell compare-old">
+            <span class="old-icon">&darr;</span>
+            <span class="old-text">1k weekly downloads</span>
+          </div>
+          <div class="compare-cell compare-new">
+            <span class="new-axis is-cost">Cost</span>
+            <span class="new-num">2.3&times;</span>
+            <span class="new-sub">tokens, vs running the same task without it</span>
+          </div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-cell compare-old">
+            <span class="old-icon">&#9734;</span>
+            <span class="old-text">README author claims</span>
+          </div>
+          <div class="compare-cell compare-new">
+            <span class="new-axis is-evidence">Evidence</span>
+            <span class="new-num">trajectory + fs-diff + net-log</span>
+            <span class="new-sub">every claim links back to a real sandbox run</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule-heavy">
+
+    <!-- =========================================================
+         Findings — punchline + chart
+         ========================================================= -->
+    <section class="section" id="findings">
+      <p class="section-eyebrow">What we found</p>
+      <h2>Most public skills don't actually help.</h2>
+
+      <div class="findings-row">
+        <div class="findings-text">
+          <p class="big-stat"><span class="num">68%</span> of evaluated skills move utility by less than 2 percentage points.</p>
+          <p>
+            Once tasks are calibrated to the no-skill baseline, paired utility &Delta;
+            clusters near zero. The few skills that genuinely help tend to <strong>cost more</strong>
+            and sometimes touch your filesystem or network.
+          </p>
+          <p class="findings-cta">
+            <a href="/examples/skills">Browse all evaluated skills &rarr;</a>
+          </p>
+        </div>
+
+        <figure class="scatter-figure">
+          <svg viewBox="0 0 480 320" role="img" aria-label="Scatter plot: paired utility delta versus cost overhead, points coloured by safety verdict">
+            <line class="sc-grid" x1="50" y1="270" x2="460" y2="270"/>
+            <line class="sc-grid" x1="50" y1="190" x2="460" y2="190"/>
+            <line class="sc-grid" x1="50" y1="110" x2="460" y2="110"/>
+            <line class="sc-grid" x1="50" y1="30"  x2="460" y2="30"/>
+
+            <line class="sc-axis" x1="50" y1="30" x2="50" y2="270"/>
+            <line class="sc-axis" x1="50" y1="270" x2="460" y2="270"/>
+
+            <line class="sc-zero" x1="108.6" y1="30" x2="108.6" y2="270"/>
+            <text class="sc-label" x="108.6" y="22" text-anchor="middle">no lift</text>
+
+            <line class="sc-tick" x1="50"    y1="270" x2="50"    y2="274"/>
+            <line class="sc-tick" x1="108.6" y1="270" x2="108.6" y2="274"/>
+            <line class="sc-tick" x1="167.1" y1="270" x2="167.1" y2="274"/>
+            <line class="sc-tick" x1="225.7" y1="270" x2="225.7" y2="274"/>
+            <line class="sc-tick" x1="284.2" y1="270" x2="284.2" y2="274"/>
+            <line class="sc-tick" x1="342.8" y1="270" x2="342.8" y2="274"/>
+            <line class="sc-tick" x1="401.3" y1="270" x2="401.3" y2="274"/>
+            <line class="sc-tick" x1="459.9" y1="270" x2="459.9" y2="274"/>
+
+            <text class="sc-label" x="50"    y="287" text-anchor="middle">&minus;5</text>
+            <text class="sc-label" x="108.6" y="287" text-anchor="middle">0</text>
+            <text class="sc-label" x="167.1" y="287" text-anchor="middle">5</text>
+            <text class="sc-label" x="225.7" y="287" text-anchor="middle">10</text>
+            <text class="sc-label" x="284.2" y="287" text-anchor="middle">15</text>
+            <text class="sc-label" x="342.8" y="287" text-anchor="middle">20</text>
+            <text class="sc-label" x="401.3" y="287" text-anchor="middle">25</text>
+            <text class="sc-label" x="459.9" y="287" text-anchor="middle">30</text>
+
+            <line class="sc-tick" x1="46" y1="270" x2="50" y2="270"/>
+            <line class="sc-tick" x1="46" y1="190" x2="50" y2="190"/>
+            <line class="sc-tick" x1="46" y1="110" x2="50" y2="110"/>
+            <line class="sc-tick" x1="46" y1="30"  x2="50" y2="30"/>
+            <text class="sc-label" x="42" y="273" text-anchor="end">1.0&times;</text>
+            <text class="sc-label" x="42" y="193" text-anchor="end">2.0&times;</text>
+            <text class="sc-label" x="42" y="113" text-anchor="end">3.0&times;</text>
+            <text class="sc-label" x="42" y="33"  text-anchor="end">4.0&times;</text>
+
+            <text class="sc-title" x="255" y="310" text-anchor="middle">Utility lift &rarr; (percentage points)</text>
+            <text class="sc-title" x="14" y="150" text-anchor="middle" transform="rotate(-90 14 150)">Cost (&times; more tokens)</text>
+
+            <!-- "most cluster here" annotation -->
+            <ellipse cx="120" cy="248" rx="58" ry="32" fill="none" stroke="#14141A" stroke-width="1" stroke-dasharray="3 3" opacity="0.5"/>
+            <text class="sc-label" x="180" y="216" font-family="'Source Serif 4', Georgia, serif" font-style="italic" font-size="12">most skills land here</text>
+            <line class="sc-grid" x1="170" y1="220" x2="148" y2="232"/>
+
+            <!-- points -->
+            <circle class="sc-pt-safe sc-pt-stroke" cx="67.6"  cy="266" r="4"/>
+            <circle class="sc-pt-safe sc-pt-stroke" cx="85.1"  cy="262" r="4"/>
+            <circle class="sc-pt-safe sc-pt-stroke" cx="96.8"  cy="258" r="4"/>
+            <circle class="sc-pt-safe sc-pt-stroke" cx="102.7" cy="254" r="4"/>
+            <circle class="sc-pt-safe sc-pt-stroke" cx="114.4" cy="250" r="4"/>
+            <circle class="sc-pt-safe sc-pt-stroke" cx="120.3" cy="262" r="4"/>
+            <circle class="sc-pt-caution sc-pt-stroke" cx="126.1" cy="246" r="4"/>
+            <circle class="sc-pt-safe sc-pt-stroke" cx="132.0" cy="255.6" r="4"/>
+            <circle class="sc-pt-safe sc-pt-stroke" cx="137.8" cy="234" r="4"/>
+            <circle class="sc-pt-safe sc-pt-stroke" cx="143.7" cy="252.4" r="4"/>
+            <circle class="sc-pt-caution sc-pt-stroke" cx="149.5" cy="226" r="4"/>
+            <circle class="sc-pt-safe sc-pt-stroke" cx="155.4" cy="238" r="4"/>
+            <circle class="sc-pt-caution sc-pt-stroke" cx="161.2" cy="247.6" r="4"/>
+            <circle class="sc-pt-safe sc-pt-stroke" cx="167.1" cy="218" r="4.5"/>
+            <circle class="sc-pt-caution sc-pt-stroke" cx="173.0" cy="202" r="4.5"/>
+            <circle class="sc-pt-safe sc-pt-stroke" cx="184.7" cy="234" r="4.5"/>
+            <circle class="sc-pt-caution sc-pt-stroke" cx="190.5" cy="182" r="4.5"/>
+            <circle class="sc-pt-safe sc-pt-stroke" cx="208.1" cy="194" r="4.5"/>
+            <circle class="sc-pt-caution sc-pt-stroke" cx="225.7" cy="210" r="4.5"/>
+            <circle class="sc-pt-caution sc-pt-stroke" cx="243.2" cy="158" r="5"/>
+            <circle class="sc-pt-safe sc-pt-stroke" cx="249.1" cy="182" r="5"/>
+            <circle class="sc-pt-caution sc-pt-stroke" cx="278.3" cy="138" r="5"/>
+            <circle class="sc-pt-caution sc-pt-stroke" cx="295.9" cy="166" r="5"/>
+            <circle class="sc-pt-risky sc-pt-stroke" cx="313.5" cy="122" r="5.5"/>
+            <circle class="sc-pt-caution sc-pt-stroke" cx="331.0" cy="150" r="5"/>
+            <circle class="sc-pt-risky sc-pt-stroke" cx="366.2" cy="102" r="6"/>
+            <circle class="sc-pt-caution sc-pt-stroke" cx="395.4" cy="86" r="6"/>
+            <circle class="sc-pt-caution sc-pt-stroke" cx="424.7" cy="134" r="5.5"/>
+            <circle class="sc-pt-risky sc-pt-stroke" cx="442.3" cy="70" r="6.5"/>
+          </svg>
+          <div class="scatter-legend" role="list">
+            <span role="listitem"><i class="lg-safe"></i>Safe</span>
+            <span role="listitem"><i class="lg-caution"></i>Caution</span>
+            <span role="listitem"><i class="lg-risky"></i>Risky</span>
+          </div>
+          <figcaption class="scatter-caption">
+            Each dot is one evaluated skill. Far left = the skill barely helped. High up = it cost a lot more tokens. Red = our sandbox saw risky behaviour.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <hr class="rule-heavy">
+
+    <!-- =========================================================
+         Inline-on-GitHub
+         ========================================================= -->
+    <section class="section" id="extension">
+      <p class="section-eyebrow">Right where you decide</p>
+      <h2>See the verdict on GitHub, before you click install.</h2>
+
+      <div class="extension-row">
+        <div class="extension-copy">
+          <p>
+            Our browser extension finds skill repositories on GitHub and shows the
+            SkillTestBench report directly on the repo page &mdash; in the place where
+            you decide whether to install.
+          </p>
+          <ul>
+            <li>Detects <code>SKILL.md</code> repos automatically</li>
+            <li>Shows utility, safety, and cost inline</li>
+            <li>One click into the full evidence bundle</li>
+          </ul>
+        </div>
+
+        <div class="gh-mock" aria-label="GitHub repository with SkillTestBench panel injected">
+          <div class="gh-mock-header">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38v-1.34c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.9-1.18-.9-1.18-.74-.5.05-.49.05-.49.82.06 1.25.84 1.25.84.72 1.24 1.9.88 2.36.67.07-.52.28-.88.51-1.08-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.11 0 0 .67-.21 2.2.82a7.62 7.62 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.91.08 2.11.51.56.82 1.27.82 2.15 0 3.07-1.87 3.74-3.65 3.95.29.25.54.73.54 1.48v2.19c0 .21.15.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            <b>shubhamsaboo</b>
+            <span class="gh-slash">/</span>
+            <b>academic-researcher</b>
+            <span class="gh-pill">SKILL.md detected</span>
+          </div>
+          <div class="gh-mock-readme">
+            <h4># academic-researcher</h4>
+            A skill that searches recent arXiv submissions and produces a structured
+            literature scaffold. Install with <code>claude skills install</code>.
+          </div>
+
+          <div class="stb-panel">
+            <div class="stb-panel-head">
+              <svg class="stb-mark owl-mark" aria-hidden="true"><use href="#owl-mark"/></svg>
+              <span><b>SkillTestBench</b> &middot; deployment report</span>
+            </div>
+            <div class="stb-axes">
+              <div class="stb-axis is-utility">
+                <div class="stb-axis-label">Utility</div>
+                <div class="stb-axis-value">+12<small>pp</small></div>
+                <div class="stb-axis-sub">paired vs no-skill</div>
+              </div>
+              <div class="stb-axis is-safety">
+                <div class="stb-axis-label">Safety</div>
+                <div class="stb-axis-value">caution</div>
+                <div class="stb-axis-sub">4 files &middot; 2 hosts</div>
+              </div>
+              <div class="stb-axis is-cost">
+                <div class="stb-axis-label">Cost</div>
+                <div class="stb-axis-value">2.3<small>&times;</small></div>
+                <div class="stb-axis-sub">tokens, vs baseline</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule-heavy">
+
+    <!-- ========== CTA ========== -->
+    <section class="actions" aria-label="Primary actions">
+      <a class="btn-major" href="/examples/skills">
+        Browse evaluated skills <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="btn-quiet" href="/examples/report">
+        See a sample report <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       Colophon
+       ========================================================= -->
+  <footer class="colophon">
+    <div class="colophon-inner">
+      <svg class="colophon-mark owl-mark" aria-hidden="true"><use href="#owl-mark"/></svg>
+      <div class="colophon-text">
+        <strong>SkillTestBench</strong> &middot; submitted to NeurIPS 2026 &middot; sandboxed via Harbor
+      </div>
+      <a class="colophon-link" href="https://github.com" target="_blank" rel="noreferrer">github &rarr;</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const demoSkills = [
+        { owner: "shubhamsaboo", repo: "academic-researcher", skill: "academic-researcher" },
+        { owner: "bytedance", repo: "academic-paper-review", skill: "academic-paper-review" },
+        { owner: "sickn33", repo: "advogado-criminal", skill: "advogado-criminal" }
+      ];
+
+      const form = document.getElementById("submit-form");
+      const input = document.getElementById("submit-input");
+      const error = document.getElementById("submit-error");
+
+      function parseRepo(value) {
+        const text = String(value || "").trim();
+        if (!text) return null;
+        const match = text.match(/(?:github\.com\/)?([\w.-]+)\/([\w.-]+)/i);
+        if (!match) return null;
+        return {
+          owner: match[1].toLowerCase(),
+          repo: match[2].replace(/\.git$/i, "").replace(/\/.*$/, "").toLowerCase()
+        };
+      }
+
+      function showMessage(message) {
+        error.hidden = false;
+        error.textContent = message;
+      }
+
+      function route(value) {
+        const parsed = parseRepo(value);
+        if (!parsed) {
+          showMessage("Could not parse a github.com/owner/repo input.");
+          return;
+        }
+
+        const hit = demoSkills.find((item) =>
+          item.repo === parsed.repo || (item.owner === parsed.owner && item.repo === parsed.repo)
+        );
+        if (hit) {
+          window.location.href = `/examples/report?skill=${encodeURIComponent(hit.skill)}`;
+          return;
+        }
+
+        showMessage(`Evaluation request queued for ${parsed.owner}/${parsed.repo}. Demo reports are available in Browse Skills.`);
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        error.hidden = true;
+        route(input.value);
+      });
+
+      document.querySelectorAll(".hero-submit-hint button").forEach((button) => {
+        button.addEventListener("click", () => {
+          input.value = button.dataset.q;
+          error.hidden = true;
+          route(button.dataset.q);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

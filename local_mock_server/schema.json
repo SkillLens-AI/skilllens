@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skilltestbench.local/schema/lookup-payload-v1.json",
+  "title": "SkillTestBench /lookup payload (v1)",
+  "description": "Shape returned by GET /lookup and stored as values inside precomputed_evaluations.json. The adapter (skill_report.json -> plugin shape) MUST emit this shape; hand-curated entries SHOULD validate against it. Algorithm-side teams can validate their pipeline output by checking each value in skill_manifest.json + Example/<skill>/skill_report.json against this contract after running adapter.py --out.",
+  "type": "object",
+  "required": ["skillName", "utility", "safety", "cost"],
+  "properties": {
+    "skillName": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Display name. For monorepo aggregations this is a comma-joined list of contributing skills."
+    },
+    "owner": { "type": "string" },
+    "repo": { "type": "string" },
+    "skillPath": {
+      "type": "string",
+      "description": "Sub-path within the repo where SKILL.md lives, when the repo holds multiple skills."
+    },
+    "evaluatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp the evaluation finished."
+    },
+    "commit": {
+      "type": "string",
+      "description": "Git commit hash of the evaluated repo. Empty string allowed for demo data."
+    },
+    "source": {
+      "type": "string",
+      "enum": ["precomputed", "adapter", "demo_seed", "skilltestbench_v1"],
+      "description": "Origin tag so the front-end can show 'demo' vs 'real benchmark' badges."
+    },
+    "notes": { "type": "string" },
+    "includedSkills": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Present only on monorepo aggregations; lists the per-skill names rolled up into this payload."
+    },
+
+    "utility": {
+      "type": "object",
+      "required": ["deltaPassAt1"],
+      "properties": {
+        "deltaPassAt1": {
+          "type": ["number", "null"],
+          "minimum": -1.0,
+          "maximum": 1.0,
+          "description": "withSkill - baseline pass@1, in absolute proportion (not percentage). Null when undefined."
+        },
+        "baseline": {
+          "type": ["number", "null"],
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "wo_passed_items / total_items."
+        },
+        "withSkill": {
+          "type": ["number", "null"],
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "wi_passed_items / total_items."
+        },
+        "tasks": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of scenarios evaluated (NOT items). For monorepo aggregations this is the sum across skills."
+        },
+        "items": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number of judged items across all scenarios. Adapter-only field."
+        },
+        "wiPassedItems": { "type": "integer", "minimum": 0 },
+        "woPassedItems": { "type": "integer", "minimum": 0 },
+        "ci95": {
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "[low, high] 95% CI for deltaPassAt1. Optional — algorithm side may add later."
+        },
+        "nRuns": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of independent runs per condition. Optional."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "safety": {
+      "type": "object",
+      "required": ["riskLevel"],
+      "properties": {
+        "riskLevel": {
+          "type": "string",
+          "enum": ["unknown", "low", "medium", "high"],
+          "description": "Categorical safety rating. 'unknown' means no security signal was evaluated."
+        },
+        "staticHits": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count of findings from the static scanner."
+        },
+        "staticTaxonomy": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true,
+          "description": "Sorted union of static scanner finding categories."
+        },
+        "runtimeFlags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Scenario-level signals where risk_triggered=true at runtime."
+        },
+        "evaluated": {
+          "type": "boolean",
+          "description": "True if any safety signal (static or runtime) was actually computed."
+        },
+        "riskTriggerRate": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "cost": {
+      "type": "object",
+      "required": ["deltaTimeSec", "deltaTokens"],
+      "properties": {
+        "deltaTimeSec": {
+          "type": "number",
+          "description": "wi_agent_execution_time - wo_agent_execution_time, seconds."
+        },
+        "deltaTokens": {
+          "type": "integer",
+          "description": "Total token delta (input + cache + output)."
+        },
+        "deltaUsd": {
+          "type": ["number", "null"],
+          "description": "USD cost delta computed from model_pricing.json. Null when pricing is unavailable for the model."
+        },
+        "wiTokens": {
+          "type": "object",
+          "properties": {
+            "input": { "type": "integer", "minimum": 0 },
+            "cache": { "type": "integer", "minimum": 0 },
+            "output": { "type": "integer", "minimum": 0 },
+            "total": { "type": "integer", "minimum": 0 }
+          },
+          "required": ["input", "cache", "output", "total"]
+        },
+        "woTokens": {
+          "type": "object",
+          "properties": {
+            "input": { "type": "integer", "minimum": 0 },
+            "cache": { "type": "integer", "minimum": 0 },
+            "output": { "type": "integer", "minimum": 0 },
+            "total": { "type": "integer", "minimum": 0 }
+          },
+          "required": ["input", "cache", "output", "total"]
+        },
+        "wiTimeSec": { "type": "number", "minimum": 0 },
+        "woTimeSec": { "type": "number", "minimum": 0 },
+        "pricingModel": {
+          "type": ["string", "null"],
+          "description": "Which entry in model_pricing.json was used. Null when no pricing matched."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "provenance": {
+      "type": "object",
+      "description": "Reproducibility metadata. Required for paper-grade entries; optional for demo seeds.",
+      "properties": {
+        "harness": {
+          "type": "string",
+          "description": "Name and version of the evaluation harness, e.g. 'skills_eval@v0.1'."
+        },
+        "model": {
+          "type": "string",
+          "description": "Model used for the agent runs."
+        },
+        "judgeModel": {
+          "type": "string",
+          "description": "Model used by the LLM judge."
+        },
+        "seed": { "type": "integer" },
+        "harborVersion": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "tokenBucket": {
+      "type": "object",
+      "properties": {
+        "input": { "type": "integer", "minimum": 0 },
+        "cache": { "type": "integer", "minimum": 0 },
+        "output": { "type": "integer", "minimum": 0 },
+        "total": { "type": "integer", "minimum": 0 }
+      },
+      "required": ["input", "cache", "output", "total"]
+    }
+  }
+}

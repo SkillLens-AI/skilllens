@@ -1,0 +1,10 @@
+/* SkillLens Inspector — marketplace content script CSS placeholder.
+ *
+ * As of v0.3.0 the marketplace overlay shares the same #skilltestbench-panel
+ * and #skilltestbench-toast surfaces as the GitHub overlay. All visual styles
+ * for those surfaces live in content_github.css, which is loaded alongside
+ * this script on marketplace pages too (see manifest.json content_scripts).
+ *
+ * This file is intentionally empty so the legacy entrypoint still resolves
+ * if any older code path requested it. It can be deleted in a future release.
+ */

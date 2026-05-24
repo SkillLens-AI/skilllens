@@ -1,0 +1,285 @@
+[
+  {
+    "skillName": "mcp-builder",
+    "owner": "anthropics",
+    "category": "developer-tools-and-tooling",
+    "categoryLabel": "Developer Tools And Tooling",
+    "scenarioCount": 8,
+    "effectiveness": {
+      "totalItems": 24, "wiPassedItems": 18, "woPassedItems": 14,
+      "wiPassRate": 0.750, "woPassRate": 0.583, "passDeltaRate": 0.167,
+      "wiWins": 6, "woWins": 2, "ties": 16
+    },
+    "reliabilityError": { "wiExceptionScenarios": 0, "woExceptionScenarios": 0 },
+    "safety": { "score": 96, "highCount": 0, "mediumCount": 0, "lowCount": 0 }
+  },
+  {
+    "skillName": "pdf-form",
+    "owner": "anthropics",
+    "category": "document-and-publishing",
+    "categoryLabel": "Document And Publishing",
+    "scenarioCount": 6,
+    "effectiveness": {
+      "totalItems": 18, "wiPassedItems": 13, "woPassedItems": 11,
+      "wiPassRate": 0.722, "woPassRate": 0.611, "passDeltaRate": 0.111,
+      "wiWins": 3, "woWins": 1, "ties": 14
+    },
+    "reliabilityError": { "wiExceptionScenarios": 0, "woExceptionScenarios": 0 },
+    "safety": { "score": 94, "highCount": 0, "mediumCount": 0, "lowCount": 1 }
+  },
+  {
+    "skillName": "canva-design",
+    "owner": "anthropics",
+    "category": "media-and-creative",
+    "categoryLabel": "Media And Creative",
+    "scenarioCount": 5,
+    "effectiveness": {
+      "totalItems": 15, "wiPassedItems": 11, "woPassedItems": 9,
+      "wiPassRate": 0.733, "woPassRate": 0.600, "passDeltaRate": 0.133,
+      "wiWins": 2, "woWins": 0, "ties": 13
+    },
+    "reliabilityError": { "wiExceptionScenarios": 0, "woExceptionScenarios": 0 },
+    "safety": { "score": 92, "highCount": 0, "mediumCount": 0, "lowCount": 0 }
+  },
+  {
+    "skillName": "xlsx-builder",
+    "owner": "anthropics",
+    "category": "document-and-publishing",
+    "categoryLabel": "Document And Publishing",
+    "scenarioCount": 4,
+    "effectiveness": {
+      "totalItems": 12, "wiPassedItems": 8, "woPassedItems": 8,
+      "wiPassRate": 0.667, "woPassRate": 0.667, "passDeltaRate": 0.000,
+      "wiWins": 1, "woWins": 1, "ties": 10
+    },
+    "reliabilityError": { "wiExceptionScenarios": 0, "woExceptionScenarios": 0 },
+    "safety": { "score": 84, "highCount": 0, "mediumCount": 1, "lowCount": 0 }
+  },
+  {
+    "skillName": "docx-builder",
+    "owner": "anthropics",
+    "category": "document-and-publishing",
+    "categoryLabel": "Document And Publishing",
+    "scenarioCount": 5,
+    "effectiveness": {
+      "totalItems": 15, "wiPassedItems": 11, "woPassedItems": 10,
+      "wiPassRate": 0.733, "woPassRate": 0.667, "passDeltaRate": 0.067,
+      "wiWins": 1, "woWins": 0, "ties": 14
+    },
+    "reliabilityError": { "wiExceptionScenarios": 0, "woExceptionScenarios": 0 },
+    "safety": { "score": 95, "highCount": 0, "mediumCount": 0, "lowCount": 0 }
+  },
+  {
+    "skillName": "pptx-builder",
+    "owner": "anthropics",
+    "category": "media-and-creative",
+    "categoryLabel": "Media And Creative",
+    "scenarioCount": 4,
+    "effectiveness": {
+      "totalItems": 12, "wiPassedItems": 7, "woPassedItems": 8,
+      "wiPassRate": 0.583, "woPassRate": 0.667, "passDeltaRate": -0.083,
+      "wiWins": 0, "woWins": 1, "ties": 11
+    },
+    "reliabilityError": { "wiExceptionScenarios": 0, "woExceptionScenarios": 0 },
+    "safety": { "score": 91, "highCount": 0, "mediumCount": 0, "lowCount": 1 }
+  },
+  {
+    "skillName": "slack-bot",
+    "owner": "anthropics",
+    "category": "communication-and-collaboration",
+    "categoryLabel": "Communication And Collaboration",
+    "scenarioCount": 4,
+    "effectiveness": {
+      "totalItems": 12, "wiPassedItems": 8, "woPassedItems": 7,
+      "wiPassRate": 0.667, "woPassRate": 0.583, "passDeltaRate": 0.083,
+      "wiWins": 1, "woWins": 0, "ties": 11
+    },
+    "reliabilityError": { "wiExceptionScenarios": 0, "woExceptionScenarios": 0 },
+    "safety": { "score": 78, "highCount": 0, "mediumCount": 1, "lowCount": 1 }
+  },
+  {
+    "skillName": "web-fetcher",
+    "owner": "anthropics",
+    "category": "research-and-search",
+    "categoryLabel": "Research And Search",
+    "scenarioCount": 6,
+    "effectiveness": {
+      "totalItems": 18, "wiPassedItems": 12, "woPassedItems": 11,
+      "wiPassRate": 0.667, "woPassRate": 0.611, "passDeltaRate": 0.056,
+      "wiWins": 2, "woWins": 1, "ties": 15
+    },
+    "reliabilityError": { "wiExceptionScenarios": 2, "woExceptionScenarios": 0 },
+    "safety": { "score": 62, "highCount": 1, "mediumCount": 1, "lowCount": 0 }
+  },
+  {
+    "skillName": "artifacts-builder",
+    "owner": "anthropics",
+    "category": "developer-tools-and-tooling",
+    "categoryLabel": "Developer Tools And Tooling",
+    "scenarioCount": 7,
+    "effectiveness": {
+      "totalItems": 21, "wiPassedItems": 17, "woPassedItems": 14,
+      "wiPassRate": 0.810, "woPassRate": 0.667, "passDeltaRate": 0.143,
+      "wiWins": 4, "woWins": 1, "ties": 16
+    },
+    "reliabilityError": { "wiExceptionScenarios": 0, "woExceptionScenarios": 0 },
+    "safety": { "score": 93, "highCount": 0, "mediumCount": 0, "lowCount": 1 }
+  },
+  {
+    "skillName": "conversation-search",
+    "owner": "anthropics",
+    "category": "knowledge-management",
+    "categoryLabel": "Knowledge Management",
+    "scenarioCount": 5,
+    "effectiveness": {
+      "totalItems": 15, "wiPassedItems": 11, "woPassedItems": 10,
+      "wiPassRate": 0.733, "woPassRate": 0.667, "passDeltaRate": 0.067,
+      "wiWins": 1, "woWins": 0, "ties": 14
+    },
+    "reliabilityError": { "wiExceptionScenarios": 0, "woExceptionScenarios": 0 },
+    "safety": { "score": 90, "highCount": 0, "mediumCount": 0, "lowCount": 0 }
+  },
+  {
+    "skillName": "sql-explainer",
+    "owner": "jeffallan",
+    "category": "developer-tools-and-tooling",
+    "categoryLabel": "Developer Tools And Tooling",
+    "scenarioCount": 6,
+    "effectiveness": {
+      "totalItems": 18, "wiPassedItems": 14, "woPassedItems": 11,
+      "wiPassRate": 0.778, "woPassRate": 0.611, "passDeltaRate": 0.167,
+      "wiWins": 3, "woWins": 0, "ties": 15
+    },
+    "reliabilityError": { "wiExceptionScenarios": 0, "woExceptionScenarios": 0 },
+    "safety": { "score": 58, "highCount": 1, "mediumCount": 2, "lowCount": 0 }
+  },
+  {
+    "skillName": "regex-helper",
+    "owner": "jeffallan",
+    "category": "developer-tools-and-tooling",
+    "categoryLabel": "Developer Tools And Tooling",
+    "scenarioCount": 4,
+    "effectiveness": {
+      "totalItems": 12, "wiPassedItems": 8, "woPassedItems": 8,
+      "wiPassRate": 0.667, "woPassRate": 0.667, "passDeltaRate": 0.000,
+      "wiWins": 1, "woWins": 1, "ties": 10
+    },
+    "reliabilityError": { "wiExceptionScenarios": 0, "woExceptionScenarios": 0 },
+    "safety": { "score": 97, "highCount": 0, "mediumCount": 0, "lowCount": 0 }
+  },
+  {
+    "skillName": "terraform-planner",
+    "owner": "hashicorp",
+    "category": "devops-and-infrastructure",
+    "categoryLabel": "Devops And Infrastructure",
+    "scenarioCount": 7,
+    "effectiveness": {
+      "totalItems": 21, "wiPassedItems": 18, "woPassedItems": 13,
+      "wiPassRate": 0.857, "woPassRate": 0.619, "passDeltaRate": 0.238,
+      "wiWins": 5, "woWins": 0, "ties": 16
+    },
+    "reliabilityError": { "wiExceptionScenarios": 0, "woExceptionScenarios": 0 },
+    "safety": { "score": 81, "highCount": 0, "mediumCount": 1, "lowCount": 1 }
+  },
+  {
+    "skillName": "k8s-debugger",
+    "owner": "clawhub",
+    "category": "devops-and-infrastructure",
+    "categoryLabel": "Devops And Infrastructure",
+    "scenarioCount": 5,
+    "effectiveness": {
+      "totalItems": 15, "wiPassedItems": 10, "woPassedItems": 9,
+      "wiPassRate": 0.667, "woPassRate": 0.600, "passDeltaRate": 0.067,
+      "wiWins": 2, "woWins": 1, "ties": 12
+    },
+    "reliabilityError": { "wiExceptionScenarios": 3, "woExceptionScenarios": 1 },
+    "safety": { "score": 49, "highCount": 2, "mediumCount": 1, "lowCount": 0 }
+  },
+  {
+    "skillName": "log-analyzer",
+    "owner": "observability-skills",
+    "category": "devops-and-infrastructure",
+    "categoryLabel": "Devops And Infrastructure",
+    "scenarioCount": 5,
+    "effectiveness": {
+      "totalItems": 15, "wiPassedItems": 8, "woPassedItems": 9,
+      "wiPassRate": 0.533, "woPassRate": 0.600, "passDeltaRate": -0.067,
+      "wiWins": 1, "woWins": 2, "ties": 12
+    },
+    "reliabilityError": { "wiExceptionScenarios": 0, "woExceptionScenarios": 0 },
+    "safety": { "score": 76, "highCount": 0, "mediumCount": 1, "lowCount": 1 }
+  },
+  {
+    "skillName": "commit-message",
+    "owner": "agent-audit",
+    "category": "version-control-and-review",
+    "categoryLabel": "Version Control And Review",
+    "scenarioCount": 4,
+    "effectiveness": {
+      "totalItems": 12, "wiPassedItems": 9, "woPassedItems": 7,
+      "wiPassRate": 0.750, "woPassRate": 0.583, "passDeltaRate": 0.167,
+      "wiWins": 2, "woWins": 0, "ties": 10
+    },
+    "reliabilityError": { "wiExceptionScenarios": 0, "woExceptionScenarios": 0 },
+    "safety": { "score": 98, "highCount": 0, "mediumCount": 0, "lowCount": 0 }
+  },
+  {
+    "skillName": "pr-summarizer",
+    "owner": "skills-sh",
+    "category": "version-control-and-review",
+    "categoryLabel": "Version Control And Review",
+    "scenarioCount": 5,
+    "effectiveness": {
+      "totalItems": 15, "wiPassedItems": 9, "woPassedItems": 10,
+      "wiPassRate": 0.600, "woPassRate": 0.667, "passDeltaRate": -0.067,
+      "wiWins": 1, "woWins": 2, "ties": 12
+    },
+    "reliabilityError": { "wiExceptionScenarios": 1, "woExceptionScenarios": 0 },
+    "safety": { "score": 80, "highCount": 0, "mediumCount": 1, "lowCount": 0 }
+  },
+  {
+    "skillName": "resume-tailor",
+    "owner": "community-skills",
+    "category": "career-and-personal",
+    "categoryLabel": "Career And Personal",
+    "source": "safety_only",
+    "scenarioCount": 0,
+    "effectiveness": {
+      "totalItems": 0, "wiPassedItems": 0, "woPassedItems": 0,
+      "wiPassRate": 0, "woPassRate": 0, "passDeltaRate": 0,
+      "wiWins": 0, "woWins": 0, "ties": 0
+    },
+    "reliabilityError": { "wiExceptionScenarios": 0, "woExceptionScenarios": 0 },
+    "safety": { "score": 73, "highCount": 0, "mediumCount": 1, "lowCount": 2 }
+  },
+  {
+    "skillName": "threat-modeler",
+    "owner": "security-skills",
+    "category": "security-and-compliance",
+    "categoryLabel": "Security And Compliance",
+    "source": "safety_only",
+    "scenarioCount": 0,
+    "effectiveness": {
+      "totalItems": 0, "wiPassedItems": 0, "woPassedItems": 0,
+      "wiPassRate": 0, "woPassRate": 0, "passDeltaRate": 0,
+      "wiWins": 0, "woWins": 0, "ties": 0
+    },
+    "reliabilityError": { "wiExceptionScenarios": 0, "woExceptionScenarios": 0 },
+    "safety": { "score": 99, "highCount": 0, "mediumCount": 0, "lowCount": 0 }
+  },
+  {
+    "skillName": "sbom-auditor",
+    "owner": "security-skills",
+    "category": "security-and-compliance",
+    "categoryLabel": "Security And Compliance",
+    "source": "safety_only",
+    "scenarioCount": 0,
+    "effectiveness": {
+      "totalItems": 0, "wiPassedItems": 0, "woPassedItems": 0,
+      "wiPassRate": 0, "woPassRate": 0, "passDeltaRate": 0,
+      "wiWins": 0, "woWins": 0, "ties": 0
+    },
+    "reliabilityError": { "wiExceptionScenarios": 0, "woExceptionScenarios": 0 },
+    "safety": { "score": 96, "highCount": 0, "mediumCount": 0, "lowCount": 0 }
+  }
+]

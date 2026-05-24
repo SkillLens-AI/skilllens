@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillTestBench - Evaluation Details</title>
+  <link rel="stylesheet" href="/task-results/app.css">
+  <link rel="stylesheet" href="/examples/details.css">
+</head>
+<body class="skillmark-body">
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brandmark" href="/examples">
+        <div class="brandmark-badge">S</div>
+        <div class="brandmark-word">SkillTestBench</div>
+      </a>
+      <nav class="topnav">
+        <a href="/examples">Home</a>
+        <a href="/examples/skills">Skills</a>
+        <a href="/examples/report">Report</a>
+        <a id="paper-nav" href="#" aria-disabled="true">Paper</a>
+        <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="landing-shell">
+      <section class="dashboard-grid">
+        <article class="showcase-card" id="included-skills">
+          <div class="showcase-header">
+            <div class="showcase-icon" aria-hidden="true">
+              <svg viewBox="0 0 120 120">
+                <rect x="20" y="22" width="28" height="28" rx="8" fill="#0c5f72"/>
+                <rect x="56" y="22" width="28" height="28" rx="12" fill="#0c5f72"/>
+                <rect x="20" y="58" width="28" height="28" rx="8" fill="#0c5f72"/>
+                <rect x="56" y="58" width="28" height="28" rx="8" fill="#0c5f72"/>
+                <path d="M34 28v16M26 36h16" stroke="#f7f7ef" stroke-width="4" stroke-linecap="round"/>
+                <path d="M70 64h8l4 7 8-16" stroke="#f7f7ef" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M34 64l5 5 9-12" stroke="#f7f7ef" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="72" cy="36" r="6" fill="#f7f7ef"/>
+              </svg>
+            </div>
+            <div class="showcase-copy">
+              <h2>Included Skills</h2>
+              <p>Browse the skills covered in the benchmark, organized by domain, owner, and capability coverage.</p>
+            </div>
+          </div>
+
+          <div class="showcase-toolbar">
+            <label class="showcase-field">
+              <span>Examples Dir</span>
+              <input id="examples-dir-input" type="text" autocomplete="off" spellcheck="false">
+            </label>
+            <label class="showcase-field">
+              <span>Search Skills</span>
+              <input id="search-input" type="search" autocomplete="off" spellcheck="false" placeholder="Search by skill, domain, owner">
+            </label>
+            <div class="showcase-actions">
+              <button id="reload-button" class="skillmark-button" type="button">Reload Data</button>
+              <div class="status-pill" id="status-pill" data-tone="working">Loading</div>
+            </div>
+          </div>
+
+          <div class="skills-meta" id="skills-meta">Loading</div>
+          <div class="skills-stack" id="skill-list"></div>
+        </article>
+
+        <article class="showcase-card detail-showcase" id="evaluation-details">
+          <div class="showcase-header">
+            <div class="showcase-icon" aria-hidden="true">
+              <svg viewBox="0 0 120 120">
+                <rect x="24" y="18" width="48" height="66" rx="8" fill="none" stroke="#0c5f72" stroke-width="5"/>
+                <path d="M36 38h10M36 54h10M36 70h10" stroke="#0c5f72" stroke-width="5" stroke-linecap="round"/>
+                <path d="M54 66V48M68 66V34" stroke="#0c5f72" stroke-width="6" stroke-linecap="round"/>
+                <circle cx="84" cy="74" r="18" fill="none" stroke="#0c5f72" stroke-width="5"/>
+                <path d="M84 74V56A18 18 0 0 1 99 66Z" fill="#0c5f72"/>
+              </svg>
+            </div>
+            <div class="showcase-copy">
+              <h2>Evaluation Details</h2>
+              <p>Inspect benchmark dimensions, paired comparisons, execution metrics, and detailed assessment results.</p>
+            </div>
+          </div>
+
+          <div class="detail-anchor">
+            <button class="skillmark-button ghost-button" type="button" id="focus-detail-button">Focus Detail</button>
+            <div class="detail-caption" id="detail-caption">Select a skill</div>
+          </div>
+
+          <div id="detail-content" class="detail-content skillmark-detail-content">
+            <div class="empty-state skillmark-empty">
+              <div class="empty-kicker">No skill selected</div>
+              <p>Pick a skill from Included Skills to inspect its Utility, Cost, and Safety evaluation.</p>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="/examples/details.js"></script>
+</body>
+</html>

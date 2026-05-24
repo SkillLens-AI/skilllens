@@ -148,6 +148,15 @@ SkillLens/
 ├── CITATION.cff                  ← citation metadata (CFF)
 ├── pyproject.toml                ← package + pinned Harbor SHA
 ├── .env.example                  ← required environment variables
+├── browser_extension/            ← Chromium MV3 extension (discovery-time surface)
+│   ├── manifest.json
+│   ├── background.js / content*.js / popup.* / result.*
+│   └── README.md                 ← install + permissions + privacy
+├── local_mock_server/            ← stdlib HTTP server the extension calls
+│   ├── mock_skill_server.py      ← entrypoint, /lookup + /examples routes
+│   ├── adapter.py                ← skill_report.json → /lookup adapter
+│   ├── precomputed_evaluations.json
+│   └── README.md                 ← routes, CLI flags, data sources
 ├── scripts/
 │   └── sanitize_traces.py        ← trace anonymizer for artifact release
 └── skills_eval/                  ← Python package (importable)
@@ -568,15 +577,44 @@ The paper describes a browser extension that surfaces SkillLens results
 at the point where a developer is browsing skill marketplaces — turning
 the "should I install this skill?" question into a one-click lookup.
 
-The extension is in active development and **is not yet ready for public
-release**. A companion repository will appear under
-[`SkillLens-AI`](https://github.com/SkillLens-AI) once the implementation
-matures. In the meantime, the artifacts site at
+The extension source ships in this repository under
+[`browser_extension/`](browser_extension/), with the local backend it talks
+to under [`local_mock_server/`](local_mock_server/).
+
+**Quick start — load it as an unpacked Chrome extension:**
+
+```bash
+# 1. Start the local backend (stdlib only; Python 3.10+)
+cd local_mock_server
+python mock_skill_server.py
+# Server listens on http://127.0.0.1:8765
+
+# 2. In Chrome / Edge / Brave / Arc:
+#    chrome://extensions  →  toggle Developer mode  →  Load unpacked
+#    Select the browser_extension/ directory in this repo.
+
+# 3. Pin "SkillLens — Browser Extension" to the toolbar and open any
+#    supported page (github.com/<owner>/<repo> with a SKILL.md, or one of
+#    clawhub.ai / skills.sh / skillsmp.com / ai-skills.io).
+```
+
+The extension is Chromium MV3 (smoke-tested on Chrome 120+, Edge 120+,
+Brave 1.62+) and reads its backend URL from `chrome.storage.sync`, so you
+can point it at a self-hosted SkillLens deployment from the popup's
+**Advanced · Backend URL** panel.
+
+Full documentation:
+
+- [`browser_extension/README.md`](browser_extension/README.md) — install,
+  permissions, supported sites, privacy.
+- [`local_mock_server/README.md`](local_mock_server/README.md) — backend
+  routes, CLI flags, data sources.
+
+The artifacts site at
 [`skilllens-ai.github.io/artifacts/`](https://skilllens-ai.github.io/artifacts/)
-already serves the same per-skill report payloads (under
-`docs/data/skills/*.json`) that the extension is built to consume, so
-contributors can preview the look-up surface end-to-end via the site
-without running the extension itself.
+serves the same per-skill report payloads (`docs/data/skills/*.json`) the
+extension consumes, so the look-up surface can be previewed end-to-end via
+the site as well.
 
 ---
 

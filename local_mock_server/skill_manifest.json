@@ -1,0 +1,44 @@
+{
+  "_comment": "Maps algorithm-side skill_name to GitHub owner/repo so /lookup can find evaluations. Add a new entry whenever a skill is benchmarked. commit is optional but recommended for paper reproducibility.",
+  "skills": [
+    {
+      "skill_name": "academic-researcher",
+      "owner": "anthropics",
+      "repo": "skills",
+      "commit": "",
+      "skillPath": "document-skills/academic-researcher",
+      "evaluatedAt": "2026-04-27T01:43:28Z",
+      "evaluator": {
+        "harness": "skills_eval@v0.1",
+        "model": "claude-sonnet-4-6",
+        "judgeModel": "claude-sonnet-4-6"
+      }
+    },
+    {
+      "skill_name": "academic-paper-review",
+      "owner": "anthropics",
+      "repo": "skills",
+      "commit": "",
+      "skillPath": "document-skills/academic-paper-review",
+      "evaluatedAt": "2026-04-27T01:43:28Z",
+      "evaluator": {
+        "harness": "skills_eval@v0.1",
+        "model": "claude-sonnet-4-6",
+        "judgeModel": "claude-sonnet-4-6"
+      }
+    },
+    {
+      "skill_name": "advogado-criminal",
+      "owner": "obra",
+      "repo": "superpowers",
+      "commit": "",
+      "skillPath": "advogado-criminal",
+      "evaluatedAt": "2026-04-27T01:43:28Z",
+      "evaluator": {
+        "harness": "skills_eval@v0.1",
+        "model": "claude-sonnet-4-6",
+        "judgeModel": "claude-sonnet-4-6"
+      }
+    }
+  ]
+}

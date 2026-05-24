@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Task Results Viewer</title>
+  <link rel="stylesheet" href="/task-results/app.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-orb hero-orb-left"></div>
+    <div class="hero-orb hero-orb-right"></div>
+    <div class="hero-copy">
+      <div class="eyebrow">Local Run Viewer</div>
+      <h1 id="job-title">Loading task results</h1>
+      <p class="hero-subtitle" id="job-subtitle">Reading your local result directory and preparing the utility, cost, and safety overview.</p>
+      <div class="hero-stats" id="hero-stats"></div>
+    </div>
+    <div class="hero-actions panel-card">
+      <div class="controls-kicker">Data Source</div>
+      <label class="path-field">
+        <span>Results dir</span>
+        <input id="results-dir-input" type="text" autocomplete="off" spellcheck="false">
+      </label>
+      <div class="action-row">
+        <button id="reload-button" class="primary-button" type="button">Reload</button>
+        <div class="status-pill" id="status-pill" data-tone="working">Loading</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="panel overview-panel">
+      <div class="panel-header">
+        <div>
+          <div class="section-kicker">Run Snapshot</div>
+          <h2>Overview</h2>
+        </div>
+        <div class="panel-note">Job-wide rollup over the current `task_results` directory.</div>
+      </div>
+      <div class="summary-grid" id="summary-grid"></div>
+      <div class="meta-grid" id="job-meta"></div>
+      <div class="agent-row" id="agent-row"></div>
+    </section>
+
+    <section class="panel trials-panel">
+      <div class="panel-header">
+        <div>
+          <div class="section-kicker">Trial Matrix</div>
+          <h2>Trials</h2>
+        </div>
+        <div class="toolbar">
+          <input id="search-input" class="toolbar-input" type="search" placeholder="Search task or trial">
+          <select id="status-filter" class="toolbar-select">
+            <option value="all">All status</option>
+            <option value="error">Error</option>
+            <option value="warning">Warning</option>
+            <option value="failed">Failed</option>
+            <option value="passed">Passed</option>
+            <option value="unknown">Unknown</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-meta" id="trials-meta"></div>
+
+      <div class="table-shell">
+        <table class="trials-table">
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Task</th>
+              <th>Reward</th>
+              <th>Tests</th>
+              <th>Tokens</th>
+              <th>Duration</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody id="trials-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <aside class="panel detail-panel">
+      <div class="panel-header">
+        <div>
+          <div class="section-kicker">Deep Dive</div>
+          <h2>Trial Detail</h2>
+        </div>
+        <div class="panel-note" id="detail-caption">Select a trial</div>
+      </div>
+      <div id="detail-content" class="detail-content">
+        <div class="empty-state">
+          <div class="empty-kicker">No trial selected</div>
+          <p>Pick a row from the table to inspect verifier output, trajectory steps, and generated artifacts.</p>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="/task-results/app.js"></script>
+</body>
+</html>

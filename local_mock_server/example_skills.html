@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillTestBench - Skills Index</title>
+  <link rel="stylesheet" href="/examples/skills.css">
+</head>
+<body>
+  <div class="skills-page">
+    <header class="topbar">
+      <a class="brand" href="/examples">
+        <span class="brand-badge" aria-hidden="true">
+          <svg viewBox="0 0 64 64">
+            <path d="M20 6h24l14 13v26L44 58H20L6 45V19L20 6Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+            <text x="32" y="40" text-anchor="middle" font-size="28" font-family="Georgia, serif" fill="currentColor">S</text>
+          </svg>
+        </span>
+        <span class="brand-word">SkillTestBench</span>
+      </a>
+
+      <nav class="topnav" aria-label="Primary">
+        <a href="/examples">Home</a>
+        <a class="is-active" href="/examples/skills">Skills</a>
+        <a href="/examples/report">Report</a>
+        <a id="paper-nav" href="#" aria-disabled="true">Paper</a>
+        <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <header class="page-head">
+        <p class="eyebrow">SkillTestBench &middot; Index</p>
+        <h1>Skills evaluated</h1>
+        <p id="page-subtitle" class="page-lede">Loading current Example coverage.</p>
+      </header>
+
+      <section class="filter-bar" aria-label="Filter skills">
+        <label class="filter-search">
+          <span class="visually-hidden">Search</span>
+          <svg class="filter-search__icon" viewBox="0 0 20 20" aria-hidden="true">
+            <circle cx="9" cy="9" r="6.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M13.6 13.6L17 17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <input id="search-input" type="search" autocomplete="off" spellcheck="false"
+            placeholder="Search by skill, owner, or domain">
+        </label>
+
+        <label class="filter-select">
+          <span>Sort</span>
+          <select id="filter-sort">
+            <option value="name-asc">Name A &rarr; Z</option>
+            <option value="name-desc">Name Z &rarr; A</option>
+            <option value="utility-desc">Utility &mdash; high to low</option>
+            <option value="utility-asc">Utility &mdash; low to high</option>
+            <option value="safety-desc">Safety &mdash; safest first</option>
+            <option value="safety-asc">Safety &mdash; riskiest first</option>
+          </select>
+        </label>
+      </section>
+
+      <div class="chip-row" role="group" aria-label="Filter by verdict">
+        <span class="chip-row__label">Verdict</span>
+        <button type="button" class="chip" data-filter="verdict" data-value="all" aria-pressed="true">All</button>
+        <button type="button" class="chip" data-filter="verdict" data-value="enable" aria-pressed="false">Promising</button>
+        <button type="button" class="chip" data-filter="verdict" data-value="review" aria-pressed="false">Needs review</button>
+        <button type="button" class="chip" data-filter="verdict" data-value="skip" aria-pressed="false">No gain</button>
+      </div>
+
+      <div class="chip-row" role="group" aria-label="Filter by safety">
+        <span class="chip-row__label">Safety</span>
+        <button type="button" class="chip" data-filter="safety" data-value="all" aria-pressed="true">All</button>
+        <button type="button" class="chip" data-filter="safety" data-value="safe" aria-pressed="false">Safe</button>
+        <button type="button" class="chip" data-filter="safety" data-value="caution" aria-pressed="false">Caution</button>
+        <button type="button" class="chip" data-filter="safety" data-value="risky" aria-pressed="false">Risky</button>
+      </div>
+
+      <div class="chip-row" role="group" aria-label="Filter by source">
+        <span class="chip-row__label">Source</span>
+        <button type="button" class="chip" data-filter="source" data-value="all" aria-pressed="true">All</button>
+        <button type="button" class="chip" data-filter="source" data-value="paper" aria-pressed="false">Paper-final</button>
+        <button type="button" class="chip" data-filter="source" data-value="scanner" aria-pressed="false">Scanner stub</button>
+      </div>
+
+      <div class="table-head" aria-hidden="true">
+        <div class="table-head__cell table-head__cell--name">Skill</div>
+        <div class="table-head__cell">Utility &Delta;</div>
+        <div class="table-head__cell">Safety</div>
+        <div class="table-head__cell">Verdict</div>
+      </div>
+
+      <ol class="skills-list" id="skills-grid"></ol>
+    </main>
+  </div>
+
+  <script src="/examples/skills.js"></script>
+</body>
+</html>
