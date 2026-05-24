@@ -2,22 +2,22 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "emergency-distress-signal",
-    "owner": "ComeOnOliver",
-    "repo": "emergency-distress-signal",
-    "skillPath": "emergency-distress-signal",
-    "category": "military-specific-occupations",
+    "skillName": "email-drafter",
+    "owner": "shubhamsaboo",
+    "repo": "email-drafter",
+    "skillPath": "email-drafter",
+    "category": "arts-design-entertainment-sports-and-media-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.193,
-      "baseline": 0.6228,
-      "withSkill": 0.8158,
-      "tasks": 17,
-      "items": 114,
-      "wiPassedItems": 93,
-      "woPassedItems": 71
+      "deltaPassAt1": 0.0463,
+      "baseline": 0.7407,
+      "withSkill": 0.787,
+      "tasks": 18,
+      "items": 108,
+      "wiPassedItems": 85,
+      "woPassedItems": 80
     },
     "safety": {
       "riskLevel": "unknown",
@@ -33,7 +33,7 @@
       }
     },
     "cost": {
-      "deltaTimeSec": 109.89,
+      "deltaTimeSec": 3.52,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

@@ -3,144 +3,6 @@
   "generatedFrom": "docs\\artifacts\\data\\skills",
   "entries": [
     {
-      "owner": "ComeOnOliver",
-      "repo": "emergency-distress-signal",
-      "file": "lookup/ComeOnOliver__emergency-distress-signal.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "CyberPunk-2022",
-      "repo": "bingbu",
-      "file": "lookup/CyberPunk-2022__bingbu.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "ECNU-ICALK",
-      "repo": "broiler-feed-intake-calculator-and-formulator",
-      "file": "lookup/ECNU-ICALK__broiler-feed-intake-calculator-and-formulator.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "ECNU-ICALK",
-      "repo": "cargo-loading-safety-and-balance-protocols",
-      "file": "lookup/ECNU-ICALK__cargo-loading-safety-and-balance-protocols.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "ECNU-ICALK",
-      "repo": "filter-capsicum-varieties-by-agricultural-parameters",
-      "file": "lookup/ECNU-ICALK__filter-capsicum-varieties-by-agricultural-parameters.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "ECNU-ICALK",
-      "repo": "generate-american-emergency-alert-system-messages",
-      "file": "lookup/ECNU-ICALK__generate-american-emergency-alert-system-messages.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "ECNU-ICALK",
-      "repo": "generate-american-emergency-alert-system-warning",
-      "file": "lookup/ECNU-ICALK__generate-american-emergency-alert-system-warning.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "ECNU-ICALK",
-      "repo": "gps-navigation-assistant",
-      "file": "lookup/ECNU-ICALK__gps-navigation-assistant.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "ECNU-ICALK",
-      "repo": "high-protein-authentic-recipe-finder-no-chicken",
-      "file": "lookup/ECNU-ICALK__high-protein-authentic-recipe-finder-no-chicken.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "ECNU-ICALK",
-      "repo": "high-security-corporate-meeting-planning",
-      "file": "lookup/ECNU-ICALK__high-security-corporate-meeting-planning.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "ECNU-ICALK",
-      "repo": "roleplay-as-a-professional-building-mechanic",
-      "file": "lookup/ECNU-ICALK__roleplay-as-a-professional-building-mechanic.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "ECNU-ICALK",
-      "repo": "survivalist-expert-advice",
-      "file": "lookup/ECNU-ICALK__survivalist-expert-advice.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "K-Dense-AI",
-      "repo": "parallel-web",
-      "file": "lookup/K-Dense-AI__parallel-web.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "K-Dense-AI",
-      "repo": "pufferlib",
-      "file": "lookup/K-Dense-AI__pufferlib.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "K-Dense-AI",
-      "repo": "scholar-evaluation",
-      "file": "lookup/K-Dense-AI__scholar-evaluation.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "K-Dense-AI",
-      "repo": "scikit-bio",
-      "file": "lookup/K-Dense-AI__scikit-bio.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "NousResearch",
-      "repo": "memento-flashcards",
-      "file": "lookup/NousResearch__memento-flashcards.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "Shubhamsaboo",
-      "repo": "academic-researcher",
-      "file": "lookup/Shubhamsaboo__academic-researcher.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "Shubhamsaboo",
-      "repo": "content-creator",
-      "file": "lookup/Shubhamsaboo__content-creator.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "Shubhamsaboo",
-      "repo": "email-drafter",
-      "file": "lookup/Shubhamsaboo__email-drafter.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "Shubhamsaboo",
-      "repo": "meeting-notes",
-      "file": "lookup/Shubhamsaboo__meeting-notes.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "Significant-Gravitas",
-      "repo": "pr-review",
-      "file": "lookup/Significant-Gravitas__pr-review.json",
-      "skillCount": 1
-    },
-    {
-      "owner": "Winbda",
-      "repo": "space-mission-plan",
-      "file": "lookup/Winbda__space-mission-plan.json",
-      "skillCount": 1
-    },
-    {
       "owner": "a5c-ai",
       "repo": "csi-specification-writer",
       "file": "lookup/a5c-ai__csi-specification-writer.json",
@@ -411,9 +273,21 @@
       "skillCount": 1
     },
     {
+      "owner": "comeonoliver",
+      "repo": "emergency-distress-signal",
+      "file": "lookup/comeonoliver__emergency-distress-signal.json",
+      "skillCount": 1
+    },
+    {
       "owner": "coreyhaines31",
       "repo": "sales-enablement",
       "file": "lookup/coreyhaines31__sales-enablement.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "cyberpunk-2022",
+      "repo": "bingbu",
+      "file": "lookup/cyberpunk-2022__bingbu.json",
       "skillCount": 1
     },
     {
@@ -444,6 +318,66 @@
       "owner": "dontbesilent2025",
       "repo": "dbs-action",
       "file": "lookup/dontbesilent2025__dbs-action.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ecnu-icalk",
+      "repo": "broiler-feed-intake-calculator-and-formulator",
+      "file": "lookup/ecnu-icalk__broiler-feed-intake-calculator-and-formulator.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ecnu-icalk",
+      "repo": "cargo-loading-safety-and-balance-protocols",
+      "file": "lookup/ecnu-icalk__cargo-loading-safety-and-balance-protocols.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ecnu-icalk",
+      "repo": "filter-capsicum-varieties-by-agricultural-parameters",
+      "file": "lookup/ecnu-icalk__filter-capsicum-varieties-by-agricultural-parameters.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ecnu-icalk",
+      "repo": "generate-american-emergency-alert-system-messages",
+      "file": "lookup/ecnu-icalk__generate-american-emergency-alert-system-messages.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ecnu-icalk",
+      "repo": "generate-american-emergency-alert-system-warning",
+      "file": "lookup/ecnu-icalk__generate-american-emergency-alert-system-warning.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ecnu-icalk",
+      "repo": "gps-navigation-assistant",
+      "file": "lookup/ecnu-icalk__gps-navigation-assistant.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ecnu-icalk",
+      "repo": "high-protein-authentic-recipe-finder-no-chicken",
+      "file": "lookup/ecnu-icalk__high-protein-authentic-recipe-finder-no-chicken.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ecnu-icalk",
+      "repo": "high-security-corporate-meeting-planning",
+      "file": "lookup/ecnu-icalk__high-security-corporate-meeting-planning.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ecnu-icalk",
+      "repo": "roleplay-as-a-professional-building-mechanic",
+      "file": "lookup/ecnu-icalk__roleplay-as-a-professional-building-mechanic.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "ecnu-icalk",
+      "repo": "survivalist-expert-advice",
+      "file": "lookup/ecnu-icalk__survivalist-expert-advice.json",
       "skillCount": 1
     },
     {
@@ -555,6 +489,30 @@
       "skillCount": 1
     },
     {
+      "owner": "k-dense-ai",
+      "repo": "parallel-web",
+      "file": "lookup/k-dense-ai__parallel-web.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "k-dense-ai",
+      "repo": "pufferlib",
+      "file": "lookup/k-dense-ai__pufferlib.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "k-dense-ai",
+      "repo": "scholar-evaluation",
+      "file": "lookup/k-dense-ai__scholar-evaluation.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "k-dense-ai",
+      "repo": "scikit-bio",
+      "file": "lookup/k-dense-ai__scikit-bio.json",
+      "skillCount": 1
+    },
+    {
       "owner": "kortix-ai",
       "repo": "call-prep",
       "file": "lookup/kortix-ai__call-prep.json",
@@ -591,9 +549,9 @@
       "skillCount": 1
     },
     {
-      "owner": "liigoQi",
+      "owner": "liigoqi",
       "repo": "endurance",
-      "file": "lookup/liigoQi__endurance.json",
+      "file": "lookup/liigoqi__endurance.json",
       "skillCount": 1
     },
     {
@@ -636,6 +594,12 @@
       "owner": "nclamvn",
       "repo": "eldercare-emergency-contacts",
       "file": "lookup/nclamvn__eldercare-emergency-contacts.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "nousresearch",
+      "repo": "memento-flashcards",
+      "file": "lookup/nousresearch__memento-flashcards.json",
       "skillCount": 1
     },
     {
@@ -909,6 +873,30 @@
       "skillCount": 1
     },
     {
+      "owner": "shubhamsaboo",
+      "repo": "academic-researcher",
+      "file": "lookup/shubhamsaboo__academic-researcher.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "shubhamsaboo",
+      "repo": "content-creator",
+      "file": "lookup/shubhamsaboo__content-creator.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "shubhamsaboo",
+      "repo": "email-drafter",
+      "file": "lookup/shubhamsaboo__email-drafter.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "shubhamsaboo",
+      "repo": "meeting-notes",
+      "file": "lookup/shubhamsaboo__meeting-notes.json",
+      "skillCount": 1
+    },
+    {
       "owner": "sickn33",
       "repo": "advogado-criminal",
       "file": "lookup/sickn33__advogado-criminal.json",
@@ -1113,6 +1101,12 @@
       "skillCount": 1
     },
     {
+      "owner": "significant-gravitas",
+      "repo": "pr-review",
+      "file": "lookup/significant-gravitas__pr-review.json",
+      "skillCount": 1
+    },
+    {
       "owner": "sundial-org",
       "repo": "muscle-gain",
       "file": "lookup/sundial-org__muscle-gain.json",
@@ -1296,6 +1290,12 @@
       "owner": "tinh2",
       "repo": "defense-maintenance",
       "file": "lookup/tinh2__defense-maintenance.json",
+      "skillCount": 1
+    },
+    {
+      "owner": "winbda",
+      "repo": "space-mission-plan",
+      "file": "lookup/winbda__space-mission-plan.json",
       "skillCount": 1
     },
     {

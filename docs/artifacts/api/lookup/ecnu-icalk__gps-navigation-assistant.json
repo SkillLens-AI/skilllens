@@ -2,22 +2,22 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "meeting-notes",
-    "owner": "Shubhamsaboo",
-    "repo": "meeting-notes",
-    "skillPath": "meeting-notes",
-    "category": "office-and-administrative-support-occupations",
+    "skillName": "gps-navigation-assistant",
+    "owner": "ecnu-icalk",
+    "repo": "gps-navigation-assistant",
+    "skillPath": "gps-navigation-assistant",
+    "category": "transportation-and-material-moving-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.125,
-      "baseline": 0.875,
-      "withSkill": 1.0,
+      "deltaPassAt1": 0.1569,
+      "baseline": 0.7059,
+      "withSkill": 0.8627,
       "tasks": 18,
-      "items": 96,
-      "wiPassedItems": 96,
-      "woPassedItems": 84
+      "items": 102,
+      "wiPassedItems": 88,
+      "woPassedItems": 72
     },
     "safety": {
       "riskLevel": "low",
@@ -33,7 +33,7 @@
       }
     },
     "cost": {
-      "deltaTimeSec": 28.0,
+      "deltaTimeSec": 11.18,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

@@ -2,38 +2,38 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "pufferlib",
-    "owner": "K-Dense-AI",
-    "repo": "pufferlib",
-    "skillPath": "pufferlib",
-    "category": "life-physical-and-social-science-occupations",
+    "skillName": "meeting-notes",
+    "owner": "shubhamsaboo",
+    "repo": "meeting-notes",
+    "skillPath": "meeting-notes",
+    "category": "office-and-administrative-support-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.325,
-      "baseline": 0.45,
-      "withSkill": 0.775,
-      "tasks": 16,
-      "items": 120,
-      "wiPassedItems": 93,
-      "woPassedItems": 54
+      "deltaPassAt1": 0.125,
+      "baseline": 0.875,
+      "withSkill": 1.0,
+      "tasks": 18,
+      "items": 96,
+      "wiPassedItems": 96,
+      "woPassedItems": 84
     },
     "safety": {
-      "riskLevel": "medium",
-      "staticHits": 9,
+      "riskLevel": "low",
+      "staticHits": 0,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
       "evaluated": true,
       "severityCounts": {
         "H": 0,
-        "M": 6,
-        "L": 3
+        "M": 0,
+        "L": 0
       }
     },
     "cost": {
-      "deltaTimeSec": -146.5,
+      "deltaTimeSec": 28.0,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

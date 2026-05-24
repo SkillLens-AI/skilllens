@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://skilltestbench.local/schema/lookup-payload-v1.json",
   "title": "SkillTestBench /lookup payload (v1)",
-  "description": "Shape returned by GET /lookup and stored as values inside precomputed_evaluations.json. The adapter (skill_report.json -> plugin shape) MUST emit this shape; hand-curated entries SHOULD validate against it. Algorithm-side teams can validate their pipeline output by checking each value in skill_manifest.json + Example/<skill>/skill_report.json against this contract after running adapter.py --out.",
+  "description": "Shape returned by GET /lookup and stored as values inside overrides.json. The adapter (skill_report.json -> plugin shape) MUST emit this shape; hand-curated entries SHOULD validate against it. Algorithm-side teams can validate their pipeline output by checking each value in skill_manifest.json + Example/<skill>/skill_report.json against this contract after running adapter.py --out.",
   "type": "object",
   "required": ["skillName", "utility", "safety", "cost"],
   "properties": {

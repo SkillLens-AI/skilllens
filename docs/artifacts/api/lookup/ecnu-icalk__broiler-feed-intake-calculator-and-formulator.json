@@ -2,22 +2,22 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "filter-capsicum-varieties-by-agricultural-parameters",
-    "owner": "ECNU-ICALK",
-    "repo": "filter-capsicum-varieties-by-agricultural-parameters",
-    "skillPath": "filter-capsicum-varieties-by-agricultural-parameters",
+    "skillName": "broiler-feed-intake-calculator-and-formulator",
+    "owner": "ecnu-icalk",
+    "repo": "broiler-feed-intake-calculator-and-formulator",
+    "skillPath": "broiler-feed-intake-calculator-and-formulator",
     "category": "farming-fishing-and-forestry-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.0463,
-      "baseline": 0.713,
-      "withSkill": 0.7593,
-      "tasks": 17,
-      "items": 108,
-      "wiPassedItems": 82,
-      "woPassedItems": 77
+      "deltaPassAt1": 0.1765,
+      "baseline": 0.7843,
+      "withSkill": 0.9608,
+      "tasks": 18,
+      "items": 102,
+      "wiPassedItems": 98,
+      "woPassedItems": 80
     },
     "safety": {
       "riskLevel": "low",
@@ -33,7 +33,7 @@
       }
     },
     "cost": {
-      "deltaTimeSec": -129.85,
+      "deltaTimeSec": -214.94,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

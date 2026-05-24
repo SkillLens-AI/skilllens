@@ -2,38 +2,38 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "memento-flashcards",
-    "owner": "NousResearch",
-    "repo": "memento-flashcards",
-    "skillPath": "memento-flashcards",
-    "category": "educational-instruction-and-library-occupations",
+    "skillName": "content-creator",
+    "owner": "shubhamsaboo",
+    "repo": "content-creator",
+    "skillPath": "content-creator",
+    "category": "arts-design-entertainment-sports-and-media-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.6765,
-      "baseline": 0.2451,
-      "withSkill": 0.9216,
-      "tasks": 17,
-      "items": 102,
-      "wiPassedItems": 94,
-      "woPassedItems": 25
+      "deltaPassAt1": 0.2063,
+      "baseline": 0.7857,
+      "withSkill": 0.9921,
+      "tasks": 18,
+      "items": 126,
+      "wiPassedItems": 125,
+      "woPassedItems": 99
     },
     "safety": {
-      "riskLevel": "high",
-      "staticHits": 18,
+      "riskLevel": "low",
+      "staticHits": 0,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
       "evaluated": true,
       "severityCounts": {
-        "H": 9,
+        "H": 0,
         "M": 0,
-        "L": 9
+        "L": 0
       }
     },
     "cost": {
-      "deltaTimeSec": 68.97,
+      "deltaTimeSec": 54.1,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

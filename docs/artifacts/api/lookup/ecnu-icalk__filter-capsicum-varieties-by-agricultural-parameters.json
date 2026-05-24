@@ -2,22 +2,22 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "high-security-corporate-meeting-planning",
-    "owner": "ECNU-ICALK",
-    "repo": "high-security-corporate-meeting-planning",
-    "skillPath": "high-security-corporate-meeting-planning",
-    "category": "protective-service-occupations",
+    "skillName": "filter-capsicum-varieties-by-agricultural-parameters",
+    "owner": "ecnu-icalk",
+    "repo": "filter-capsicum-varieties-by-agricultural-parameters",
+    "skillPath": "filter-capsicum-varieties-by-agricultural-parameters",
+    "category": "farming-fishing-and-forestry-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.119,
-      "baseline": 0.8175,
-      "withSkill": 0.9365,
-      "tasks": 18,
-      "items": 126,
-      "wiPassedItems": 118,
-      "woPassedItems": 103
+      "deltaPassAt1": 0.0463,
+      "baseline": 0.713,
+      "withSkill": 0.7593,
+      "tasks": 17,
+      "items": 108,
+      "wiPassedItems": 82,
+      "woPassedItems": 77
     },
     "safety": {
       "riskLevel": "low",
@@ -33,7 +33,7 @@
       }
     },
     "cost": {
-      "deltaTimeSec": -29.17,
+      "deltaTimeSec": -129.85,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

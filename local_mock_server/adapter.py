@@ -15,8 +15,8 @@ Inputs
 
 Output
 ------
-A dict matching the existing ``precomputed_evaluations.json`` schema, plus
-an extra ``provenance`` block with harness/model/judge identifiers.
+A dict matching the ``schema.json`` /lookup payload shape, plus an extra
+``provenance`` block with harness/model/judge identifiers.
 """
 
 from __future__ import annotations

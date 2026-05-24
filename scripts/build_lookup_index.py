@@ -66,10 +66,17 @@ def safe_div(num: float, den: float) -> Optional[float]:
 
 
 def resolve_owner_repo(owner: str, skill_name: str) -> Optional[Tuple[str, str]]:
-    """Map (owner, skill_name) to (owner, repo). Skip entries without an owner."""
-    owner = (owner or "").strip()
+    """Map (owner, skill_name) to (owner, repo). Skip entries without an owner.
+
+    Both fields are lowercased so the resulting filename matches the URL the
+    extension constructs (which also lowercases owner/repo before fetching).
+    GitHub treats owner/repo as case-insensitive at resolution time but
+    preserves display case, so normalising on disk is the safer invariant.
+    """
+    owner = (owner or "").strip().lower()
     if not owner:
         return None
+    skill_name = (skill_name or "").strip().lower()
     if owner in KNOWN_MONOREPOS:
         return owner, KNOWN_MONOREPOS[owner]
     return owner, skill_name

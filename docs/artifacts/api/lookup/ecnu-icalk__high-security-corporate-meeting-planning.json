@@ -2,30 +2,30 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "high-protein-authentic-recipe-finder-no-chicken",
-    "owner": "ECNU-ICALK",
-    "repo": "high-protein-authentic-recipe-finder-no-chicken",
-    "skillPath": "high-protein-authentic-recipe-finder-no-chicken",
-    "category": "food-preparation-and-serving-related-occupations",
+    "skillName": "high-security-corporate-meeting-planning",
+    "owner": "ecnu-icalk",
+    "repo": "high-security-corporate-meeting-planning",
+    "skillPath": "high-security-corporate-meeting-planning",
+    "category": "protective-service-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.0208,
-      "baseline": 0.9062,
-      "withSkill": 0.9271,
+      "deltaPassAt1": 0.119,
+      "baseline": 0.8175,
+      "withSkill": 0.9365,
       "tasks": 18,
-      "items": 96,
-      "wiPassedItems": 89,
-      "woPassedItems": 87
+      "items": 126,
+      "wiPassedItems": 118,
+      "woPassedItems": 103
     },
     "safety": {
-      "riskLevel": "unknown",
+      "riskLevel": "low",
       "staticHits": 0,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
-      "evaluated": false,
+      "evaluated": true,
       "severityCounts": {
         "H": 0,
         "M": 0,
@@ -33,7 +33,7 @@
       }
     },
     "cost": {
-      "deltaTimeSec": -44.05,
+      "deltaTimeSec": -29.17,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

@@ -2,30 +2,30 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "broiler-feed-intake-calculator-and-formulator",
-    "owner": "ECNU-ICALK",
-    "repo": "broiler-feed-intake-calculator-and-formulator",
-    "skillPath": "broiler-feed-intake-calculator-and-formulator",
-    "category": "farming-fishing-and-forestry-occupations",
+    "skillName": "generate-american-emergency-alert-system-warning",
+    "owner": "ecnu-icalk",
+    "repo": "generate-american-emergency-alert-system-warning",
+    "skillPath": "generate-american-emergency-alert-system-warning",
+    "category": "protective-service-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.1765,
-      "baseline": 0.7843,
-      "withSkill": 0.9608,
+      "deltaPassAt1": 0.3016,
+      "baseline": 0.5873,
+      "withSkill": 0.8889,
       "tasks": 18,
-      "items": 102,
-      "wiPassedItems": 98,
-      "woPassedItems": 80
+      "items": 126,
+      "wiPassedItems": 112,
+      "woPassedItems": 74
     },
     "safety": {
-      "riskLevel": "low",
+      "riskLevel": "unknown",
       "staticHits": 0,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
-      "evaluated": true,
+      "evaluated": false,
       "severityCounts": {
         "H": 0,
         "M": 0,
@@ -33,7 +33,7 @@
       }
     },
     "cost": {
-      "deltaTimeSec": -214.94,
+      "deltaTimeSec": 45.23,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

@@ -2,38 +2,38 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "scikit-bio",
-    "owner": "K-Dense-AI",
-    "repo": "scikit-bio",
-    "skillPath": "scikit-bio",
-    "category": "life-physical-and-social-science-occupations",
+    "skillName": "survivalist-expert-advice",
+    "owner": "ecnu-icalk",
+    "repo": "survivalist-expert-advice",
+    "skillPath": "survivalist-expert-advice",
+    "category": "protective-service-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.0667,
-      "baseline": 0.825,
-      "withSkill": 0.8917,
-      "tasks": 17,
-      "items": 120,
-      "wiPassedItems": 107,
-      "woPassedItems": 99
+      "deltaPassAt1": -0.0926,
+      "baseline": 0.9815,
+      "withSkill": 0.8889,
+      "tasks": 18,
+      "items": 108,
+      "wiPassedItems": 96,
+      "woPassedItems": 106
     },
     "safety": {
-      "riskLevel": "low",
-      "staticHits": 3,
+      "riskLevel": "high",
+      "staticHits": 6,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
       "evaluated": true,
       "severityCounts": {
-        "H": 0,
-        "M": 0,
-        "L": 3
+        "H": 3,
+        "M": 3,
+        "L": 0
       }
     },
     "cost": {
-      "deltaTimeSec": -8.77,
+      "deltaTimeSec": -31.04,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

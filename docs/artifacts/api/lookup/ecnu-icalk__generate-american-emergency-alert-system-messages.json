@@ -2,30 +2,30 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "space-mission-plan",
-    "owner": "Winbda",
-    "repo": "space-mission-plan",
-    "skillPath": "space-mission-plan",
-    "category": "military-specific-occupations",
+    "skillName": "generate-american-emergency-alert-system-messages",
+    "owner": "ecnu-icalk",
+    "repo": "generate-american-emergency-alert-system-messages",
+    "skillPath": "generate-american-emergency-alert-system-messages",
+    "category": "protective-service-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": -0.0278,
-      "baseline": 0.9722,
-      "withSkill": 0.9444,
-      "tasks": 18,
-      "items": 108,
-      "wiPassedItems": 102,
-      "woPassedItems": 105
+      "deltaPassAt1": 0.3333,
+      "baseline": 0.6583,
+      "withSkill": 0.9917,
+      "tasks": 17,
+      "items": 120,
+      "wiPassedItems": 119,
+      "woPassedItems": 79
     },
     "safety": {
-      "riskLevel": "low",
+      "riskLevel": "unknown",
       "staticHits": 0,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
-      "evaluated": true,
+      "evaluated": false,
       "severityCounts": {
         "H": 0,
         "M": 0,
@@ -33,7 +33,7 @@
       }
     },
     "cost": {
-      "deltaTimeSec": -0.51,
+      "deltaTimeSec": 36.03,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

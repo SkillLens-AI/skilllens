@@ -2,38 +2,38 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "parallel-web",
-    "owner": "K-Dense-AI",
-    "repo": "parallel-web",
-    "skillPath": "parallel-web",
-    "category": "life-physical-and-social-science-occupations",
+    "skillName": "space-mission-plan",
+    "owner": "winbda",
+    "repo": "space-mission-plan",
+    "skillPath": "space-mission-plan",
+    "category": "military-specific-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.1667,
-      "baseline": 0.6019,
-      "withSkill": 0.7685,
-      "tasks": 17,
+      "deltaPassAt1": -0.0278,
+      "baseline": 0.9722,
+      "withSkill": 0.9444,
+      "tasks": 18,
       "items": 108,
-      "wiPassedItems": 83,
-      "woPassedItems": 65
+      "wiPassedItems": 102,
+      "woPassedItems": 105
     },
     "safety": {
-      "riskLevel": "high",
-      "staticHits": 24,
+      "riskLevel": "low",
+      "staticHits": 0,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
       "evaluated": true,
       "severityCounts": {
-        "H": 9,
-        "M": 9,
-        "L": 6
+        "H": 0,
+        "M": 0,
+        "L": 0
       }
     },
     "cost": {
-      "deltaTimeSec": -111.92,
+      "deltaTimeSec": -0.51,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

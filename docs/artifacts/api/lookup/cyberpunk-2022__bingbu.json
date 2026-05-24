@@ -2,22 +2,22 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "content-creator",
-    "owner": "Shubhamsaboo",
-    "repo": "content-creator",
-    "skillPath": "content-creator",
-    "category": "arts-design-entertainment-sports-and-media-occupations",
+    "skillName": "bingbu",
+    "owner": "cyberpunk-2022",
+    "repo": "bingbu",
+    "skillPath": "bingbu",
+    "category": "military-specific-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.2063,
-      "baseline": 0.7857,
-      "withSkill": 0.9921,
+      "deltaPassAt1": 0.3542,
+      "baseline": 0.5417,
+      "withSkill": 0.8958,
       "tasks": 18,
-      "items": 126,
-      "wiPassedItems": 125,
-      "woPassedItems": 99
+      "items": 96,
+      "wiPassedItems": 86,
+      "woPassedItems": 52
     },
     "safety": {
       "riskLevel": "low",
@@ -33,7 +33,7 @@
       }
     },
     "cost": {
-      "deltaTimeSec": 54.1,
+      "deltaTimeSec": 31.53,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null

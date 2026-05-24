@@ -378,8 +378,12 @@
     if (lookupCache.has(key)) return lookupCache.get(key);
     // Path-style URL works against both static hosts (GitHub Pages serving
     // the baked /lookup/<owner>__<repo>.json files) and the local mock
-    // server's matching route.
-    const url = `${LOCAL_SERVER_BASE_URL}/lookup/${encodeURIComponent(owner)}__${encodeURIComponent(slug)}.json`;
+    // server's matching route. owner/slug are lowercased to match the baked
+    // filenames; GitHub treats them as case-insensitive at resolution time
+    // but URLs preserve display case, so normalising here avoids 404s.
+    const ownerLc = owner.toLowerCase();
+    const slugLc = slug.toLowerCase();
+    const url = `${LOCAL_SERVER_BASE_URL}/lookup/${encodeURIComponent(ownerLc)}__${encodeURIComponent(slugLc)}.json`;
     try {
       const r = await fetchWithTimeout(url);
       if (!r.ok) {
