@@ -597,10 +597,19 @@ server is required.
 The extension calls
 `GET https://skilllens-ai.github.io/skilllens/artifacts/api/lookup/<owner>__<repo>.json`
 by default and pulls real reports for every skill in the published
-artifacts index (224 owner/repo entries aggregated from 226 skills, each
+artifacts index (158 owner/repo entries aggregated from 226 skills, each
 evaluated under multiple harnesses and models — see the paper for the
 full sweep). Skills outside the index return `not_evaluated` and the
 panel labels them as such.
+
+> **Coverage caveat.** Owners whose skills live in a single GitHub monorepo
+> (such as `anthropics/skills`, `obra/superpowers`,
+> `sickn33/antigravity-awesome-skills`, `theneoai/awesome-skills`,
+> `k-dense-ai/scientific-agent-skills`, `alirezarezvani/claude-skills`) are
+> already mapped to one aggregated entry. Other owners default to
+> `owner/<skill_name>` per skill, which may 404 if the actual GitHub
+> repository name differs from the skill name. Please open an issue
+> identifying the real repo and we'll extend the map.
 
 To browse what's covered without using the extension:
 

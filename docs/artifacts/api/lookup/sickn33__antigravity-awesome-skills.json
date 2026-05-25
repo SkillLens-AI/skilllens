@@ -1,0 +1,94 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "advogado-criminal, advogado-especialista, ai-analyzer (+31 more)",
+    "owner": "sickn33",
+    "repo": "antigravity-awesome-skills",
+    "skillPath": "advogado-criminal",
+    "category": "legal-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.2274,
+      "baseline": 0.7045,
+      "withSkill": 0.9318,
+      "tasks": 593,
+      "items": 4020,
+      "wiPassedItems": 3746,
+      "woPassedItems": 2832
+    },
+    "safety": {
+      "riskLevel": "medium",
+      "staticHits": 45,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 24,
+        "L": 21
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 2050.09,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 272
+    },
+    "includedSkills": [
+      "advogado-criminal",
+      "advogado-especialista",
+      "ai-analyzer",
+      "andrej-karpathy",
+      "claude-scientific-skills",
+      "customer-support",
+      "explain-like-socrates",
+      "fda-medtech-compliance-auditor",
+      "fitness-analyzer",
+      "goal-analyzer",
+      "launch-strategy",
+      "lead-magnets",
+      "legal-advisor",
+      "leiloeiro-edital",
+      "leiloeiro-ia",
+      "leiloeiro-juridico",
+      "lex",
+      "mental-health-analyzer",
+      "nutrition-analyzer",
+      "occupational-health-analyzer",
+      "odoo-project-timesheet",
+      "onboarding-cro",
+      "sales-automator",
+      "sam-altman",
+      "satori",
+      "scanpy",
+      "search-specialist",
+      "sexual-health-analyzer",
+      "skin-health-analyzer",
+      "tcm-constitution-analyzer",
+      "team-composition-analysis",
+      "tutorial-engineer",
+      "weightloss-analyzer",
+      "yann-lecun-debate"
+    ]
+  },
+  "source": "artifacts"
+}

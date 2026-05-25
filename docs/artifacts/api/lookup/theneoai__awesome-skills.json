@@ -1,0 +1,89 @@
+{
+  "ok": true,
+  "status": "ok",
+  "evaluation": {
+    "skillName": "aircraft-maintenance-engineer, appliance-repairer, aquaculture-expert (+26 more)",
+    "owner": "theneoai",
+    "repo": "awesome-skills",
+    "skillPath": "aircraft-maintenance-engineer",
+    "category": "installation-maintenance-and-repair-occupations",
+    "evaluatedAt": "",
+    "commit": "",
+    "source": "skilllens_artifacts_v1",
+    "utility": {
+      "deltaPassAt1": 0.086,
+      "baseline": 0.8348,
+      "withSkill": 0.9208,
+      "tasks": 522,
+      "items": 3348,
+      "wiPassedItems": 3083,
+      "woPassedItems": 2795
+    },
+    "safety": {
+      "riskLevel": "medium",
+      "staticHits": 18,
+      "staticTaxonomy": [],
+      "runtimeFlags": [],
+      "riskTriggerRate": 0.0,
+      "evaluated": true,
+      "severityCounts": {
+        "H": 0,
+        "M": 15,
+        "L": 3
+      }
+    },
+    "cost": {
+      "deltaTimeSec": 1673.28,
+      "deltaTokens": null,
+      "deltaUsd": null,
+      "pricingModel": null
+    },
+    "provenance": {
+      "harness": [
+        "cc",
+        "codex",
+        "opencode"
+      ],
+      "model": [
+        "claude-4",
+        "claude-4.6",
+        "gpt-5.1",
+        "gpt-5.4"
+      ],
+      "judgeModel": "",
+      "runCount": 232
+    },
+    "includedSkills": [
+      "aircraft-maintenance-engineer",
+      "appliance-repairer",
+      "aquaculture-expert",
+      "assembly-line-worker",
+      "auto-body-repairer",
+      "auto-repair-technician",
+      "carpenter",
+      "ceramic-artist",
+      "cleaning-staff",
+      "crane-operator",
+      "elderly-caregiver",
+      "f1-pit-crew-engineer",
+      "farm-machinery-operator",
+      "food-safety-manager",
+      "home-health-aide",
+      "household-cleaner",
+      "housekeeper",
+      "housekeeping-trainer",
+      "jade-carver",
+      "locksmith",
+      "military-officer",
+      "mobile-repair-technician",
+      "nursing-assistant",
+      "painter",
+      "plumber",
+      "property-butler",
+      "tattoo-artist",
+      "virtual-power-plant-operator",
+      "wood-carver"
+    ]
+  },
+  "source": "artifacts"
+}

@@ -114,9 +114,17 @@ artifacts host:
 https://skilllens-ai.github.io/skilllens/artifacts/api
 ```
 
-That host serves the same 200+ skill reports from our paper. Skills that
-haven't been evaluated yet return a `not_evaluated` status — the panel
-labels these clearly. No Python, no local server.
+That host serves the 200+ skill reports from our paper, rolled up into
+158 owner/repo entries. Skills outside the index return a
+`not_evaluated` status — the panel labels these clearly. No Python, no
+local server.
+
+> Six known multi-skill monorepos (`anthropics/skills`, `obra/superpowers`,
+> `sickn33/antigravity-awesome-skills`, `theneoai/awesome-skills`,
+> `k-dense-ai/scientific-agent-skills`, `alirezarezvani/claude-skills`) are
+> mapped to one aggregated entry each. Other owners default to
+> `owner/<skill_name>` per skill, which may 404 if the actual GitHub repo
+> name differs from the skill name — file an issue and we'll add it.
 
 Want to see what's covered before installing?
 

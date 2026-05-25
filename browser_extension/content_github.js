@@ -50,48 +50,51 @@ const RESERVED_OWNERS = new Set([
   "enterprise", "team", "customer-stories", "security"
 ]);
 
-// ---------- known skill collections (for the demo) ----------
+// ---------- known skill collections ----------
 //
-// Skill names mirror the real folder structure in anthropics/skills so the
-// "browse a skill" links actually navigate to a working subpath.
+// Monorepos that hold many skills under a single GitHub repo. The skill list
+// itself is now populated at runtime from the /lookup payload's
+// ``includedSkills`` field, so this map only carries presentation metadata.
+// To add a new collection, also add the owner to KNOWN_MONOREPOS in
+// scripts/build_lookup_index.py so the baked /lookup payload aggregates the
+// underlying skills into one owner/repo entry.
 
 const SKILL_COLLECTIONS = {
   "anthropics/skills": {
     label: "Anthropic Skills",
     rootPath: "skills",
     defaultRef: "main",
-    blurb: "Reference library of agent skills curated by Anthropic.",
-    skills: [
-      { path: "skills/algorithmic-art",       name: "algorithmic-art",       verdict: "review", score: 66 },
-      { path: "skills/brand-guidelines",      name: "brand-guidelines",      verdict: "adopt",  score: 86 },
-      { path: "skills/canvas-design",         name: "canvas-design",         verdict: "review", score: 69 },
-      { path: "skills/claude-api",            name: "claude-api",            verdict: "review", score: 70 },
-      { path: "skills/doc-coauthoring",       name: "doc-coauthoring",       verdict: "review", score: 72 },
-      { path: "skills/docx",                  name: "docx",                  verdict: "adopt",  score: 84 },
-      { path: "skills/frontend-design",       name: "frontend-design",       verdict: "review", score: 67 },
-      { path: "skills/internal-comms",        name: "internal-comms",        verdict: "review", score: 65 },
-      { path: "skills/mcp-builder",           name: "mcp-builder",           verdict: "adopt",  score: 82 },
-      { path: "skills/pdf",                   name: "pdf",                   verdict: "adopt",  score: 88 },
-      { path: "skills/pptx",                  name: "pptx",                  verdict: "adopt",  score: 79 },
-      { path: "skills/skill-creator",         name: "skill-creator",         verdict: "review", score: 73 },
-      { path: "skills/slack-gif-creator",     name: "slack-gif-creator",     verdict: "review", score: 64 },
-      { path: "skills/theme-factory",         name: "theme-factory",         verdict: "review", score: 68 },
-      { path: "skills/web-artifacts-builder", name: "web-artifacts-builder", verdict: "review", score: 68 },
-      { path: "skills/webapp-testing",        name: "webapp-testing",        verdict: "review", score: 70 },
-      { path: "skills/xlsx",                  name: "xlsx",                  verdict: "review", score: 71 }
-    ]
+    blurb: "Reference library of agent skills curated by Anthropic."
   },
   "obra/superpowers": {
     label: "Superpowers",
     rootPath: "skills",
     defaultRef: "main",
-    blurb: "Community-contributed productivity skills bundle.",
-    skills: [
-      { path: "skills/research",  name: "research",  verdict: "review", score: 62 },
-      { path: "skills/refactor",  name: "refactor",  verdict: "adopt",  score: 76 },
-      { path: "skills/changelog", name: "changelog", verdict: "adopt",  score: 81 },
-      { path: "skills/triage",    name: "triage",    verdict: "review", score: 58 }
-    ]
+    blurb: "Community-contributed productivity skills bundle."
+  },
+  "sickn33/antigravity-awesome-skills": {
+    label: "Antigravity Awesome Skills",
+    rootPath: "skills",
+    defaultRef: "main",
+    blurb: "Installable library of agentic skills for multiple coding agents."
+  },
+  "theneoai/awesome-skills": {
+    label: "TheNeoAI — Awesome Skills",
+    rootPath: "skills",
+    defaultRef: "main",
+    blurb: "Catalog of 1000+ expert AI skills covering many professions."
+  },
+  "k-dense-ai/scientific-agent-skills": {
+    label: "Scientific Agent Skills",
+    rootPath: "skills",
+    defaultRef: "main",
+    blurb: "Ready-to-use agent skills for research and analysis."
+  },
+  "alirezarezvani/claude-skills": {
+    label: "Claude Skills",
+    rootPath: "skills",
+    defaultRef: "main",
+    blurb: "Curated Claude Code skills, agents, commands, and references."
   }
 };
 
@@ -1120,27 +1123,61 @@ function renderEvaluation(evaluation, opts = {}) {
   attachActions(panel);
 }
 
-function renderCollection(route, collection) {
+// Map an aggregated safety risk level to the verdict-pill style the
+// collection UI uses. The previous demo used per-skill verdicts that we no
+// longer have, so we surface the aggregated risk + utility lift instead.
+function verdictFromAggregate(evaluation) {
+  if (!evaluation) return "review";
+  const risk = (evaluation.safety && evaluation.safety.riskLevel) || "unknown";
+  if (risk === "high") return "avoid";
+  if (risk === "low" || risk === "unknown") {
+    const delta = evaluation.utility && evaluation.utility.deltaPassAt1;
+    if (typeof delta === "number" && delta >= 0.10) return "adopt";
+  }
+  return "review";
+}
+
+async function renderCollection(route, collection) {
   const panel = ensurePanel();
   const owner = route.owner;
   const repo = route.repo;
   const ref = route.ref && route.ref !== "HEAD" ? route.ref : (collection.defaultRef || "main");
-  const buckets = { adopt: 0, review: 0, avoid: 0 };
-  for (const sk of collection.skills) buckets[sk.verdict] = (buckets[sk.verdict] || 0) + 1;
 
-  const rows = collection.skills.map((sk) => {
-    const href = `/${owner}/${repo}/tree/${ref}/${sk.path}`;
+  // Aggregated payload (one entry covers all skills in the monorepo).
+  const lookup = await lookupEvaluation(owner, repo, "").catch(() => null);
+  const evaluation = lookup && lookup.ok && lookup.evaluation ? lookup.evaluation : null;
+  const includedSkills = (evaluation && Array.isArray(evaluation.includedSkills))
+    ? evaluation.includedSkills
+    : [];
+  const overallVerdict = verdictFromAggregate(evaluation);
+
+  const rootPath = collection.rootPath ? `${collection.rootPath}/` : "";
+  const rows = includedSkills.map((name) => {
+    const path = `${rootPath}${name}`;
+    const href = `/${owner}/${repo}/tree/${ref}/${path}`;
     return `
       <a class="stb-coll-row" data-stb-action="goto" data-href="${esc(href)}" href="${esc(href)}">
         <div class="stb-coll-name">
-          <span class="stb-coll-dot" data-verdict="${sk.verdict}"></span>
-          <span class="stb-coll-folder">${esc(sk.name)}</span>
-          <span class="stb-coll-path">${esc(sk.path)}</span>
+          <span class="stb-coll-dot" data-verdict="${overallVerdict}"></span>
+          <span class="stb-coll-folder">${esc(name)}</span>
+          <span class="stb-coll-path">${esc(path)}</span>
         </div>
-        <div class="stb-coll-score" data-verdict="${sk.verdict}">${sk.score}</div>
       </a>
     `;
   }).join("");
+
+  // Hero summary shows the aggregated numbers, not per-skill verdicts.
+  const utility = (evaluation && evaluation.utility) || {};
+  const safety = (evaluation && evaluation.safety) || {};
+  const delta = typeof utility.deltaPassAt1 === "number"
+    ? `${utility.deltaPassAt1 >= 0 ? "+" : ""}${utility.deltaPassAt1.toFixed(3)}`
+    : "—";
+  const riskLabel = (safety.riskLevel || "unknown").toString();
+  const heroPills = `
+    <span class="stb-coll-bucket-pill" data-verdict="${overallVerdict}">risk: ${esc(riskLabel)}</span>
+    <span class="stb-coll-bucket-pill" data-verdict="${overallVerdict}">Δ pass@1: ${esc(delta)}</span>
+    <span class="stb-coll-bucket-total">${includedSkills.length} skills aggregated</span>
+  `;
 
   panel.innerHTML = `
     ${brandHeader(`<span class="stb-pill">Collection</span>`)}
@@ -1149,19 +1186,14 @@ function renderCollection(route, collection) {
       <div class="stb-coll-eyebrow">Skill collection</div>
       <div class="stb-coll-title">${esc(collection.label || `${owner}/${repo}`)}</div>
       <div class="stb-coll-blurb">${esc(collection.blurb || "")}</div>
-      <div class="stb-coll-bucket">
-        <span class="stb-coll-bucket-pill" data-verdict="adopt">${buckets.adopt} adopt</span>
-        <span class="stb-coll-bucket-pill" data-verdict="review">${buckets.review} review</span>
-        <span class="stb-coll-bucket-pill" data-verdict="avoid">${buckets.avoid} avoid</span>
-        <span class="stb-coll-bucket-total">${collection.skills.length} skills</span>
-      </div>
+      <div class="stb-coll-bucket">${heroPills}</div>
     </div>
 
     <div class="stb-coll-list">${rows}</div>
 
     <div class="stb-foot">
       <span class="stb-commit">${esc(owner)}/${esc(repo)}</span>
-      <span class="stb-pill" data-tone="warn">Open a skill folder to evaluate</span>
+      <span class="stb-pill" data-tone="warn">Open a skill folder to view the per-skill page</span>
     </div>
   `;
 
@@ -1267,7 +1299,7 @@ async function checkAndRender() {
   const collection = collectionForRoute(route);
   if (collection) {
     removeToast();
-    renderCollection(route, collection);
+    await renderCollection(route, collection);
     return;
   }
 
