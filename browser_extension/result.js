@@ -43,12 +43,15 @@ function setStatus(label, message, tone = "working") {
   el("status-message").textContent = message;
 }
 
-function setPreviewBanner(visible, label) {
+function setPreviewBanner(visible, label, detail) {
   const banner = el("preview-banner");
   const stamp  = el("verdict-stamp");
   if (visible) {
     banner.hidden = false;
-    if (label) banner.querySelector("strong").textContent = label;
+    const labelEl  = el("preview-banner-label");
+    const detailEl = el("preview-banner-detail");
+    if (labelEl)  labelEl.textContent  = label || "";
+    if (detailEl) detailEl.textContent = detail ? " " + detail : "";
     if (stamp) stamp.hidden = false;
   } else {
     banner.hidden = true;
@@ -444,7 +447,8 @@ function renderSandboxLog(job, evaluation, provenance, surfaceDesc) {
 
   // Benchmark + cost lines. Only emit when we have paired metrics.
   if (tasks > 0) {
-    head.push(line(start, "tag", "bench", `paired pass@1 (${tasks} tasks)${provenance.source === "precomputed" || provenance.source === "adapter" ? " · cached" : ""}`));
+    const cached = provenance.source === "override" || provenance.source === "artifacts" || provenance.source === "adapter";
+    head.push(line(start, "tag", "bench", `paired pass@1 (${tasks} tasks)${cached ? " · cached" : ""}`));
     head.push(line(start, "tag", "cost",  `latency=${latency}s tokens=${tokens}`));
   } else if (provenance.source === "heuristic") {
     head.push(line(start, "warn", "bench", `paired benchmark not available in heuristic mode`));
@@ -653,7 +657,13 @@ function renderResult(job, data, opts = {}) {
   // from overrides.json (envelope source === "override"). Live /evaluate
   // output and baked-artifact lookups render without any banner.
   const isOverride = data?.source === "override";
-  setPreviewBanner(isOverride, isOverride ? "Paper benchmark." : null);
+  setPreviewBanner(
+    isOverride,
+    isOverride ? "Paper benchmark." : null,
+    isOverride
+      ? "Pinned from the SkillLens overrides corpus — re-run with the local engine for fresh numbers."
+      : null
+  );
 
   const evaluation = migrateEvaluation(data.evaluation || {});
   const stats   = evaluation.stats      || {};
