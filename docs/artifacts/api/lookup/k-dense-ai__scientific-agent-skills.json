@@ -2,38 +2,38 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "research-summarizer",
-    "owner": "alirezarezvani",
-    "repo": "research-summarizer",
-    "skillPath": "research-summarizer",
+    "skillName": "parallel-web, pufferlib, scholar-evaluation (+1 more)",
+    "owner": "k-dense-ai",
+    "repo": "scientific-agent-skills",
+    "skillPath": "parallel-web",
     "category": "life-physical-and-social-science-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.1759,
-      "baseline": 0.75,
-      "withSkill": 0.9259,
-      "tasks": 17,
-      "items": 108,
-      "wiPassedItems": 100,
-      "woPassedItems": 81
+      "deltaPassAt1": 0.1941,
+      "baseline": 0.6688,
+      "withSkill": 0.8629,
+      "tasks": 68,
+      "items": 474,
+      "wiPassedItems": 409,
+      "woPassedItems": 317
     },
     "safety": {
       "riskLevel": "high",
-      "staticHits": 6,
+      "staticHits": 57,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
       "evaluated": true,
       "severityCounts": {
-        "H": 3,
-        "M": 3,
-        "L": 0
+        "H": 21,
+        "M": 21,
+        "L": 15
       }
     },
     "cost": {
-      "deltaTimeSec": -19.0,
+      "deltaTimeSec": -112.63,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null
@@ -51,8 +51,14 @@
         "gpt-5.4"
       ],
       "judgeModel": "",
-      "runCount": 8
-    }
+      "runCount": 32
+    },
+    "includedSkills": [
+      "parallel-web",
+      "pufferlib",
+      "scholar-evaluation",
+      "scikit-bio"
+    ]
   },
   "source": "artifacts"
 }

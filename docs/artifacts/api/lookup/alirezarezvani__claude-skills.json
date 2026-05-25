@@ -2,38 +2,38 @@
   "ok": true,
   "status": "ok",
   "evaluation": {
-    "skillName": "lead-magnets",
-    "owner": "sickn33",
-    "repo": "lead-magnets",
-    "skillPath": "lead-magnets",
-    "category": "management-occupations",
+    "skillName": "behuman, ra-qm-skills, research-summarizer",
+    "owner": "alirezarezvani",
+    "repo": "claude-skills",
+    "skillPath": "behuman",
+    "category": "community-and-social-service-occupations",
     "evaluatedAt": "",
     "commit": "",
     "source": "skilllens_artifacts_v1",
     "utility": {
-      "deltaPassAt1": 0.0873,
-      "baseline": 0.9127,
-      "withSkill": 1.0,
-      "tasks": 18,
-      "items": 126,
-      "wiPassedItems": 126,
-      "woPassedItems": 115
+      "deltaPassAt1": 0.2068,
+      "baseline": 0.7006,
+      "withSkill": 0.9074,
+      "tasks": 53,
+      "items": 324,
+      "wiPassedItems": 294,
+      "woPassedItems": 227
     },
     "safety": {
-      "riskLevel": "low",
-      "staticHits": 0,
+      "riskLevel": "high",
+      "staticHits": 15,
       "staticTaxonomy": [],
       "runtimeFlags": [],
       "riskTriggerRate": 0.0,
       "evaluated": true,
       "severityCounts": {
-        "H": 0,
-        "M": 0,
-        "L": 0
+        "H": 3,
+        "M": 6,
+        "L": 6
       }
     },
     "cost": {
-      "deltaTimeSec": 56.37,
+      "deltaTimeSec": 192.95,
       "deltaTokens": null,
       "deltaUsd": null,
       "pricingModel": null
@@ -51,8 +51,13 @@
         "gpt-5.4"
       ],
       "judgeModel": "",
-      "runCount": 8
-    }
+      "runCount": 24
+    },
+    "includedSkills": [
+      "behuman",
+      "ra-qm-skills",
+      "research-summarizer"
+    ]
   },
   "source": "artifacts"
 }

@@ -29,9 +29,16 @@ DEFAULT_OUT_DIR = REPO_ROOT / "docs" / "artifacts" / "api"
 
 # Owners whose skills all live under a single monorepo. Anything not listed
 # here defaults to treating each skill as its own repo (owner/<skill_name>).
+# Verified against actual GitHub repositories at build time — if you add a
+# new owner here, the per-skill files for that owner collapse into one
+# aggregated owner/repo payload.
 KNOWN_MONOREPOS: Dict[str, str] = {
     "anthropics": "skills",
     "obra": "superpowers",
+    "sickn33": "antigravity-awesome-skills",
+    "theneoai": "awesome-skills",
+    "k-dense-ai": "scientific-agent-skills",
+    "alirezarezvani": "claude-skills",
 }
 
 SAFETY_RANK = {"unknown": 0, "low": 1, "medium": 2, "high": 3}
