@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "SkillLens — Browser Extension",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Surface utility, safety, and cost evidence for agent skill packages directly on GitHub and skill marketplaces. Companion to the SkillLens evaluation framework.",
   "homepage_url": "https://skilllens-ai.github.io/",
   "icons": {

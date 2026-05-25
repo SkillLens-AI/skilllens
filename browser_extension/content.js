@@ -238,6 +238,25 @@
     return candidates.find((a) => /download/i.test(a.textContent || "")) || candidates[0] || null;
   }
 
+  // Marketplace listings frequently use a different ``owner`` than the
+  // upstream GitHub source: clawhub.ai/<uploader>/<slug> vs.
+  // github.com/<author>/<repo>. Our corpus is keyed by the GitHub author,
+  // so the uploader handle alone misses. As a fallback, scrape every
+  // github.com link on the page and return the candidate owners in order
+  // of first appearance — the source-of-truth link is typically near the
+  // top of the detail page.
+  function findGithubSourceOwners() {
+    const links = Array.from(document.querySelectorAll('a[href*="github.com"]'));
+    const owners = [];
+    for (const a of links) {
+      const m = /^https?:\/\/(?:www\.)?github\.com\/([a-zA-Z0-9][a-zA-Z0-9._-]*)\/([a-zA-Z0-9][a-zA-Z0-9._-]*)/i.exec(a.href || "");
+      if (!m) continue;
+      const owner = m[1].toLowerCase();
+      if (!owners.includes(owner)) owners.push(owner);
+    }
+    return owners;
+  }
+
   // ---------- route + detection ----------
 
   function parseRoute() {
@@ -818,6 +837,7 @@
         <div class="stb-details-row"><span class="stb-details-key">Static taxonomy</span><span class="stb-details-value">${esc((s.staticTaxonomy || []).join(", ") || "none flagged")}</span></div>
         <div class="stb-details-row"><span class="stb-details-key">Runtime flags</span><span class="stb-details-value">${esc((s.runtimeFlags || []).join(", ") || "none observed")}</span></div>
         ${verifiedDate ? `<div class="stb-details-row"><span class="stb-details-key">Verified</span><span class="stb-details-value">${esc(verifiedDate)} · commit ${esc(commitShort)}</span></div>` : ""}
+        ${opts.matchedVia ? `<div class="stb-details-row"><span class="stb-details-key">Matched via</span><span class="stb-details-value">GitHub source · ${esc(opts.matchedVia)}</span></div>` : ""}
         ${evaluation.notes ? `<div class="stb-notes">${esc(evaluation.notes)}</div>` : ""}
       </div>
 
@@ -888,12 +908,39 @@
     const animPromise = runAnalysisAnimation(panel, route);
     const lookupPromise = lookupEvaluation(route.owner, route.slug);
 
-    const [, result] = await Promise.all([animPromise, lookupPromise]);
+    let [, result] = await Promise.all([animPromise, lookupPromise]);
     if (myToken !== currentToken) return;
     if (!document.body.contains(panel)) return;
 
+    let matchedOwner = null;
     if (result && result.status === "ok" && result.evaluation) {
       renderEvaluation(result.evaluation, { source: result.source });
+      return;
+    }
+
+    // Direct ``<marketplace_owner>__<slug>.json`` missed. The uploader's
+    // handle on the marketplace often differs from the GitHub author —
+    // probe any github.com links on the page and retry with the GitHub
+    // owner. Each candidate is one extra HTTP call; lookupCache dedupes
+    // misses so SPA navigations stay cheap.
+    const sourceOwners = findGithubSourceOwners();
+    for (const owner of sourceOwners) {
+      if (myToken !== currentToken) return;
+      if (owner === route.owner.toLowerCase()) continue;
+      const fallback = await lookupEvaluation(owner, route.slug);
+      if (fallback && fallback.status === "ok" && fallback.evaluation) {
+        result = fallback;
+        matchedOwner = owner;
+        break;
+      }
+    }
+
+    if (myToken !== currentToken) return;
+    if (result && result.status === "ok" && result.evaluation) {
+      renderEvaluation(result.evaluation, {
+        source: result.source,
+        matchedVia: matchedOwner ? `${matchedOwner}/${route.slug}` : null,
+      });
       return;
     }
 
