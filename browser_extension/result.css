@@ -234,7 +234,6 @@ body::before {
   box-shadow: var(--shadow-card);
 }
 .audit-bar[data-source="override"],
-.audit-bar[data-source="precomputed"],
 .audit-bar[data-source="artifacts"],
 .audit-bar[data-source="adapter"] {
   border-left: 3px solid rgba(176, 136, 16, 0.55);
