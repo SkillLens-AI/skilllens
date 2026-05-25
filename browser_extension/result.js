@@ -304,39 +304,43 @@ function fmtVerifiedDate(iso) {
 }
 
 // Decide which audit "mode" produced this evaluation. The signal comes from
-// `data.source` (when /lookup returned), `data.extractionMode` (when /evaluate
-// ran), or `opts.demo` (when we fell back to bundled data).
+// ``data.source`` (when /lookup returned) or ``data.extractionMode`` (when
+// /evaluate ran). The legacy ``opts.demo`` branch is gone — the extension
+// no longer falls back to bundled demo numbers, so there's nothing to label.
 function deriveProvenance(job, data, opts, surfaceDesc) {
   const evaluation = data?.evaluation || {};
   const verifiedAt = evaluation.evaluatedAt || data?.evaluatedAt || "";
   const verifiedShort = fmtVerifiedDate(verifiedAt);
 
-  if (opts?.demo) {
+  const src = data?.source || "";
+  const mode = data?.extractionMode || "";
+
+  // ``override`` and ``precomputed`` are the same idea on the wire: a
+  // hand-curated entry that takes precedence over baked artifacts. Mark
+  // both with the "Paper benchmark" pill so reviewers can tell pinned
+  // numbers from live pipeline output.
+  if (src === "override" || src === "precomputed" || mode === "precomputed") {
     return {
-      source: "demo-offline",
-      pill: "offline preview",
-      pillTone: "muted",
-      auditMode: "cached preview · engine unreachable",
-      logHeader: "engine=skilltestbench@0.4.2 mode=offline-preview",
+      source: "override",
+      pill: `paper benchmark${verifiedShort ? " · " + verifiedShort : ""}`,
+      pillTone: "info",
+      auditMode: `harbor offline · ${surfaceDesc.logMode === "static-only" ? "static review" : "sandboxed run"}${verifiedShort ? " · verified " + verifiedShort : ""}`,
+      logHeader: `engine=skilltestbench@0.4.2 mode=cached source=${src || "precomputed"}`,
       logTail: [
-        { tag: "cache", msg: "loaded bundled reference report (no live engine)" },
-        { tag: "note",  msg: "start mock_skill_server.py to score this skill directly" }
+        { tag: "cache",   msg: `matched overrides entry${verifiedShort ? " · verified " + verifiedShort : ""}` }
       ]
     };
   }
 
-  const src = data?.source || "";
-  const mode = data?.extractionMode || "";
-
-  if (src === "precomputed" || mode === "precomputed") {
+  if (src === "artifacts") {
     return {
-      source: "precomputed",
-      pill: `cached${verifiedShort ? " · " + verifiedShort : ""}`,
+      source: "artifacts",
+      pill: `evaluated${verifiedShort ? " · " + verifiedShort : ""}`,
       pillTone: "info",
-      auditMode: `harbor offline · ${surfaceDesc.logMode === "static-only" ? "static review" : "sandboxed run"}${verifiedShort ? " · verified " + verifiedShort : ""}`,
-      logHeader: `engine=skilltestbench@0.4.2 mode=cached source=precomputed`,
+      auditMode: `harbor offline run${verifiedShort ? " · " + verifiedShort : ""}`,
+      logHeader: `engine=skilltestbench@0.4.2 mode=cached source=artifacts`,
       logTail: [
-        { tag: "cache",   msg: `matched precomputed entry${verifiedShort ? " · verified " + verifiedShort : ""}` }
+        { tag: "artifacts", msg: `served from baked /lookup index` }
       ]
     };
   }
@@ -418,7 +422,7 @@ function renderSandboxLog(job, evaluation, provenance, surfaceDesc) {
     head.push(line(start, "tag", "fetch", `bundle ${skill} (${(job?.relativeDownloadPath || "n/a")})`));
   } else if (provenance.source === "heuristic") {
     head.push(line(start, "tag", "fetch", `inline SKILL.md from ${job?.sourcePageUrl || "page"}`));
-  } else if (provenance.source !== "demo-offline") {
+  } else {
     head.push(line(start, "tag", "lookup", `${job?.owner || "?"}/${job?.slug || "?"} · cached bundle`));
   }
 
@@ -645,7 +649,11 @@ function buildPeerCard({ tone, label, valueText, subText, percentile, percentile
 // ---------- rendering ----------
 
 function renderResult(job, data, opts = {}) {
-  setPreviewBanner(Boolean(opts.demo), opts.demo ? "Reference sample · curated." : null);
+  // "Paper benchmark" banner appears only for hand-curated entries that came
+  // from overrides.json (envelope source === "override"). Live /evaluate
+  // output and baked-artifact lookups render without any banner.
+  const isOverride = data?.source === "override";
+  setPreviewBanner(isOverride, isOverride ? "Paper benchmark." : null);
 
   const evaluation = migrateEvaluation(data.evaluation || {});
   const stats   = evaluation.stats      || {};
@@ -664,9 +672,7 @@ function renderResult(job, data, opts = {}) {
   const card = el("verdict-card");
   card.dataset.verdict = verdict.verdict;
   el("verdict-title").textContent = verdict.title;
-  el("verdict-sub").textContent = opts.demo
-    ? "Reference sample — start the local SkillTestBench engine to score this bundle for real."
-    : verdict.sub;
+  el("verdict-sub").textContent = verdict.sub;
   // Big numeric in the ring is now the safety score S directly (paper §4.4).
   el("verdict-score").textContent = String(Math.round(safety.score ?? verdict.score));
   setVerdictRing(verdict.score);
@@ -761,7 +767,7 @@ function renderResult(job, data, opts = {}) {
   applyProvenanceToAuditBar(job, provenance);
   el("mode-tag").textContent = provenance.pill;
   el("skill-source-label").textContent =
-    `${data.extractedMember || "SKILL.md"} · ${data.zipSourcePath || (opts.demo ? "cached reference bundle" : "unknown source")}`;
+    `${data.extractedMember || "SKILL.md"} · ${data.zipSourcePath || "unknown source"}`;
   el("skill-text").textContent = data.skillText || "(empty skill text)";
   renderSandboxLog(job, evaluation, provenance, surfaceDesc);
 
@@ -772,11 +778,9 @@ function renderResult(job, data, opts = {}) {
   }
 
   setStatus(
-    opts.demo ? "Demo data" : "Done",
-    opts.demo
-      ? "Local SkillTestBench engine is offline — rendering a built-in audit report so you can preview the surface."
-      : (data.serverNote || "Extraction and benchmark scoring finished."),
-    opts.demo ? "working" : "success"
+    "Done",
+    data.serverNote || "Extraction and benchmark scoring finished.",
+    "success"
   );
 
   window.__lastSkillText = data.skillText || "";

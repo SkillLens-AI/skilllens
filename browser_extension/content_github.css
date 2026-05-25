@@ -951,6 +951,17 @@
   transform: translateX(2px);
 }
 
+/* Static rows are shown for monorepos whose on-disk layout we haven't
+   verified — render the skill name without a click target so we don't
+   point users at 404 GitHub pages. */
+#skilltestbench-panel .stb-coll-row-static {
+  cursor: default;
+}
+#skilltestbench-panel .stb-coll-row-static:hover {
+  background: transparent;
+  transform: none;
+}
+
 #skilltestbench-panel .stb-coll-name {
   display: flex;
   align-items: center;
@@ -1017,6 +1028,7 @@
   color: var(--stb-muted);
   font-size: 12px;
   line-height: 1.55;
+  overflow-wrap: anywhere;
 }
 
 #skilltestbench-panel .stb-empty code {
