@@ -59,6 +59,13 @@ const RESERVED_OWNERS = new Set([
 // scripts/build_lookup_index.py so the baked /lookup payload aggregates the
 // underlying skills into one owner/repo entry.
 
+// ``rootPath`` is the subdirectory within the repo where the per-skill
+// folders live. Verified at GitHub against the actual repo structure: if
+// our skill_name list maps cleanly to ``<rootPath>/<skill_name>/`` then
+// each row gets a clickable link to that folder. When the layout is more
+// complex (theneoai groups by persona/tool/..., alirezarezvani uses a
+// non-folder layout) we omit rootPath and the rows render as plain text —
+// better than pointing users at 404 GitHub pages.
 const SKILL_COLLECTIONS = {
   "anthropics/skills": {
     label: "Anthropic Skills",
@@ -78,21 +85,22 @@ const SKILL_COLLECTIONS = {
     defaultRef: "main",
     blurb: "Installable library of agentic skills for multiple coding agents."
   },
-  "theneoai/awesome-skills": {
-    label: "TheNeoAI — Awesome Skills",
-    rootPath: "skills",
-    defaultRef: "main",
-    blurb: "Catalog of 1000+ expert AI skills covering many professions."
-  },
   "k-dense-ai/scientific-agent-skills": {
     label: "Scientific Agent Skills",
-    rootPath: "skills",
+    rootPath: "scientific-skills",
     defaultRef: "main",
     blurb: "Ready-to-use agent skills for research and analysis."
   },
+  "theneoai/awesome-skills": {
+    label: "TheNeoAI — Awesome Skills",
+    // No rootPath: skills live under nested category folders we can't
+    // derive from skill_name alone; rows render as plain text.
+    defaultRef: "main",
+    blurb: "Catalog of 1000+ expert AI skills covering many professions."
+  },
   "alirezarezvani/claude-skills": {
     label: "Claude Skills",
-    rootPath: "skills",
+    // No rootPath: layout doesn't expose per-skill folders at a stable path.
     defaultRef: "main",
     blurb: "Curated Claude Code skills, agents, commands, and references."
   }
@@ -1019,18 +1027,33 @@ async function renderCollection(route, collection) {
     : [];
   const overallVerdict = verdictFromAggregate(evaluation);
 
-  const rootPath = collection.rootPath ? `${collection.rootPath}/` : "";
+  // Collections only emit clickable rows when we've verified the on-disk
+  // layout matches ``<rootPath>/<skill_name>/``. Monorepos that group skills
+  // by category, nested namespaces, or non-folder layouts render as plain
+  // text instead of pointing the user at 404 GitHub URLs.
+  const linkable = Boolean(collection.rootPath);
+  const rootPrefix = linkable ? `${collection.rootPath}/` : "";
   const rows = includedSkills.map((name) => {
-    const path = `${rootPath}${name}`;
-    const href = `/${owner}/${repo}/tree/${ref}/${path}`;
+    if (linkable) {
+      const path = `${rootPrefix}${name}`;
+      const href = `/${owner}/${repo}/tree/${ref}/${path}`;
+      return `
+        <a class="stb-coll-row" data-stb-action="goto" data-href="${esc(href)}" href="${esc(href)}">
+          <div class="stb-coll-name">
+            <span class="stb-coll-dot" data-verdict="${overallVerdict}"></span>
+            <span class="stb-coll-folder">${esc(name)}</span>
+            <span class="stb-coll-path">${esc(path)}</span>
+          </div>
+        </a>
+      `;
+    }
     return `
-      <a class="stb-coll-row" data-stb-action="goto" data-href="${esc(href)}" href="${esc(href)}">
+      <div class="stb-coll-row stb-coll-row-static">
         <div class="stb-coll-name">
           <span class="stb-coll-dot" data-verdict="${overallVerdict}"></span>
           <span class="stb-coll-folder">${esc(name)}</span>
-          <span class="stb-coll-path">${esc(path)}</span>
         </div>
-      </a>
+      </div>
     `;
   }).join("");
 
