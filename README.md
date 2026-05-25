@@ -597,8 +597,10 @@ server is required.
 The extension calls
 `GET https://skilllens-ai.github.io/skilllens/artifacts/api/lookup/<owner>__<repo>.json`
 by default and pulls real reports for every skill in the published
-artifacts index (227 skills × 8 runs). Skills outside the index return
-`not_evaluated` and the panel labels them as such.
+artifacts index (224 owner/repo entries aggregated from 226 skills, each
+evaluated under multiple harnesses and models — see the paper for the
+full sweep). Skills outside the index return `not_evaluated` and the
+panel labels them as such.
 
 To browse what's covered without using the extension:
 

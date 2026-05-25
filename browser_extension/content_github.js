@@ -13,8 +13,9 @@
 //   1. detect SKILL.md at the resolved repo subpath
 //   2. play a 5-stage analysis animation (~5-6s) — feels real and gives the
 //      local server time to respond if it is running
-//   3. render the final evaluation card (server data when present, else the
-//      bundled demo profile or a deterministic synthetic profile)
+//   3. render the final evaluation card (real lookup data when the repo is
+//      in the artifacts index, otherwise the bundled offline reference
+//      profile; repos missing from the index render as ``not_evaluated``)
 
 // Public artifacts mirror serves the same /lookup/<owner>__<repo>.json
 // files the local mock server emits, so the extension works zero-config.

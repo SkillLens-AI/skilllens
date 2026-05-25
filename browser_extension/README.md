@@ -79,8 +79,9 @@ When you visit a supported page that hosts a `SKILL.md` package, the extension:
    GitHub repo header for `github.com/<owner>/<repo>`, or the marketplace's own
    route for `clawhub.ai`, `skills.sh`, `skillsmp.com`, `ai-skills.io`).
 2. **Looks up** a SkillLens report at
-   `GET <backend>/lookup/<owner>__<slug>.json`. The default backend is the
-   public artifacts mirror at
+   `GET <backend>/lookup/<owner>__<repo>.json` (or `<owner>__<slug>.json`
+   on marketplace pages where the URL uses a slug instead of a repo).
+   The default backend is the public artifacts mirror at
    `https://skilllens-ai.github.io/skilllens/artifacts/api`, so the extension
    works with zero local setup for any skill in our published index.
 3. **Injects** a compact panel into the page showing the three axes the paper
