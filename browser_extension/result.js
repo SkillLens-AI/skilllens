@@ -459,39 +459,6 @@ function renderSandboxLog(job, evaluation, provenance, surfaceDesc) {
   }
 }
 
-// ---------- demo evaluation ----------
-
-// Bundled reference report shown only when (a) the result page was opened
-// without a jobId (someone landed on result.html directly) or (b) the local
-// engine refused to answer. Either way, the audit-bar provenance pill makes
-// it explicit that this is a cached reference — not a live measurement of
-// whatever skill the user was just looking at. The numbers themselves are
-// drawn from a bundled reference sample so the surface lights up the same
-// way a real cached entry would.
-function buildDemoEvaluation(job) {
-  return {
-    score: 74,
-    riskLevel: "low",
-    skillName: job?.skillName || job?.slug || "reference-sample",
-    evaluatedAt: "2026-05-12T07:55:00Z",
-    commit: "a1b2c3d4e5f67890abcdef1234567890abcdef12",
-    utility: { deltaPassAt1: 0.164, baseline: 0.408, withSkill: 0.572, tasks: 22 },
-    safety:  { riskLevel: "low", staticHits: 0, staticTaxonomy: [], runtimeFlags: [] },
-    cost:    { deltaTimeSec: 3.6, deltaTokens: 1620, deltaUsd: 0.010 },
-    findings: [
-      { text: "Reference report shown because the local SkillTestBench engine is unreachable.", tone: "warn" },
-      { text: "Cached numbers below come from the harbor offline run, not from this skill.", tone: "warn" }
-    ],
-    reasoning: [
-      "This is a bundled reference sample, not a measurement of the requested skill.",
-      "Start the local engine with `python local_mock_server/mock_skill_server.py` to score the real bundle.",
-      "Reference baseline pass@1 41% → 57% with the skill (paired across 22 tasks).",
-      "Cached cost overhead +3.6s, +1.6k tokens, +$0.010 per task."
-    ],
-    stats: { lineCount: 142, wordCount: 980, headingCount: 11, codeFenceCount: 4, urlCount: 6, envVarLikeCount: 2 },
-    skillText: "# SkillLens reference preview\n\nThis report is a cached reference sample shown because the local SkillTestBench engine is unreachable on 127.0.0.1:8765.\n\nStart it with:\n\n    python local_mock_server/mock_skill_server.py\n\nthen click \"Re-run inspection\" above to score the real bundle.\n"
-  };
-}
 
 // ---------- peer comparison ----------
 //
@@ -851,16 +818,24 @@ async function evaluate(job) {
   }
 }
 
-function renderDemoFallback(job, reason) {
-  const demoData = {
-    extractionMode: "demo",
-    extractedMember: "SKILL.md",
-    zipSourcePath: "built-in demo bundle",
-    serverNote: reason,
-    skillText: buildDemoEvaluation(job).skillText,
-    evaluation: buildDemoEvaluation(job)
-  };
-  renderResult(job, demoData, { demo: true });
+// Show an honest "live evaluation unavailable" state in the popup. The
+// previous demo-fallback path here synthesised audit numbers from a hash of
+// the job, which was misleading. Now we keep all sections at their initial
+// "—" placeholders and surface a clear status banner instead — the popup is
+// supposed to summarise a real /evaluate run, and if we don't have one we
+// shouldn't pretend.
+function renderEngineRequired(job, reason) {
+  setStatus(
+    "Live evaluation unavailable",
+    reason
+      + " The /evaluate route requires a local mock_skill_server.py — the"
+      + " public artifacts mirror only serves cached /lookup payloads.",
+    "error"
+  );
+  // Reset any provenance/preview adornments left over from a previous run.
+  setPreviewBanner(false, null);
+  const overview = el("overview");
+  if (overview) overview.dataset.source = "engine-required";
 }
 
 async function copySkillText() {
@@ -887,21 +862,16 @@ async function main() {
   const jobId = searchParams.get("jobId");
 
   if (!jobId) {
-    const fakeJob = {
-      jobId: "demo-2026-05-19",
-      skillName: "anthropics/skills · pdf",
-      description: "Audit report preview for the pdf skill bundle inside the Anthropic skills collection.",
-      owner: "anthropics",
-      slug: "skills/document-skills/pdf",
-      version: "0.4.2",
-      commit: "a1b2c3d4e5f6",
-      createdAt: new Date().toISOString(),
-      sourcePageUrl: "https://github.com/anthropics/skills/tree/main/document-skills/pdf",
-      relativeDownloadPath: "SkillLens/anthropics__pdf__0.4.2__demo.zip"
-    };
-    fillMeta(fakeJob);
-    bindButtons(fakeJob, jobId);
-    renderDemoFallback(fakeJob, "Standalone preview · open this page via the extension to score a real bundle.");
+    // Standalone preview: result.html was opened directly with no job in
+    // chrome.storage. There's nothing to evaluate, so just explain why the
+    // chart areas are empty. No synthesised "preview" numbers.
+    const placeholder = { jobId: "—", skillName: "—" };
+    fillMeta(placeholder);
+    bindButtons(placeholder, jobId);
+    renderEngineRequired(
+      placeholder,
+      "Open this page via the extension's Inspect button to score a real bundle."
+    );
     return;
   }
 
@@ -918,8 +888,7 @@ async function main() {
     await evaluate(job);
   } catch (error) {
     console.error("[SkillLens][result]", error);
-    setStatus("Engine unreachable", normalizeServerError(error, job), "error");
-    renderDemoFallback(job, normalizeServerError(error, job));
+    renderEngineRequired(job, normalizeServerError(error, job));
   }
 
   window.setInterval(async () => {
@@ -934,8 +903,7 @@ function bindButtons(job, jobId) {
       const latestJob = jobId ? (await getJob(jobId)) || job : job;
       await evaluate(latestJob);
     } catch (error) {
-      setStatus("Retry failed", normalizeServerError(error, job), "error");
-      renderDemoFallback(job, normalizeServerError(error, job));
+      renderEngineRequired(job, normalizeServerError(error, job));
     }
   });
 

@@ -1028,6 +1028,50 @@
   font-size: 11px;
 }
 
+#skilltestbench-panel .stb-empty-hint {
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--stb-muted);
+  opacity: 0.8;
+}
+
+#skilltestbench-panel .stb-empty-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#skilltestbench-panel .stb-empty-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #0b0e14;
+  background: var(--stb-aqua, #4cd1c8);
+  border: 1px solid var(--stb-aqua, #4cd1c8);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: filter 120ms ease, transform 120ms ease;
+}
+#skilltestbench-panel .stb-empty-cta:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+#skilltestbench-panel .stb-empty-cta-alt {
+  color: var(--stb-fg, #e5e7eb);
+  background: transparent;
+  border: 1px solid var(--stb-line);
+}
+#skilltestbench-panel .stb-empty-cta-alt:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
 #skilltestbench-panel .stb-skeleton {
   height: 12px;
   border-radius: 6px;

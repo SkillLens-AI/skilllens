@@ -98,122 +98,6 @@ const SKILL_COLLECTIONS = {
   }
 };
 
-// ---------- bundled demo evaluations (keyed by owner/repo/path) ----------
-
-const DEMO_EVALUATIONS = {
-  "anthropics/skills/skills/brand-guidelines": {
-    skillName: "anthropics/skills · brand-guidelines",
-    evaluatedAt: "2026-05-12T07:55:00Z",
-    commit: "a1b2c3d4e5f67890abcdef1234567890abcdef12",
-    utility: { deltaPassAt1: 0.164, baseline: 0.408, withSkill: 0.572, tasks: 22 },
-    safety:  { riskLevel: "low", staticHits: 0, staticTaxonomy: [], runtimeFlags: [] },
-    cost:    { deltaTimeSec: 3.6, deltaTokens: 1620, deltaUsd: 0.010 },
-    notes: "Strong improvement on brand-consistent copywriting and asset layout tasks; no sandbox side effects."
-  },
-  "anthropics/skills/skills/pdf": {
-    skillName: "anthropics/skills · pdf",
-    evaluatedAt: "2026-05-12T08:00:00Z",
-    commit: "a1b2c3d4e5f67890abcdef1234567890abcdef12",
-    utility: { deltaPassAt1: 0.182, baseline: 0.421, withSkill: 0.603, tasks: 24 },
-    safety:  { riskLevel: "low", staticHits: 0, staticTaxonomy: [], runtimeFlags: [] },
-    cost:    { deltaTimeSec: 4.2, deltaTokens: 1850, deltaUsd: 0.012 },
-    notes: "Stable utility gain across reasoning and code-generation tasks; low operational overhead."
-  },
-  "anthropics/skills/skills/docx": {
-    skillName: "anthropics/skills · docx",
-    evaluatedAt: "2026-05-12T08:10:00Z",
-    commit: "a1b2c3d4e5f67890abcdef1234567890abcdef12",
-    utility: { deltaPassAt1: 0.151, baseline: 0.438, withSkill: 0.589, tasks: 22 },
-    safety:  { riskLevel: "low", staticHits: 0, staticTaxonomy: [], runtimeFlags: ["fs_writes:3"] },
-    cost:    { deltaTimeSec: 5.1, deltaTokens: 2120, deltaUsd: 0.014 },
-    notes: "Solid utility gain on docx parsing and authoring tasks; minimal sandbox writes."
-  },
-  "anthropics/skills/skills/pptx": {
-    skillName: "anthropics/skills · pptx",
-    evaluatedAt: "2026-05-12T08:18:00Z",
-    commit: "a1b2c3d4e5f67890abcdef1234567890abcdef12",
-    utility: { deltaPassAt1: 0.124, baseline: 0.402, withSkill: 0.526, tasks: 20 },
-    safety:  { riskLevel: "low", staticHits: 0, staticTaxonomy: [], runtimeFlags: ["fs_writes:5"] },
-    cost:    { deltaTimeSec: 6.4, deltaTokens: 2840, deltaUsd: 0.018 },
-    notes: "Reliable improvement on slide-deck assembly with modest cost overhead."
-  },
-  "anthropics/skills/skills/xlsx": {
-    skillName: "anthropics/skills · xlsx",
-    evaluatedAt: "2026-05-12T08:24:00Z",
-    commit: "a1b2c3d4e5f67890abcdef1234567890abcdef12",
-    utility: { deltaPassAt1: 0.071, baseline: 0.451, withSkill: 0.522, tasks: 22 },
-    safety:  { riskLevel: "medium", staticHits: 1,
-               staticTaxonomy: ["broad_filesystem_access"],
-               runtimeFlags: ["fs_writes:9"] },
-    cost:    { deltaTimeSec: 8.9, deltaTokens: 4180, deltaUsd: 0.027 },
-    notes: "Useful for spreadsheet workflows; gate the broad fs access behind least-privilege."
-  },
-  "anthropics/skills/skills/mcp-builder": {
-    skillName: "anthropics/skills · mcp-builder",
-    evaluatedAt: "2026-05-12T08:32:00Z",
-    commit: "a1b2c3d4e5f67890abcdef1234567890abcdef12",
-    utility: { deltaPassAt1: 0.158, baseline: 0.392, withSkill: 0.550, tasks: 18 },
-    safety:  { riskLevel: "low", staticHits: 0, staticTaxonomy: [], runtimeFlags: [] },
-    cost:    { deltaTimeSec: 5.6, deltaTokens: 2480, deltaUsd: 0.016 },
-    notes: "Builds MCP servers from prompts with strong pass@1 lift and clean safety profile."
-  },
-  "anthropics/skills/skills/artifacts-builder": {
-    skillName: "anthropics/skills · artifacts-builder",
-    evaluatedAt: "2026-05-12T08:40:00Z",
-    commit: "a1b2c3d4e5f67890abcdef1234567890abcdef12",
-    utility: { deltaPassAt1: 0.062, baseline: 0.488, withSkill: 0.550, tasks: 24 },
-    safety:  { riskLevel: "medium", staticHits: 1,
-               staticTaxonomy: ["external_url_fetch"],
-               runtimeFlags: ["network_egress:2"] },
-    cost:    { deltaTimeSec: 9.4, deltaTokens: 4720, deltaUsd: 0.029 },
-    notes: "Helps artifact rendering tasks; one outbound URL needs reviewer approval."
-  },
-  "anthropics/skills/skills/slackbot": {
-    skillName: "anthropics/skills · slackbot",
-    evaluatedAt: "2026-05-12T08:46:00Z",
-    commit: "a1b2c3d4e5f67890abcdef1234567890abcdef12",
-    utility: { deltaPassAt1: 0.039, baseline: 0.512, withSkill: 0.551, tasks: 18 },
-    safety:  { riskLevel: "medium", staticHits: 2,
-               staticTaxonomy: ["external_url_fetch", "hidden_instructions"],
-               runtimeFlags: ["network_egress:3"] },
-    cost:    { deltaTimeSec: 11.2, deltaTokens: 5840, deltaUsd: 0.037 },
-    notes: "Modest utility lift but several network calls and hidden-instruction patterns to review."
-  },
-  "anthropics/skills/skills/webdesign": {
-    skillName: "anthropics/skills · webdesign",
-    evaluatedAt: "2026-05-12T08:51:00Z",
-    commit: "a1b2c3d4e5f67890abcdef1234567890abcdef12",
-    utility: { deltaPassAt1: 0.058, baseline: 0.434, withSkill: 0.492, tasks: 20 },
-    safety:  { riskLevel: "medium", staticHits: 1,
-               staticTaxonomy: ["broad_filesystem_access"],
-               runtimeFlags: ["fs_writes:11"] },
-    cost:    { deltaTimeSec: 10.1, deltaTokens: 4960, deltaUsd: 0.031 },
-    notes: "Helpful for static-site authoring; tighten filesystem scope before adopting."
-  },
-  "obra/superpowers/skills/research": {
-    skillName: "obra/superpowers · research",
-    evaluatedAt: "2026-05-15T10:30:00Z",
-    commit: "9f8e7d6c5b4a39281706e5d4c3b2a1098f7e6d5c",
-    utility: { deltaPassAt1: 0.041, baseline: 0.498, withSkill: 0.539, tasks: 32 },
-    safety:  { riskLevel: "medium", staticHits: 2,
-               staticTaxonomy: ["hidden_instructions", "broad_filesystem_access"],
-               runtimeFlags: ["fs_writes:14", "network_egress:1"] },
-    cost:    { deltaTimeSec: 11.8, deltaTokens: 6420, deltaUsd: 0.041 },
-    notes: "Modest utility improvement; static scan flags broad filesystem hooks worth reviewing."
-  },
-  "example-org/legacy-skill": {
-    skillName: "example-org/legacy-skill",
-    evaluatedAt: "2026-05-09T14:15:00Z",
-    commit: "0011223344556677889900aabbccddeeff001122",
-    utility: { deltaPassAt1: -0.012, baseline: 0.512, withSkill: 0.500, tasks: 20 },
-    safety:  { riskLevel: "high", staticHits: 4,
-               staticTaxonomy: ["prompt_injection_pattern", "data_exfiltration_pattern",
-                                "shell_command_execution", "external_url_fetch"],
-               runtimeFlags: ["network_egress:7", "fs_writes:21", "shell_invocations:5"] },
-    cost:    { deltaTimeSec: 38.4, deltaTokens: 18500, deltaUsd: 0.137 },
-    notes: "No measurable utility benefit; high resource overhead and multiple safety signals."
-  }
-};
 
 // ---------- URL parsing ----------
 
@@ -270,12 +154,6 @@ async function fetchWithTimeout(url, options = {}, timeoutMs = LOOKUP_TIMEOUT_MS
 async function detectSkillAtPath(owner, repo, ref, path) {
   const key = `${owner}/${repo}@${ref}:${path || "."}`;
   if (detectionCache.has(key)) return detectionCache.get(key);
-
-  const fullKey = path ? `${owner}/${repo}/${path}` : `${owner}/${repo}`;
-  if (DEMO_EVALUATIONS[fullKey]) {
-    detectionCache.set(key, true);
-    return true;
-  }
 
   const subpath = path ? `${path}/SKILL.md` : `SKILL.md`;
   const url = `https://raw.githubusercontent.com/${owner}/${repo}/${ref}/${subpath}`;
@@ -631,29 +509,18 @@ function brandHeader(statusHtml) {
   `;
 }
 
-function previewBanner(kind = "reference") {
-  // Honesty pass: distinguish between
-  //   "reference"  → numbers are from the bundled DEMO_EVALUATIONS table
-  //                  (hand-curated stand-in values, NOT a real measurement)
-  //   "paper"      → numbers are from the overrides.json
-  //                  corpus (real Harbor benchmark output, paper-final)
-  //   "preview"    → fallback when nothing else applies
-  const config = kind === "paper" ? {
-    label: "Paper benchmark",
-    detail: "Cached from a real Harbor offline run. Re-run with the local engine for fresh numbers."
-  } : kind === "reference" ? {
-    label: "Reference sample · curated",
-    detail: "Not a live measurement of this skill version. Numbers are hand-curated stand-ins to illustrate the audit shape."
-  } : {
-    label: "Preview evaluation",
-    detail: "Local SkillTestBench engine not reached. Showing a built-in reference report."
-  };
+// "Paper benchmark" banner shown only when an evaluation came from
+// ``overrides.json`` (the hand-curated override layer that pins paper-final
+// numbers on top of the baked artifacts). The old reference/preview kinds
+// were tied to demo data that no longer exists.
+function previewBanner(kind = "paper") {
+  if (kind !== "paper") return "";
   return `
     <div class="stb-preview-banner" role="note">
       <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
         <path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm.75 3.5v4.25a.75.75 0 0 1-1.5 0V5a.75.75 0 0 1 1.5 0Zm-.75 7.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/>
       </svg>
-      <span><strong>${config.label}.</strong> ${config.detail}</span>
+      <span><strong>Paper benchmark.</strong> Pinned from the SkillLens overrides corpus — re-run with the local engine for fresh numbers.</span>
     </div>
   `;
 }
@@ -997,19 +864,20 @@ function renderEvaluation(evaluation, opts = {}) {
   const safetyDesc = describeSafetySurface(s);
   const verifiedDate = fmtDate(evaluation.evaluatedAt);
 
-  // In demo mode the preview banner already says "Precomputed demo report",
-  // so we drop the duplicate pill from the header. That keeps the close
-  // button from being crowded and removes the partially-clipped artifact
-  // that appeared next to the verdict title.
-  const statusPill = opts.demo
+  // Hand-curated entries (mock server reports ``source: "override"``) get a
+  // "Paper benchmark" banner so reviewers can tell which numbers were pinned
+  // for the paper vs computed by the live pipeline. Other real results
+  // render without any banner.
+  const isOverride = opts.source === "override";
+  const statusPill = isOverride
     ? ""
     : `<span class="stb-pill">Evaluated ${esc(evaluatedAt)}</span>`;
 
   panel.innerHTML = `
     ${brandHeader(statusPill)}
-    ${opts.demo ? previewBanner("reference") : ""}
+    ${isOverride ? previewBanner("paper") : ""}
 
-    <div class="stb-verdict" data-verdict="${verdict.verdict}" data-preview="${opts.demo ? "true" : "false"}">
+    <div class="stb-verdict" data-verdict="${verdict.verdict}" data-preview="${isOverride ? "true" : "false"}">
       <div class="stb-verdict-ring">${verdictRingSvg(verdict.score)}</div>
       <div class="stb-verdict-meta">
         <div class="stb-verdict-eyebrow">Safety status · SkillLens</div>
@@ -1210,23 +1078,46 @@ async function renderCollection(route, collection) {
   });
 }
 
-function renderNotEvaluated(route) {
+// Shared empty-state card. Shown whenever we don't have real evaluation
+// data for the current repo. Honest by design: no synthesised numbers, just
+// an explanation plus links to skills we have evaluated.
+//
+// ``opts.offline`` adds a second line acknowledging that the empty state may
+// be a transient network failure rather than a confirmed absence.
+function renderNotEvaluated(route, opts = {}) {
   const panel = ensurePanel();
   const sub = route.type === "subpath"
     ? `${route.owner}/${route.repo} · ${route.path}`
     : `${route.owner}/${route.repo}`;
+  const offlineHint = opts.offline
+    ? `<div class="stb-empty-hint">If you are offline, try again once the network is back.</div>`
+    : "";
   panel.innerHTML = `
-    ${brandHeader(`<span class="stb-pill" data-tone="warn">Queued</span>`)}
+    ${brandHeader(`<span class="stb-pill" data-tone="warn">Not evaluated</span>`)}
     <div class="stb-empty">
-      <div class="stb-empty-title">SKILL.md detected</div>
+      <div class="stb-empty-title">Not in our research corpus yet</div>
       <div class="stb-empty-sub">
-        ${esc(sub)} hasn't been evaluated yet.<br/>
-        Queued for the next SkillTestBench benchmark batch — no inferred score is shown until a real run completes.
+        SkillLens is in research preview — only skills from our published
+        evaluation corpus show audit data. <strong>${esc(sub)}</strong> has
+        not been evaluated yet, so no numbers are shown.
+      </div>
+      ${offlineHint}
+      <div class="stb-empty-actions">
+        <a class="stb-empty-cta"
+           href="https://skilllens-ai.github.io/skilllens/artifacts/api/lookup/"
+           target="_blank" rel="noopener noreferrer">
+          Browse evaluated skills →
+        </a>
+        <a class="stb-empty-cta stb-empty-cta-alt"
+           href="https://doi.org/10.5281/zenodo.20253170"
+           target="_blank" rel="noopener noreferrer">
+          Dataset DOI
+        </a>
       </div>
     </div>
     <div class="stb-foot">
       <span class="stb-commit">${esc(route.owner)}/${esc(route.repo)}</span>
-      <span class="stb-pill">SkillLens registry · Coming soon</span>
+      <span class="stb-pill">Research preview</span>
     </div>
   `;
   attachActions(panel);
@@ -1259,27 +1150,17 @@ async function runFullAudit(route, myToken) {
   if (myToken !== currentToken) return;
 
   if (result && result.status === "ok" && result.evaluation) {
-    renderEvaluation(result.evaluation, { demo: false });
+    renderEvaluation(result.evaluation, { source: result.source });
     return;
   }
 
-  // Known reference sample: render the bundled report and label it clearly.
-  const key = route.type === "subpath"
-    ? `${route.owner}/${route.repo}/${route.path}`
-    : `${route.owner}/${route.repo}`;
-  const fallback = DEMO_EVALUATIONS[key];
-
-  if (result && result.status === "not_evaluated") {
-    if (fallback) renderEvaluation(fallback, { demo: true });
-    else renderNotEvaluated(route);
-    return;
-  }
-
-  // Server offline / error: only show data we are confident about.
-  // For unknown repos we *deliberately* do not synthesise scores —
-  // displaying random numbers on real repos would be misleading.
-  if (fallback) renderEvaluation(fallback, { demo: true });
-  else renderNotEvaluated(route);
+  // Either the repo is outside our research corpus (not_evaluated) or the
+  // lookup failed at the network level. We deliberately do NOT synthesise
+  // numbers in either case — showing fabricated scores on real repos would
+  // be misleading. ``offline`` adds a small "try again later" hint when the
+  // failure was network-shaped.
+  const looksOffline = !result || result._error;
+  renderNotEvaluated(route, { offline: looksOffline });
 }
 
 async function checkAndRender() {
