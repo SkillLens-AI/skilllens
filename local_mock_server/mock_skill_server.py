@@ -127,6 +127,18 @@ def build_adapter_index() -> Dict[str, Dict[str, Any]]:
         return {}
 
 
+# GitHub allows alphanumerics, hyphens, underscores, and dots in owner/repo
+# names. Anything outside this set in a lookup request is rejected before any
+# filesystem access — defense in depth against ``../`` path traversal even
+# though the on-disk containment check below would also catch it.
+LOOKUP_KEY_RE = re.compile(r"^[a-z0-9][a-z0-9._-]{0,99}$")
+
+
+def is_valid_lookup_key(value: str) -> bool:
+    """Return True iff ``value`` is a safe owner/repo segment to embed in a path."""
+    return bool(LOOKUP_KEY_RE.match(value))
+
+
 def lookup_baked_api(baked_api_dir: Optional[Path], owner: str, repo: str) -> Optional[Dict[str, Any]]:
     """Read a pre-baked /lookup payload from ``<api_dir>/lookup/<owner>__<repo>.json``.
 
@@ -135,13 +147,25 @@ def lookup_baked_api(baked_api_dir: Optional[Path], owner: str, repo: str) -> Op
     Pages. This helper unwraps the envelope and returns just the
     ``evaluation`` dict, since the caller adds its own envelope.
 
-    Returns ``None`` if the file is missing, unreadable, or has the wrong
-    shape. Populated by ``scripts/build_lookup_index.py`` from the artifacts
-    under ``docs/artifacts/data/skills/``.
+    Returns ``None`` if the file is missing, unreadable, fails the safety
+    check, or has the wrong shape. Populated by
+    ``scripts/build_lookup_index.py`` from the artifacts under
+    ``docs/artifacts/data/skills/``.
     """
     if not baked_api_dir:
         return None
-    file_path = baked_api_dir / "lookup" / f"{owner}__{repo}.json"
+    if not is_valid_lookup_key(owner) or not is_valid_lookup_key(repo):
+        return None
+
+    lookup_root = (baked_api_dir / "lookup").resolve()
+    file_path = (lookup_root / f"{owner}__{repo}.json").resolve()
+    # Belt-and-braces: even with a strict regex, confirm the resolved path
+    # stays under lookup_root before opening it.
+    try:
+        file_path.relative_to(lookup_root)
+    except ValueError:
+        return None
+
     payload = read_json_file(file_path)
     if not isinstance(payload, dict):
         return None
@@ -1481,6 +1505,9 @@ class RequestHandler(BaseHTTPRequestHandler):
             if not owner or not repo:
                 self._send_json(400, {"ok": False, "error": "owner and repo are required"})
                 return
+            if not is_valid_lookup_key(owner) or not is_valid_lookup_key(repo):
+                self._send_json(400, {"ok": False, "error": "owner/repo must match ^[a-z0-9][a-z0-9._-]{0,99}$"})
+                return
             result = lookup_precomputed(SERVER_STATE["overridesPath"], owner, repo)
             self._send_json(200, result)
             return
@@ -1498,6 +1525,11 @@ class RequestHandler(BaseHTTPRequestHandler):
             repo = repo.strip().lower()
             if not owner or not repo:
                 self._send_json(400, {"ok": False, "error": "owner and repo are required"})
+                return
+            if not is_valid_lookup_key(owner) or not is_valid_lookup_key(repo):
+                # Reject anything containing path separators, traversal
+                # sequences, or other URL-funny-business before touching disk.
+                self._send_json(400, {"ok": False, "error": "owner/repo must match ^[a-z0-9][a-z0-9._-]{0,99}$"})
                 return
             result = lookup_precomputed(SERVER_STATE["overridesPath"], owner, repo)
             self._send_json(200, result)

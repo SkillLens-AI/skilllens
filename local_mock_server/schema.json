@@ -28,8 +28,20 @@
     },
     "source": {
       "type": "string",
-      "enum": ["precomputed", "adapter", "demo_seed", "skilltestbench_v1"],
+      "enum": [
+        "precomputed",
+        "adapter",
+        "demo_seed",
+        "skilltestbench_v1",
+        "skilllens_artifacts_v1",
+        "artifacts",
+        "override"
+      ],
       "description": "Origin tag so the front-end can show 'demo' vs 'real benchmark' badges."
+    },
+    "category": {
+      "type": "string",
+      "description": "Occupational / topical category the skill is filed under."
     },
     "notes": { "type": "string" },
     "includedSkills": {
@@ -121,6 +133,11 @@
           "type": "number",
           "minimum": 0.0,
           "maximum": 1.0
+        },
+        "severityCounts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 },
+          "description": "Per-severity (H/M/L) finding counts summed across security runs."
         }
       },
       "additionalProperties": false
@@ -131,12 +148,12 @@
       "required": ["deltaTimeSec", "deltaTokens"],
       "properties": {
         "deltaTimeSec": {
-          "type": "number",
-          "description": "wi_agent_execution_time - wo_agent_execution_time, seconds."
+          "type": ["number", "null"],
+          "description": "wi_agent_execution_time - wo_agent_execution_time, seconds. Null when no runs had timing data."
         },
         "deltaTokens": {
-          "type": "integer",
-          "description": "Total token delta (input + cache + output)."
+          "type": ["integer", "null"],
+          "description": "Total token delta (input + cache + output). Null when token counts are missing from the source artifacts."
         },
         "deltaUsd": {
           "type": ["number", "null"],
@@ -177,18 +194,26 @@
       "description": "Reproducibility metadata. Required for paper-grade entries; optional for demo seeds.",
       "properties": {
         "harness": {
-          "type": "string",
-          "description": "Name and version of the evaluation harness, e.g. 'skills_eval@v0.1'."
+          "type": ["string", "array"],
+          "items": { "type": "string" },
+          "description": "Name(s) of the evaluation harness(es). String for a single run; array when multiple harnesses contributed to an aggregated payload."
         },
         "model": {
-          "type": "string",
-          "description": "Model used for the agent runs."
+          "type": ["string", "array"],
+          "items": { "type": "string" },
+          "description": "Model(s) used for the agent runs. Array when multiple models contributed."
         },
         "judgeModel": {
-          "type": "string",
-          "description": "Model used by the LLM judge."
+          "type": ["string", "array"],
+          "items": { "type": "string" },
+          "description": "Model(s) used by the LLM judge."
         },
         "seed": { "type": "integer" },
+        "runCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of underlying runs aggregated into this payload."
+        },
         "harborVersion": { "type": "string" }
       },
       "additionalProperties": true
